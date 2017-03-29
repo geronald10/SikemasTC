@@ -21,7 +21,13 @@
         <activity android:name=".ActionBarToolbar" />
         <activity android:name=".activity.dosen.LihatKehadiran" />
         <activity android:name=".activity.dosen.ListKelasDiampu" />
-        <activity android:name=".activity.dosen.PenjadwalanUlang"></activity>
+        <activity android:name=".activity.dosen.PenjadwalanUlang" />
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppLoginMaterialTheme"></activity>
+        <activity android:name=".BaseActivity" />
+        <activity android:name=".activity.mahasiswa.HalamanUtamaMahasiswa" />
+        <activity android:name=".activity.orangtua.HalamanUtamaOrangtua"></activity>
     </application>
 
 </manifest>

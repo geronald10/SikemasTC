@@ -8,4 +8,10 @@
     <string name="action_search">Search</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+    <string name="email_prompt_label">Email</string>
+    <string name="password_prompt_label">Password</string>
+    <string name="sign_in_button">Sign In</string>
+    <string name="login_title">LOGIN</string>
+    <string name="welcome_message_2">Sistem Kehadiran Mahasiswa</string>
+    <string name="welcome_message_1">Selamat Datang</string>
 </resources>
