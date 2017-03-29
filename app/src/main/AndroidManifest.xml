@@ -8,14 +8,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppMaterialTheme">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".activity.dosen.HalamanUtamaDosen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".NavigationBar" />
+        <activity android:name=".ActionBarToolbar" />
+        <activity android:name=".activity.dosen.LihatKehadiran" />
+        <activity android:name=".activity.dosen.ListKelasDiampu" />
+        <activity android:name=".activity.dosen.PenjadwalanUlang"></activity>
     </application>
 
 </manifest>

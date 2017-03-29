@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="id.ac.its.sikemastc.activity.dosen.LihatKehadiran">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <TextView
+        android:id="@+id/tv_lihat_kehadiran_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lihat Kehadiran Kelas saat ini"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.511" />
+
+    <ImageView
+        android:id="@+id/iv_title_underline"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_lihat_kehadiran_message"
+        app:layout_constraintRight_toRightOf="@+id/tv_lihat_kehadiran_message"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lihat_kehadiran_message"
+        app:srcCompat="@color/colorAccent" />
+
+
+</android.support.constraint.ConstraintLayout>

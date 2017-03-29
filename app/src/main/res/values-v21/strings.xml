@@ -1,11 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SikemasTC</string>
     <string name="greetings_pagi">Selamat Pagi,</string>
     <string name="greetings_siang">Selamat Siang,</string>
     <string name="greetings_sore">Selamat Sore,</string>
     <string name="welcome_message">Jadwal mata kuliah yang Anda ampu saat ini:</string>
     <string name="action_refresh">Refresh</string>
-    <string name="action_search">Search</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 </resources>
