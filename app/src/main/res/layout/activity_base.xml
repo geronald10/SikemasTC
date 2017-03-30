@@ -45,6 +45,6 @@
         app:headerLayout="@layout/header"
         app:itemIconTint="#8C000000"
         app:itemTextColor="#E6000000"
-        app:menu="@menu/menu_items" />
+        app:menu="@menu/menu_item_dosen" />
 
 </android.support.v4.widget.DrawerLayout>

@@ -3,6 +3,11 @@
 
     <style name="AppMaterialTheme" parent="SuperMaterialTheme">
         <!-- Customize for only Lollipop and Above Versions features. -->
+
+    </style>
+
+    <style name="AppNavDrawerMaterialTheme" parent="SuperMaterialTheme">
+        <!-- Customize for only Lollipop and Above Versions features. -->
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 

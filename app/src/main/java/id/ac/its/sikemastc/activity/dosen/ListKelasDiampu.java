@@ -11,11 +11,12 @@ import android.support.v7.widget.Toolbar;
 import java.util.ArrayList;
 import java.util.List;
 
+import id.ac.its.sikemastc.BaseActivity;
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.adapter.JadwalMataKuliahAdapter;
 import id.ac.its.sikemastc.model.JadwalMataKuliahModel;
 
-public class ListKelasDiampu extends AppCompatActivity {
+public class ListKelasDiampu extends BaseActivity {
 
     private final String TAG = ListKelasDiampu.class.getSimpleName();
 
@@ -29,10 +30,6 @@ public class ListKelasDiampu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_kelas_diampu);
         mContext = this;
-
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mToolbar.setTitle("");
-        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
 
         jadwalMatakuliahList = new ArrayList<>();
         jadwalMatakuliahList = JadwalMataKuliahModel.getDummyDataList();

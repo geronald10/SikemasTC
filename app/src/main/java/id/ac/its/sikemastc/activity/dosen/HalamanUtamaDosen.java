@@ -19,13 +19,11 @@ import android.widget.Toast;
 import id.ac.its.sikemastc.BaseActivity;
 import id.ac.its.sikemastc.R;
 
-public class HalamanUtamaDosen extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class HalamanUtamaDosen extends BaseActivity {
 
     private final String TAG = ListKelasDiampu.class.getSimpleName();
 
     private Context mContext;
-    private Toolbar mToolbar;
-    private DrawerLayout mDrawerLayout;
     private Button btnAktif;
     private Button btnLihatKehadiran;
 
@@ -47,6 +45,7 @@ public class HalamanUtamaDosen extends BaseActivity implements NavigationView.On
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_aktifkan_kelas:
+                    Toast.makeText(mContext, "Kelas Diaktifkan", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.btn_lihat_kehadiran:
                     Intent intentToLihatKehadiran = new Intent(mContext, LihatKehadiran.class);
