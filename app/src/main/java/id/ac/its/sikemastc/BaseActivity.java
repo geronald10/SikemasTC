@@ -15,9 +15,12 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
 import id.ac.its.sikemastc.activity.dosen.ListKelasDiampu;
 import id.ac.its.sikemastc.activity.dosen.PenjadwalanUlang;
+import id.ac.its.sikemastc.data.SikemasSessionManager;
 
 public class BaseActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener {
@@ -25,17 +28,22 @@ public class BaseActivity extends AppCompatActivity implements
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
     private FrameLayout mActivityContent;
+    public SikemasSessionManager session;
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
+        session = new SikemasSessionManager(this);
+        session.checkLogin();
+
         mDrawerLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
         mActivityContent = (FrameLayout) mDrawerLayout.findViewById(R.id.activity_content);
         getLayoutInflater().inflate(layoutResID, mActivityContent, true);
         super.setContentView(mDrawerLayout);
         Intent intent = getIntent();
+        HashMap<String, String> userDetail = session.getUserDetails();
 
         String title = intent.getStringExtra("title");
-        int checkedDrawerItemId = intent.getIntExtra("checkedDrawerItemId", R.id.item_home);
+        int checkedDrawerItemId = intent.getIntExtra("checkedDrawerItemId", R.id.item_home_dosen);
 
         setupToolbarMenu(title);
         setupNavigationDrawerMenu(checkedDrawerItemId);
@@ -51,6 +59,8 @@ public class BaseActivity extends AppCompatActivity implements
 
     private void setupNavigationDrawerMenu(int checkedDrawerItemId) {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
+
+        navigationView.inflateMenu(R.menu.menu_item_mahasiswa);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         navigationView.setCheckedItem(checkedDrawerItemId);
         navigationView.setNavigationItemSelectedListener(this);
@@ -91,6 +101,12 @@ public class BaseActivity extends AppCompatActivity implements
                 intentToListKelas.putExtra("title", menuItem.getTitle());
                 startActivity(intentToListKelas);
                 break;
+            case R.id.item_settings:
+                break;
+            case R.id.item_logout:
+                Toast.makeText(getApplicationContext(), "Logout user!", Toast.LENGTH_LONG).show();
+                session.logoutUser();
+                return true;
         }
         return true;
     }

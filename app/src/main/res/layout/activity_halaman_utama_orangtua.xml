@@ -6,4 +6,16 @@
     android:layout_height="match_parent"
     tools:context="id.ac.its.sikemastc.activity.orangtua.HalamanUtamaOrangtua">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ini Halaman Utama Orangtua"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="147dp" />
+
 </android.support.constraint.ConstraintLayout>

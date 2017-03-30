@@ -4,13 +4,22 @@
     android:layout_height="190dp"
     android:background="@drawable/bg_header">
 
+    <ImageView
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/img_profile"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:paddingTop="16dp"
+        android:background="@drawable/ic_account_circle" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="72dp"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
-        android:paddingBottom="15dp"
-        android:paddingLeft="15dp">
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp">
 
         <TextView
             android:id="@+id/tv_nama_user"
@@ -21,7 +30,7 @@
             android:gravity="bottom"
             android:text="Dwi Sunaryono"
             android:textColor="#FFFFFF"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_email_user"
@@ -32,7 +41,18 @@
             android:gravity="bottom"
             android:text="dwi@if.its.ac.id"
             android:textColor="#FFFFFF"
-            android:textSize="14sp"/>
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_id_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif"
+            android:gravity="bottom"
+            android:text="123456789321"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
