@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="id.ac.its.sikemastc">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,9 +14,7 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".activity.dosen.HalamanUtamaDosen"
-            android:theme="@style/AppNavDrawerMaterialTheme">
-
-        </activity>
+            android:theme="@style/AppNavDrawerMaterialTheme" />
         <activity android:name=".NavigationBar" />
         <activity android:name=".ActionBarToolbar" />
         <activity android:name=".activity.dosen.LihatKehadiran" />
@@ -38,7 +36,9 @@
         <activity android:name=".BaseActivity" />
         <activity android:name=".activity.mahasiswa.HalamanUtamaMahasiswa" />
         <activity android:name=".activity.orangtua.HalamanUtamaOrangtua" />
-        <activity android:name=".activity.dosen.DetailKelas"></activity>
+        <activity android:name=".activity.dosen.DetailKelas" />
+        <activity android:name=".activity.mahasiswa.LihatJadwal" />
+        <activity android:name=".activity.orangtua.LihatJadwalMahasiswa"></activity>
     </application>
 
 </manifest>
