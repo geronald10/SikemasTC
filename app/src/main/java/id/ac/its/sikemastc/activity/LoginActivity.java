@@ -1,4 +1,4 @@
-package id.ac.its.sikemastc;
+package id.ac.its.sikemastc.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -24,11 +24,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
 import id.ac.its.sikemastc.activity.mahasiswa.HalamanUtamaMahasiswa;
 import id.ac.its.sikemastc.activity.orangtua.HalamanUtamaOrangtua;
 import id.ac.its.sikemastc.data.SikemasContract;
-import id.ac.its.sikemastc.data.SikemasDBHelper;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
 

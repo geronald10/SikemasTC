@@ -7,4 +7,14 @@
     <string name="action_refresh">Refresh</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+
+    <string name="status_hadir">Hadir</string>
+    <string name="status_absen">Absen</string>
+    <string name="status_ijin">Ijin</string>
+
+    <string name="pref_enable_notifications_key" translatable="false">aktifkan_notifikasi</string>
+    <string name="pref_enable_notifications_label">Notifikasi Jadwal Perkuliahan</string>
+    <string name="pref_enable_notifications_true">Aktif</string>
+    <string name="pref_enable_notifications_false">Non Aktif</string>
+    <string name="pref_last_notification">Notifikasi terakhir</string>
 </resources>

@@ -8,7 +8,7 @@ import android.util.Log;
 
 import java.util.HashMap;
 
-import id.ac.its.sikemastc.LoginActivity;
+import id.ac.its.sikemastc.activity.LoginActivity;
 
 public class SikemasSessionManager {
 

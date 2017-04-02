@@ -12,7 +12,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@android:color/white">
 
         <TextView
@@ -133,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="7dp"
             android:text="Waktu"
             card_view:layout_constraintLeft_toLeftOf="@+id/tv_ruang_label"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_ruang_label" />
@@ -167,13 +167,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
             android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginTop="0dp"
             android:text="12.30 - 15.00"
             card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintLeft_toLeftOf="@+id/tv_ruang"
             card_view:layout_constraintRight_toRightOf="parent"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_waktu_label" />
+            card_view:layout_constraintTop_toTopOf="@+id/tv_waktu_label"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            card_view:layout_constraintVertical_bias="0.0" />
 
     </android.support.constraint.ConstraintLayout>
 

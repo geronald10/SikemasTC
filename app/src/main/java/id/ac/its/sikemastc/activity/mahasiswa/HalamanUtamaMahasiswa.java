@@ -1,9 +1,8 @@
 package id.ac.its.sikemastc.activity.mahasiswa;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import id.ac.its.sikemastc.BaseActivity;
+import id.ac.its.sikemastc.activity.BaseActivity;
 import id.ac.its.sikemastc.R;
 
 public class HalamanUtamaMahasiswa extends BaseActivity {

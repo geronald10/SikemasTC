@@ -1,7 +1,9 @@
-package id.ac.its.sikemastc;
+package id.ac.its.sikemastc.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import id.ac.its.sikemastc.R;
 
 public class MainActivity extends AppCompatActivity {
 

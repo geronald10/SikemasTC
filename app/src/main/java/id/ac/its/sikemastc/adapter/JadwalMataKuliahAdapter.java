@@ -2,13 +2,10 @@ package id.ac.its.sikemastc.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -27,7 +24,7 @@ public class JadwalMataKuliahAdapter extends RecyclerView.Adapter<JadwalMataKuli
 
     @Override
     public JadwalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_jadwal, parent, false);
         JadwalViewHolder holder = new JadwalViewHolder(view);
         return holder;
     }
@@ -63,6 +60,8 @@ public class JadwalMataKuliahAdapter extends RecyclerView.Adapter<JadwalMataKuli
             tvHariMK = (TextView) itemView.findViewById(R.id.tv_hari);
             tvWaktuMK = (TextView) itemView.findViewById(R.id.tv_waktu);
             tvRuangMK = (TextView) itemView.findViewById(R.id.tv_ruang);
+
+//            itemView.setOnClickListener(this);
         }
 
         public void setData(JadwalMataKuliahModel current, int position) {

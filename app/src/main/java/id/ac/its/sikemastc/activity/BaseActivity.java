@@ -1,6 +1,7 @@
-package id.ac.its.sikemastc;
+package id.ac.its.sikemastc.activity;
 
 import android.content.Intent;
+import android.media.audiofx.BassBoost;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -8,10 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -20,6 +18,7 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
+import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
 import id.ac.its.sikemastc.activity.dosen.ListKelasDiampu;
 import id.ac.its.sikemastc.activity.dosen.PenjadwalanUlang;
@@ -27,7 +26,6 @@ import id.ac.its.sikemastc.activity.mahasiswa.HalamanUtamaMahasiswa;
 import id.ac.its.sikemastc.activity.mahasiswa.LihatJadwal;
 import id.ac.its.sikemastc.activity.orangtua.HalamanUtamaOrangtua;
 import id.ac.its.sikemastc.activity.orangtua.LihatJadwalMahasiswa;
-import id.ac.its.sikemastc.data.SikemasContract;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
 
 public class BaseActivity extends AppCompatActivity implements
@@ -173,6 +171,9 @@ public class BaseActivity extends AppCompatActivity implements
                 finish();
                 break;
             case R.id.item_settings:
+                Intent intentToSettings = new Intent(this, SettingsActivity.class);
+                startActivity(intentToSettings);
+                finish();
                 break;
             case R.id.item_logout:
                 Toast.makeText(getApplicationContext(), "Logout user!", Toast.LENGTH_LONG).show();

@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.dosen.PenjadwalanUlang">
+    tools:context="id.ac.its.sikemastc.activity.dosen.PenjadwalanUlangPermanen">
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <TextView
         android:id="@+id/tv_lihat_kehadiran_message"
@@ -19,13 +24,12 @@
         android:text="Penjadwalan Ulang"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
-        android:id="@+id/iv_title_underline"
+        android:id="@+id/iv_title_underline_1"
         android:layout_width="0dp"
         android:layout_height="2dp"
         app:layout_constraintHorizontal_bias="0.0"
@@ -34,51 +38,22 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_lihat_kehadiran_message"
         app:srcCompat="@color/colorAccent" />
 
-    <TextView
-        android:id="@+id/tv_penjadwalan_message"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="Anda dapat melakukan penjadwalan ulang mata kuliah yang anda ampu"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="18sp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_title_underline" />
-
-    <Spinner
-        android:id="@+id/sp_kelas"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_penjadwalan_message"
-        app:layout_constraintRight_toRightOf="@+id/tv_penjadwalan_message"
-        app:layout_constraintTop_toBottomOf="@+id/tv_penjadwalan_message" />
-
     <ImageView
         android:id="@+id/iv_info_kelas_bg_color"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:cropToPadding="false"
         app:layout_constraintBottom_toBottomOf="@+id/tv_waktu"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/sp_kelas"
-        app:layout_constraintRight_toRightOf="@+id/sp_kelas"
-        app:layout_constraintTop_toBottomOf="@+id/sp_kelas"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_title_underline_1"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@color/colorPrimaryLight" />
 
     <TextView
@@ -184,34 +159,58 @@
         app:layout_constraintRight_toRightOf="@+id/tv_nama_mata_kuliah"
         app:layout_constraintTop_toTopOf="@+id/tv_ruang_label" />
 
-    <Button
-        android:id="@+id/btn_ganti_jadwal_sementara"
+    <TextView
+        android:id="@+id/tv_ruang_kuliah_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:text="Ganti Jadwal Sementara"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Ruang Kuliah"
+        app:layout_constraintLeft_toLeftOf="@id/iv_info_kelas_bg_color"
         app:layout_constraintTop_toBottomOf="@+id/iv_info_kelas_bg_color" />
 
-    <Button
-        android:id="@+id/btn_ganti_jadwal_permanen"
+    <TextView
+        android:id="@+id/tv_waktu_kuliah_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:text="Ganti Permanen"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="16dp"
+        android:text="Waktu Tersedia"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_ruang_kuliah_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ruang_kuliah_label" />
+
+    <Spinner
+        android:id="@+id/sp_ruang_kuliah"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_ruang_kuliah_label"
+        app:layout_constraintLeft_toRightOf="@id/tv_ruang_kuliah_label"
+        app:layout_constraintRight_toRightOf="@+id/iv_info_kelas_bg_color"
+        app:layout_constraintTop_toTopOf="@+id/tv_ruang_kuliah_label" />
+
+    <Spinner
+        android:id="@+id/sp_waktu_tersedia"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_kuliah_label"
+        app:layout_constraintRight_toRightOf="@+id/sp_ruang_kuliah"
+        app:layout_constraintTop_toTopOf="@+id/tv_waktu_kuliah_label"
+        app:layout_constraintLeft_toLeftOf="@+id/sp_ruang_kuliah" />
+
+    <Button
+        android:id="@+id/btn_simpan_perubahan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Simpan Perubahan"
+        android:background="@color/colorAccent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_ganti_jadwal_sementara" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 
 </android.support.constraint.ConstraintLayout>

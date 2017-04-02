@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <PreferenceCategory
+        android:title="Umum">
+
+        <CheckBoxPreference
+            android:title="@string/pref_enable_notifications_label"
+            android:key="@string/pref_enable_notifications_key"
+            android:defaultValue="true"
+            android:summaryOn="@string/pref_enable_notifications_true"
+            android:summaryOff="@string/pref_enable_notifications_false" />
+        <Preference
+            android:title="Reset Pengaturan"
+            android:key="key_default_button"
+            android:summary="Reset semua pengaturan ke pengaturan awal" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

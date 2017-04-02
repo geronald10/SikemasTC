@@ -9,6 +9,10 @@
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
 
+    <color name="colorStatusHadir">#4bae4f</color>
+    <color name="colorStatusIjin">#ffc107</color>
+    <color name="colorStatusAbsen">#F34235</color>
+
     <color name="colorControlHighlight">#ffe28c</color>
     <color name="colorButtonNormal">#FFC107</color>
     <color name="colorControlActivated">#FFC107</color>
