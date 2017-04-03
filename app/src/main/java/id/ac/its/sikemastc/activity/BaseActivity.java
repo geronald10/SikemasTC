@@ -173,7 +173,6 @@ public class BaseActivity extends AppCompatActivity implements
             case R.id.item_settings:
                 Intent intentToSettings = new Intent(this, SettingsActivity.class);
                 startActivity(intentToSettings);
-                finish();
                 break;
             case R.id.item_logout:
                 Toast.makeText(getApplicationContext(), "Logout user!", Toast.LENGTH_LONG).show();

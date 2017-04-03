@@ -42,7 +42,14 @@
         <activity android:name=".activity.dosen.DetailPesertaKelas" />
         <activity android:name=".activity.dosen.PenjadwalanUlangSementara" />
         <activity android:name=".activity.dosen.PenjadwalanUlangPermanen" />
-        <activity android:name=".activity.SettingsActivity"></activity>
+        <activity android:name=".activity.SettingsActivity"
+            android:label="Settings"
+            android:theme="@style/SettingsTheme"
+            android:parentActivityName=".activity.BaseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.BaseActivity"/>
+        </activity>
     </application>
 
 </manifest>
