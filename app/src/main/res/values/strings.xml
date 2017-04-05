@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SikemasTC</string>
+    <string name="validasi_wajah_btn_label">Validasi Wajah</string>
+    <string name="validasi_tanda_tangan_btn_label">Validasi TTD</string>
+    <string name="recognition_view_btn_label">Recognition View</string>
+    <string name="recognition_training_btn_label">Recognition Training</string>
+    <string name="detection_view_btn_label">Detection View</string>
+    <string name="tambah_set_wajah_btn_label">Tambah Set Wajah</string>
+    <string name="settings_btn_label">Settings</string>
 </resources>
