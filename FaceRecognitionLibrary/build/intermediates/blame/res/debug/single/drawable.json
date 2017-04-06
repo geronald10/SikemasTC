@@ -1,19 +1,11 @@
 [
     {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background_light.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\dad5b4a897547aa04f49cdddd899722b91532917\\output\\res\\drawable\\abc_dialog_material_background_light.xml"
-    },
-    {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
         "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
     },
     {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
         "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_tab_indicator_material.xml"
-    },
-    {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background_dark.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\dad5b4a897547aa04f49cdddd899722b91532917\\output\\res\\drawable\\abc_dialog_material_background_dark.xml"
     },
     {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
@@ -56,12 +48,12 @@
         "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_ratingbar_material.xml"
     },
     {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_top_material.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_cab_background_top_material.xml"
-    },
-    {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_menu_overflow_material.xml",
         "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_ic_menu_overflow_material.xml"
+    },
+    {
+        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_top_material.xml",
+        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_cab_background_top_material.xml"
     },
     {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_colored_material.xml",
@@ -92,24 +84,24 @@
         "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
     },
     {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_text_cursor_material.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_text_cursor_material.xml"
-    },
-    {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_go_search_api_material.xml",
         "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_ic_go_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_text_cursor_material.xml",
+        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_text_cursor_material.xml"
     },
     {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg_low.xml",
         "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\notification_bg_low.xml"
     },
     {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_list_selector_holo_light.xml"
-    },
-    {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",
         "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_btn_check_material.xml"
+    },
+    {
+        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",
+        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_list_selector_holo_light.xml"
     },
     {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_clear_material.xml",
@@ -120,12 +112,12 @@
         "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_dialog_material_background.xml"
     },
     {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_list_selector_holo_dark.xml"
-    },
-    {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
         "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
+        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_list_selector_holo_dark.xml"
     },
     {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
@@ -134,10 +126,6 @@
     {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
         "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\drawable\\abc_textfield_search_material.xml"
-    },
-    {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_full_material.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\dad5b4a897547aa04f49cdddd899722b91532917\\output\\res\\drawable\\abc_ratingbar_full_material.xml"
     },
     {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_vector_test.xml",

@@ -1,7 +1,6 @@
 package id.ac.its.sikemastc.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +18,7 @@ public class MenuValidasiWajah extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_validasi_wajah);
+
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         Intent intent = getIntent();
@@ -45,7 +45,8 @@ public class MenuValidasiWajah extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.btn_add_set_wajah:
                     Intent intentToSetWajah = new Intent(v.getContext(), AddSetWajah.class);
-                    intentToSetWajah.putExtra("identitas_mahasiswa", "5113100112 Ronald Gunawan R");
+                    intentToSetWajah.putExtra("identitas_mahasiswa", "112 - Ronald Gunawan R");
+                    intentToSetWajah.putExtra("id_mahasiswa", "5113100112");
                     startActivity(intentToSetWajah);
                     break;
                 case R.id.btn_detection_view:

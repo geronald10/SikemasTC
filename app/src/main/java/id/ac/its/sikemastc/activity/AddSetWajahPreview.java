@@ -1,25 +1,41 @@
 package id.ac.its.sikemastc.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.android.Utils;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ch.zhaw.facerecognitionlibrary.Helpers.CustomCameraView;
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
@@ -27,6 +43,8 @@ import ch.zhaw.facerecognitionlibrary.Helpers.MatName;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatOperation;
 import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
 import id.ac.its.sikemastc.R;
+
+import static android.content.ContentValues.TAG;
 
 public class AddSetWajahPreview extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
 
@@ -72,9 +90,10 @@ public class AddSetWajahPreview extends Activity implements CameraBridgeViewBase
         if (folder.equals("Test")) {
             subfolder = intent.getStringExtra("Subfolder");
         }
-        name = intent.getStringExtra("Name");
-        method = intent.getIntExtra("Method", 0);
+        name = intent.getStringExtra("user_terlogin");
+        method = intent.getIntExtra("method", 0);
         capturePressed = false;
+
         if(method == MANUALLY) {
             btnCapture = (ImageButton)findViewById(R.id.btn_capture);
             btnCapture.setVisibility(View.VISIBLE);
@@ -164,14 +183,15 @@ public class AddSetWajahPreview extends Activity implements CameraBridgeViewBase
                             for(int i = 0; i<faces.length; i++){
                                 MatOperation.drawRectangleAndLabelOnPreview(imgRgba, faces[i], String.valueOf(total), front_camera);
                             }
-
                             total++;
 
                             // Stop after numberOfPictures (settings option)
                             if(total >= numberOfPictures){
-                                Intent intent = new Intent(getApplicationContext(), MenuValidasiWajah.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
+                                Intent returnIntent = new Intent();
+                                returnIntent.putExtra("result_message", "Berhasil menambahkan data set wajah");
+                                returnIntent.putExtra("number_of_pictures", total);
+                                setResult(Activity.RESULT_OK, returnIntent);
+                                finish();
                             }
                             capturePressed = false;
                         } else {
