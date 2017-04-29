@@ -1,21 +1,5 @@
 package id.ac.its.sikemastc.utilities;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Build;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
-
-import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
-import id.ac.its.sikemastc.sync.ReminderTasks;
-import id.ac.its.sikemastc.sync.SikemasReminderIntentService;
-
 public class NotificationUtils {
 
 //    private static final int SIKEMAS_REMINDER_NOTIFICATION_ID = 1138;

@@ -12,9 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppMaterialTheme">
         <activity android:name=".activity.MainActivity" />
-        <activity
-            android:name=".activity.dosen.HalamanUtamaDosen"
-            android:theme="@style/AppNavDrawerMaterialTheme" />
         <activity android:name=".utilities.NavigationBar" />
         <activity android:name=".utilities.ActionBarToolbar" />
         <activity android:name=".activity.dosen.LihatKehadiran" />
@@ -34,6 +31,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.BaseActivity" />
+        <activity android:name=".activity.dosen.HalamanUtamaDosen" />
         <activity android:name=".activity.mahasiswa.HalamanUtamaMahasiswa" />
         <activity android:name=".activity.orangtua.HalamanUtamaOrangtua" />
         <activity android:name=".activity.dosen.DetailKelas" />
@@ -42,7 +40,7 @@
         <activity android:name=".activity.dosen.DetailPesertaKelas" />
         <activity android:name=".activity.dosen.PenjadwalanUlangSementara" />
         <activity android:name=".activity.dosen.PenjadwalanUlangPermanen" />
-        <activity android:name=".activity.SettingsActivity"></activity>
+        <activity android:name=".activity.SettingsActivity" />
     </application>
 
 </manifest>

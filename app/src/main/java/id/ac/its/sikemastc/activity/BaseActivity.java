@@ -1,7 +1,6 @@
 package id.ac.its.sikemastc.activity;
 
 import android.content.Intent;
-import android.media.audiofx.BassBoost;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -23,14 +22,12 @@ import java.util.HashMap;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
-import id.ac.its.sikemastc.activity.dosen.JadwalUtamaDosen;
 import id.ac.its.sikemastc.activity.dosen.ListKelasDiampu;
 import id.ac.its.sikemastc.activity.dosen.PenjadwalanUlang;
 import id.ac.its.sikemastc.activity.mahasiswa.HalamanUtamaMahasiswa;
 import id.ac.its.sikemastc.activity.mahasiswa.LihatJadwal;
 import id.ac.its.sikemastc.activity.orangtua.HalamanUtamaOrangtua;
 import id.ac.its.sikemastc.activity.orangtua.LihatJadwalMahasiswa;
-import id.ac.its.sikemastc.adapter.JadwalUtamaMkAdapter;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
 
 public class BaseActivity extends AppCompatActivity implements
@@ -139,7 +136,7 @@ public class BaseActivity extends AppCompatActivity implements
         switch (menuItem.getItemId()) {
             case R.id.item_home_dosen:
 //                Intent intentToHomeDosen = new Intent(this, HalamanUtamaDosen.class);
-                Intent intentToHomeDosen = new Intent(this, JadwalUtamaDosen.class);
+                Intent intentToHomeDosen = new Intent(this, HalamanUtamaDosen.class);
                 intentToHomeDosen.putExtra("checkedDrawerItemId", menuItem.getItemId());
                 intentToHomeDosen.putExtra("title", menuItem.getTitle());
                 startActivity(intentToHomeDosen);

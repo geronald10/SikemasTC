@@ -26,7 +26,6 @@ import java.util.Map;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
-import id.ac.its.sikemastc.activity.dosen.JadwalUtamaDosen;
 import id.ac.its.sikemastc.activity.mahasiswa.HalamanUtamaMahasiswa;
 import id.ac.its.sikemastc.activity.orangtua.HalamanUtamaOrangtua;
 import id.ac.its.sikemastc.data.SikemasContract;
@@ -185,7 +184,7 @@ public class LoginActivity extends AppCompatActivity {
         switch (userRole) {
             case "1":
 //                Intent intentDosen = new Intent(LoginActivity.this, HalamanUtamaDosen.class);
-                Intent intentDosen = new Intent(LoginActivity.this, JadwalUtamaDosen.class);
+                Intent intentDosen = new Intent(LoginActivity.this, HalamanUtamaDosen.class);
                 startActivity(intentDosen);
                 break;
             case "2":
