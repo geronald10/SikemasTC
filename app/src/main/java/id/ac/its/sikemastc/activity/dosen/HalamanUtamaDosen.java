@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import id.ac.its.sikemastc.activity.BaseActivity;
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.utilities.NotificationUtils;
 
 public class HalamanUtamaDosen extends BaseActivity {
 
@@ -46,9 +45,4 @@ public class HalamanUtamaDosen extends BaseActivity {
             }
         }
     };
-
-    public void testNotification(View view) {
-//        NotificationUtils.remindUserJadwalPerkuliahan(this);
-    }
-
 }
