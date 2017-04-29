@@ -26,6 +26,7 @@ import java.util.Map;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
+import id.ac.its.sikemastc.activity.dosen.JadwalUtamaDosen;
 import id.ac.its.sikemastc.activity.mahasiswa.HalamanUtamaMahasiswa;
 import id.ac.its.sikemastc.activity.orangtua.HalamanUtamaOrangtua;
 import id.ac.its.sikemastc.data.SikemasContract;
@@ -114,8 +115,8 @@ public class LoginActivity extends AppCompatActivity {
                 hideDialog();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    String code = jsonObject.getString("status_code");
-                    String message = jsonObject.getString("message");
+                    String code = jsonObject.getString("code");
+                    String message = jsonObject.getString("status");
                     // Check for error node in json
                     if (code.equals("1")) {
                         // user successfully logged in. Create Login session
@@ -124,11 +125,12 @@ public class LoginActivity extends AppCompatActivity {
                         String name = user.getString(SikemasContract.UserEntry.KEY_USER_NAME);
                         String email = user.getString(SikemasContract.UserEntry.KEY_USER_EMAIL);
                         String role = user.getString(SikemasContract.UserEntry.KEY_USER_ROLE);
-
-                        session.createLoginSession(userId, name, email, role);
-
-//                        // Inserting row in users table
-//                        addUser(userId, name, email);
+                        if (role.equals("1")) {
+                            String kodeDosen = jsonObject.getString(SikemasContract.UserEntry.KEY_KODE_DOSEN);
+                            session.createLoginSession(userId, name, email, role, kodeDosen);
+                        }
+                        else
+                            session.createLoginSession(userId, name, email, role);
                         checkUserRole(role);
                         finish();
                     } else {
@@ -158,8 +160,8 @@ public class LoginActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put(SikemasContract.UserEntry.KEY_USER_EMAIL, email);
-                params.put(SikemasContract.UserEntry.KEY_USER_PASSWORD, password);
+                params.put("user_email", email);
+                params.put("user_password", password);
 
                 return params;
             }
@@ -182,7 +184,8 @@ public class LoginActivity extends AppCompatActivity {
     private void checkUserRole(String userRole) {
         switch (userRole) {
             case "1":
-                Intent intentDosen = new Intent(LoginActivity.this, HalamanUtamaDosen.class);
+//                Intent intentDosen = new Intent(LoginActivity.this, HalamanUtamaDosen.class);
+                Intent intentDosen = new Intent(LoginActivity.this, JadwalUtamaDosen.class);
                 startActivity(intentDosen);
                 break;
             case "2":

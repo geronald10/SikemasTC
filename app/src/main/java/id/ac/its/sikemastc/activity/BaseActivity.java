@@ -10,22 +10,27 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.ivbaranov.mli.MaterialLetterIcon;
+
 import java.util.HashMap;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
+import id.ac.its.sikemastc.activity.dosen.JadwalUtamaDosen;
 import id.ac.its.sikemastc.activity.dosen.ListKelasDiampu;
 import id.ac.its.sikemastc.activity.dosen.PenjadwalanUlang;
 import id.ac.its.sikemastc.activity.mahasiswa.HalamanUtamaMahasiswa;
 import id.ac.its.sikemastc.activity.mahasiswa.LihatJadwal;
 import id.ac.its.sikemastc.activity.orangtua.HalamanUtamaOrangtua;
 import id.ac.its.sikemastc.activity.orangtua.LihatJadwalMahasiswa;
+import id.ac.its.sikemastc.adapter.JadwalUtamaMkAdapter;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
 
 public class BaseActivity extends AppCompatActivity implements
@@ -54,6 +59,8 @@ public class BaseActivity extends AppCompatActivity implements
         String userEmail = userDetail.get(SikemasSessionManager.KEY_USER_EMAIL);
         String userId = userDetail.get(SikemasSessionManager.KEY_USER_ID);
         String userRole = userDetail.get(SikemasSessionManager.KEY_USER_ROLE);
+        String kodeDosen = userDetail.get(SikemasSessionManager.KEY_KODE_DOSEN);
+        Log.d("kodeDosen", kodeDosen);
         if (checkedDrawerItemId == 0) {
             if (userRole.equals("1"))
                 checkedDrawerItemId = R.id.item_home_dosen;
@@ -64,7 +71,7 @@ public class BaseActivity extends AppCompatActivity implements
         }
 
         setupToolbarMenu(title);
-        setupNavigationDrawerMenu(checkedDrawerItemId, userNama, userEmail, userId, userRole);
+        setupNavigationDrawerMenu(checkedDrawerItemId, userNama, userEmail, userId, userRole, kodeDosen);
     }
 
     private void setupToolbarMenu(String title) {
@@ -75,15 +82,24 @@ public class BaseActivity extends AppCompatActivity implements
             mToolbar.setTitle(title);
     }
 
-    private void setupNavigationDrawerMenu(int checkedDrawerItemId, String userNama, String userEmail, String userId, String userRole) {
+    private void setupNavigationDrawerMenu(int checkedDrawerItemId, String userNama, String userEmail, String userId, String userRole, String kodeDosen) {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
         View navHeader = navigationView.getHeaderView(0);
         TextView tvName = (TextView) navHeader.findViewById(R.id.tv_nama_user);
         TextView tvEmail = (TextView) navHeader.findViewById(R.id.tv_email_user);
         TextView tvUserId = (TextView) navHeader.findViewById(R.id.tv_id_user);
+        MaterialLetterIcon icon = (MaterialLetterIcon) navHeader.findViewById(R.id.img_profile);
         tvName.setText(userNama);
         tvEmail.setText(userEmail);
         tvUserId.setText(userId);
+        icon.setShapeColor(getResources().getColor(R.color.colorAccent));
+        icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
+        icon.setLetter(kodeDosen);
+        icon.setLetterColor(getResources().getColor(R.color.colorIcons));
+        icon.setLetterSize(26);
+        icon.setLettersNumber(2);
+        icon.setInitials(false);
+        icon.setInitialsNumber(2);
 
         switch (userRole) {
             case "1":
@@ -122,7 +138,8 @@ public class BaseActivity extends AppCompatActivity implements
 
         switch (menuItem.getItemId()) {
             case R.id.item_home_dosen:
-                Intent intentToHomeDosen = new Intent(this, HalamanUtamaDosen.class);
+//                Intent intentToHomeDosen = new Intent(this, HalamanUtamaDosen.class);
+                Intent intentToHomeDosen = new Intent(this, JadwalUtamaDosen.class);
                 intentToHomeDosen.putExtra("checkedDrawerItemId", menuItem.getItemId());
                 intentToHomeDosen.putExtra("title", menuItem.getTitle());
                 startActivity(intentToHomeDosen);

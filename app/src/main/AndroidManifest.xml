@@ -42,7 +42,12 @@
         <activity android:name=".activity.dosen.DetailPesertaKelas" />
         <activity android:name=".activity.dosen.PenjadwalanUlangSementara" />
         <activity android:name=".activity.dosen.PenjadwalanUlangPermanen" />
+        <activity android:name=".activity.dosen.JadwalUtamaDosen"/>
         <activity android:name=".activity.SettingsActivity"></activity>
+        <!--This is required for immediate syncs -->
+        <service
+            android:name=".sync.SikemasReminderIntentService"
+            android:exported="false"/>
     </application>
 
 </manifest>

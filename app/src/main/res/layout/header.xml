@@ -4,14 +4,22 @@
     android:layout_height="190dp"
     android:background="@drawable/bg_header">
 
-    <ImageView
-        android:layout_marginTop="32dp"
-        android:layout_marginLeft="8dp"
-        android:id="@+id/img_profile"
+    <com.github.ivbaranov.mli.MaterialLetterIcon
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:paddingTop="16dp"
-        android:background="@drawable/ic_account_circle" />
+        android:id="@+id/img_profile"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/ic_account_circle"/>
+
+    <!--<ImageView-->
+        <!--android:layout_marginTop="32dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:id="@+id/img_profile"-->
+        <!--android:layout_width="75dp"-->
+        <!--android:layout_height="75dp"-->
+        <!--android:paddingTop="16dp"-->
+        <!--android:background="@drawable/ic_account_circle" />-->
 
     <LinearLayout
         android:layout_width="match_parent"

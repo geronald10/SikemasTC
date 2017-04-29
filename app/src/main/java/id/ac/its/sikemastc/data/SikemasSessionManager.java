@@ -27,6 +27,7 @@ public class SikemasSessionManager {
     public static final String KEY_USER_NAME = "userName";
     public static final String KEY_USER_EMAIL = "userEmail";
     public static final String KEY_USER_ROLE = "userRole";
+    public static final String KEY_KODE_DOSEN = "kodeDosen";
 
     public SikemasSessionManager(Context context) {
         this._context = context;
@@ -34,6 +35,19 @@ public class SikemasSessionManager {
         this.editor = pref.edit();
     }
 
+    // session Dosen
+    public void createLoginSession(String userId, String name, String email, String role, String kodeDosen) {
+        editor.putBoolean(KEY_IS_LOGGED_IN, true);
+        editor.putString(KEY_USER_ID, userId);
+        editor.putString(KEY_USER_NAME, name);
+        editor.putString(KEY_USER_EMAIL, email);
+        editor.putString(KEY_USER_ROLE, role);
+        editor.putString(KEY_KODE_DOSEN, kodeDosen);
+        editor.commit();
+        Log.d(TAG, "User login session modified!");
+    }
+
+    // session Mahasiswa / Orangtua
     public void createLoginSession(String userId, String name, String email, String role) {
         editor.putBoolean(KEY_IS_LOGGED_IN, true);
         editor.putString(KEY_USER_ID, userId);
@@ -55,14 +69,15 @@ public class SikemasSessionManager {
     }
 
     public HashMap<String, String> getUserDetails(){
-        HashMap<String, String> user = new HashMap<>();
+            HashMap<String, String> user = new HashMap<>();
 
-        user.put(KEY_USER_ID, pref.getString(KEY_USER_ID, null));
-        user.put(KEY_USER_NAME, pref.getString(KEY_USER_NAME, null));
-        user.put(KEY_USER_EMAIL, pref.getString(KEY_USER_EMAIL, null));
-        user.put(KEY_USER_ROLE, pref.getString(KEY_USER_ROLE, null));
+            user.put(KEY_USER_ID, pref.getString(KEY_USER_ID, null));
+            user.put(KEY_USER_NAME, pref.getString(KEY_USER_NAME, null));
+            user.put(KEY_USER_EMAIL, pref.getString(KEY_USER_EMAIL, null));
+            user.put(KEY_USER_ROLE, pref.getString(KEY_USER_ROLE, null));
+            user.put(KEY_KODE_DOSEN, pref.getString(KEY_KODE_DOSEN, null));
 
-        return user;
+            return user;
     }
 
     public void logoutUser(){
