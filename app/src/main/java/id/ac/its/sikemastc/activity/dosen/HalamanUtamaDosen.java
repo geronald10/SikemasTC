@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -32,6 +33,7 @@ import id.ac.its.sikemastc.data.SikemasContract;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
 import id.ac.its.sikemastc.model.JadwalKelas;
 import id.ac.its.sikemastc.model.WaktuKelas;
+import id.ac.its.sikemastc.sync.SikemasSyncUtils;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
 import id.ac.its.sikemastc.utilities.VolleySingleton;
 
@@ -43,6 +45,7 @@ public class HalamanUtamaDosen extends BaseActivity implements
     private Context mContext;
     private RecyclerView mRecyclerView;
     private View emptyView;
+    private Button btnTestNotifikasi;
     private JadwalUtamaMkAdapter mAdapter;
     private List<JadwalKelas> jadwalKelasList;
 
@@ -68,11 +71,21 @@ public class HalamanUtamaDosen extends BaseActivity implements
         mAdapter = new JadwalUtamaMkAdapter(mContext, this, jadwalKelasList);
         mRecyclerView.setAdapter(mAdapter);
 
+        btnTestNotifikasi = (Button) findViewById(R.id.btn_test_notifikasi);
+        btnTestNotifikasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
 
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        SikemasSyncUtils.startImmediateSync(this);
     }
 
     public void getListJadwalUtama(final String kodeDosen) {

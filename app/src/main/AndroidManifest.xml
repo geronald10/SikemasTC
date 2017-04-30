@@ -41,6 +41,11 @@
         <activity android:name=".activity.dosen.PenjadwalanUlangSementara" />
         <activity android:name=".activity.dosen.PenjadwalanUlangPermanen" />
         <activity android:name=".activity.SettingsActivity" />
+
+        <service
+            android:name=".sync.SikemasReminderIntentService"
+            android:exported="false"/>
+
     </application>
 
 </manifest>
