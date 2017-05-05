@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import id.ac.its.sikemastc.R;
 
-public class DetailKelas extends AppCompatActivity {
+public class DetailKehadiranPeserta extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_kelas);
+        setContentView(R.layout.activity_detail_kehadiran_peserta);
     }
 }

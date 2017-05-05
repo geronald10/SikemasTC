@@ -13,6 +13,6 @@ public class SikemasReminderIntentService extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         String action = intent.getAction();
-        ReminderTasks.executeTask(this, action);
+        SikemasReminderTasks.executeTask(this, action);
     }
 }

@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
-import id.ac.its.sikemastc.activity.dosen.ListKelasDiampu;
+import id.ac.its.sikemastc.activity.dosen.ListKelasActivity;
 import id.ac.its.sikemastc.activity.dosen.PenjadwalanUlang;
 import id.ac.its.sikemastc.activity.mahasiswa.HalamanUtamaMahasiswa;
 import id.ac.its.sikemastc.activity.mahasiswa.LihatJadwal;
@@ -164,7 +164,7 @@ public class BaseActivity extends AppCompatActivity implements
                 finish();
                 break;
             case R.id.item_list_kelas_diampu:
-                Intent intentToListKelas = new Intent(this, ListKelasDiampu.class);
+                Intent intentToListKelas = new Intent(this, ListKelasActivity.class);
                 intentToListKelas.putExtra("checkedDrawerItemId", menuItem.getItemId());
                 intentToListKelas.putExtra("title", menuItem.getTitle());
                 startActivity(intentToListKelas);

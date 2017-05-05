@@ -9,6 +9,7 @@ import android.util.Log;
 import java.util.HashMap;
 
 import id.ac.its.sikemastc.activity.LoginActivity;
+import id.ac.its.sikemastc.sync.SikemasSyncTask;
 
 public class SikemasSessionManager {
 
@@ -92,6 +93,9 @@ public class SikemasSessionManager {
 
         // Staring Login Activity
         _context.startActivity(intent);
+
+        // Destroy the database
+        SikemasSyncTask.syncLogoutSession(_context);
     }
 
     public boolean isLoggedIn() {

@@ -1,6 +1,7 @@
 package id.ac.its.sikemastc.adapter;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,34 +12,33 @@ import android.widget.TextView;
 import java.util.List;
 
 import id.ac.its.sikemastc.R;
+import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
 import id.ac.its.sikemastc.model.JadwalKelas;
 
-public class JadwalUtamaMkAdapter extends RecyclerView.Adapter<JadwalUtamaMkAdapter.JadwalUtamaViewHolder>{
+public class PerkuliahanAdapter extends RecyclerView.Adapter<PerkuliahanAdapter.PerkuliahanAdapterViewHolder>{
 
     private static final int VIEW_TYPE_TODAY_JADWAL = 0;
     private static final int VIEW_TYPE_FUTURE_DAY_JADWAL = 1;
 
     private final Context mContext;
+    private Cursor mCursor;
 
     private boolean mUseTodayLayout;
 
-    private List<JadwalKelas> jadwalMataKuliahHariIni;
+    final private PerkuliahanAdapterOnClickHandler mClickHandler;
 
-    final private JadwalUtamaMkAdapterOnClickHandler mClickHandler;
-
-    public interface JadwalUtamaMkAdapterOnClickHandler {
+    public interface PerkuliahanAdapterOnClickHandler {
         void onClick(String idListKelas);
     }
 
-    public JadwalUtamaMkAdapter(Context context, JadwalUtamaMkAdapterOnClickHandler mClickHandler, List<JadwalKelas> jadwalMataKuliahHariIni) {
-        this.mClickHandler = mClickHandler;
-        this.jadwalMataKuliahHariIni = jadwalMataKuliahHariIni;
-        this.mContext = context;
+    public PerkuliahanAdapter(Context context, PerkuliahanAdapterOnClickHandler clickHandler) {
+        mContext = context;
+        mClickHandler = clickHandler;
         mUseTodayLayout = mContext.getResources().getBoolean(R.bool.use_today_layout);
     }
 
     @Override
-    public JadwalUtamaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PerkuliahanAdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         int layoutId;
         switch (viewType) {
             case VIEW_TYPE_TODAY_JADWAL:
@@ -50,37 +50,30 @@ public class JadwalUtamaMkAdapter extends RecyclerView.Adapter<JadwalUtamaMkAdap
             default:
                 throw new IllegalArgumentException("Invalid view type, value of " + viewType);
         }
-        View view = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(layoutId, viewGroup, false);
         view.setFocusable(true);
-        return new JadwalUtamaViewHolder(view);
+        return new PerkuliahanAdapterViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(JadwalUtamaViewHolder jadwalUtamaViewHolder, int position) {
-        JadwalKelas currentJadwal = jadwalMataKuliahHariIni.get(position);
-        String pertemuanKe = currentJadwal.getPertemuanKe();
-        Log.d("pertemuan ke", pertemuanKe);
-        String kelas = currentJadwal.getKelasMK();
-        String ruangKuliah = currentJadwal.getRuangMK();
-        String mataKuliah = currentJadwal.getNamaMK();
-        String hariKuliah = null;
-        String waktuKuliah = null;
-        for(int i=0; i< currentJadwal.getKelasWaktu().size(); i++) {
-            hariKuliah = currentJadwal.getKelasWaktu().get(i).getHariKelas();
-            waktuKuliah = currentJadwal.getKelasWaktu().get(i).getWaktuMulai() +
-                    " - " + currentJadwal.getKelasWaktu().get(i).getWaktuSelesai();
-            if (i+1 < currentJadwal.getKelasWaktu().size()) {
-                hariKuliah += "\n";
-                waktuKuliah += "\n";
-            }
-        }
-        String tanggalPertemuan = hariKuliah + ", " + currentJadwal.getTanggalPertemuan();
+    public void onBindViewHolder(PerkuliahanAdapterViewHolder perkuliahanAdapterViewHolder, int position) {
+        mCursor.moveToPosition(position);
+
+        String statusPerkuliahan = mCursor.getString(HalamanUtamaDosen.INDEX_STATUS_PERKULIAHAN);
+        String perkuliahanKe = mCursor.getString(HalamanUtamaDosen.INDEX_PERTEMUAN_KE);
+        String tanggalPerkuliahan = mCursor.getString(HalamanUtamaDosen.INDEX_HARI) + ", " +
+                mCursor.getString(HalamanUtamaDosen.INDEX_TANGGAL_PERKULIAHAN);
+        String mataKuliah = mCursor.getString(HalamanUtamaDosen.INDEX_NAMA_MK);
+        String ruangKuliah = mCursor.getString(HalamanUtamaDosen.INDEX_NAMA_RUANGAN);
+        String kodeKkelas = mCursor.getString(HalamanUtamaDosen.INDEX_KODE_KELAS);
+        String waktuKuliah = mCursor.getString(HalamanUtamaDosen.INDEX_MULAI) + " - " +
+                mCursor.getString(HalamanUtamaDosen.INDEX_SELESAI);
 
         int viewType = getItemViewType(position);
         switch (viewType) {
             case VIEW_TYPE_TODAY_JADWAL:
-                jadwalUtamaViewHolder.tvPertemuanKe.setText(pertemuanKe);
-                jadwalUtamaViewHolder.tvKelas.setText(kelas);
+                perkuliahanAdapterViewHolder.tvPertemuanKe.setText(perkuliahanKe);
+                perkuliahanAdapterViewHolder.tvKelas.setText(kodeKkelas);
                 break;
             case VIEW_TYPE_FUTURE_DAY_JADWAL:
                 break;
@@ -88,10 +81,10 @@ public class JadwalUtamaMkAdapter extends RecyclerView.Adapter<JadwalUtamaMkAdap
                 throw new IllegalArgumentException("Invalid view type, value of " + viewType);
         }
 
-        jadwalUtamaViewHolder.tvTanggalPertemuan.setText(tanggalPertemuan);
-        jadwalUtamaViewHolder.tvRuangKuliah.setText(ruangKuliah);
-        jadwalUtamaViewHolder.tvWaktuKuliah.setText(waktuKuliah);
-        jadwalUtamaViewHolder.tvMataKuliah.setText(mataKuliah);
+        perkuliahanAdapterViewHolder.tvTanggalPertemuan.setText(tanggalPerkuliahan);
+        perkuliahanAdapterViewHolder.tvRuangKuliah.setText(ruangKuliah);
+        perkuliahanAdapterViewHolder.tvWaktuKuliah.setText(waktuKuliah);
+        perkuliahanAdapterViewHolder.tvMataKuliah.setText(mataKuliah);
     }
 
     @Override
@@ -105,10 +98,17 @@ public class JadwalUtamaMkAdapter extends RecyclerView.Adapter<JadwalUtamaMkAdap
 
     @Override
     public int getItemCount() {
-        return jadwalMataKuliahHariIni.size();
+        if (null == mCursor)
+            return 0;
+        return mCursor.getCount();
     }
 
-    class JadwalUtamaViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public void swapCursor(Cursor newCursor) {
+        mCursor = newCursor;
+        notifyDataSetChanged();
+    }
+
+    class PerkuliahanAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView tvTanggalPertemuan;
         private TextView tvPertemuanKe;
@@ -117,7 +117,7 @@ public class JadwalUtamaMkAdapter extends RecyclerView.Adapter<JadwalUtamaMkAdap
         private TextView tvWaktuKuliah;
         private TextView tvMataKuliah;
 
-        JadwalUtamaViewHolder(View itemView) {
+        PerkuliahanAdapterViewHolder(View itemView) {
             super(itemView);
 
             tvTanggalPertemuan = (TextView) itemView.findViewById(R.id.tv_tanggal_pertemuan);
@@ -133,12 +133,9 @@ public class JadwalUtamaMkAdapter extends RecyclerView.Adapter<JadwalUtamaMkAdap
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
-            mClickHandler.onClick(jadwalMataKuliahHariIni.get(adapterPosition).getIdListJadwalMK());
+            mCursor.moveToPosition(adapterPosition);
+            String IdPerkuliahan = mCursor.getString(HalamanUtamaDosen.INDEX_ID_PERKULIAHAN);
+            mClickHandler.onClick(IdPerkuliahan);
         }
-    }
-
-    public void clear() {
-        jadwalMataKuliahHariIni.clear();
-        notifyDataSetChanged();
     }
 }

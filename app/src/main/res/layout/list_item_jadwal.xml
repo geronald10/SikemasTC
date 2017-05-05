@@ -159,10 +159,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginRight="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="0dp"
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
@@ -184,25 +184,45 @@
             android:src="@drawable/ic_access_time"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintLeft_toLeftOf="@+id/iv_room"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_hari_label" />
+            card_view:layout_constraintTop_toTopOf="@+id/tv_hari_label"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/tv_waktu"
-            android:layout_width="0dp"
+            android:id="@+id/tv_waktu_mulai"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             card_view:layout_constraintBottom_toBottomOf="@+id/iv_waktu"
             card_view:layout_constraintLeft_toLeftOf="@+id/tv_ruang"
             card_view:layout_constraintRight_toRightOf="parent"
-            card_view:layout_constraintTop_toTopOf="@+id/iv_waktu" />
+            card_view:layout_constraintTop_toTopOf="@+id/iv_waktu"
+            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginTop="0dp"
+            app:layout_constraintRight_toLeftOf="@+id/tv_waktu_selesai"
+            android:layout_marginRight="8dp"
+            app:layout_constraintHorizontal_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_waktu_selesai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/tv_empty_value"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_mulai"
+            app:layout_constraintTop_toTopOf="@+id/tv_waktu_mulai"
+            android:layout_marginTop="0dp"
+            app:layout_constraintVertical_bias="1.0"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_waktu_mulai"
+            android:layout_marginRight="0dp"
+            app:layout_constraintRight_toRightOf="@+id/tv_ruang"
+            app:layout_constraintHorizontal_bias="0.0" />
 
         <ImageView
             android:id="@+id/iv_school_subject"

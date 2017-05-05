@@ -59,7 +59,7 @@
             app:layout_constraintTop_toTopOf="@+id/tv_pertemuan_kuliah_label" />
 
         <ImageView
-            android:id="@+id/iv_tanggal_pertemuan_label"
+            android:id="@+id/iv_calendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -80,9 +80,9 @@
             android:text="25 Agustus 2017"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_tanggal_pertemuan_label"
-            app:layout_constraintLeft_toRightOf="@+id/iv_tanggal_pertemuan_label"
-            app:layout_constraintTop_toTopOf="@+id/iv_tanggal_pertemuan_label"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_calendar"
+            app:layout_constraintLeft_toRightOf="@+id/iv_calendar"
+            app:layout_constraintTop_toTopOf="@+id/iv_calendar"
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
@@ -94,11 +94,11 @@
             android:textColor="@color/colorSecondaryText"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="16sp"
-            app:layout_constraintTop_toTopOf="@+id/iv_tanggal_pertemuan_label"
+            app:layout_constraintTop_toTopOf="@+id/iv_calendar"
             android:layout_marginTop="0dp"
             app:layout_constraintRight_toLeftOf="@+id/tv_waktu_kehadiran"
             android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_tanggal_pertemuan_label"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_calendar"
             android:layout_marginBottom="0dp" />
 
         <TextView

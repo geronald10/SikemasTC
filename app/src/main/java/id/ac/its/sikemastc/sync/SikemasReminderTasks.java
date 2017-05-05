@@ -4,7 +4,7 @@ import android.content.Context;
 
 import id.ac.its.sikemastc.utilities.NotificationUtils;
 
-public class ReminderTasks {
+public class SikemasReminderTasks {
     public static final String ACTION_ACTIVATED_PERKULIAHAN = "activate-perkuliahan";
     public static final String ACTION_RESCHEDULE_NOTIFICATION = "reschedule-perkuliahan";
     public static final String ACTION_DISMISS_NOTIFICATION = "dismiss-notification";

@@ -3,11 +3,13 @@
     package="id.ac.its.sikemastc">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppMaterialTheme">
@@ -16,7 +18,7 @@
         <activity android:name=".utilities.ActionBarToolbar" />
         <activity android:name=".activity.dosen.LihatKehadiran" />
         <activity
-            android:name=".activity.dosen.ListKelasDiampu"
+            android:name=".activity.dosen.ListKelasActivity"
             android:theme="@style/AppNavDrawerMaterialTheme" />
         <activity
             android:name=".activity.dosen.PenjadwalanUlang"
@@ -31,21 +33,43 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.BaseActivity" />
-        <activity android:name=".activity.dosen.HalamanUtamaDosen" />
+        <activity
+            android:name=".activity.dosen.HalamanUtamaDosen"
+            android:theme="@style/AppNavDrawerMaterialTheme" />
+
         <activity android:name=".activity.mahasiswa.HalamanUtamaMahasiswa" />
         <activity android:name=".activity.orangtua.HalamanUtamaOrangtua" />
-        <activity android:name=".activity.dosen.DetailKelas" />
+        <activity android:name=".activity.dosen.DetailPerkuliahan" />
         <activity android:name=".activity.mahasiswa.LihatJadwal" />
         <activity android:name=".activity.orangtua.LihatJadwalMahasiswa" />
-        <activity android:name=".activity.dosen.DetailPesertaKelas" />
+        <activity android:name=".activity.dosen.DetailListKelas" />
         <activity android:name=".activity.dosen.PenjadwalanUlangSementara" />
         <activity android:name=".activity.dosen.PenjadwalanUlangPermanen" />
         <activity android:name=".activity.SettingsActivity" />
 
+        <provider
+            android:name=".data.SikemasProvider"
+            android:authorities="id.ac.its.sikemastc"
+            android:exported="false" />
+
         <service
             android:name=".sync.SikemasReminderIntentService"
-            android:exported="false"/>
+            android:exported="false" />
+        <service
+            android:name=".sync.SikemasSyncPerkuliahanIntentService"
+            android:exported="false" />
+        <service
+            android:name=".sync.SikemasSyncKelasIntentService"
+            android:exported="false" />
+        <service
+            android:name=".sync.PerkuliahanFirebaseJobService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
 
+        <activity android:name=".activity.dosen.DetailKehadiranPeserta"></activity>
     </application>
 
 </manifest>

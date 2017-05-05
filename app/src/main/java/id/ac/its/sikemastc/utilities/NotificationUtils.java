@@ -1,21 +1,27 @@
 package id.ac.its.sikemastc.utilities;
 
+import android.content.Context;
+import android.net.Uri;
+
+import id.ac.its.sikemastc.data.SikemasContract;
+
 public class NotificationUtils {
 
-//    private static final int SIKEMAS_REMINDER_NOTIFICATION_ID = 1138;
-//    private static final int SIKEMAS_REMINDER_PENDING_INTENT_ID = 3417;
-//    private static final int ACTION_ACTIVATE_PENDING_INTENT_ID = 1;
-//    private static final int ACTION_RESCHEDULE_PENDING_INTENT_ID = 14;
-//    private static final int ACTION_IGNORE_PENDING_INTENT_ID = 30;
-//
-//    public static void clearAllNotifications(Context context) {
-//        NotificationManager notificationManager = (NotificationManager)
-//                context.getSystemService(Context.NOTIFICATION_SERVICE);
-//        notificationManager.cancelAll();
-//    }
-//
-//    public static void remindUserJadwalPerkuliahan(Context context) {
-//
+    public static final String[] SIKEMAS_NOTIFICATION_PROJECTION = {
+            SikemasContract.PerkuliahanEntry.KEY_NAMA_MK,
+            SikemasContract.PerkuliahanEntry.KEY_NAMA_RUANGAN,
+            SikemasContract.PerkuliahanEntry.KEY_MULAI
+    };
+
+    public static final int INDEX_NAMA_MK = 0;
+    public static final int INDEX_NAMA_RUANGAN = 1;
+    public static final int INDEX_WAKTU_MULAI = 2;
+
+    public static void notifyUserJadwalPerkuliahan(Context context) {
+
+//        Uri incomingPerkuliahanUri = SikemasContract.PerkuliahanEntry
+
+
 //        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
 //                .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
 //                .setSmallIcon(R.drawable.ic_drink_notification)
@@ -40,13 +46,28 @@ public class NotificationUtils {
 //
 //        /* WATER_REMINDER_NOTIFICATION_ID allows you to update or cancel the notification later on */
 //        notificationManager.notify(SIKEMAS_REMINDER_NOTIFICATION_ID, notificationBuilder.build());
+    }
+
+//    private static final int SIKEMAS_REMINDER_NOTIFICATION_ID = 1138;
+//    private static final int SIKEMAS_REMINDER_PENDING_INTENT_ID = 3417;
+//    private static final int ACTION_ACTIVATE_PENDING_INTENT_ID = 1;
+//    private static final int ACTION_RESCHEDULE_PENDING_INTENT_ID = 14;
+//    private static final int ACTION_IGNORE_PENDING_INTENT_ID = 30;
+
+
+
+//    public static void clearAllNotifications(Context context) {
+//        NotificationManager notificationManager = (NotificationManager)
+//                context.getSystemService(Context.NOTIFICATION_SERVICE);
+//        notificationManager.cancelAll();
 //    }
+
 //    //  COMPLETED (5) Add a static method called ignoreReminderAction
 //    private static NotificationCompat.Action ignoreReminderAction(Context context) {
 //        // COMPLETED (6) Create an Intent to launch WaterReminderIntentService
 //        Intent ignoreReminderIntent = new Intent(context, SikemasReminderIntentService.class);
 //        // COMPLETED (7) Set the action of the intent to designate you want to dismiss the notification
-//        ignoreReminderIntent.setAction(ReminderTasks.ACTION_DISMISS_NOTIFICATION);
+//        ignoreReminderIntent.setAction(SikemasReminderTasks.ACTION_DISMISS_NOTIFICATION);
 //        // COMPLETED (8) Create a PendingIntent from the intent to launch WaterReminderIntentService
 //        PendingIntent ignoreReminderPendingIntent = PendingIntent.getService(
 //                context,
@@ -66,7 +87,7 @@ public class NotificationUtils {
 //        // COMPLETED (12) Create an Intent to launch WaterReminderIntentService
 //        Intent incrementWaterCountIntent = new Intent(context, SikemasReminderIntentService.class);
 //        // COMPLETED (13) Set the action of the intent to designate you want to increment the water count
-//        incrementWaterCountIntent.setAction(ReminderTasks.ACTION_ACTIVATED_PERKULIAHAN);
+//        incrementWaterCountIntent.setAction(SikemasReminderTasks.ACTION_ACTIVATED_PERKULIAHAN);
 //        // COMPLETED (14) Create a PendingIntent from the intent to launch WaterReminderIntentService
 //        PendingIntent incrementWaterPendingIntent = PendingIntent.getService(
 //                context,

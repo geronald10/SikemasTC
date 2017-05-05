@@ -1,75 +1,86 @@
 package id.ac.its.sikemastc.activity.dosen;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import android.widget.ProgressBar;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.BaseActivity;
-import id.ac.its.sikemastc.adapter.JadwalUtamaMkAdapter;
+import id.ac.its.sikemastc.adapter.PerkuliahanAdapter;
 import id.ac.its.sikemastc.data.SikemasContract;
-import id.ac.its.sikemastc.data.SikemasSessionManager;
-import id.ac.its.sikemastc.model.JadwalKelas;
-import id.ac.its.sikemastc.model.WaktuKelas;
 import id.ac.its.sikemastc.sync.SikemasSyncUtils;
-import id.ac.its.sikemastc.utilities.NetworkUtils;
-import id.ac.its.sikemastc.utilities.VolleySingleton;
 
 public class HalamanUtamaDosen extends BaseActivity implements
-        JadwalUtamaMkAdapter.JadwalUtamaMkAdapterOnClickHandler {
+        LoaderManager.LoaderCallbacks<Cursor>,
+        PerkuliahanAdapter.PerkuliahanAdapterOnClickHandler {
 
     private final String TAG = HalamanUtamaDosen.class.getSimpleName();
 
-    private Context mContext;
+    public static final String[] MAIN_LIST_PERKULIAHAN_DOSEN_PROJECTION = {
+            SikemasContract.PerkuliahanEntry.KEY_ID_PERKULIAHAN,
+            SikemasContract.PerkuliahanEntry.KEY_STATUS_PERKULIAHAN,
+            SikemasContract.PerkuliahanEntry.KEY_PERTEMUAN_KE,
+            SikemasContract.PerkuliahanEntry.KEY_TANGGAL_PERKULIAHAN,
+            SikemasContract.PerkuliahanEntry.KEY_NAMA_MK,
+            SikemasContract.PerkuliahanEntry.KEY_NAMA_RUANGAN,
+            SikemasContract.PerkuliahanEntry.KEY_KODE_KELAS,
+            SikemasContract.PerkuliahanEntry.KEY_HARI,
+            SikemasContract.PerkuliahanEntry.KEY_MULAI,
+            SikemasContract.PerkuliahanEntry.KEY_SELESAI
+    };
+
+    public static final int INDEX_ID_PERKULIAHAN = 0;
+    public static final int INDEX_STATUS_PERKULIAHAN = 1;
+    public static final int INDEX_PERTEMUAN_KE = 2;
+    public static final int INDEX_TANGGAL_PERKULIAHAN = 3;
+    public static final int INDEX_NAMA_MK = 4;
+    public static final int INDEX_NAMA_RUANGAN = 5;
+    public static final int INDEX_KODE_KELAS = 6;
+    public static final int INDEX_HARI = 7;
+    public static final int INDEX_MULAI = 8;
+    public static final int INDEX_SELESAI = 9;
+
+    private static final int ID_LIST_PERKULIAHAN_LOADER = 50;
+
     private RecyclerView mRecyclerView;
+    private PerkuliahanAdapter mPerkuliahanAdapter;
+    private int mPosition = RecyclerView.NO_POSITION;
+
     private View emptyView;
     private Button btnTestNotifikasi;
-    private JadwalUtamaMkAdapter mAdapter;
-    private List<JadwalKelas> jadwalKelasList;
 
-    private ProgressDialog progressDialog;
+    private ProgressBar mLoadingIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_halaman_utama_dosen);
-        mContext = this;
-
-        progressDialog = new ProgressDialog(mContext);
-        progressDialog.setCancelable(false);
-        HashMap<String, String> dosen = session.getUserDetails();
-        String kodeDosen = dosen.get(SikemasSessionManager.KEY_KODE_DOSEN);
-
-        jadwalKelasList = new ArrayList<>();
-        getListJadwalUtama(kodeDosen);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_jadwal_utama_dosen);
         emptyView = findViewById(R.id.empty_view);
+        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
-        mAdapter = new JadwalUtamaMkAdapter(mContext, this, jadwalKelasList);
-        mRecyclerView.setAdapter(mAdapter);
+        LinearLayoutManager layoutManager =
+                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        mPerkuliahanAdapter = new PerkuliahanAdapter(this, this);
+        mRecyclerView.setAdapter(mPerkuliahanAdapter);
+
+        showLoading();
+
+        getSupportLoaderManager().initLoader(ID_LIST_PERKULIAHAN_LOADER, null, this);
 
         btnTestNotifikasi = (Button) findViewById(R.id.btn_test_notifikasi);
         btnTestNotifikasi.setOnClickListener(new View.OnClickListener() {
@@ -78,105 +89,66 @@ public class HalamanUtamaDosen extends BaseActivity implements
 
             }
         });
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        SikemasSyncUtils.startImmediateSync(this);
-    }
-
-    public void getListJadwalUtama(final String kodeDosen) {
-        progressDialog.setMessage("Fetch List Jadwal Kelas Hari ini ...");
-        showDialog();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                NetworkUtils.LIST_JADWAL_KELAS_DOSEN_HARI_INI,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d(TAG, "Jadwal Kelas Hari ini Response: " + response);
-                        try {
-                            mAdapter.clear();
-                            JSONObject jsonObject = new JSONObject(response);
-                            JSONArray listKelas = jsonObject.getJSONArray("listkelas");
-                            for (int i = 0; i < listKelas.length(); i++) {
-                                JSONObject detailKelas = listKelas.getJSONObject(i);
-                                String idListJadwal = detailKelas.getString("id");
-                                String hariPerkuliahan = detailKelas.getString("hari");
-                                String tanggalPerkuliahan = detailKelas.getString("tanggal");
-                                String perkuliahanKe = detailKelas.getString("pertemuan");
-                                String statusPerkuliahan = detailKelas.getString("status_perkuliahan");
-                                String waktuMulai = detailKelas.getString("mulai");
-                                String waktuSelesai = detailKelas.getString("selesai");
-
-                                JSONObject kelas = detailKelas.getJSONObject("kelas");
-                                String kelasMk = kelas.getString("kode_kelas");
-                                String namaMk = kelas.getString("nama_kelas");
-                                String ruangMK = kelas.getString("nama_ruangan");
-                                Log.d(TAG, kelasMk);
-
-                                List<WaktuKelas> listWaktuKelas = new ArrayList<>();
-                                WaktuKelas waktuKelas = new WaktuKelas(idListJadwal, hariPerkuliahan,
-                                        waktuMulai, waktuSelesai);
-                                listWaktuKelas.add(waktuKelas);
-
-                                // add to Jadwal Kelas Hari ini List
-                                JadwalKelas jadwalKelas = new JadwalKelas(idListJadwal, namaMk, kelasMk,
-                                        ruangMK, tanggalPerkuliahan, perkuliahanKe, listWaktuKelas,
-                                        statusPerkuliahan);
-                                jadwalKelasList.add(jadwalKelas);
-                            }
-                            Toast.makeText(mContext, "Berhasil Memuat List Kelas Hari ini", Toast.LENGTH_LONG).show();
-                            mAdapter.notifyDataSetChanged();
-                            hideDialog();
-                            if (jadwalKelasList.isEmpty()) {
-                                mRecyclerView.setVisibility(View.GONE);
-                                emptyView.setVisibility(View.VISIBLE);
-                            } else {
-                                mRecyclerView.setVisibility(View.VISIBLE);
-                                emptyView.setVisibility(View.GONE);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                            hideDialog();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
-                hideDialog();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put(SikemasContract.UserEntry.KEY_KODE_DOSEN, kodeDosen);
-
-                return params;
-            }
-        };
-        VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(stringRequest);
-    }
-
-    private void showDialog() {
-        if (!progressDialog.isShowing())
-            progressDialog.show();
-    }
-
-    private void hideDialog() {
-        if (progressDialog.isShowing())
-            progressDialog.dismiss();
+        SikemasSyncUtils.initializePerkuliahan(this);
     }
 
     @Override
-    public void onClick(String idListKelas) {
-        Intent intentToDetailKelas = new Intent(mContext, DetailKelas.class);
-        startActivity(intentToDetailKelas);
+    public Loader<Cursor> onCreateLoader(int loaderId, Bundle args) {
+        switch (loaderId) {
+            case ID_LIST_PERKULIAHAN_LOADER:
+                Log.d("TAG", "masuk on create loader");
+                Uri listPerkuliahanQueryUri = SikemasContract.PerkuliahanEntry.CONTENT_URI;
+                return new CursorLoader(this,
+                        listPerkuliahanQueryUri,
+                        MAIN_LIST_PERKULIAHAN_DOSEN_PROJECTION,
+                        null,
+                        null,
+                        null);
+            default:
+                throw new RuntimeException("Loader Not Implemented: " + loaderId);
+        }
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        mPerkuliahanAdapter.swapCursor(data);
+        if (mPosition == RecyclerView.NO_POSITION)
+            mPosition = 0;
+        mRecyclerView.smoothScrollToPosition(mPosition);
+        if (data.getCount() > 0)
+            showPerkuliahanDataView();
+        else
+            showEmptyView();
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mPerkuliahanAdapter.swapCursor(null);
+    }
+
+    private void showPerkuliahanDataView() {
+        emptyView.setVisibility(View.GONE);
+        mLoadingIndicator.setVisibility(View.INVISIBLE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    private void showLoading() {
+        emptyView.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.INVISIBLE);
+        mLoadingIndicator.setVisibility(View.VISIBLE);
+    }
+
+    private void showEmptyView() {
+        mRecyclerView.setVisibility(View.GONE);
+        mLoadingIndicator.setVisibility(View.INVISIBLE);
+        emptyView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onClick(String idPerkuliahan) {
+        Intent intentToDetailPerkuliahan = new Intent(HalamanUtamaDosen.this, DetailPerkuliahan.class);
+        Uri uriPerkuliahanCLicked = SikemasContract.PerkuliahanEntry.buildPerkuliahanUriPerkuliahanId(idPerkuliahan);
+        intentToDetailPerkuliahan.setData(uriPerkuliahanCLicked);
+        startActivity(intentToDetailPerkuliahan);
     }
 }

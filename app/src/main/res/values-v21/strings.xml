@@ -24,4 +24,5 @@
     <string name="tv_empty_value">-</string>
     <string name="judul_jadwal_kosong">Jadwal Perkuliahan tidak ditemukan</string>
     <string name="subjudul_jadwal_kosong">Jadwal perkuliahan hari ini tidak ditemukan, kemungkinan Anda tidak memiliki jam mengampu mata kuliah hari ini (libur).</string>
+    <string name="btn_lihat_peserta">Lihat PESERTA</string>
 </resources>
