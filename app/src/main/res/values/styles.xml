@@ -3,7 +3,6 @@
     <!-- Base application theme. -->
     <style name="AppMaterialTheme" parent="SuperMaterialTheme">
         <!-- Customize your theme here. -->
-
     </style>
 
     <style name="AppLoginMaterialTheme" parent="SuperMaterialTheme">
@@ -16,7 +15,6 @@
         <item name="colorButtonNormal">@color/colorButtonNormal</item>
         <item name="colorControlActivated">@color/colorControlActivated</item>
     </style>
-
 
     <style name="SuperMaterialTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Parent theme for all Pre-Lollipop and Lollipop above versions i.e. For all devices. -->
@@ -45,4 +43,9 @@
         <item name="colorControlActivated">@color/colorControlActivated</item>
     </style>
 
+    <style name="ListKelasButtonPermanenTheme" parent="SuperMaterialTheme">
+        <item name="colorControlHighlight">@color/colorPrimaryLight</item>
+        <item name="colorButtonNormal">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
 </resources>

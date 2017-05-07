@@ -23,7 +23,6 @@ import java.util.HashMap;
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
 import id.ac.its.sikemastc.activity.dosen.ListKelasActivity;
-import id.ac.its.sikemastc.activity.dosen.PenjadwalanUlang;
 import id.ac.its.sikemastc.activity.mahasiswa.HalamanUtamaMahasiswa;
 import id.ac.its.sikemastc.activity.mahasiswa.LihatJadwal;
 import id.ac.its.sikemastc.activity.orangtua.HalamanUtamaOrangtua;
@@ -154,13 +153,6 @@ public class BaseActivity extends AppCompatActivity implements
                 intentToHomeOrangtua.putExtra("checkedDrawerItemId", menuItem.getItemId());
                 intentToHomeOrangtua.putExtra("title", menuItem.getTitle());
                 startActivity(intentToHomeOrangtua);
-                finish();
-                break;
-            case R.id.item_penjadwalan_ulang:
-                Intent intentToPenjadwalan = new Intent(this, PenjadwalanUlang.class);
-                intentToPenjadwalan.putExtra("checkedDrawerItemId", menuItem.getItemId());
-                intentToPenjadwalan.putExtra("title", menuItem.getTitle());
-                startActivity(intentToPenjadwalan);
                 finish();
                 break;
             case R.id.item_list_kelas_diampu:

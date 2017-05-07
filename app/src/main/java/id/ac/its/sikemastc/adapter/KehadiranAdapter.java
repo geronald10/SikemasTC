@@ -78,7 +78,6 @@ public class KehadiranAdapter extends RecyclerView.Adapter<KehadiranAdapter.Keha
         private TextView tvNRPPeserta;
         private TextView tvNamaPeserta;
         private TextView tvWaktuHadir;
-        private TextView tvAlasanKetidakhadiran;
         private TextView tvStatus;
         private ImageView ivStatusLabel;
         private ImageView ivStatusKehadiran;

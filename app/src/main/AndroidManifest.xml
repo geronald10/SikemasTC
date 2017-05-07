@@ -21,9 +21,6 @@
             android:name=".activity.dosen.ListKelasActivity"
             android:theme="@style/AppNavDrawerMaterialTheme" />
         <activity
-            android:name=".activity.dosen.PenjadwalanUlang"
-            android:theme="@style/AppNavDrawerMaterialTheme" />
-        <activity
             android:name=".activity.LoginActivity"
             android:theme="@style/AppLoginMaterialTheme">
             <intent-filter>
@@ -36,7 +33,6 @@
         <activity
             android:name=".activity.dosen.HalamanUtamaDosen"
             android:theme="@style/AppNavDrawerMaterialTheme" />
-
         <activity android:name=".activity.mahasiswa.HalamanUtamaMahasiswa" />
         <activity android:name=".activity.orangtua.HalamanUtamaOrangtua" />
         <activity android:name=".activity.dosen.DetailPerkuliahan" />
@@ -69,7 +65,8 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".activity.dosen.DetailKehadiranPeserta"></activity>
+        <activity android:name=".activity.dosen.DetailKehadiranPeserta" />
+        <activity android:name=".activity.dosen.DetailPertemuanKelas"></activity>
     </application>
 
 </manifest>

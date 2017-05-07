@@ -37,4 +37,14 @@
     <string name="status_belum_aktif">Belum Aktif</string>
     <string name="status_selesai">Selesai</string>
     <string name="status_aktif">Aktif</string>
+    <string name="penjadwalan_ulang_label">Penjadwalan Ulang</string>
+    <string name="sementara_button_label">Sementara</string>
+    <string name="permanen_button_label">Permanen</string>
+    <string name="to_label">selesai</string>
+    <string name="from_label">mulai</string>
+    <string name="clock_icon">clock icon</string>
+    <string name="schedule_icon">schedule icon</string>
+    <string name="place_icon">place icon</string>
+    <string name="jadwal_permanen_message_label">Jadwal permanen saat ini</string>
+    <string name="simpan_perubahan_button">Simpan Perubahan</string>
 </resources>

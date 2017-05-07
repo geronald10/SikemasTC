@@ -57,7 +57,7 @@ public class HalamanUtamaDosen extends BaseActivity implements
     private int mPosition = RecyclerView.NO_POSITION;
 
     private View emptyView;
-    private Button btnTestNotifikasi;
+//    private Button btnTestNotifikasi;
 
     private ProgressBar mLoadingIndicator;
 
@@ -82,13 +82,13 @@ public class HalamanUtamaDosen extends BaseActivity implements
 
         getSupportLoaderManager().initLoader(ID_LIST_PERKULIAHAN_LOADER, null, this);
 
-        btnTestNotifikasi = (Button) findViewById(R.id.btn_test_notifikasi);
-        btnTestNotifikasi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        btnTestNotifikasi = (Button) findViewById(R.id.btn_test_notifikasi);
+////        btnTestNotifikasi.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
         SikemasSyncUtils.initializePerkuliahan(this);
     }
 
@@ -147,8 +147,8 @@ public class HalamanUtamaDosen extends BaseActivity implements
     @Override
     public void onClick(String idPerkuliahan) {
         Intent intentToDetailPerkuliahan = new Intent(HalamanUtamaDosen.this, DetailPerkuliahan.class);
-        Uri uriPerkuliahanCLicked = SikemasContract.PerkuliahanEntry.buildPerkuliahanUriPerkuliahanId(idPerkuliahan);
-        intentToDetailPerkuliahan.setData(uriPerkuliahanCLicked);
+        Uri uriPerkuliahanClicked = SikemasContract.PerkuliahanEntry.buildPerkuliahanUriPerkuliahanId(idPerkuliahan);
+        intentToDetailPerkuliahan.setData(uriPerkuliahanClicked);
         startActivity(intentToDetailPerkuliahan);
     }
 }

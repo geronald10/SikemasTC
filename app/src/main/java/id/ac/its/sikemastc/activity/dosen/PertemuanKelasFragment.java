@@ -1,5 +1,6 @@
 package id.ac.its.sikemastc.activity.dosen;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.adapter.KehadiranAdapter;
 import id.ac.its.sikemastc.adapter.PertemuanAdapter;
 import id.ac.its.sikemastc.data.SikemasContract;
 
@@ -93,7 +93,7 @@ public class PertemuanKelasFragment extends Fragment implements
         switch (loaderId) {
             case ID_LIST_PERTEMUAN_LOADER:
                 Uri pertemuanQueryUri = SikemasContract.PertemuanEntry.CONTENT_URI;
-                String sortOrder = "CAST (" + SikemasContract.PertemuanEntry.KEY_PERTEMUAN_KE + " AS REAL)" + " ASC";
+                String sortOrder = "CAST (" + SikemasContract.PertemuanEntry.KEY_PERTEMUAN_KE + " AS REAL) ASC";
                 String selection = SikemasContract.PertemuanEntry.KEY_ID_KELAS + " = ? ";
                 String selectionArgs = bundleIdKelas;
 
@@ -134,7 +134,11 @@ public class PertemuanKelasFragment extends Fragment implements
     }
 
     @Override
-    public void onClick(String idKelas) {
-
+    public void onClick(String idPertemuan, String idKelas, String pertemuanKe) {
+        Intent intentToDetailPertemuanKelas = new Intent(getActivity(), DetailPertemuanKelas.class);
+        intentToDetailPertemuanKelas.putExtra("id_pertemuan", idPertemuan);
+        intentToDetailPertemuanKelas.putExtra("id_kelas", idKelas);
+        intentToDetailPertemuanKelas.putExtra("pertemuan_ke", pertemuanKe);
+        startActivity(intentToDetailPertemuanKelas);
     }
 }

@@ -3,7 +3,9 @@ package id.ac.its.sikemastc.utilities;
 import android.content.Context;
 import android.text.format.DateUtils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.TimeZone;
 
 import id.ac.its.sikemastc.R;
@@ -178,5 +180,17 @@ public final class SikemasDateUtils {
             SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");
             return dayFormat.format(dateInMillis);
         }
+    }
+
+    public static String formatDate(String inputDate) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = null;
+        try {
+            date = inputFormat.parse(inputDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat outputFormat = new SimpleDateFormat("hh:mm a");
+        return outputFormat.format(date);
     }
 }

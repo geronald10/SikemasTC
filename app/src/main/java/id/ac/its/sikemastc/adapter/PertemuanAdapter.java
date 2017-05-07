@@ -24,7 +24,7 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
 
     // interface that receives onClick message
     public interface PertemuanAdapterOnClickHandler {
-        void onClick(String idKelas);
+        void onClick(String idPertemuan, String idKelas, String pertemuanKe);
     }
 
     public PertemuanAdapter(@NonNull Context context, PertemuanAdapterOnClickHandler clickHandler) {
@@ -46,9 +46,6 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
     public void onBindViewHolder(PertemuanAdapterViewHolder pertemuanAdapterViewHolder, int position) {
         mCursor.moveToPosition(position);
 
-        String idPertemuan = mCursor.getString(PertemuanKelasFragment.INDEX_ID_PERTEMUAN);
-        String idKelas = mCursor.getString(PertemuanKelasFragment.INDEX_ID_KELAS);
-        String statusPerkuliahan = mCursor.getString(PertemuanKelasFragment.INDEX_STATUS_PERKULIAHAN);
         String statusDosen = mCursor.getString(PertemuanKelasFragment.INDEX_STATUS_DOSEN);
         String pertemuanKe = mCursor.getString(PertemuanKelasFragment.INDEX_PERTEMUAN_KE);
         String tanggal = mCursor.getString(PertemuanKelasFragment.INDEX_TANGGAL);
@@ -117,8 +114,10 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
             mCursor.moveToPosition(adapterPosition);
-            String IdPertemuan = mCursor.getString(PertemuanKelasFragment.INDEX_ID_PERTEMUAN);
-            mClickHandler.onClick(IdPertemuan);
+            String idPertemuan = mCursor.getString(PertemuanKelasFragment.INDEX_ID_PERTEMUAN);
+            String idKelas = mCursor.getString(PertemuanKelasFragment.INDEX_ID_KELAS);
+            String pertemuanKe = mCursor.getString(PertemuanKelasFragment.INDEX_PERTEMUAN_KE);
+            mClickHandler.onClick(idPertemuan, idKelas, pertemuanKe);
         }
     }
 }

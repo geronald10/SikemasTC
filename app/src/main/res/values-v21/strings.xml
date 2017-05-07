@@ -25,4 +25,12 @@
     <string name="judul_jadwal_kosong">Jadwal Perkuliahan tidak ditemukan</string>
     <string name="subjudul_jadwal_kosong">Jadwal perkuliahan hari ini tidak ditemukan, kemungkinan Anda tidak memiliki jam mengampu mata kuliah hari ini (libur).</string>
     <string name="btn_lihat_peserta">Lihat PESERTA</string>
+    <string name="permanen_button_label">Permanen</string>
+    <string name="from_label">mulai</string>
+    <string name="to_label">selesai</string>
+    <string name="clock_icon">clock icon</string>
+    <string name="schedule_icon">schedule icon</string>
+    <string name="place_icon">place icon</string>
+    <string name="jadwal_permanen_message_label">Jadwal permanen saat ini</string>
+    <string name="simpan_perubahan_button">Simpan Perubahan</string>
 </resources>

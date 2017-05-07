@@ -25,6 +25,7 @@ public class DetailListKelas extends AppCompatActivity {
             R.drawable.ic_schedule,
             R.drawable.ic_student
     };
+
     private String idKelas;
 
     @Override
@@ -35,7 +36,7 @@ public class DetailListKelas extends AppCompatActivity {
         idKelas = getIntent().getStringExtra("id_kelas");
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Detail Perkuliahan");
+        toolbar.setTitle("Detail Kelas");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
 
         // Compatibility

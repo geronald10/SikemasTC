@@ -92,16 +92,16 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <Button
-        android:id="@+id/btn_test_notifikasi"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="test Notifikasi"
-        app:layout_constraintBottom_toBottomOf="@+id/rv_jadwal_utama_dosen"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+    <!--<Button-->
+        <!--android:id="@+id/btn_test_notifikasi"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="test Notifikasi"-->
+        <!--app:layout_constraintBottom_toBottomOf="@+id/rv_jadwal_utama_dosen"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:layout_marginRight="8dp"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent" />-->
 
 </android.support.constraint.ConstraintLayout>
