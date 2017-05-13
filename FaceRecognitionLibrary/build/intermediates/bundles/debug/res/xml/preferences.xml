@@ -20,7 +20,7 @@
         <id.ac.its.sikemastc.helper.SwitchPreference
         android:title="Camera"
         android:key="key_front_camera"
-        android:defaultValue="false"
+        android:defaultValue="true"
         android:switchTextOn="Front"
         android:switchTextOff="Back"/>
         <id.ac.its.sikemastc.helper.SwitchPreference
@@ -57,7 +57,7 @@
         <id.ac.its.sikemastc.helper.EditTextPreference
             android:title="Number of pictures"
             android:key="key_numberOfPictures"
-            android:defaultValue="20"
+            android:defaultValue="10"
             android:numeric="integer"
             />
         <id.ac.its.sikemastc.helper.EditTextPreference
