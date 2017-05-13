@@ -80,7 +80,7 @@ public class LibraryPreference {
         editor.putString(KEY_EXPOSURE, "50");
         editor.putString(KEY_CAMERA_VIEW_WIDTH, "320");
         editor.putString(KEY_CAMERA_VIEW_HEIGHT, "240");
-        editor.putString(KEY_NUMBER_OF_PICTURES, "20");
+        editor.putString(KEY_NUMBER_OF_PICTURES, "10");
         editor.putString(KEY_TIMERDIFF, "500");
         editor.putString(KEY_FACE_SIZE, "224");
 
@@ -126,6 +126,7 @@ public class LibraryPreference {
         editor.putString(KEY_N, "25");
 
         // Recognition Algorithms
+//        editor.putString(KEY_CLASSIFICATION_METHOD, "Image Reshaping with SVM");
         editor.putString(KEY_CLASSIFICATION_METHOD, "Image Reshaping with SVM");
         editor.putString(KEY_CLASSIFICATION_METHOD_TFCAFFE, "Support Vector Machine");
         editor.putString(KEY_K, "20");

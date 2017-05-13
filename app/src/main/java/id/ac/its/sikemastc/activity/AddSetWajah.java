@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -38,12 +39,13 @@ import java.util.Map;
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatName;
 import id.ac.its.sikemastc.R;
+import id.ac.its.sikemastc.utility.NetworkUtils;
 
 import static android.content.ContentValues.TAG;
 
 public class AddSetWajah extends AppCompatActivity {
 
-    private String UPLOAD_URL = "http://10.0.2.2/VolleyUpload/upload.php";
+    //private String UPLOAD_URL = "http://10.151.63.112:8080/sikemas-android-connect/VolleyUpload/upload.php";
     private String KEY_IMAGE = "image";
     private String KEY_IMAGE_PHOTO_NAME = "image_name";
     private String KEY_USER_ID = "user_id";
@@ -113,6 +115,7 @@ public class AddSetWajah extends AppCompatActivity {
                     }
                     break;
                 case R.id.btn_sinkronisasi_dataset:
+
                     break;
                 case R.id.btn_upload_file:
                     encodedImageList = new ArrayList<>();
@@ -187,24 +190,30 @@ public class AddSetWajah extends AppCompatActivity {
     // Upload image to server
     private void uploadImages(final ArrayList<String> encodedImagesList) {
 
+        final int[] totalUploaded = {0};
         StringRequest stringRequest;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         //Showing the progress dialog
-        progressDialog.setMessage("Mengunggah Data Set ke Server ... ");
+        progressDialog.setMessage("Mengunggah Data Set ke Server ...");
         progressDialog.show();
 
         for (int i = 0; i < encodedImagesList.size(); i++) {
             final int index = i;
-            stringRequest = new StringRequest(Request.Method.POST, UPLOAD_URL,
+            //Showing the progress dialog
+//            progressDialog.setMessage("Mengunggah Data Set ke Server ..." + index + " dari " + encodedImagesList.size());
+//            progressDialog.show();
+            stringRequest = new StringRequest(Request.Method.POST, NetworkUtils.UPLOAD_DATASET_SIKEMAS,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            //Disimissing the progress dialog
-                            progressDialog.dismiss();
                             //Showing toast message of the response
                             Log.d("VolleyResponse", "Dapat ResponseVolley Upload Images");
-                            Toast.makeText(AddSetWajah.this, "Berhasil Kirim Data Set ke Server", Toast.LENGTH_LONG).show();
+                            totalUploaded[0]++;
+                            if(totalUploaded[0] == encodedImagesList.size()) {
+                                progressDialog.dismiss();
+                                Toast.makeText(mContext, "Upload File Data Set berhasil", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     },
                     new Response.ErrorListener() {
@@ -221,6 +230,9 @@ public class AddSetWajah extends AppCompatActivity {
                 protected Map<String, String> getParams() throws AuthFailureError {
                     // Get encoded Image
                     String image = encodedImagesList.get(index);
+//                    Log.d("getParamImage", image);
+//                    Log.d("getParamImageName", userTerlogin + "_" + index);
+//                    Log.d("getParamUserId", userId);
                     // Creating parameters
                     Map<String, String> params = new HashMap<>();
                     // Adding parameters
@@ -232,8 +244,18 @@ public class AddSetWajah extends AppCompatActivity {
                     return params;
                 }
             };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    5000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             //Adding request to the queue
             requestQueue.add(stringRequest);
+        }
+        //Disimissing the progress dialog
+//        progressDialog.dismiss();
+        if(totalUploaded[0] == encodedImagesList.size()) {
+            Toast.makeText(AddSetWajah.this, "Berhasil Kirim Seluruh Data Set ke Server", Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -19,6 +19,7 @@ import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import ch.zhaw.facerecognitionlibrary.Helpers.CustomCameraView;
@@ -40,6 +41,7 @@ public class FaceRecognizing extends Activity implements CameraBridgeViewBase.Cv
     private boolean front_camera;
     private boolean night_portrait;
     private int exposure_compensation;
+    private LibraryPreference preferences;
 
     static {
         if (!OpenCVLoader.initDebug()) {
@@ -64,8 +66,12 @@ public class FaceRecognizing extends Activity implements CameraBridgeViewBase.Cv
         }
         mRecognitionView = (CustomCameraView) findViewById(R.id.RecognitionView);
         // Use camera which is selected in settings
+        preferences = new LibraryPreference(this);
+        preferences.createCameraSettings();
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        front_camera = sharedPref.getBoolean("key_front_camera", true);
+        HashMap<String, String> detectionSettings = preferences.getCameraSettings();
+
+        front_camera = Boolean.valueOf(detectionSettings.get(LibraryPreference.KEY_FRONT_CAMERA));
         night_portrait = sharedPref.getBoolean("key_night_portrait", false);
         exposure_compensation = Integer.valueOf(sharedPref.getString("key_exposure_compensation", "20"));
 

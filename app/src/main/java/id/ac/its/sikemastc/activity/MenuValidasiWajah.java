@@ -45,7 +45,9 @@ public class MenuValidasiWajah extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.btn_add_set_wajah:
                     Intent intentToSetWajah = new Intent(v.getContext(), AddSetWajah.class);
-                    intentToSetWajah.putExtra("identitas_mahasiswa", "112 - Ronald Gunawan R");
+//                    intentToSetWajah.putExtra("identitas_mahasiswa", "5113100112 - Ronald Gunawan R");
+//                    intentToSetWajah.putExtra("id_mahasiswa", "5113100112");
+                    intentToSetWajah.putExtra("identitas_mahasiswa", "5113100112 - Ronald Gunawan R");
                     intentToSetWajah.putExtra("id_mahasiswa", "5113100112");
                     startActivity(intentToSetWajah);
                     break;
