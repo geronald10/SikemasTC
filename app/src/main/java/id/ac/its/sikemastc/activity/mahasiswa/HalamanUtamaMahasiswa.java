@@ -27,6 +27,7 @@ public class HalamanUtamaMahasiswa extends BaseActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private String userId;
+    private String userNama;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class HalamanUtamaMahasiswa extends BaseActivity {
 
         HashMap<String, String> userDetail = session.getUserDetails();
         userId = userDetail.get(SikemasSessionManager.KEY_USER_ID);
+        userNama = userDetail.get(SikemasSessionManager.KEY_USER_NAME);
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         setupViewPager(viewPager);
@@ -64,6 +66,7 @@ public class HalamanUtamaMahasiswa extends BaseActivity {
         public Fragment getItem(int position) {
             Bundle data = new Bundle();
             data.putString("id_mahasiswa", userId);
+            data.putString("nama_mahasiswa", userNama);
             mFragmentList.get(position).setArguments(data);
             return mFragmentList.get(position);
         }

@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import id.ac.its.sikemastc.R;
 
-public class FaceVerification extends AppCompatActivity {
+public class VerifikasiWajah extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

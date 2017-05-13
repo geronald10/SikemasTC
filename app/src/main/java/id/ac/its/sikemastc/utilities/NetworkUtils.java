@@ -55,6 +55,9 @@ public final class NetworkUtils {
     // List kelas aktif Mahasiswa
     public static final String LIST_KELAS_MAHASISWA_AKTIF =
             "http://10.151.31.201/sikemas/public/mhs/kelasaktif";
+    // Kirim status kehadiran ke server
+    public static final String KIRIM_STATUS_KEHADIRAN_MAHASISWA =
+            "http://10.151.31.201/sikemas/public/mhs/";
 
     private static final String KODE_DOSEN_PARAM = "kode_dosen";
     private static final String NRP_MAHASISWA_PARAM = "nrp";

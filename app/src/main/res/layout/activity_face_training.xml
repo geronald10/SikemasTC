@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    tools:context=".activity.verifikasi_wajah.FaceTraining">
+    tools:context=".activity.verifikasi_wajah.TrainingWajah">
 
     <TextView
         android:id="@+id/tv_training_progress"

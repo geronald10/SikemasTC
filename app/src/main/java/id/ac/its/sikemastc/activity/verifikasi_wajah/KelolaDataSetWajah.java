@@ -32,7 +32,7 @@ import java.util.Map;
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import id.ac.its.sikemastc.R;
 
-public class AddSetWajah extends AppCompatActivity {
+public class KelolaDataSetWajah extends AppCompatActivity {
 
     private String UPLOAD_URL = "http://10.0.2.2/VolleyUpload/upload.php";
     private String KEY_IMAGE = "image";
@@ -195,7 +195,7 @@ public class AddSetWajah extends AppCompatActivity {
                             progressDialog.dismiss();
                             //Showing toast message of the response
                             Log.d("VolleyResponse", "Dapat ResponseVolley Upload Images");
-                            Toast.makeText(AddSetWajah.this, "Berhasil Kirim Data Set ke Server", Toast.LENGTH_LONG).show();
+                            Toast.makeText(KelolaDataSetWajah.this, "Berhasil Kirim Data Set ke Server", Toast.LENGTH_LONG).show();
                         }
                     },
                     new Response.ErrorListener() {
@@ -205,7 +205,7 @@ public class AddSetWajah extends AppCompatActivity {
                             progressDialog.dismiss();
                             Log.d("VolleyErroyResponse", "Error");
                             //Showing toast
-                            Toast.makeText(AddSetWajah.this, volleyError.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(KelolaDataSetWajah.this, volleyError.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }) {
                 @Override

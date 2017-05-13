@@ -19,7 +19,6 @@
         android:name="android.hardware.camera.front.autofocus"
         android:required="false" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -36,8 +35,7 @@
             android:theme="@style/AppNavDrawerMaterialTheme" />
         <activity
             android:name=".activity.LoginActivity"
-            android:theme="@style/AppLoginMaterialTheme" />
-        <activity android:name=".activity.verifikasi_wajah.PilihMetodeValidasi">
+            android:theme="@style/AppLoginMaterialTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -62,6 +60,25 @@
         <activity android:name=".activity.dosen.PenjadwalanUlangSementara" />
         <activity android:name=".activity.dosen.PenjadwalanUlangPermanen" />
         <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.dosen.DetailKehadiranPeserta" />
+        <activity android:name=".activity.dosen.DetailPertemuanKelas" />
+        <activity android:name=".activity.mahasiswa.DetailLihatJadwal" />
+        <activity android:name=".activity.verifikasi_wajah.MenuVerifikasiWajah" />
+        <activity android:name=".activity.verifikasi_wajah.KelolaDataSetWajah" />
+        <activity
+            android:name=".activity.verifikasi_wajah.DetectionView"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name=".activity.verifikasi_wajah.TrainingWajah" />
+        <activity
+            android:name=".activity.verifikasi_wajah.FaceRecognizing"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".activity.verifikasi_wajah.AddSetWajahPreview"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity android:name=".activity.verifikasi_wajah.VerifikasiWajah" />
 
         <provider
             android:name=".data.SikemasProvider"
@@ -91,25 +108,5 @@
             android:name=".sync.SikemasSyncKelasMahasiswaIntentService"
             android:exported="false" />
 
-        <activity android:name=".activity.dosen.DetailKehadiranPeserta" />
-        <activity android:name=".activity.dosen.DetailPertemuanKelas" />
-        <activity android:name=".activity.mahasiswa.DetailLihatJadwal" />
-        <activity android:name=".activity.verifikasi_wajah.MenuValidasiWajah" />
-        <activity android:name=".activity.verifikasi_wajah.AddSetWajah" />
-        <activity
-            android:name=".activity.verifikasi_wajah.DetectionView"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activity.verifikasi_wajah.FaceTraining" />
-        <activity
-            android:name=".activity.verifikasi_wajah.FaceRecognizing"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity
-            android:name=".activity.verifikasi_wajah.AddSetWajahPreview"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activity.verifikasi_wajah.FaceVerification" />
     </application>
-
 </manifest>

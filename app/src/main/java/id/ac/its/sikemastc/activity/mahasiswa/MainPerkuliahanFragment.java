@@ -1,5 +1,6 @@
 package id.ac.its.sikemastc.activity.mahasiswa;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -28,13 +29,9 @@ import java.util.List;
 import java.util.Map;
 
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.adapter.PerkuliahanAdapter;
+import id.ac.its.sikemastc.activity.verifikasi_wajah.MenuVerifikasiWajah;
 import id.ac.its.sikemastc.adapter.PerkuliahanAktifMahasiswaAdapter;
-import id.ac.its.sikemastc.data.SikemasSessionManager;
 import id.ac.its.sikemastc.model.PerkuliahanMahasiswa;
-import id.ac.its.sikemastc.model.PesertaPerkuliahan;
-import id.ac.its.sikemastc.sync.SikemasSyncTask;
-import id.ac.its.sikemastc.sync.SikemasSyncUtils;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
 import id.ac.its.sikemastc.utilities.SikemasDateUtils;
 import id.ac.its.sikemastc.utilities.VolleySingleton;
@@ -48,6 +45,7 @@ public class MainPerkuliahanFragment extends Fragment implements
     private RecyclerView mRecyclerView;
     private PerkuliahanAktifMahasiswaAdapter mPerkuliahanAktifAdapter;
     private String bundleIdUser;
+    private String bundleNamaUser;
     private List<PerkuliahanMahasiswa> perkuliahanAktifMahasiswaList;
 
     @Override
@@ -57,7 +55,9 @@ public class MainPerkuliahanFragment extends Fragment implements
         Bundle bundle = getArguments();
         if (bundle != null) {
             bundleIdUser = bundle.getString("id_mahasiswa");
+            bundleNamaUser = bundle.getString("nama_mahasiswa");
             Log.d("bundleIdUser", bundleIdUser);
+            Log.d("bundleNamaUser", bundleNamaUser);
         }
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_kelas_aktif);
         mLoadingIndicator = (ProgressBar) view.findViewById(R.id.pb_loading_indicator);
@@ -90,8 +90,18 @@ public class MainPerkuliahanFragment extends Fragment implements
     }
 
     @Override
-    public void onClick(String idPerkuliahan) {
-
+    public void onClick(int buttonId, String idPerkuliahan) {
+        switch (buttonId) {
+            case R.id.btn_verifikasi_tandatangan:
+                break;
+            case R.id.btn_verifikasi_wajah:
+                Intent intentToVerifikasiWajah = new Intent(getActivity(), MenuVerifikasiWajah.class);
+                intentToVerifikasiWajah.putExtra("id_perkuliaha", idPerkuliahan);
+                intentToVerifikasiWajah.putExtra("nrp_mahasiswa", bundleIdUser);
+                intentToVerifikasiWajah.putExtra("nama_mahasiswa", bundleNamaUser);
+                startActivity(intentToVerifikasiWajah);
+                break;
+        }
     }
 
     private void showPerkuliahanAktifDataView() {

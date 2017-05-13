@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="id.ac.its.sikemastc.activity.verifikasi_wajah.FaceVerification">
+    tools:context="id.ac.its.sikemastc.activity.verifikasi_wajah.VerifikasiWajah">
 
     <ch.zhaw.facerecognitionlibrary.Helpers.CustomCameraView
         android:id="@+id/VerificationView"

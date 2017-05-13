@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -18,7 +19,6 @@ import id.ac.its.sikemastc.model.PerkuliahanMahasiswa;
 public class PerkuliahanAktifMahasiswaAdapter extends RecyclerView.Adapter<PerkuliahanAktifMahasiswaAdapter.PerkuliahanAktifMahasiswaViewHolder> {
 
     private final Context mContext;
-    private Cursor mCursor;
     private List<PerkuliahanMahasiswa> perkuliahanAktifMahasiswaList;
 
     // handle clicks on items
@@ -26,7 +26,7 @@ public class PerkuliahanAktifMahasiswaAdapter extends RecyclerView.Adapter<Perku
 
     // interface that receives onClick message
     public interface  PerkuliahanAktifMahasiswaOnClickHandler {
-        void onClick(String idPerkuliahan);
+        void onClick(int buttonId, String idPerkuliahan);
     }
 
     public PerkuliahanAktifMahasiswaAdapter(Context context, List<PerkuliahanMahasiswa> perkuliahanMahasiswaList,
@@ -72,6 +72,8 @@ public class PerkuliahanAktifMahasiswaAdapter extends RecyclerView.Adapter<Perku
         private TextView tvWaktuSelesaiKuliah;
         private TextView tvMataKuliah;
         private TextView tvKodeMataKuliah;
+        private Button btnTandaTangan;
+        private Button btnPencocokanWajah;
 
         public PerkuliahanAktifMahasiswaViewHolder(View itemView) {
             super(itemView);
@@ -83,7 +85,11 @@ public class PerkuliahanAktifMahasiswaAdapter extends RecyclerView.Adapter<Perku
             tvWaktuSelesaiKuliah = (TextView) itemView.findViewById(R.id.tv_waktu_selesai);
             tvKodeMataKuliah = (TextView) itemView.findViewById(R.id.tv_kode_mata_kuliah);
             tvMataKuliah = (TextView) itemView.findViewById(R.id.tv_mata_kuliah);
+            btnTandaTangan = (Button) itemView.findViewById(R.id.btn_verifikasi_tandatangan);
+            btnPencocokanWajah = (Button) itemView.findViewById(R.id.btn_verifikasi_wajah);
 
+            btnTandaTangan.setOnClickListener(this);
+            btnPencocokanWajah.setOnClickListener(this);
             itemView.setOnClickListener(this);
         }
 
@@ -92,10 +98,10 @@ public class PerkuliahanAktifMahasiswaAdapter extends RecyclerView.Adapter<Perku
             int adapterPosition = getAdapterPosition();
             switch (v.getId()) {
                 case R.id.btn_verifikasi_tandatangan:
-                    mClickHandler.onClick(perkuliahanAktifMahasiswaList.get(adapterPosition).getIdPerkuliahan());
+                    mClickHandler.onClick(R.id.btn_verifikasi_tandatangan, perkuliahanAktifMahasiswaList.get(adapterPosition).getIdPerkuliahan());
                     break;
                 case R.id.btn_verifikasi_wajah:
-                    mClickHandler.onClick(perkuliahanAktifMahasiswaList.get(adapterPosition).getIdPerkuliahan());
+                    mClickHandler.onClick(R.id.btn_verifikasi_wajah, perkuliahanAktifMahasiswaList.get(adapterPosition).getIdPerkuliahan());
                     break;
                 default:
                     break;

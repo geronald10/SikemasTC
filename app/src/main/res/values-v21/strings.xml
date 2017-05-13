@@ -76,4 +76,6 @@
     <string name="tambah_set_wajah_btn_label">Tambah Set Wajah</string>
     <string name="settings_btn_label">Settings</string>
     <string name="verification_view_btn_label">Verifikasi Kehadiran</string>
+    <string name="menu_verifikasi_wajah_title">Mahasiswa Terlogin</string>
+    <string name="mahasiswa_terlogin_empty">NRP - Nama</string>
 </resources>

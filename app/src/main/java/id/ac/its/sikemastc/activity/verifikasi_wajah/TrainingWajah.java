@@ -25,7 +25,7 @@ import id.ac.its.sikemastc.R;
 
 import static org.opencv.imgcodecs.Imgcodecs.imread;
 
-public class FaceTraining extends Activity {
+public class TrainingWajah extends Activity {
 
     private static final String TAG = "Training";
     public LibraryPreference preferences;
@@ -113,7 +113,7 @@ public class FaceTraining extends Activity {
                                 }
                             }
                         }
-                        final Intent intent = new Intent(getApplicationContext(), MenuValidasiWajah.class);
+                        final Intent intent = new Intent(getApplicationContext(), MenuVerifikasiWajah.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         if (rec.train()) {
                             intent.putExtra("training", "Training successful");
