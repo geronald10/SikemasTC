@@ -1,12 +1,14 @@
 package id.ac.its.sikemastc.activity.dosen;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,37 +17,45 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.adapter.ChangeKehadiranAdapter;
+import id.ac.its.sikemastc.adapter.KehadiranPerkuliahanAdapter;
 import id.ac.its.sikemastc.data.SikemasContract;
+import id.ac.its.sikemastc.model.PesertaPerkuliahan;
+import id.ac.its.sikemastc.utilities.NetworkUtils;
+import id.ac.its.sikemastc.utilities.VolleySingleton;
 
 public class DetailPertemuanKelas extends AppCompatActivity implements
-        LoaderManager.LoaderCallbacks<Cursor>,
-        ChangeKehadiranAdapter.ChangeKehadiranAdapterOnClickHandler {
+        KehadiranPerkuliahanAdapter.StatusKehadiranAdapterOnClickHandler {
 
     private final String TAG = DetailPertemuanKelas.class.getSimpleName();
 
-    public static final String[] MAIN_DETAIL_PERTEMUAN_KEHADIRAN_PROJECTION = {
-            SikemasContract.KehadiranEntry.KEY_ID_PERKULIAHAN_MAHASISWA,
-            SikemasContract.KehadiranEntry.KEY_ID_MAHASISWA,
-            SikemasContract.KehadiranEntry.KEY_NRP_MAHASISWA,
-            SikemasContract.KehadiranEntry.KEY_NAMA_MAHASISWA,
-            SikemasContract.KehadiranEntry.KEY_KET_KEHADIRAN,
-    };
-
-    public static final int INDEX_ID_PERKULIAHAN = 0;
-    public static final int INDEX_ID_MAHASISWA = 1;
-    public static final int INDEX_NRP_MAHASISWA = 2;
-    public static final int INDEX_NAMA_MAHASISWA = 3;
-    public static final int INDEX_KET_KEHADIRAN = 4;
-
-    private static final int ID_DETAIL_PERTEMUAN_KEHADIRAN_LOADER = 90;
-
     private Toolbar toolbar;
+    private Context mContext;
     private RecyclerView mRecyclerView;
-    private ChangeKehadiranAdapter mChangeKehadiranAdapter;
-    private int mPosition = RecyclerView.NO_POSITION;
+    private List<PesertaPerkuliahan> pesertaPerkuliahanList;
+    private KehadiranPerkuliahanAdapter mKehadiranPerkuliahanAdapter;
+
     private String idPertemuan;
     private String idKelas;
     private String pertemuanKe;
@@ -56,6 +66,7 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_pertemuan);
+        mContext = this;
 
         Intent intentExtra = getIntent();
         idPertemuan = intentExtra.getStringExtra("id_pertemuan");
@@ -64,13 +75,13 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_detail_pertemuan);
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Detail Pertemuan " + pertemuanKe);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
 
         // Compatibility
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             toolbar.setElevation(10f);
         }
 
@@ -84,55 +95,112 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
+        pesertaPerkuliahanList = new ArrayList<>();
+        getPesertaKehadiranList(idPertemuan);
+
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
-        mChangeKehadiranAdapter = new ChangeKehadiranAdapter(this, this);
-        mRecyclerView.setAdapter(mChangeKehadiranAdapter);
+        mKehadiranPerkuliahanAdapter = new KehadiranPerkuliahanAdapter(this, pesertaPerkuliahanList);
+        mRecyclerView.setAdapter(mKehadiranPerkuliahanAdapter);
+    }
 
+    public void getPesertaKehadiranList(final String kodePerkuliahan) {
+        Log.d("kodePerkuliahanMasuk", kodePerkuliahan);
         showLoading();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                NetworkUtils.GET_PESERTA_PERKULIAHAN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, "Peserta Kehadiran Response: " + response);
+                        try {
+                            mKehadiranPerkuliahanAdapter.clear();
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray perkuliahan = jsonObject.getJSONArray("perkuliahan");
+                            for (int i = 0; i < perkuliahan.length(); i++) {
+                                JSONObject kehadiran = perkuliahan.getJSONObject(i);
+                                JSONArray kehadiranList = kehadiran.getJSONArray("kehadiran");
+                                for (int j = 0; j < kehadiranList.length(); j++) {
+                                    JSONObject detailKehadiran = kehadiranList.getJSONObject(j);
+                                    String namaPeserta = detailKehadiran.getString("nama");
+                                    String nrpPeserta = detailKehadiran.getString("nrp");
+                                    JSONObject pivot = detailKehadiran.getJSONObject("pivot");
+                                    String idPerkuliahan = pivot.getString("id_perkuliahanmahasiswa");
+                                    String idPeserta = pivot.getString("id_mahasiswa");
+                                    String ketKehadiran = pivot.getString("ket_kehadiran");
 
-        getSupportLoaderManager().initLoader(ID_DETAIL_PERTEMUAN_KEHADIRAN_LOADER, null, this);
+                                    PesertaPerkuliahan pesertaPerkuliahan = new PesertaPerkuliahan(
+                                            idPerkuliahan, idPeserta, nrpPeserta, namaPeserta, ketKehadiran);
+                                    pesertaPerkuliahanList.add(pesertaPerkuliahan);
+                                }
+                            }
+                            mKehadiranPerkuliahanAdapter.notifyDataSetChanged();
+                            showPesertaPerkuliahanDataView();
+                            Toast.makeText(mContext, "Berhasil Memuat Peserta Perkuliahan", Toast.LENGTH_LONG).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id_perkuliahan", kodePerkuliahan);
+                return params;
+            }
+        };
+        VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(stringRequest);
     }
 
-    @Override
-    public Loader<Cursor> onCreateLoader(int loaderId, Bundle args) {
-        switch (loaderId) {
-            case ID_DETAIL_PERTEMUAN_KEHADIRAN_LOADER:
-                Log.d(TAG, "masuk sini");
-                Uri listPertemuanKehadiranQuery = SikemasContract.KehadiranEntry.CONTENT_URI;
-                String sortOrder = "CAST (" + SikemasContract.KehadiranEntry.KEY_ID_MAHASISWA + " AS REAL) ASC";
-                String selection = SikemasContract.KehadiranEntry.KEY_ID_PERKULIAHAN_MAHASISWA + " = ? ";
-                String selectionArgs = idPertemuan;
-
-                return new CursorLoader(this,
-                        listPertemuanKehadiranQuery,
-                        MAIN_DETAIL_PERTEMUAN_KEHADIRAN_PROJECTION,
-                        selection,
-                        new String[]{selectionArgs},
-                        sortOrder);
-            default:
-                throw new RuntimeException("Loader Not Implemented: " + loaderId);
-        }
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        mChangeKehadiranAdapter.swapCursor(data);
-        if (mPosition == RecyclerView.NO_POSITION)
-            mPosition = 0;
-        mRecyclerView.smoothScrollToPosition(mPosition);
-        if (data.getCount() > 0)
-            showPertemuanKehadiranDataView();
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-        mChangeKehadiranAdapter.swapCursor(null);
-    }
-
-    private void showPertemuanKehadiranDataView() {
-        mLoadingIndicator.setVisibility(View.GONE);
-        mRecyclerView.setVisibility(View.VISIBLE);
+    public void changeStatusKehadiran(final String idPerkuliahan, final String idPeserta, final String ketKehadiran) {
+        Log.d("idPerkuliahan", idPerkuliahan);
+        Log.d("idMahasiswa", idPeserta);
+        Log.d("kodeKehadiran", ketKehadiran);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                NetworkUtils.CHANGE_STATUS_KEHADIRAN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, "Peserta Kehadiran Response: " + response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String code = jsonObject.getString("code");
+                            String status = jsonObject.getString("status");
+                            mKehadiranPerkuliahanAdapter.notifyDataSetChanged();
+                            Toast.makeText(mContext, "Berhasil Memuat Peserta Perkuliahan", Toast.LENGTH_LONG).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id_perkuliahan", idPerkuliahan);
+                params.put("id_mahasiswa", idPeserta);
+                params.put("ket_kehadiran", ketKehadiran);
+                return params;
+            }
+        };
+        VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(stringRequest);
     }
 
     private void showLoading() {
@@ -140,8 +208,73 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
         mLoadingIndicator.setVisibility(View.VISIBLE);
     }
 
-    @Override
-    public void onClick(int itemId, String idPertemuan, String idKelas) {
+    private void showPesertaPerkuliahanDataView() {
+        mLoadingIndicator.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+    }
 
+    private void showAlertDialog(final String idPerkuliahan, final String idMahasiswa,
+                                 final String nrpPeserta, final String namaPeserta) {
+
+        final String[] statusKehadiran = new String[] {
+                "Hadir", "Ijin", "Absen"
+        };
+
+        final String[] selectedItem = new String[1];
+        final String[] kodeKehadiran = new String[1];
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setTitle("Ubah Status Kehadiran dari peserta " + nrpPeserta + " - " + namaPeserta + " ?");
+
+        builder.setSingleChoiceItems(
+                statusKehadiran,
+                -1,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        selectedItem[0] = Arrays.asList(statusKehadiran).get(i);
+                        switch (selectedItem[0]) {
+                            case "Hadir":
+                                kodeKehadiran[0] = "M";
+                                break;
+                            case "Ijin":
+                                kodeKehadiran[0] = "I";
+                                break;
+                            case "Absen":
+                                kodeKehadiran[0] = "A";
+                                break;
+                        }
+                    }
+                }
+        );
+
+        builder.setPositiveButton(R.string.pilih, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                changeStatusKehadiran(idPerkuliahan, idMahasiswa, kodeKehadiran[0]);
+            }
+        });
+
+        builder.setNegativeButton(R.string.batal, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    @Override
+    public void onClick(int itemId, String idPerkuliahan, String idMahasiswa,
+                        String nrpPeserta, String namaPeserta) {
+        switch (itemId) {
+            case R.id.ib_change_status:
+                showAlertDialog(idPerkuliahan, idMahasiswa, nrpPeserta, namaPeserta);
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -35,4 +35,16 @@
         <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
 
+    <style name="PerkuliahanButtonEndKuliahTheme" parent="SuperMaterialTheme">
+        <item name="colorControlHighlight">@color/colorDangerControlHight</item>
+        <item name="colorButtonNormal">@color/colorDangerButtonNormal</item>
+        <item name="colorControlActivated">@color/colorDangerControlActivated</item>
+    </style>
+
+    <style name="PerkuliahanButtonActivateKuliahTheme" parent="SuperMaterialTheme">
+        <item name="colorControlHighlight">@color/colorSuccessControlHight</item>
+        <item name="colorButtonNormal">@color/colorSuccessButtonNormal</item>
+        <item name="colorControlActivated">@color/colorSuccessControlActivated</item>
+    </style>
+
 </resources>

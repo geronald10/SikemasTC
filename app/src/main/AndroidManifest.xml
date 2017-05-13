@@ -33,8 +33,12 @@
         <activity
             android:name=".activity.dosen.HalamanUtamaDosen"
             android:theme="@style/AppNavDrawerMaterialTheme" />
-        <activity android:name=".activity.mahasiswa.HalamanUtamaMahasiswa" />
-        <activity android:name=".activity.orangtua.HalamanUtamaOrangtua" />
+        <activity
+            android:name=".activity.mahasiswa.HalamanUtamaMahasiswa"
+            android:theme="@style/AppNavDrawerMaterialTheme" />
+        <activity
+            android:name=".activity.orangtua.HalamanUtamaOrangtua"
+            android:theme="@style/AppNavDrawerMaterialTheme" />
         <activity android:name=".activity.dosen.DetailPerkuliahan" />
         <activity android:name=".activity.mahasiswa.LihatJadwal" />
         <activity android:name=".activity.orangtua.LihatJadwalMahasiswa" />
@@ -64,9 +68,16 @@
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
+        <service
+            android:name=".sync.SikemasSyncPerkuliahanMahasiswaIntentService"
+            android:exported="false" />
+        <service
+            android:name=".sync.SikemasSyncKelasMahasiswaIntentService"
+            android:exported="false" />
 
         <activity android:name=".activity.dosen.DetailKehadiranPeserta" />
-        <activity android:name=".activity.dosen.DetailPertemuanKelas"></activity>
+        <activity android:name=".activity.dosen.DetailPertemuanKelas" />
+        <activity android:name=".activity.mahasiswa.DetailLihatJadwal"></activity>
     </application>
 
 </manifest>

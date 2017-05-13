@@ -9,10 +9,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import id.ac.its.sikemastc.data.SikemasContract;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
+import id.ac.its.sikemastc.model.PerkuliahanMahasiswa;
 
 public class SikemasJsonUtils {
 
@@ -34,10 +37,10 @@ public class SikemasJsonUtils {
 
 //                // handle "peserta kelas"
 //                JSONArray listPeserta = detailKelas.getJSONArray("peserta");
-//                List<PesertaKelas> listPesertaKelas = new ArrayList<>();
+//                List<PesertaPerkuliahan> listPesertaKelas = new ArrayList<>();
 //                for (int j = 0; j < listPeserta.length(); j++) {
 //                    JSONObject detailPeserta = listPeserta.getJSONObject(j);
-//                    PesertaKelas pesertaKelas = new PesertaKelas(detailPeserta.getString("nrp"),
+//                    PesertaPerkuliahan pesertaKelas = new PesertaPerkuliahan(detailPeserta.getString("nrp"),
 //                            detailPeserta.getString("nama"));
 //                    listPesertaKelas.add(pesertaKelas);
 //                }
@@ -103,7 +106,7 @@ public class SikemasJsonUtils {
             String hariPerkuliahan = detailKelas.getString("hari");
             String tanggalPerkuliahan = detailKelas.getString("tanggal");
             String perkuliahanKe = detailKelas.getString("pertemuan");
-            String statusPerkuliahan = detailKelas.getString("status_perkuliahan");
+            String statusDosen = detailKelas.getString("status_dosen");
             String waktuMulai = detailKelas.getString("mulai");
             String waktuSelesai = detailKelas.getString("selesai");
 
@@ -119,7 +122,7 @@ public class SikemasJsonUtils {
             perkuliahanDosenValue.put(SikemasContract.PerkuliahanEntry.KEY_HARI, hariPerkuliahan);
             perkuliahanDosenValue.put(SikemasContract.PerkuliahanEntry.KEY_TANGGAL_PERKULIAHAN, tanggalPerkuliahan);
             perkuliahanDosenValue.put(SikemasContract.PerkuliahanEntry.KEY_PERTEMUAN_KE, perkuliahanKe);
-            perkuliahanDosenValue.put(SikemasContract.PerkuliahanEntry.KEY_STATUS_PERKULIAHAN, statusPerkuliahan);
+            perkuliahanDosenValue.put(SikemasContract.PerkuliahanEntry.KEY_STATUS_DOSEN, statusDosen);
             perkuliahanDosenValue.put(SikemasContract.PerkuliahanEntry.KEY_MULAI, waktuMulai);
             perkuliahanDosenValue.put(SikemasContract.PerkuliahanEntry.KEY_SELESAI, waktuSelesai);
             perkuliahanDosenValue.put(SikemasContract.PerkuliahanEntry.KEY_NAMA_MK, namaMk);
@@ -132,7 +135,7 @@ public class SikemasJsonUtils {
             Log.d("hariperkuliahan", hariPerkuliahan);
             Log.d("tanggalperkuliahan", tanggalPerkuliahan);
             Log.d("perkuliahanke", perkuliahanKe);
-            Log.d("statusperkuliahan", statusPerkuliahan);
+            Log.d("statusperkuliahan", statusDosen);
             Log.d("mulai", waktuMulai);
             Log.d("selesai", waktuSelesai);
             Log.d("nama", namaMk);
@@ -140,8 +143,6 @@ public class SikemasJsonUtils {
             Log.d("ruang", ruangMK);
             Log.d("semester", kodeSemester);
             Log.d("kodeMK", kodeMk);
-
-
 
             perkuliahanDosenContentValues[i] = perkuliahanDosenValue;
         }
@@ -157,9 +158,7 @@ public class SikemasJsonUtils {
         for (int i = 0; i < listKelas.length(); i++) {
             JSONObject detailKelas = listKelas.getJSONObject(i);
             JSONArray kehadiran = detailKelas.getJSONArray("kehadiran");
-            for (int j = 0; j< kehadiran.length(); j++) {
-                totalPeserta = listKelas.length()*kehadiran.length();
-            }
+            totalPeserta += kehadiran.length();
         }
         Log.d("test length listkelas", String.valueOf(listKelas.length()));
         ContentValues[] kehadiranPesertaContentValues = new ContentValues[totalPeserta];
@@ -169,7 +168,7 @@ public class SikemasJsonUtils {
             JSONObject detailKelas = listKelas.getJSONObject(i);
             JSONArray kehadiran = detailKelas.getJSONArray("kehadiran");
             String idMahasiswa, nrpMahasiswa, namaMahasiswa, idPerkuliahanMahasiswa, ketKehadiran;
-            for (int j = 0; j< kehadiran.length(); j++) {
+            for (int j = 0; j < kehadiran.length(); j++) {
                 JSONObject peserta = kehadiran.getJSONObject(j);
                 nrpMahasiswa = peserta.getString("nrp");
                 namaMahasiswa = peserta.getString("nama");
@@ -177,7 +176,7 @@ public class SikemasJsonUtils {
                 idPerkuliahanMahasiswa = pivot.getString("id_perkuliahanmahasiswa");
                 idMahasiswa = pivot.getString("id_mahasiswa");
                 ketKehadiran = pivot.getString("ket_kehadiran");
-                
+
                 ContentValues kehadiranPesertaValue = new ContentValues();
                 kehadiranPesertaValue.put(SikemasContract.KehadiranEntry.KEY_NRP_MAHASISWA, nrpMahasiswa);
                 kehadiranPesertaValue.put(SikemasContract.KehadiranEntry.KEY_NAMA_MAHASISWA, namaMahasiswa);
@@ -202,10 +201,10 @@ public class SikemasJsonUtils {
             JSONObject detailKelas = listKelas.getJSONObject(i);
             JSONArray perkuliahanMahasiswa = detailKelas.getJSONArray("perkuliahanmahasiswa");
             for (int j = 0; j < perkuliahanMahasiswa.length(); j++)
-                totalPertemuan = listKelas.length()*perkuliahanMahasiswa.length();
+                totalPertemuan = listKelas.length() * perkuliahanMahasiswa.length();
 
         }
-        Log.d("test leng listkelas", String.valueOf(listKelas.length()));
+        Log.d("totalPertemuan", String.valueOf(totalPertemuan));
         ContentValues[] kelasDosenPertemuanContentValues = new ContentValues[totalPertemuan];
 
         int index = 0;
@@ -252,11 +251,9 @@ public class SikemasJsonUtils {
         for (int i = 0; i < listKelas.length(); i++) {
             JSONObject detailKelas = listKelas.getJSONObject(i);
             JSONArray kelasPeserta = detailKelas.getJSONArray("peserta");
-            for (int j = 0; j < kelasPeserta.length(); j++)
-                totalPeserta = listKelas.length()*kelasPeserta.length();
-
+            totalPeserta += kelasPeserta.length();
         }
-        Log.d("test leng listkelas", String.valueOf(listKelas.length()));
+        Log.d("totalPeserta", String.valueOf(totalPeserta));
         ContentValues[] kelasDosenPesertaContentValues = new ContentValues[totalPeserta];
 
         int index = 0;
@@ -286,5 +283,138 @@ public class SikemasJsonUtils {
             }
         }
         return kelasDosenPesertaContentValues;
+    }
+
+    // Content values for mahasiswa
+    public static ContentValues[] getListKelasMahasiswaContentValuesFromJson(Context context,
+        String listKelasMahasiswaJsonStr) throws JSONException {
+        JSONObject jsonObject = new JSONObject(listKelasMahasiswaJsonStr);
+        JSONArray listKelas = jsonObject.getJSONArray("listkelas");
+        Log.d("test leng listkelas", String.valueOf(listKelas.length()));
+        ContentValues[] kelasMahasiswaContentValues = new ContentValues[listKelas.length()];
+
+        for (int i = 0; i < listKelas.length(); i++) {
+            JSONObject detailKelas = listKelas.getJSONObject(i);
+            String idListJadwal = detailKelas.getString("id");
+            String kodeSemester = detailKelas.getString("kode_semester");
+            String kodeMk = detailKelas.getString("kode_matakuliah");
+            String namaMk = detailKelas.getString("nama_kelas");
+            String kelasMk = detailKelas.getString("kode_kelas");
+            String ruangMK = detailKelas.getString("nama_ruangan");
+
+            // handle "kelaswaktu"
+            String hari = null, mulai = null, selesai = null;
+            JSONArray listWaktu = detailKelas.getJSONArray("kelaswaktu");
+            for (int k = 0; k < listWaktu.length(); k++) {
+                JSONObject detailWaktu = listWaktu.getJSONObject(k);
+                hari = detailWaktu.getString("hari");
+                mulai = detailWaktu.getString("mulai");
+                selesai = detailWaktu.getString("selesai");
+                if (k + 1 < listWaktu.length()) {
+                    hari += "\\n";
+                    mulai += "\\n";
+                    selesai += "\\n";
+                }
+            }
+
+            ContentValues kelasMahasiswaValues = new ContentValues();
+            kelasMahasiswaValues.put(SikemasContract.KelasEntry.KEY_ID_KELAS, idListJadwal);
+            kelasMahasiswaValues.put(SikemasContract.KelasEntry.KEY_KODE_SEMESTER, kodeSemester);
+            kelasMahasiswaValues.put(SikemasContract.KelasEntry.KEY_KODE_MK, kodeMk);
+            kelasMahasiswaValues.put(SikemasContract.KelasEntry.KEY_NAMA_MK, namaMk);
+            kelasMahasiswaValues.put(SikemasContract.KelasEntry.KEY_KODE_KELAS, kelasMk);
+            kelasMahasiswaValues.put(SikemasContract.KelasEntry.KEY_NAMA_RUANGAN, ruangMK);
+            kelasMahasiswaValues.put(SikemasContract.KelasEntry.KEY_HARI, hari);
+            kelasMahasiswaValues.put(SikemasContract.KelasEntry.KEY_MULAI, mulai);
+            kelasMahasiswaValues.put(SikemasContract.KelasEntry.KEY_SELESAI, selesai);
+
+            kelasMahasiswaContentValues[i] = kelasMahasiswaValues;
+        }
+        return kelasMahasiswaContentValues;
+    }
+
+    public static ContentValues[] getListKelasMahasiswaDosenContentValuesFromJson(Context context,
+        String listKelasMahasiswaDosenJsonStr) throws JSONException {
+        int totalDosen = 0;
+        JSONObject jsonObject = new JSONObject(listKelasMahasiswaDosenJsonStr);
+        JSONArray listKelas = jsonObject.getJSONArray("listkelas");
+        for (int i = 0; i < listKelas.length(); i++) {
+            JSONObject detailKelas = listKelas.getJSONObject(i);
+            JSONArray listDosenKelas = detailKelas.getJSONArray("dosenkelas");
+            for (int j = 0; j < listDosenKelas.length(); j++) {
+                totalDosen++;
+            }
+        }
+        Log.d("test leng listkelas", String.valueOf(listKelas.length()));
+        ContentValues[] dosenKelasContentValues = new ContentValues[totalDosen];
+
+        int index = 0;
+        for (int i = 0; i < listKelas.length(); i++) {
+            JSONObject detailKelas = listKelas.getJSONObject(i);
+            // handle "dosenkelas"
+            JSONArray listDosenKelas = detailKelas.getJSONArray("dosenkelas");
+            for (int j = 0; j < listDosenKelas.length(); j++) {
+                JSONObject detailDosenKelas = listDosenKelas.getJSONObject(j);
+                String idDosen = detailDosenKelas.getString("id");
+                String nama = detailDosenKelas.getString("nama");
+                String kodeDosen = detailDosenKelas.getString("kode_dosen");
+
+                JSONObject pivot = detailDosenKelas.getJSONObject("pivot");
+                String idKelasDosen = pivot.getString("id_kelas");
+
+                ContentValues dosenKelasValues = new ContentValues();
+                dosenKelasValues.put(SikemasContract.DosenEntry.KEY_ID_DOSEN, idDosen);
+                dosenKelasValues.put(SikemasContract.DosenEntry.KEY_ID_KELAS_DOSEN, idKelasDosen);
+                dosenKelasValues.put(SikemasContract.DosenEntry.KEY_KODE_DOSEN, kodeDosen);
+                dosenKelasValues.put(SikemasContract.DosenEntry.KEY_NAMA_DOSEN, nama);
+
+                dosenKelasContentValues[index] = dosenKelasValues;
+                index++;
+            }
+        }
+        return dosenKelasContentValues;
+    }
+
+    public static ContentValues[] getListPerkuliahanMahasiswaContentValuesFromJson(Context context,
+        String listPerkuliahanMahasiswaJsonStr) throws JSONException {
+        JSONObject jsonObject = new JSONObject(listPerkuliahanMahasiswaJsonStr);
+        JSONArray listKelas = jsonObject.getJSONArray("listkelas");
+        Log.d("listKelasMahasiswa", String.valueOf(listKelas.length()));
+        ContentValues[] perkuliahanMahasiswaContentValues = new ContentValues[listKelas.length()];
+
+        for (int i = 0; i < listKelas.length(); i++) {
+            JSONObject detailKelas = listKelas.getJSONObject(i);
+            String idListJadwal = detailKelas.getString("id");
+            String hariPerkuliahan = detailKelas.getString("hari");
+            String tanggalPerkuliahan = detailKelas.getString("tanggal");
+            String perkuliahanKe = detailKelas.getString("pertemuan");
+            String statusDosen = detailKelas.getString("status_dosen");
+            String waktuMulai = detailKelas.getString("mulai");
+            String waktuSelesai = detailKelas.getString("selesai");
+
+            JSONObject kelas = detailKelas.getJSONObject("kelas");
+            String kodeSemester = kelas.getString("kode_semester");
+            String kodeMk = kelas.getString("kode_matakuliah");
+            String kelasMk = kelas.getString("kode_kelas");
+            String namaMk = kelas.getString("nama_kelas");
+            String ruangMK = kelas.getString("nama_ruangan");
+
+            ContentValues perkuliahanMahasiswaValue = new ContentValues();
+            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_ID_PERKULIAHAN, idListJadwal);
+            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_HARI, hariPerkuliahan);
+            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_TANGGAL_PERKULIAHAN, tanggalPerkuliahan);
+            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_PERTEMUAN_KE, perkuliahanKe);
+            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_STATUS_DOSEN, statusDosen);
+            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_MULAI, waktuMulai);
+            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_SELESAI, waktuSelesai);
+            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_NAMA_MK, namaMk);
+            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_KODE_KELAS, kelasMk);
+            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_NAMA_RUANGAN, ruangMK);
+            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_KODE_SEMESTER, kodeSemester);
+            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_KODE_MK, kodeMk);
+
+            perkuliahanMahasiswaContentValues[i] = perkuliahanMahasiswaValue;
+        }
+        return perkuliahanMahasiswaContentValues;
     }
 }

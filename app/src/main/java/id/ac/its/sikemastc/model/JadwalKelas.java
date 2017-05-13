@@ -1,6 +1,5 @@
 package id.ac.its.sikemastc.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class JadwalKelas {
@@ -13,7 +12,7 @@ public class JadwalKelas {
     private String tanggalPertemuan;
     private String pertemuanKe;
     private String statusPerkuliahan;
-    private List<PesertaKelas> peserta;
+    private List<PesertaPerkuliahan> peserta;
     private List<WaktuKelas> kelasWaktu;
     private List<DosenKelas> dosenKelas;
 
@@ -34,7 +33,7 @@ public class JadwalKelas {
     }
 
     public JadwalKelas(String idListJadwalMK, String kodeMK, String namaMK, String kelasMK,
-                       String ruangMK, List<PesertaKelas> peserta, List<WaktuKelas> kelasWaktu,
+                       String ruangMK, List<PesertaPerkuliahan> peserta, List<WaktuKelas> kelasWaktu,
                        List<DosenKelas> dosenKelas) {
         this.idListJadwalMK = idListJadwalMK;
         this.kodeMK = kodeMK;
@@ -86,11 +85,11 @@ public class JadwalKelas {
         this.ruangMK = ruangMK;
     }
 
-    public List<PesertaKelas> getPeserta() {
+    public List<PesertaPerkuliahan> getPeserta() {
         return peserta;
     }
 
-    public void setPeserta(List<PesertaKelas> peserta) {
+    public void setPeserta(List<PesertaPerkuliahan> peserta) {
         this.peserta = peserta;
     }
 

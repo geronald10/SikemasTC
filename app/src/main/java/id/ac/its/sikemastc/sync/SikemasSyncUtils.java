@@ -109,4 +109,14 @@ public class SikemasSyncUtils {
         Intent intentToSyncImmediately = new Intent(context, SikemasSyncKelasIntentService.class);
         context.startService(intentToSyncImmediately);
     }
+
+    public static void startImmediatePerkuliahanMahasiswaSync(Context context) {
+        Intent intentToSyncImmediately = new Intent(context, SikemasSyncPerkuliahanMahasiswaIntentService.class);
+        context.startService(intentToSyncImmediately);
+    }
+
+    public static void startImmediateKelasMahasiswaSync(Context context) {
+        Intent intentToSyncImmediately = new Intent(context, SikemasSyncKelasMahasiswaIntentService.class);
+        context.startService(intentToSyncImmediately);
+    }
 }

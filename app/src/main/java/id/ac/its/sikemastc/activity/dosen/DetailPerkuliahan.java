@@ -25,7 +25,7 @@ public class DetailPerkuliahan extends AppCompatActivity implements
 
     public static final String[] MAIN_DETAIL_PERKULIAHAN_DOSEN_DETAIL_PROJECTION = {
             SikemasContract.PerkuliahanEntry.KEY_ID_PERKULIAHAN,
-            SikemasContract.PerkuliahanEntry.KEY_STATUS_PERKULIAHAN,
+            SikemasContract.PerkuliahanEntry.KEY_STATUS_DOSEN,
             SikemasContract.PerkuliahanEntry.KEY_PERTEMUAN_KE,
             SikemasContract.PerkuliahanEntry.KEY_TANGGAL_PERKULIAHAN,
             SikemasContract.PerkuliahanEntry.KEY_KODE_SEMESTER,
@@ -39,7 +39,7 @@ public class DetailPerkuliahan extends AppCompatActivity implements
     };
 
     public static final int INDEX_ID_PERKULIAHAN = 0;
-    public static final int INDEX_STATUS_PERKULIAHAN = 1;
+    public static final int INDEX_STATUS_DOSEN = 1;
     public static final int INDEX_PERTEMUAN_KE = 2;
     public static final int INDEX_TANGGAL_PERKULIAHAN = 3;
     public static final int INDEX_KODE_SEMESTER = 4;
@@ -117,7 +117,7 @@ public class DetailPerkuliahan extends AppCompatActivity implements
         String waktu = data.getString(INDEX_MULAI) + "-" +
                 data.getString(INDEX_SELESAI);
         final String idPerkuliahan = data.getString(INDEX_ID_PERKULIAHAN);
-        String statusPerkuliahan = data.getString(INDEX_STATUS_PERKULIAHAN);
+        String statusDosen = data.getString(INDEX_STATUS_DOSEN);
 //        String jumlahPeserta =
 
         mDetailBinding.primaryInfo.tvTanggalPertemuan.setText(tanggalPertemuan);
@@ -143,6 +143,5 @@ public class DetailPerkuliahan extends AppCompatActivity implements
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-
     }
 }

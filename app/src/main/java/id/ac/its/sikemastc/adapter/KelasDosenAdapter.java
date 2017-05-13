@@ -36,7 +36,7 @@ public class KelasDosenAdapter extends RecyclerView.Adapter<KelasDosenAdapter.Ke
     public KelasDosenAdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater
                 .from(mContext)
-                .inflate(R.layout.list_item_jadwal, viewGroup, false);
+                .inflate(R.layout.list_item_jadwal_dosen, viewGroup, false);
         view.setFocusable(true);
 
         return new KelasDosenAdapterViewHolder(view);

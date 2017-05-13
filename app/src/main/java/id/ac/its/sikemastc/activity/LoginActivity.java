@@ -63,7 +63,21 @@ public class LoginActivity extends AppCompatActivity {
 
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
-            Intent intent = new Intent(LoginActivity.this, HalamanUtamaDosen.class);
+            Intent intent = null;
+            String loggedUserId = session.getUserDetails().get(SikemasSessionManager.KEY_USER_ROLE);
+            switch (loggedUserId) {
+                case "1":
+                    intent = new Intent(LoginActivity.this, HalamanUtamaDosen.class);
+                    break;
+                case "3":
+                    intent = new Intent(LoginActivity.this, HalamanUtamaOrangtua.class);
+                    break;
+                case "4":
+                    intent = new Intent(LoginActivity.this, HalamanUtamaMahasiswa.class);
+                    break;
+                default:
+                    return;
+            }
             startActivity(intent);
             finish();
         }
@@ -125,11 +139,16 @@ public class LoginActivity extends AppCompatActivity {
                         String email = user.getString(SikemasContract.UserEntry.KEY_USER_EMAIL);
                         String role = user.getString(SikemasContract.UserEntry.KEY_USER_ROLE);
                         if (role.equals("1")) {
-                            String kodeDosen = jsonObject.getString(SikemasContract.UserEntry.KEY_KODE_DOSEN);
-                            session.createLoginSession(userId, name, email, role, kodeDosen);
+                            String userCode = jsonObject.getString(SikemasContract.UserEntry.KEY_KODE_DOSEN);
+                            session.createLoginSession(userId, name, email, role, userCode);
+                        } else if (role.equals("3")) {
+                            String userCode = "OT";
+                            session.createLoginSession(userId, name, email, role, userCode);
                         }
-                        else
-                            session.createLoginSession(userId, name, email, role);
+                        else if (role.equals("4")) {
+                            String userCode = "MHS";
+                            session.createLoginSession(userId, name, email, role, userCode);
+                        }
                         checkUserRole(role);
                         finish();
                     } else {
@@ -183,11 +202,10 @@ public class LoginActivity extends AppCompatActivity {
     private void checkUserRole(String userRole) {
         switch (userRole) {
             case "1":
-//                Intent intentDosen = new Intent(LoginActivity.this, HalamanUtamaDosen.class);
                 Intent intentDosen = new Intent(LoginActivity.this, HalamanUtamaDosen.class);
                 startActivity(intentDosen);
                 break;
-            case "2":
+            case "4":
                 Intent intentMahasiswa = new Intent(LoginActivity.this, HalamanUtamaMahasiswa.class);
                 startActivity(intentMahasiswa);
                 break;

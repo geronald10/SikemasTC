@@ -1,28 +1,22 @@
 package id.ac.its.sikemastc.activity.mahasiswa;
 
-import android.app.LoaderManager;
-import android.content.Loader;
-import android.database.Cursor;
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import id.ac.its.sikemastc.activity.BaseActivity;
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.adapter.PerkuliahanAdapter;
-import id.ac.its.sikemastc.data.SikemasSessionManager;
 import id.ac.its.sikemastc.sync.SikemasSyncUtils;
 
-public class HalamanUtamaMahasiswa extends BaseActivity {
+public class DetailLihatJadwal extends AppCompatActivity {
 
-    private final String TAG = HalamanUtamaMahasiswa.class.getSimpleName();
+    private final String TAG = DetailLihatJadwal.class.getSimpleName();
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -31,10 +25,7 @@ public class HalamanUtamaMahasiswa extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_halaman_utama_mahasiswa);
-
-        HashMap<String, String> userDetail = session.getUserDetails();
-        userId = userDetail.get(SikemasSessionManager.KEY_USER_ID);
+        setContentView(R.layout.activity_detail_lihat_jadwal);
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         setupViewPager(viewPager);
@@ -47,8 +38,8 @@ public class HalamanUtamaMahasiswa extends BaseActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MainPerkuliahanFragment(), "PERKULIAHAN AKTIF");
-        adapter.addFragment(new ListPerkuliahanFragment(), "LIST PERKULIAHAN");
+        adapter.addFragment(new DetailJadwalKelas(), "INFO KELAS");
+        adapter.addFragment(new DetailRiwayatKehadiran(), "RIWAYAT KEHADIRAN");
         viewPager.setAdapter(adapter);
     }
 
@@ -83,4 +74,5 @@ public class HalamanUtamaMahasiswa extends BaseActivity {
             return mFragmentTitleList.get(position);
         }
     }
+
 }

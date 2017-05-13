@@ -1,23 +1,35 @@
 package id.ac.its.sikemastc.model;
 
-public class PesertaKelas {
+public class PesertaPerkuliahan {
 
+    private String idPerkuliahan;
+    private String idMahasiswa;
     private String nrpMahasiswa;
     private String namaMahasiswa;
     private String statusKehadiran;
 
-    public PesertaKelas() {
-    }
-
-    public PesertaKelas(String nrpMahasiswa, String namaMahasiswa) {
-        this.nrpMahasiswa = nrpMahasiswa;
-        this.namaMahasiswa = namaMahasiswa;
-    }
-
-    public PesertaKelas(String nrpMahasiswa, String namaMahasiswa, String statusKehadiran) {
+    public PesertaPerkuliahan(String idPerkuliahan, String idMahasiswa, String nrpMahasiswa, String namaMahasiswa, String statusKehadiran) {
+        this.idPerkuliahan = idPerkuliahan;
+        this.idMahasiswa = idMahasiswa;
         this.nrpMahasiswa = nrpMahasiswa;
         this.namaMahasiswa = namaMahasiswa;
         this.statusKehadiran = statusKehadiran;
+    }
+
+    public String getIdPerkuliahan() {
+        return idPerkuliahan;
+    }
+
+    public void setIdPerkuliahan(String idPerkuliahan) {
+        this.idPerkuliahan = idPerkuliahan;
+    }
+
+    public String getIdMahasiswa() {
+        return idMahasiswa;
+    }
+
+    public void setIdMahasiswa(String idMahasiswa) {
+        this.idMahasiswa = idMahasiswa;
     }
 
     public String getNrpMahasiswa() {

@@ -19,4 +19,14 @@
     <color name="colorControlActivated">#FFC107</color>
     <color name="colorUnselect">#E0E0E0</color>
 
+    <color name="colorDangerControlHight">#FFCDD2</color>
+    <color name="colorDangerButtonNormal">#D32F2F</color>
+    <color name="colorDangerControlActivated">#F44336</color>
+    <color name="colorDangerUnselect">#E0E0E0</color>
+
+    <color name="colorSuccessControlHight">#C8E6C9</color>
+    <color name="colorSuccessButtonNormal">#388E3C</color>
+    <color name="colorSuccessControlActivated">#4CAF50</color>
+    <color name="colorSuccessUnselect">#E0E0E0</color>
+
 </resources>

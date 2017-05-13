@@ -47,4 +47,25 @@
     <string name="place_icon">place icon</string>
     <string name="jadwal_permanen_message_label">Jadwal permanen saat ini</string>
     <string name="simpan_perubahan_button">Simpan Perubahan</string>
+    <string name="pilih">Pilih</string>
+    <string name="batal">Batal</string>
+    <string name="aktifkan">Aktifkan</string>
+    <string name="aktifkan_button">Aktifkan</string>
+    <string name="batalkan_kelas_button">Batalkan Kelas</string>
+    <string name="akhiri_kelas_button">Akhiri Kelas</string>
+    <string name="akhiri">Akhiri</string>
+    <string name="batalkan">batalkan</string>
+    <string name="kelas_sudah_diakhiri_label">Kelas Sudah Diakhiri</string>
+    <string name="perkuliahan_aktif_saat_ini_label">Perkuliahan Aktif Saat Ini</string>
+    <string name="verifikasi_tanda_tangan_button_label">Tanda Tangan</string>
+    <string name="verifikasi_wajah_button_label">Cocokan Wajah</string>
+    <string name="posisi_saat_ini_label">Posisi saat ini</string>
+    <string-array name="status_kehadiran_item">
+        <item>Hadir</item>
+        <item>Ijin</item>
+        <item>Absen</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

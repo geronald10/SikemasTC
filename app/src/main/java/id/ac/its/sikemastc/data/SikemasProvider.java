@@ -3,6 +3,7 @@ package id.ac.its.sikemastc.data;
 import android.annotation.TargetApi;
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,6 +13,7 @@ import android.util.Log;
 
 public class SikemasProvider extends ContentProvider {
 
+    public static final int CODE_DB_ALL = 1;
     public static final int CODE_KELAS = 100;
     public static final int CODE_KELAS_WITH_ID = 101;
     public static final int CODE_PERKULIAHAN = 200;
@@ -31,6 +33,7 @@ public class SikemasProvider extends ContentProvider {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
         final String authority = SikemasContract.CONTENT_AUTHORITY;
 
+        matcher.addURI(authority, null, CODE_DB_ALL);
         matcher.addURI(authority, SikemasContract.PATH_USER, CODE_USER);
         matcher.addURI(authority, SikemasContract.PATH_KELAS, CODE_KELAS);
         matcher.addURI(authority, SikemasContract.PATH_KELAS + "/#", CODE_KELAS_WITH_ID);
@@ -271,8 +274,16 @@ public class SikemasProvider extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
         int numRowsDeleted;
-        if (null == selection) selection = "1";
+        if (null == selection)
+            selection = "1";
         switch (sUriMatcher.match(uri)) {
+            case CODE_DB_ALL:
+                mOpenHelper.close();
+                Context context = getContext();
+                context.deleteDatabase(SikemasContract.DATABASE_NAME);
+                mOpenHelper = new SikemasDBHelper(context);
+                getContext().getContentResolver().notifyChange(uri, null, false);
+                return 1;
             case CODE_USER:
                 numRowsDeleted = mOpenHelper.getWritableDatabase().delete(
                         SikemasContract.UserEntry.TABLE_NAME,
@@ -318,18 +329,29 @@ public class SikemasProvider extends ContentProvider {
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
-
         if (numRowsDeleted != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
             mOpenHelper.getWritableDatabase().close();
         }
-
         return numRowsDeleted;
     }
 
     @Override
     public int update(@NonNull Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        throw new RuntimeException("This app doesn't immplement update in Sikemas");
+        int numRowsUpdated;
+        switch (sUriMatcher.match(uri)) {
+            case CODE_PERKULIAHAN:
+                numRowsUpdated = mOpenHelper.getWritableDatabase().update(
+                        SikemasContract.PerkuliahanEntry.TABLE_NAME,
+                        values,
+                        selection,
+                        selectionArgs
+                );
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
+        return numRowsUpdated;
     }
 
     @Override

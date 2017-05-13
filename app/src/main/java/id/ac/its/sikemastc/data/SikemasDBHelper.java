@@ -4,17 +4,20 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import javax.xml.transform.dom.DOMLocator;
+
 import id.ac.its.sikemastc.data.SikemasContract.UserEntry;
 import id.ac.its.sikemastc.data.SikemasContract.KelasEntry;
 import id.ac.its.sikemastc.data.SikemasContract.PerkuliahanEntry;
 import id.ac.its.sikemastc.data.SikemasContract.KehadiranEntry;
 import id.ac.its.sikemastc.data.SikemasContract.PesertaEntry;
 import id.ac.its.sikemastc.data.SikemasContract.PertemuanEntry;
+import id.ac.its.sikemastc.data.SikemasContract.DosenEntry;
 
 
 public class SikemasDBHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "sikemas.db";
+    private static final String DATABASE_NAME = SikemasContract.DATABASE_NAME;
     private static final int DATABASE_VERSION = 1;
 
     public SikemasDBHelper(Context context) {
@@ -29,6 +32,7 @@ public class SikemasDBHelper extends SQLiteOpenHelper {
         sqlCreateKehadiranTable(sqLiteDatabase);
         sqlCreatePesertaTable(sqLiteDatabase);
         sqlCreatePertemuanTable(sqLiteDatabase);
+        sqlCreateDosenTable(sqLiteDatabase);
     }
 
     @Override
@@ -39,6 +43,7 @@ public class SikemasDBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + KehadiranEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + PesertaEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + PertemuanEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DosenEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 
@@ -75,7 +80,7 @@ public class SikemasDBHelper extends SQLiteOpenHelper {
                 "CREATE TABLE " + SikemasContract.PerkuliahanEntry.TABLE_NAME + " (" +
                         PerkuliahanEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         PerkuliahanEntry.KEY_ID_PERKULIAHAN + " TEXT NOT NULL, " +
-                        PerkuliahanEntry.KEY_STATUS_PERKULIAHAN + " TEXT NOT NULL, " +
+                        PerkuliahanEntry.KEY_STATUS_DOSEN + " TEXT NOT NULL, " +
                         PerkuliahanEntry.KEY_PERTEMUAN_KE + " TEXT NOT NULL, " +
                         PerkuliahanEntry.KEY_TANGGAL_PERKULIAHAN + " TEXT NOT NULL, " +
                         PerkuliahanEntry.KEY_KODE_SEMESTER + " TEXT NOT NULL, " +
@@ -127,5 +132,16 @@ public class SikemasDBHelper extends SQLiteOpenHelper {
                         PertemuanEntry.KEY_MULAI + " TEXT NOT NULL, " +
                         PertemuanEntry.KEY_SELESAI + " TEXT NOT NULL ON CONFLICT REPLACE);";
         sqLiteDatabase.execSQL(SQL_CREATE_PERTEMUAN_TABLE);
+    }
+
+    private void sqlCreateDosenTable(SQLiteDatabase sqLiteDatabase) {
+        final String SQL_CREATE_DOSEN_TABLE =
+                "CREATE TABLE " + DosenEntry.TABLE_NAME + " (" +
+                        DosenEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        DosenEntry.KEY_ID_DOSEN + " TEXT NOT NULL, " +
+                        DosenEntry.KEY_ID_KELAS_DOSEN + " TEXT NOT NULL, " +
+                        DosenEntry.KEY_KODE_DOSEN + " TEXT NOT NULL, " +
+                        DosenEntry.KEY_NAMA_DOSEN + " TEXT NOT NULL ON CONFLICT REPLACE);";
+        sqLiteDatabase.execSQL(SQL_CREATE_DOSEN_TABLE);
     }
 }

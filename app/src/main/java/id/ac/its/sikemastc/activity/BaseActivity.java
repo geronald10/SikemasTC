@@ -55,19 +55,23 @@ public class BaseActivity extends AppCompatActivity implements
         String userEmail = userDetail.get(SikemasSessionManager.KEY_USER_EMAIL);
         String userId = userDetail.get(SikemasSessionManager.KEY_USER_ID);
         String userRole = userDetail.get(SikemasSessionManager.KEY_USER_ROLE);
-        String kodeDosen = userDetail.get(SikemasSessionManager.KEY_KODE_DOSEN);
-        Log.d("kodeDosen", kodeDosen);
-        if (checkedDrawerItemId == 0) {
-            if (userRole.equals("1"))
-                checkedDrawerItemId = R.id.item_home_dosen;
-            else if (userRole.equals("2"))
-                checkedDrawerItemId = R.id.item_home_mahasiswa;
-            else
-                checkedDrawerItemId = R.id.item_home_orangtua;
-        }
+        String userCode = userDetail.get(SikemasSessionManager.KEY_USER_CODE);
 
+        if (checkedDrawerItemId == 0) {
+            switch (userRole) {
+                case "1":
+                    checkedDrawerItemId = R.id.item_home_dosen;
+                    break;
+                case "4":
+                    checkedDrawerItemId = R.id.item_home_mahasiswa;
+                    break;
+                default:
+                    checkedDrawerItemId = R.id.item_home_orangtua;
+                    break;
+            }
+        }
         setupToolbarMenu(title);
-        setupNavigationDrawerMenu(checkedDrawerItemId, userNama, userEmail, userId, userRole, kodeDosen);
+        setupNavigationDrawerMenu(checkedDrawerItemId, userNama, userEmail, userId, userRole, userCode);
     }
 
     private void setupToolbarMenu(String title) {
@@ -101,11 +105,11 @@ public class BaseActivity extends AppCompatActivity implements
             case "1":
                 navigationView.inflateMenu(R.menu.menu_item_dosen);
                 break;
-            case "2":
-                navigationView.inflateMenu(R.menu.menu_item_mahasiswa);
-                break;
             case "3":
                 navigationView.inflateMenu(R.menu.menu_item_orangtua);
+                break;
+            case "4":
+                navigationView.inflateMenu(R.menu.menu_item_mahasiswa);
                 break;
         }
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -134,7 +138,6 @@ public class BaseActivity extends AppCompatActivity implements
 
         switch (menuItem.getItemId()) {
             case R.id.item_home_dosen:
-//                Intent intentToHomeDosen = new Intent(this, HalamanUtamaDosen.class);
                 Intent intentToHomeDosen = new Intent(this, HalamanUtamaDosen.class);
                 intentToHomeDosen.putExtra("checkedDrawerItemId", menuItem.getItemId());
                 intentToHomeDosen.putExtra("title", menuItem.getTitle());

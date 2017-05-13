@@ -56,7 +56,6 @@ public class PertemuanKelasFragment extends Fragment implements
     private int mPosition = RecyclerView.NO_POSITION;
     private String bundleIdKelas;
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

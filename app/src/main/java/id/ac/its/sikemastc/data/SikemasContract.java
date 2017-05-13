@@ -7,12 +7,14 @@ public class SikemasContract {
 
     public static final String CONTENT_AUTHORITY = "id.ac.its.sikemastc";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+    public static final String DATABASE_NAME = "sikemas.db";
     public static final String PATH_USER = "user";
     public static final String PATH_PERKULIAHAN = "perkuliahan";
     public static final String PATH_KELAS = "kelas";
     public static final String PATH_KEHADIRAN = "kehadiran";
     public static final String PATH_PESERTA = "peserta";
     public static final String PATH_PERTEMUAN = "pertemuan";
+    public static final String PATH_DOSEN = "dosen";
 
     public static final class UserEntry implements BaseColumns {
 
@@ -37,7 +39,7 @@ public class SikemasContract {
 
         public static final String TABLE_NAME = "perkuliahan";
         public static final String KEY_ID_PERKULIAHAN = "perkuliahan_id";
-        public static final String KEY_STATUS_PERKULIAHAN = "status_perkuliahan";
+        public static final String KEY_STATUS_DOSEN = "status_dosen";
         public static final String KEY_PERTEMUAN_KE = "pertemuan";
         public static final String KEY_TANGGAL_PERKULIAHAN = "tanggal";
         public static final String KEY_KODE_SEMESTER = "kode_semester";
@@ -134,6 +136,25 @@ public class SikemasContract {
         public static Uri buildPertemuanUriPertemuanId(String pertemuanId) {
             return CONTENT_URI.buildUpon()
                     .appendPath(pertemuanId)
+                    .build();
+        }
+    }
+
+    public static final class DosenEntry implements BaseColumns {
+
+        public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon()
+                .appendPath(PATH_DOSEN)
+                .build();
+
+        public static final String TABLE_NAME = "dosen";
+        public static final String KEY_ID_DOSEN = "id";
+        public static final String KEY_ID_KELAS_DOSEN = "id_kelas";
+        public static final String KEY_NAMA_DOSEN = "nama";
+        public static final String KEY_KODE_DOSEN = "kose_dosen";
+
+        public static Uri buildDosenUriKelasId(String kelasId) {
+            return CONTENT_URI.buildUpon()
+                    .appendPath(kelasId)
                     .build();
         }
     }

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="id.ac.its.sikemastc.activity.mahasiswa.MainPerkuliahanFragment">
+
+    <TextView
+        android:id="@+id/tv_perkuliahan_aktif_headline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/perkuliahan_aktif_saat_ini_label"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_tanggal_hari_ini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Jumat, 12 Mei 2017"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_perkuliahan_aktif_headline"
+        app:layout_constraintRight_toRightOf="@+id/tv_perkuliahan_aktif_headline"
+        app:layout_constraintTop_toBottomOf="@+id/tv_perkuliahan_aktif_headline" />
+
+    <ImageView
+        android:id="@+id/iv_divider"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:src="@color/colorStatusHadir"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_tanggal_hari_ini"
+        app:layout_constraintRight_toRightOf="@+id/tv_tanggal_hari_ini"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tanggal_hari_ini" />
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_current_position_info"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_perkuliahan_aktif_headline"
+        app:layout_constraintRight_toRightOf="@+id/tv_perkuliahan_aktif_headline"
+        app:layout_constraintTop_toBottomOf="@+id/iv_divider">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/inner_contraint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_current_position_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/posisi_saat_ini_label"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_classroom_position"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_classroom"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_current_position_title" />
+
+            <TextView
+                android:id="@+id/tv_classroom_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:text="Tidak Ditemukan"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_classroom_position"
+                app:layout_constraintLeft_toRightOf="@+id/iv_classroom_position"
+                app:layout_constraintTop_toTopOf="@+id/iv_classroom_position" />
+
+            <ImageView
+                android:id="@+id/iv_underline"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:src="@color/colorAccent"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_classroom_position"
+                app:layout_constraintRight_toRightOf="@+id/tv_classroom_position"
+                app:layout_constraintTop_toBottomOf="@+id/tv_classroom_position" />
+
+            <ImageButton
+                android:id="@+id/ib_refresh_location"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_refresh_yellow"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_classroom_position"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toRightOf="@+id/tv_classroom_position"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_classroom_position"
+                app:layout_constraintVertical_bias="0.458" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/pb_loading_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_kelas_aktif"
+        app:layout_constraintLeft_toLeftOf="@+id/rv_kelas_aktif"
+        app:layout_constraintRight_toRightOf="@+id/rv_kelas_aktif"
+        app:layout_constraintTop_toTopOf="@+id/rv_kelas_aktif"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_kelas_aktif"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_current_position_info"
+        app:layout_constraintVertical_bias="0.0" />
+
+</android.support.constraint.ConstraintLayout>

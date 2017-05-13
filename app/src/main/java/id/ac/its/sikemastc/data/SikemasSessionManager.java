@@ -28,7 +28,7 @@ public class SikemasSessionManager {
     public static final String KEY_USER_NAME = "userName";
     public static final String KEY_USER_EMAIL = "userEmail";
     public static final String KEY_USER_ROLE = "userRole";
-    public static final String KEY_KODE_DOSEN = "kodeDosen";
+    public static final String KEY_USER_CODE = "userCode";
 
     public SikemasSessionManager(Context context) {
         this._context = context;
@@ -37,24 +37,13 @@ public class SikemasSessionManager {
     }
 
     // session Dosen
-    public void createLoginSession(String userId, String name, String email, String role, String kodeDosen) {
+    public void createLoginSession(String userId, String name, String email, String role, String kodeUser) {
         editor.putBoolean(KEY_IS_LOGGED_IN, true);
         editor.putString(KEY_USER_ID, userId);
         editor.putString(KEY_USER_NAME, name);
         editor.putString(KEY_USER_EMAIL, email);
         editor.putString(KEY_USER_ROLE, role);
-        editor.putString(KEY_KODE_DOSEN, kodeDosen);
-        editor.commit();
-        Log.d(TAG, "User login session modified!");
-    }
-
-    // session Mahasiswa / Orangtua
-    public void createLoginSession(String userId, String name, String email, String role) {
-        editor.putBoolean(KEY_IS_LOGGED_IN, true);
-        editor.putString(KEY_USER_ID, userId);
-        editor.putString(KEY_USER_NAME, name);
-        editor.putString(KEY_USER_EMAIL, email);
-        editor.putString(KEY_USER_ROLE, role);
+        editor.putString(KEY_USER_CODE, kodeUser);
         editor.commit();
         Log.d(TAG, "User login session modified!");
     }
@@ -76,7 +65,7 @@ public class SikemasSessionManager {
             user.put(KEY_USER_NAME, pref.getString(KEY_USER_NAME, null));
             user.put(KEY_USER_EMAIL, pref.getString(KEY_USER_EMAIL, null));
             user.put(KEY_USER_ROLE, pref.getString(KEY_USER_ROLE, null));
-            user.put(KEY_KODE_DOSEN, pref.getString(KEY_KODE_DOSEN, null));
+            user.put(KEY_USER_CODE, pref.getString(KEY_USER_CODE, null));
 
             return user;
     }
