@@ -19,14 +19,11 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +37,6 @@ import java.util.Map;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.adapter.KehadiranPerkuliahanAdapter;
-import id.ac.its.sikemastc.data.SikemasContract;
 import id.ac.its.sikemastc.model.PesertaPerkuliahan;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
 import id.ac.its.sikemastc.utilities.VolleySingleton;

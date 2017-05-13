@@ -1,4 +1,4 @@
-package id.ac.its.sikemastc.activity;
+package id.ac.its.sikemastc.activity.verifikasi_wajah;
 
 import android.app.Activity;
 import android.content.SharedPreferences;

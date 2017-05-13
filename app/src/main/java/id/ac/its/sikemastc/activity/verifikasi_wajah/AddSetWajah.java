@@ -1,4 +1,4 @@
-package id.ac.its.sikemastc.activity;
+package id.ac.its.sikemastc.activity.verifikasi_wajah;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -23,23 +23,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.opencv.android.Utils;
-import org.opencv.core.Mat;
-import org.w3c.dom.Text;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
-import ch.zhaw.facerecognitionlibrary.Helpers.MatName;
 import id.ac.its.sikemastc.R;
-
-import static android.content.ContentValues.TAG;
 
 public class AddSetWajah extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package id.ac.its.sikemastc.activity;
+package id.ac.its.sikemastc.activity.verifikasi_wajah;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

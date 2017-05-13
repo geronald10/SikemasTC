@@ -5,7 +5,7 @@
     android:id="@+id/btn_add_person"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MenuValidasiWajah">
+    tools:context=".activity.verifikasi_wajah.MenuValidasiWajah">
 
     <Button
         android:id="@+id/btn_settings"
