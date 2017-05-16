@@ -30,7 +30,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:text="Jumat, 12 Mei 2017"
+        android:text="@string/now_date_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:textSize="20sp"
         app:layout_constraintHorizontal_bias="0.502"
@@ -41,10 +41,8 @@
     <ImageView
         android:id="@+id/iv_divider"
         android:layout_width="0dp"
-        android:layout_height="5dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_height="2dp"
+        android:contentDescription="@string/green_line_divider_description"
         android:src="@color/colorStatusHadir"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/tv_tanggal_hari_ini"
@@ -92,10 +90,10 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
-                android:src="@drawable/ic_classroom"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_current_position_title" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_current_position_title"
+                app:srcCompat="@drawable/ic_classroom" />
 
             <TextView
                 android:id="@+id/tv_classroom_position"
@@ -113,11 +111,11 @@
             <ImageView
                 android:id="@+id/iv_underline"
                 android:layout_width="0dp"
-                android:layout_height="3dp"
-                android:src="@color/colorAccent"
+                android:layout_height="2dp"
                 app:layout_constraintLeft_toLeftOf="@+id/tv_classroom_position"
                 app:layout_constraintRight_toRightOf="@+id/tv_classroom_position"
-                app:layout_constraintTop_toBottomOf="@+id/tv_classroom_position" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_classroom_position"
+                app:srcCompat="@color/colorAccent" />
 
             <ImageButton
                 android:id="@+id/ib_refresh_location"
@@ -131,13 +129,13 @@
                 android:layout_marginTop="8dp"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_refresh_yellow"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_classroom_position"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toRightOf="@+id/tv_classroom_position"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/iv_classroom_position"
-                app:layout_constraintVertical_bias="0.458" />
+                app:layout_constraintVertical_bias="0.458"
+                app:srcCompat="@drawable/ic_refresh_yellow" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -158,14 +156,12 @@
         android:id="@+id/rv_kelas_aktif"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginBottom="0dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/cv_current_position_info"
+        app:layout_constraintRight_toRightOf="@+id/cv_current_position_info"
         app:layout_constraintTop_toBottomOf="@+id/cv_current_position_info"
         app:layout_constraintVertical_bias="0.0" />
 

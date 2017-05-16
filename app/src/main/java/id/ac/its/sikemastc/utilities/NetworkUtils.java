@@ -57,7 +57,14 @@ public final class NetworkUtils {
             "http://10.151.31.201/sikemas/public/mhs/kelasaktif";
     // Kirim status kehadiran ke server
     public static final String KIRIM_STATUS_KEHADIRAN_MAHASISWA =
-            "http://10.151.31.201/sikemas/public/mhs/";
+            "http://10.151.31.201/sikemas/public/mhs/ubahstatuskehadiran";
+    // List rekap kehadiran mahasiswa kelas
+    public static final String LIST_REKAP_KEHADIRAN_MAHASISWA_KELAS =
+            "http://10.151.31.201/sikemas/public/mhs/rekapdarikelas";
+    // List rekap kehadiran mahasiswa perkuliahan
+    public static final String LIST_REKAP_KEHADIRAN_MAHASISWA_PERKULIAHAN =
+            "http://10.151.31.201/sikemas/public/mhs/rekapdariperkuliahan";
+
 
     private static final String KODE_DOSEN_PARAM = "kode_dosen";
     private static final String NRP_MAHASISWA_PARAM = "nrp";

@@ -5,7 +5,9 @@ import android.text.format.DateUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 
 import id.ac.its.sikemastc.R;
@@ -192,5 +194,11 @@ public final class SikemasDateUtils {
         }
         SimpleDateFormat outputFormat = new SimpleDateFormat("hh:mm a");
         return outputFormat.format(date);
+    }
+
+    public static String getCurrentDate(Context context) {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat localDateIndonesian = new SimpleDateFormat("EEEE, dd MMM yyyy", new Locale("id", "ID"));
+        return localDateIndonesian.format(calendar.getTime());
     }
 }

@@ -21,6 +21,7 @@ import ch.zhaw.facerecognitionlibrary.Helpers.CustomCameraView;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatOperation;
 import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
 import id.ac.its.sikemastc.R;
+import id.ac.its.sikemastc.utilities.LibraryPreference;
 
 public class DetectionView extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
 

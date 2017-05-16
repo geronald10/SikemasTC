@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:src="@drawable/ic_today_black"
+            app:srcCompat="@drawable/ic_today_black"
             app:layout_constraintLeft_toLeftOf="@+id/tv_pertemuan_kuliah_label"
             app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_kuliah_label"
             android:layout_marginLeft="0dp"

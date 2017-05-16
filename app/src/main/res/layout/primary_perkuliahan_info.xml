@@ -67,7 +67,7 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_marginTop="24dp"
-            android:src="@drawable/ic_lecture_3"
+            app:srcCompat="@drawable/ic_lecture_3"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_ke_label" />

@@ -1,6 +1,7 @@
 package id.ac.its.sikemastc.activity.mahasiswa;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.v4.app.LoaderManager;
@@ -12,6 +13,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import java.io.InputStream;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.BaseActivity;
@@ -76,6 +80,30 @@ public class LihatJadwal extends BaseActivity implements
         getSupportLoaderManager().initLoader(ID_LIST_KELAS_MAHASISWA_LOADER, null, this);
 
         SikemasSyncUtils.startImmediateKelasMahasiswaSync(this);
+
+        TextView assetName = (TextView) findViewById(R.id.tv_asset_file_name);
+
+        AssetManager assetManager = getAssets();
+        try {
+            String[] files = assetManager.list("DataSetWajah");
+            assetName.append("\n" + files.length);
+            for (int i = 0; i < files.length; i++) {
+                assetName.append("\n Files " + i + " - Name " + files[i]);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String[] files = assetManager.list("DataSetWajah");
+            for (int i = 0; i < files.length; i++) {
+                InputStream inDataSet = assetManager.open(files[i]);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp">
+    android:elevation="5dp">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/inner_constraint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="8dp">
 
         <TextView
             android:id="@+id/tv_pertemuan_ke_label"
@@ -37,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="0dp"
             android:fontFamily="sans-serif"
             android:text="12"
@@ -52,12 +48,13 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/ic_lecture_3"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_ke_label" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_ke_label"
+            app:srcCompat="@drawable/ic_lecture_3" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
@@ -79,6 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
             android:text="KI1414201"
@@ -143,9 +141,9 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/place_icon"
-            android:src="@drawable/ic_room"
             app:layout_constraintLeft_toLeftOf="@+id/tv_mata_kuliah"
-            app:layout_constraintTop_toBottomOf="@+id/tv_mata_kuliah" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_mata_kuliah"
+            app:srcCompat="@drawable/ic_room" />
 
         <TextView
             android:id="@+id/tv_ruang"
@@ -170,30 +168,27 @@
             android:id="@+id/iv_waktu"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginLeft="0dp"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="0dp"
             android:contentDescription="@string/clock_icon"
-            android:src="@drawable/ic_access_time"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_selesai"
             app:layout_constraintLeft_toLeftOf="@+id/iv_room"
             app:layout_constraintTop_toTopOf="@+id/tv_from"
-            app:layout_constraintVertical_bias="0.5" />
+            app:srcCompat="@drawable/ic_access_time" />
 
         <TextView
             android:id="@+id/tv_waktu_mulai"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="-1dp"
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/tv_from"
-            app:layout_constraintRight_toLeftOf="@+id/guideline_button_vertical"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_from" />
 
         <TextView
@@ -218,14 +213,14 @@
             android:id="@+id/tv_to"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:text="@string/to_label"
             android:textColor="@color/colorSecondaryText"
             android:textSize="12sp"
-            app:layout_constraintLeft_toRightOf="@+id/tv_waktu_mulai"
-            app:layout_constraintTop_toTopOf="@+id/tv_from" />
+            app:layout_constraintLeft_toLeftOf="@+id/tv_from"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waktu_mulai" />
 
         <TextView
             android:id="@+id/tv_from"
@@ -282,7 +277,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="Verifikasi Kehadiran"
+            android:text="@string/verifikasi_kehadiran_label"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_waktu_selesai" />

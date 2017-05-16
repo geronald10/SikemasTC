@@ -71,14 +71,12 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activity.verifikasi_wajah.TrainingWajah" />
         <activity
-            android:name=".activity.verifikasi_wajah.FaceRecognizing"
+            android:name=".activity.verifikasi_wajah.VerifikasiWajah"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name=".activity.verifikasi_wajah.AddSetWajahPreview"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".activity.verifikasi_wajah.VerifikasiWajah" />
+            android:name=".activity.verifikasi_wajah.TambahDataSetWajah"
+            android:screenOrientation="landscape" />
 
         <provider
             android:name=".data.SikemasProvider"

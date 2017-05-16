@@ -6,8 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -31,13 +34,10 @@ import java.util.Map;
 
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import id.ac.its.sikemastc.R;
+import id.ac.its.sikemastc.utilities.NetworkUtils;
+import id.ac.its.sikemastc.utilities.VolleySingleton;
 
 public class KelolaDataSetWajah extends AppCompatActivity {
-
-    private String UPLOAD_URL = "http://10.0.2.2/VolleyUpload/upload.php";
-    private String KEY_IMAGE = "image";
-    private String KEY_IMAGE_PHOTO_NAME = "image_name";
-    private String KEY_USER_ID = "user_id";
 
     private String userTerlogin;
     private String userId;
@@ -49,34 +49,59 @@ public class KelolaDataSetWajah extends AppCompatActivity {
     private Button btnStart;
     private Button btnSinkronisasi;
     private Button btnUploadFile;
+    private Button btnTraining;
     private ProgressDialog progressDialog;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_set_wajah);
+        setContentView(R.layout.activity_kelola_data_set_wajah);
         mContext = this;
+
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         // Progress Dialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Kelola Data Set");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        // Compatibility
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            toolbar.setElevation(10f);
+        }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         Intent intent = getIntent();
         userTerlogin = intent.getStringExtra("identitas_mahasiswa");
         userId = intent.getStringExtra("id_mahasiswa");
+        String training = intent.getStringExtra("training");
+        if (training != null && !training.isEmpty()) {
+            Toast.makeText(getApplicationContext(), training, Toast.LENGTH_SHORT).show();
+            intent.removeExtra("training");
+        }
 
         tvUserTerlogin = (TextView) findViewById(R.id.tv_user_detail);
         tvJumlahDataSet = (TextView) findViewById(R.id.tv_data_set);
 
         tvUserTerlogin.setText(userTerlogin);
 
-        btnStart = (Button) findViewById(R.id.btn_start);
+        btnStart = (Button) findViewById(R.id.btn_tambah_data_set_wajah);
         btnSinkronisasi = (Button) findViewById(R.id.btn_sinkronisasi_dataset);
         btnUploadFile = (Button) findViewById(R.id.btn_upload_file);
+        btnTraining = (Button) findViewById(R.id.btn_train_data_set);
 
         btnStart.setOnClickListener(operate);
         btnSinkronisasi.setOnClickListener(operate);
         btnUploadFile.setOnClickListener(operate);
+        btnTraining.setOnClickListener(operate);
 
         if (getJumlahDataSet() > 0) {
             tvJumlahDataSet.setText(String.valueOf(getJumlahDataSet()));
@@ -87,10 +112,10 @@ public class KelolaDataSetWajah extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.btn_start:
-                    Intent intentToStart = new Intent(v.getContext(), AddSetWajahPreview.class);
+                case R.id.btn_tambah_data_set_wajah:
+                    Intent intentToStart = new Intent(v.getContext(), TambahDataSetWajah.class);
                     intentToStart.putExtra("user_terlogin", userTerlogin);
-                    intentToStart.putExtra("method", AddSetWajahPreview.TIME);
+                    intentToStart.putExtra("method", TambahDataSetWajah.TIME);
                     intentToStart.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                     // Add dataset photos to "Training" folder
@@ -109,6 +134,10 @@ public class KelolaDataSetWajah extends AppCompatActivity {
                     encodedImageList = new ArrayList<>();
                     encodedImageList = getAllEncodedImageFormat();
                     uploadImages(encodedImageList);
+                    break;
+                case R.id.btn_train_data_set:
+                    Intent intentToTraining = new Intent(v.getContext(), TrainingWajah.class);
+                    startActivity(intentToTraining);;
                     break;
             }
         }
@@ -159,7 +188,7 @@ public class KelolaDataSetWajah extends AppCompatActivity {
         File[] imageList = imageFiles.getTrainingList();
         Log.d("get All Image", String.valueOf(imageList.length));
 
-        if (imageList != null && imageList.length > 0) {
+        if (imageList.length > 0) {
             for (File image : imageList) {
                 String imagePath = image.getAbsolutePath();
                 Log.d("imagePath", imagePath);
@@ -185,17 +214,22 @@ public class KelolaDataSetWajah extends AppCompatActivity {
         progressDialog.setMessage("Mengunggah Data Set ke Server ... ");
         progressDialog.show();
 
+        final int[] numberOfPhotos = {0};
         for (int i = 0; i < encodedImagesList.size(); i++) {
             final int index = i;
-            stringRequest = new StringRequest(Request.Method.POST, UPLOAD_URL,
+            stringRequest = new StringRequest(Request.Method.POST, NetworkUtils.UPLOAD_DATASET_WAJAH_SIKEMAS,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             //Disimissing the progress dialog
                             progressDialog.dismiss();
+                            numberOfPhotos[0]++;
                             //Showing toast message of the response
+                            if (numberOfPhotos[0] == encodedImagesList.size()) {
+                                Toast.makeText(KelolaDataSetWajah.this, "Berhasil Kirim Data Set ke Server",
+                                        Toast.LENGTH_SHORT).show();
+                            }
                             Log.d("VolleyResponse", "Dapat ResponseVolley Upload Images");
-                            Toast.makeText(KelolaDataSetWajah.this, "Berhasil Kirim Data Set ke Server", Toast.LENGTH_LONG).show();
                         }
                     },
                     new Response.ErrorListener() {
@@ -212,19 +246,18 @@ public class KelolaDataSetWajah extends AppCompatActivity {
                 protected Map<String, String> getParams() throws AuthFailureError {
                     // Get encoded Image
                     String image = encodedImagesList.get(index);
-                    // Creating parameters
                     Map<String, String> params = new HashMap<>();
                     // Adding parameters
-                    params.put(KEY_IMAGE, image);
-                    params.put(KEY_IMAGE_PHOTO_NAME, userTerlogin + "_" + index);
-                    params.put(KEY_USER_ID, userId);
+                    params.put("image", image);
+                    params.put("image_name", userTerlogin + "_" + index+1);
+                    params.put("user_id", userId);
 
                     //returning parameters
                     return params;
                 }
             };
             //Adding request to the queue
-            requestQueue.add(stringRequest);
+            VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(stringRequest);
         }
     }
 }

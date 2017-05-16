@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:layout_marginTop="5dp"
     android:elevation="5dp"
-    card_view:cardCornerRadius="5dp">
+    app:cardCornerRadius="5dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,14 +20,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            card_view:layout_constraintGuide_percent="0.65" />
+            app:layout_constraintGuide_percent="0.65" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline_button_vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            card_view:layout_constraintGuide_percent="0.65" />
+            app:layout_constraintGuide_percent="0.5" />
 
         <TextView
             android:id="@+id/tv_kode_mata_kuliah"
@@ -38,10 +39,10 @@
             android:layout_marginStart="16dp"
             android:text="@string/tv_empty_value"
             android:textSize="16sp"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintLeft_toRightOf="@+id/iv_school_subject"
-            card_view:layout_constraintRight_toRightOf="parent"
-            card_view:layout_constraintTop_toTopOf="@+id/iv_school_subject" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/iv_school_subject"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_school_subject" />
 
         <TextView
             android:id="@+id/tv_nama_mata_kuliah"
@@ -54,12 +55,12 @@
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
             android:textSize="24sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/iv_school_subject"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_kode_mata_kuliah"
-            card_view:layout_constraintRight_toRightOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_kode_mata_kuliah"
-            card_view:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintBottom_toBottomOf="@+id/iv_school_subject"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_kode_mata_kuliah"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_kode_mata_kuliah"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tv_kelas_label"
@@ -70,8 +71,8 @@
             android:layout_marginTop="8dp"
             android:text="@string/kelas_label"
             android:textSize="20sp"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_nama_mata_kuliah"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_nama_mata_kuliah" />
+            app:layout_constraintLeft_toLeftOf="@+id/tv_nama_mata_kuliah"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nama_mata_kuliah" />
 
         <TextView
             android:id="@+id/tv_colon_1"
@@ -81,12 +82,12 @@
             android:layout_marginTop="0dp"
             android:text="@string/tv_colon"
             android:textSize="20sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/tv_kelas_label"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintLeft_toRightOf="@+id/tv_kelas_label"
-            card_view:layout_constraintRight_toLeftOf="@+id/tv_kelas"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_kelas_label"
-            card_view:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_kelas_label"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/tv_kelas_label"
+            app:layout_constraintRight_toLeftOf="@+id/tv_kelas"
+            app:layout_constraintTop_toTopOf="@+id/tv_kelas_label"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tv_hari_label"
@@ -94,11 +95,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:text="@string/hari_label"
             android:textSize="20sp"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_kelas_label"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_kelas_label" />
+            app:layout_constraintLeft_toLeftOf="@+id/tv_kelas_label"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ruang" />
 
         <TextView
             android:id="@+id/tv_colon_2"
@@ -110,12 +111,12 @@
             android:layout_marginTop="0dp"
             android:text="@string/tv_colon"
             android:textSize="20sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/tv_hari_label"
-            card_view:layout_constraintHorizontal_bias="0.75"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_colon_1"
-            card_view:layout_constraintRight_toRightOf="@+id/tv_colon_1"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_hari_label"
-            card_view:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hari_label"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_colon_1"
+            app:layout_constraintRight_toRightOf="@+id/tv_colon_1"
+            app:layout_constraintTop_toTopOf="@+id/tv_hari_label"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/tv_kelas"
@@ -130,10 +131,10 @@
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/tv_kelas_label"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_colon_1"
-            card_view:layout_constraintRight_toLeftOf="@+id/iv_room"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_kelas_label" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_kelas_label"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_colon_1"
+            app:layout_constraintRight_toLeftOf="@+id/iv_room"
+            app:layout_constraintTop_toTopOf="@+id/tv_kelas_label" />
 
         <TextView
             android:id="@+id/tv_hari"
@@ -146,10 +147,10 @@
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/tv_hari_label"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_kelas"
-            card_view:layout_constraintRight_toLeftOf="@+id/guideline_button_vertical"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_hari_label" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hari_label"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_kelas"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_hari_label" />
 
         <ImageView
             android:id="@+id/iv_room"
@@ -159,11 +160,11 @@
             android:layout_marginLeft="0dp"
             android:layout_marginStart="0dp"
             android:contentDescription="@string/place_icon"
-            android:src="@drawable/ic_room"
-            card_view:layout_constraintBottom_toTopOf="@+id/iv_waktu"
-            card_view:layout_constraintLeft_toLeftOf="@+id/guideline_vertical"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_kelas_label"
-            card_view:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintBottom_toTopOf="@+id/iv_waktu"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline_vertical"
+            app:layout_constraintTop_toTopOf="@+id/tv_kelas_label"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_room" />
 
         <TextView
             android:id="@+id/tv_ruang"
@@ -178,40 +179,40 @@
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/iv_room"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintLeft_toRightOf="@+id/iv_room"
-            card_view:layout_constraintRight_toRightOf="parent"
-            card_view:layout_constraintTop_toTopOf="@+id/iv_room" />
+            app:layout_constraintBottom_toBottomOf="@+id/iv_room"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/iv_room"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_room" />
 
         <ImageView
             android:id="@+id/iv_waktu"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="-7dp"
-            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/clock_icon"
-            android:src="@drawable/ic_access_time"
-            card_view:layout_constraintBottom_toBottomOf="@+id/tv_waktu_mulai"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_hari_label"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_from" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_mulai"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_school_subject"
+            app:layout_constraintTop_toTopOf="@+id/tv_from"
+            app:srcCompat="@drawable/ic_access_time" />
 
         <TextView
             android:id="@+id/tv_waktu_mulai"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginRight="0dp"
             android:layout_marginTop="0dp"
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_from"
-            card_view:layout_constraintRight_toLeftOf="@+id/guideline_button_vertical"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_from" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/iv_waktu"
+            app:layout_constraintRight_toLeftOf="@+id/guideline_button_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/tv_from"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tv_waktu_selesai"
@@ -225,23 +226,24 @@
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_to"
-            card_view:layout_constraintRight_toRightOf="parent"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_waktu_mulai" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_to"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_waktu_mulai" />
 
         <ImageView
             android:id="@+id/iv_school_subject"
             android:layout_width="92dp"
             android:layout_height="0dp"
+            android:layout_marginBottom="0dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/schedule_icon"
-            android:src="@drawable/ic_schedule"
-            card_view:layout_constraintBottom_toBottomOf="@+id/btn_ganti_jadwal_permanen"
-            card_view:layout_constraintLeft_toLeftOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hari"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_schedule" />
 
         <Button
             android:id="@+id/btn_ganti_jadwal_permanen"
@@ -249,21 +251,21 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="0dp"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginRight="0dp"
-            android:layout_marginStart="0dp"
+            android:layout_marginStart="8dp"
             android:padding="0dp"
             android:text="@string/permanen_button_label"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:theme="@style/ListKelasButtonPermanenTheme"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_penjadwalan_ulang_label"
-            card_view:layout_constraintRight_toLeftOf="@+id/guideline_button_vertical"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_penjadwalan_ulang_label"
-            card_view:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/guideline_button_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/tv_penjadwalan_ulang_label"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/btn_ganti_jadwal_sementara"
@@ -275,19 +277,19 @@
             android:text="@string/sementara_button_label"
             android:textColor="@android:color/white"
             android:textSize="16sp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintHorizontal_bias="1.0"
-            card_view:layout_constraintLeft_toLeftOf="@+id/guideline_button_vertical"
-            card_view:layout_constraintRight_toRightOf="parent"
-            card_view:layout_constraintTop_toTopOf="@+id/btn_ganti_jadwal_permanen"
-            card_view:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline_button_vertical"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_ganti_jadwal_permanen"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tv_penjadwalan_ulang_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
@@ -295,10 +297,10 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:textColor="@color/colorSecondaryText"
             android:textSize="18sp"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_nama_mata_kuliah"
-            card_view:layout_constraintRight_toRightOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_waktu_selesai" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_waktu"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waktu_selesai" />
 
         <TextView
             android:id="@+id/tv_to"
@@ -308,8 +310,8 @@
             android:text="@string/to_label"
             android:textColor="@color/colorSecondaryText"
             android:textSize="12sp"
-            card_view:layout_constraintLeft_toLeftOf="@+id/guideline_button_vertical"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_from" />
+            app:layout_constraintLeft_toLeftOf="@+id/guideline_button_vertical"
+            app:layout_constraintTop_toTopOf="@+id/tv_from" />
 
         <TextView
             android:id="@+id/tv_from"
@@ -320,8 +322,8 @@
             android:layout_marginTop="8dp"
             android:text="@string/from_label"
             android:textSize="12sp"
-            card_view:layout_constraintLeft_toRightOf="@+id/iv_waktu"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_hari" />
+            app:layout_constraintLeft_toRightOf="@+id/iv_waktu"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hari" />
 
     </android.support.constraint.ConstraintLayout>
 

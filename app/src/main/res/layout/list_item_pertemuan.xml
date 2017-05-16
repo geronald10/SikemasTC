@@ -66,7 +66,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/ic_empty_date"
+            app:srcCompat="@drawable/ic_empty_date"
             app:layout_constraintLeft_toLeftOf="@+id/tv_pertemuan_kuliah_label"
             app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_kuliah_label" />
 
@@ -109,7 +109,7 @@
             android:layout_height="24dp"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/ic_time"
+            app:srcCompat="@drawable/ic_time"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/iv_calendar"
             app:layout_constraintTop_toBottomOf="@+id/iv_calendar" />
@@ -124,7 +124,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/ic_school_2"
+            app:srcCompat="@drawable/ic_school_2"
             app:layout_constraintBottom_toTopOf="@+id/iv_label"
             app:layout_constraintLeft_toLeftOf="@+id/iv_label"
             app:layout_constraintRight_toRightOf="@id/iv_label"
@@ -136,9 +136,10 @@
             android:layout_height="24dp"
             android:layout_marginBottom="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            card_view:srcCompat="@color/colorStatusHadir" />
+            app:srcCompat="@color/colorStatusHadir" />
 
         <TextView
             android:id="@+id/tv_status_pertemuan"

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -41,6 +42,7 @@ public class MainPerkuliahanFragment extends Fragment implements
 
     private final String TAG = MainPerkuliahanFragment.class.getSimpleName();
 
+    private TextView currentDate;
     private ProgressBar mLoadingIndicator;
     private RecyclerView mRecyclerView;
     private PerkuliahanAktifMahasiswaAdapter mPerkuliahanAktifAdapter;
@@ -61,6 +63,7 @@ public class MainPerkuliahanFragment extends Fragment implements
         }
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_kelas_aktif);
         mLoadingIndicator = (ProgressBar) view.findViewById(R.id.pb_loading_indicator);
+        currentDate = (TextView) view.findViewById(R.id.tv_tanggal_hari_ini);
 
         return view;
     }
@@ -85,6 +88,9 @@ public class MainPerkuliahanFragment extends Fragment implements
         } else {
             Toast.makeText(getActivity(), "Tidak ada perkuliahan yang aktif", Toast.LENGTH_SHORT).show();
         }
+
+        currentDate = (TextView) view.findViewById(R.id.tv_tanggal_hari_ini);
+        currentDate.setText(SikemasDateUtils.getCurrentDate(getActivity()));
 
         super.onViewCreated(view, savedInstanceState);
     }

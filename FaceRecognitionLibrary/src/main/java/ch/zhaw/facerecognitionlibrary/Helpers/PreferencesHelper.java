@@ -28,7 +28,7 @@ public class PreferencesHelper {
     
 
     public String getClassificationMethod(){
-        return sharedPreferences.getString("key_classification_method", resources.getString(R.string.eigenfaces));
+        return sharedPreferences.getString("key_classification_method", resources.getString(R.string.imageReshaping));
     }
 
     public boolean getClassificationMethodTFCaffe(){
