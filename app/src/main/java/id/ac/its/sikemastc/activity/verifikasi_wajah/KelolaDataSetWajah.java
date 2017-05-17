@@ -59,8 +59,6 @@ public class KelolaDataSetWajah extends AppCompatActivity {
         setContentView(R.layout.activity_kelola_data_set_wajah);
         mContext = this;
 
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-
         // Progress Dialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -82,11 +80,6 @@ public class KelolaDataSetWajah extends AppCompatActivity {
         Intent intent = getIntent();
         userTerlogin = intent.getStringExtra("identitas_mahasiswa");
         userId = intent.getStringExtra("id_mahasiswa");
-        String training = intent.getStringExtra("training");
-        if (training != null && !training.isEmpty()) {
-            Toast.makeText(getApplicationContext(), training, Toast.LENGTH_SHORT).show();
-            intent.removeExtra("training");
-        }
 
         tvUserTerlogin = (TextView) findViewById(R.id.tv_user_detail);
         tvJumlahDataSet = (TextView) findViewById(R.id.tv_data_set);
@@ -96,12 +89,10 @@ public class KelolaDataSetWajah extends AppCompatActivity {
         btnStart = (Button) findViewById(R.id.btn_tambah_data_set_wajah);
         btnSinkronisasi = (Button) findViewById(R.id.btn_sinkronisasi_dataset);
         btnUploadFile = (Button) findViewById(R.id.btn_upload_file);
-        btnTraining = (Button) findViewById(R.id.btn_train_data_set);
 
         btnStart.setOnClickListener(operate);
         btnSinkronisasi.setOnClickListener(operate);
         btnUploadFile.setOnClickListener(operate);
-        btnTraining.setOnClickListener(operate);
 
         if (getJumlahDataSet() > 0) {
             tvJumlahDataSet.setText(String.valueOf(getJumlahDataSet()));
@@ -117,7 +108,6 @@ public class KelolaDataSetWajah extends AppCompatActivity {
                     intentToStart.putExtra("user_terlogin", userTerlogin);
                     intentToStart.putExtra("method", TambahDataSetWajah.TIME);
                     intentToStart.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
                     // Add dataset photos to "Training" folder
                     FileHelper newFile = new FileHelper();
                     if (isNameAlreadyUsed(newFile.getTrainingList(), userTerlogin)) {
@@ -134,10 +124,6 @@ public class KelolaDataSetWajah extends AppCompatActivity {
                     encodedImageList = new ArrayList<>();
                     encodedImageList = getAllEncodedImageFormat();
                     uploadImages(encodedImageList);
-                    break;
-                case R.id.btn_train_data_set:
-                    Intent intentToTraining = new Intent(v.getContext(), TrainingWajah.class);
-                    startActivity(intentToTraining);;
                     break;
             }
         }
@@ -249,7 +235,7 @@ public class KelolaDataSetWajah extends AppCompatActivity {
                     Map<String, String> params = new HashMap<>();
                     // Adding parameters
                     params.put("image", image);
-                    params.put("image_name", userTerlogin + "_" + index+1);
+                    params.put("image_name", userTerlogin + "_" + index);
                     params.put("user_id", userId);
 
                     //returning parameters

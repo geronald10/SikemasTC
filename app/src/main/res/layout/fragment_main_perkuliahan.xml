@@ -152,6 +152,24 @@
         app:layout_constraintTop_toTopOf="@+id/rv_kelas_aktif"
         app:layout_constraintVertical_bias="0.5" />
 
+    <Button
+        android:id="@+id/btn_verifikasi_wajah"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/verifikasi_wajah_button_label"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@android:color/white"
+        android:theme="@style/ListKelasButtonPermanenTheme"
+        app:layout_constraintLeft_toLeftOf="@+id/rv_kelas_aktif"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_kelas_aktif"
+        app:layout_constraintRight_toRightOf="@+id/rv_kelas_aktif"
+        app:layout_constraintTop_toTopOf="@+id/rv_kelas_aktif" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_kelas_aktif"
         android:layout_width="0dp"
@@ -164,5 +182,6 @@
         app:layout_constraintRight_toRightOf="@+id/cv_current_position_info"
         app:layout_constraintTop_toBottomOf="@+id/cv_current_position_info"
         app:layout_constraintVertical_bias="0.0" />
+
 
 </android.support.constraint.ConstraintLayout>

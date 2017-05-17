@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,6 +79,18 @@ public class MainPerkuliahanFragment extends Fragment implements
 
         showLoading();
 
+        Button btnVerifikasiWajah = (Button) view.findViewById(R.id.btn_verifikasi_wajah);
+        btnVerifikasiWajah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentToVerifikasiWajah = new Intent(getActivity(), MenuVerifikasiWajah.class);
+//                intentToVerifikasiWajah.putExtra("id_perkuliaha", idPerkuliahan);
+                intentToVerifikasiWajah.putExtra("nrp_mahasiswa", bundleIdUser);
+                intentToVerifikasiWajah.putExtra("nama_mahasiswa", bundleNamaUser);
+                startActivity(intentToVerifikasiWajah);
+            }
+        });
+
         perkuliahanAktifMahasiswaList = new ArrayList<>();
         getPerkuliahanAktifList(bundleIdUser);
         mPerkuliahanAktifAdapter = new PerkuliahanAktifMahasiswaAdapter(getActivity(), perkuliahanAktifMahasiswaList, this);
@@ -102,7 +115,7 @@ public class MainPerkuliahanFragment extends Fragment implements
                 break;
             case R.id.btn_verifikasi_wajah:
                 Intent intentToVerifikasiWajah = new Intent(getActivity(), MenuVerifikasiWajah.class);
-                intentToVerifikasiWajah.putExtra("id_perkuliaha", idPerkuliahan);
+                intentToVerifikasiWajah.putExtra("id_perkuliahan", idPerkuliahan);
                 intentToVerifikasiWajah.putExtra("nrp_mahasiswa", bundleIdUser);
                 intentToVerifikasiWajah.putExtra("nama_mahasiswa", bundleNamaUser);
                 startActivity(intentToVerifikasiWajah);

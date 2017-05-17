@@ -85,4 +85,6 @@
     <string name="sinkronisasi_data_set_wajah">Sinkronisasi Data Set Wajah</string>
     <string name="wajah_terambil_label">Wajah Terambil</string>
     <string name="menambah_data_set_wajah_dari_message">Menambah data set wajah dari:</string>
+    <string name="training_data_set_wajah_btn_label">Training Data Set Wajah</string>
+    <string name="memproses_data_set_title">Memproses Data Set ...</string>
 </resources>

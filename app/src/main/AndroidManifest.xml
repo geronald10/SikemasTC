@@ -42,7 +42,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activity.BaseActivity" />
         <activity
             android:name=".activity.dosen.HalamanUtamaDosen"
@@ -65,15 +64,10 @@
         <activity android:name=".activity.mahasiswa.DetailLihatJadwal" />
         <activity android:name=".activity.verifikasi_wajah.MenuVerifikasiWajah" />
         <activity android:name=".activity.verifikasi_wajah.KelolaDataSetWajah" />
-        <activity
-            android:name=".activity.verifikasi_wajah.DetectionView"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".activity.verifikasi_wajah.TrainingWajah" />
         <activity
             android:name=".activity.verifikasi_wajah.VerifikasiWajah"
-            android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".activity.verifikasi_wajah.TambahDataSetWajah"
             android:screenOrientation="landscape" />
@@ -106,5 +100,7 @@
             android:name=".sync.SikemasSyncKelasMahasiswaIntentService"
             android:exported="false" />
 
+        <activity android:name=".activity.verifikasi_wajah.HasilVerifikasi"></activity>
     </application>
+
 </manifest>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -35,7 +36,7 @@ import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.helper.SwitchPreference;
 import id.ac.its.sikemastc.utilities.LibraryPreference;
 
-public class TambahDataSetWajah extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
+public class TambahDataSetWajah extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
 
     public static final int TIME = 0;
     public static final int MANUALLY = 1;
@@ -61,7 +62,7 @@ public class TambahDataSetWajah extends Activity implements CameraBridgeViewBase
     private ImageView capturedImagePreview;
     private TextView counter;
     private TextView userTerlogin;
-    public LibraryPreference preferences;
+    private LibraryPreference preferences;
 
     static {
         if (!OpenCVLoader.initDebug()) {
@@ -84,7 +85,7 @@ public class TambahDataSetWajah extends Activity implements CameraBridgeViewBase
             subfolder = intent.getStringExtra("Subfolder");
         }
         name = intent.getStringExtra("user_terlogin");
-//        method = intent.getIntExtra("method", 0);
+        method = intent.getIntExtra("method", 0);
         switchCaptureMode = (Switch) findViewById(R.id.switch_capture_mode);
         btnCapture = (ImageButton) findViewById(R.id.btn_capture);
 

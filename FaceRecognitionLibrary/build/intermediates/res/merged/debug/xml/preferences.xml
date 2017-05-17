@@ -20,7 +20,7 @@
         <id.ac.its.sikemastc.helper.SwitchPreference
         android:title="Camera"
         android:key="key_front_camera"
-        android:defaultValue="false"
+        android:defaultValue="true"
         android:switchTextOn="Front"
         android:switchTextOff="Back"/>
         <id.ac.its.sikemastc.helper.SwitchPreference

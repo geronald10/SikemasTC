@@ -69,8 +69,6 @@ public class LibraryPreference {
         editor = libPref.edit();
     }
 
-
-
     // Create Camera View Preferences in general
     public void createCameraSettings() {
 
@@ -78,8 +76,8 @@ public class LibraryPreference {
         editor.putString(KEY_FRONT_CAMERA, "true");
         editor.putString(KEY_NIGHT_PORTRAIT_MODE, "false");
         editor.putString(KEY_EXPOSURE, "50");
-        editor.putString(KEY_CAMERA_VIEW_WIDTH, "320");
-        editor.putString(KEY_CAMERA_VIEW_HEIGHT, "240");
+        editor.putString(KEY_CAMERA_VIEW_WIDTH, "1280");
+        editor.putString(KEY_CAMERA_VIEW_HEIGHT, "960");
         editor.putString(KEY_NUMBER_OF_PICTURES, "20");
         editor.putString(KEY_TIMERDIFF, "500");
         editor.putString(KEY_FACE_SIZE, "224");
@@ -149,13 +147,5 @@ public class LibraryPreference {
 
         camera.put(KEY_CLASSIFICATION_METHOD, libPref.getString(KEY_CLASSIFICATION_METHOD, null));
         return camera;
-    }
-
-    public HashMap<String, Set<String>> getPreprocessingSettings() {
-        HashMap<String, Set<String>> pre = new HashMap<>();
-
-        pre.put(KEY_STANDARD_PRE, libPref.getStringSet(KEY_STANDARD_PRE, null));
-
-        return pre;
     }
 }

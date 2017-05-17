@@ -45,7 +45,7 @@ public class FileHelper {
         return FOLDER_PATH;
     }
 
-    private static final String FOLDER_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/facerecognition";
+    public static final String FOLDER_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/facerecognition";
     public static final String TRAINING_PATH = FOLDER_PATH + "/training/";
     public static final String TEST_PATH = FOLDER_PATH + "/test/";
     public static final String DETECTION_TEST_PATH = FOLDER_PATH + "/detection_test/";
