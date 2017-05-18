@@ -26,6 +26,11 @@ public final class NetworkUtils {
     // Login API
     public static final String LOGIN_SIKEMAS =
             "http://10.151.31.201/sikemas/public/loginmobile";
+
+    // Upload Dataset Wajah API
+    public static final String UPLOAD_DATASET_TANDATANGAN_SIKEMAS =
+            "http://10.151.31.201/sikemas/public/mhs/uploadfoto";
+
     // Upload Dataset Wajah API
     public static final String UPLOAD_DATASET_WAJAH_SIKEMAS =
             "http://10.151.31.201/sikemas/public/mhs/uploadfoto";
