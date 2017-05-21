@@ -80,30 +80,6 @@ public class LihatJadwal extends BaseActivity implements
         getSupportLoaderManager().initLoader(ID_LIST_KELAS_MAHASISWA_LOADER, null, this);
 
         SikemasSyncUtils.startImmediateKelasMahasiswaSync(this);
-
-        TextView assetName = (TextView) findViewById(R.id.tv_asset_file_name);
-
-        AssetManager assetManager = getAssets();
-        try {
-            String[] files = assetManager.list("DataSetWajah");
-            assetName.append("\n" + files.length);
-            for (int i = 0; i < files.length; i++) {
-                assetName.append("\n Files " + i + " - Name " + files[i]);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            String[] files = assetManager.list("DataSetWajah");
-            for (int i = 0; i < files.length; i++) {
-                InputStream inDataSet = assetManager.open(files[i]);
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

@@ -51,8 +51,8 @@ public class KelasDosenAdapter extends RecyclerView.Adapter<KelasDosenAdapter.Ke
         String kodeMk = mCursor.getString(ListKelasActivity.INDEX_KELAS_KODE_MK);
         String ruangMK = mCursor.getString(ListKelasActivity.INDEX_KELAS_NAMA_RUANGAN);
         String hari = mCursor.getString(ListKelasActivity.INDEX_KELAS_HARI);
-        String waktuMulai = SikemasDateUtils.formatDate(mCursor.getString(ListKelasActivity.INDEX_KELAS_MULAI));
-        String waktuSelesai= SikemasDateUtils.formatDate(mCursor.getString(ListKelasActivity.INDEX_KELAS_SELESAI));
+        String waktuMulai = SikemasDateUtils.formatTime(mCursor.getString(ListKelasActivity.INDEX_KELAS_MULAI));
+        String waktuSelesai= SikemasDateUtils.formatTime(mCursor.getString(ListKelasActivity.INDEX_KELAS_SELESAI));
 
         kelasDosenAdapterViewHolder.tvKodeMK.setText(kodeMk);
         kelasDosenAdapterViewHolder.tvNamaMK.setText(namaMk);

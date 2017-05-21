@@ -16,12 +16,13 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.adapter.PerkuliahanAdapter;
+import id.ac.its.sikemastc.adapter.PerkuliahanDosenAdapter;
+import id.ac.its.sikemastc.adapter.PerkuliahanMahasiswaAdapter;
 import id.ac.its.sikemastc.data.SikemasContract;
 
 public class ListPerkuliahanFragment extends Fragment implements
         LoaderManager.LoaderCallbacks<Cursor>,
-        PerkuliahanAdapter.PerkuliahanAdapterOnClickHandler {
+        PerkuliahanMahasiswaAdapter.PerkuliahanMahasiswaAdapterOnClickHandler{
 
     private final String TAG = ListPerkuliahanFragment.class.getSimpleName();
 
@@ -54,7 +55,7 @@ public class ListPerkuliahanFragment extends Fragment implements
     private ProgressBar mLoadingIndicator;
 
     private RecyclerView mRecyclerView;
-    private PerkuliahanAdapter mPerkuliahanAdapter;
+    private PerkuliahanMahasiswaAdapter mPerkuliahanMahasiswaAdapter;
     private int mPosition = RecyclerView.NO_POSITION;
     private String bundleIdUser;
 
@@ -79,8 +80,8 @@ public class ListPerkuliahanFragment extends Fragment implements
 
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
-        mPerkuliahanAdapter = new PerkuliahanAdapter(getActivity(), this);
-        mRecyclerView.setAdapter(mPerkuliahanAdapter);
+        mPerkuliahanMahasiswaAdapter = new PerkuliahanMahasiswaAdapter(getActivity(), this);
+        mRecyclerView.setAdapter(mPerkuliahanMahasiswaAdapter);
 
         showLoading();
 
@@ -107,7 +108,7 @@ public class ListPerkuliahanFragment extends Fragment implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        mPerkuliahanAdapter.swapCursor(data);
+        mPerkuliahanMahasiswaAdapter.swapCursor(data);
         if (mPosition == RecyclerView.NO_POSITION)
             mPosition = 0;
         mRecyclerView.smoothScrollToPosition(mPosition);
@@ -119,7 +120,7 @@ public class ListPerkuliahanFragment extends Fragment implements
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        mPerkuliahanAdapter.swapCursor(null);
+        mPerkuliahanMahasiswaAdapter.swapCursor(null);
     }
 
     @Override

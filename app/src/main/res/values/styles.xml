@@ -61,4 +61,10 @@
         <item name="colorControlActivated">@color/colorSuccessControlActivated</item>
     </style>
 
+    <style name="WhiteButtonTheme" parent="SuperMaterialTheme">
+        <item name="colorControlHighlight">@android:color/white</item>
+        <item name="colorButtonNormal">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/darker_gray</item>
+    </style>
+
 </resources>

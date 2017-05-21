@@ -2,6 +2,7 @@ package id.ac.its.sikemastc.activity.verifikasi_wajah;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.os.Build;
@@ -42,6 +43,7 @@ import static org.opencv.imgcodecs.Imgcodecs.imread;
 public class TrainingWajah extends AppCompatActivity {
 
     private static final String TAG = "Training";
+    private SharedPreferences flagStatus;
 
     TextView progress;
     Thread thread;
@@ -56,6 +58,8 @@ public class TrainingWajah extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_face_training);
+        flagStatus = getSharedPreferences("flag_status", 0);
+
         progress = (TextView) findViewById(R.id.tv_training_progress);
         progress.setMovementMethod(new ScrollingMovementMethod());
 
@@ -101,7 +105,7 @@ public class TrainingWajah extends AppCompatActivity {
                             for (int i = 0; i < assetFiles.length; i++) {
                                 InputStream inputStream;
                                 OutputStream outputStream;
-                                String[] splitBy = assetFiles[i].split(Pattern.quote("."));
+                                // String[] splitBy = assetFiles[i].split(Pattern.quote("."));
                                 inputStream = assetManager.open("DataSetWajah/" + assetFiles[i]);
                                 File outputFile = new File(FileHelper.TRAINING_PATH + "/" + "processedDataSet.png");
                                 outputStream = new FileOutputStream(outputFile);
@@ -110,6 +114,7 @@ public class TrainingWajah extends AppCompatActivity {
                                 while ((read = inputStream.read(bytes)) != -1) {
                                     outputStream.write(bytes, 0, read);
                                 }
+                                outputStream.close();
                                 if (FileHelper.isFileAnImage(outputFile)) {
                                     Mat imgRgb = imread(outputFile.getAbsolutePath());
                                     Imgproc.cvtColor(imgRgb, imgRgb, Imgproc.COLOR_BGRA2RGBA);
@@ -192,8 +197,11 @@ public class TrainingWajah extends AppCompatActivity {
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             if (rec.train()) {
                                 intent.putExtra("training", "Training successful");
+                                flagStatus.edit().putBoolean("training_flag", true).apply();
+                                flagStatus.edit().putBoolean("upload_flag", true).apply();
                             } else {
                                 intent.putExtra("training", "Training failed");
+                                flagStatus.edit().putBoolean("training_flag", false).apply();
                             }
                             handler.post(new Runnable() {
                                 @Override

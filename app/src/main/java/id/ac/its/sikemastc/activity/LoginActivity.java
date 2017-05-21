@@ -17,6 +17,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +36,7 @@ import id.ac.its.sikemastc.utilities.NetworkUtils;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final String TAG = LoginActivity.class.getSimpleName();
 
     private Context mContext;
@@ -82,7 +85,9 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        btnSignIn.setOnClickListener(operation);
+        if (checkPlayServices()) {
+            btnSignIn.setOnClickListener(operation);
+        }
     }
 
     View.OnClickListener operation = new View.OnClickListener() {
@@ -144,8 +149,7 @@ public class LoginActivity extends AppCompatActivity {
                         } else if (role.equals("3")) {
                             String userCode = "OT";
                             session.createLoginSession(userId, name, email, role, userCode);
-                        }
-                        else if (role.equals("4")) {
+                        } else if (role.equals("4")) {
                             String userCode = "MHS";
                             session.createLoginSession(userId, name, email, role, userCode);
                         }
@@ -215,4 +219,26 @@ public class LoginActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    /**
+     * Check the device to make sure it has the Google Play Services APK. If
+     * it doesn't, display a dialog that allows users to download the APK from
+     * the Google Play Store or enable it in the device's system settings.
+     */
+    private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show();
+            } else {
+                Log.i(TAG, "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
+    }
+
 }

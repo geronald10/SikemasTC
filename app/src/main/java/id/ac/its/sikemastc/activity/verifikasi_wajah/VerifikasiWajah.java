@@ -1,11 +1,13 @@
 package id.ac.its.sikemastc.activity.verifikasi_wajah;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceView;
@@ -65,7 +67,7 @@ public class VerifikasiWajah extends AppCompatActivity implements CameraBridgeVi
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.i(TAG,"called onCreate");
+        Log.i(TAG, "called onCreate");
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_face_verification);
@@ -87,10 +89,10 @@ public class VerifikasiWajah extends AppCompatActivity implements CameraBridgeVi
 
         fh = new FileHelper();
         File folder = new File(fh.getFolderPath());
-        if(folder.mkdir() || folder.isDirectory()){
-            Log.i(TAG,"New directory for photos created");
+        if (folder.mkdir() || folder.isDirectory()) {
+            Log.i(TAG, "New directory for photos created");
         } else {
-            Log.i(TAG,"Photos directory already existing");
+            Log.i(TAG, "Photos directory already existing");
         }
 
         mRecognitionView = (CustomCameraView) findViewById(R.id.verifikasi_wajah);
@@ -100,7 +102,7 @@ public class VerifikasiWajah extends AppCompatActivity implements CameraBridgeVi
         night_portrait = Boolean.valueOf(cameraSettings.get(LibraryPreference.KEY_NIGHT_PORTRAIT_MODE));
         exposure_compensation = Integer.valueOf(cameraSettings.get(LibraryPreference.KEY_EXPOSURE));
 
-        if (front_camera){
+        if (front_camera) {
             mRecognitionView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);
         } else {
             mRecognitionView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);
@@ -114,8 +116,7 @@ public class VerifikasiWajah extends AppCompatActivity implements CameraBridgeVi
     }
 
     @Override
-    public void onPause()
-    {
+    public void onPause() {
         super.onPause();
         if (mRecognitionView != null)
             mRecognitionView.disableView();
@@ -146,10 +147,10 @@ public class VerifikasiWajah extends AppCompatActivity implements CameraBridgeVi
         Rect[] faces = ppF.getFacesForRecognition();
 
         // Selfie / Mirror mode
-        if(front_camera){
-            Core.flip(imgRgba,imgRgba,1);
+        if (front_camera) {
+            Core.flip(imgRgba, imgRgba, 1);
         }
-        if(images == null || images.size() == 0 || faces == null || faces.length == 0 || ! (images.size() == faces.length)){
+        if (images == null || images.size() == 0 || faces == null || faces.length == 0 || !(images.size() == faces.length)) {
             // skip
             runOnUiThread(new Runnable() {
                 @Override
@@ -162,7 +163,7 @@ public class VerifikasiWajah extends AppCompatActivity implements CameraBridgeVi
             return imgRgba;
         } else {
             faces = MatOperation.rotateFaces(imgRgba, faces, ppF.getAngleForRecognition());
-            for(int i = 0; i<faces.length; i++){
+            for (int i = 0; i < faces.length; i++) {
                 MatOperation.drawRectangleAndLabelOnPreview(imgRgba, faces[i], rec.recognize(images.get(i), ""), front_camera);
                 identitasTerdeteksi = rec.recognize(images.get(i), "");
                 if (identitasTerdeteksi.equals(identitasMahasiswa))
@@ -176,13 +177,8 @@ public class VerifikasiWajah extends AppCompatActivity implements CameraBridgeVi
                     if (identitasTerdeteksi.equals(identitasMahasiswa)) {
                         tvUserDetected.setText(identitasTerdeteksi);
                         pbVerificationLoading.setProgress(progress);
-                        if (progress == 100){
-                            Intent intentToSuccess = new Intent(VerifikasiWajah.this, HasilVerifikasi.class);
-                            intentToSuccess.putExtra("id_perkuliahan", idPerkuliahan);
-                            intentToSuccess.putExtra("identitas_mahasiswa", identitasMahasiswa);
-                            intentToSuccess.putExtra("ket_kehadiran", "M");
-                            startActivity(intentToSuccess);
-                            finish();
+                        if (progress == 100) {
+                            showAlertDialog(idPerkuliahan);
                         }
                     } else {
                         progress = 0;
@@ -196,8 +192,7 @@ public class VerifikasiWajah extends AppCompatActivity implements CameraBridgeVi
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
 
         ppF = new PreProcessorFactory(getApplicationContext());
@@ -234,4 +229,22 @@ public class VerifikasiWajah extends AppCompatActivity implements CameraBridgeVi
         mRecognitionView.enableView();
     }
 
+    private void showAlertDialog(final String idPerkuliahan) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Konfirmasi")
+                .setMessage("Kirimkan status verifikasi kehadiran?")
+                .setNegativeButton("Tidak", null)
+                .setPositiveButton("Iya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intentToSuccess = new Intent(VerifikasiWajah.this, HasilVerifikasi.class);
+                        intentToSuccess.putExtra("id_perkuliahan", idPerkuliahan);
+                        intentToSuccess.putExtra("identitas_mahasiswa", identitasMahasiswa);
+                        intentToSuccess.putExtra("ket_kehadiran", "M");
+                        startActivity(intentToSuccess);
+                        finish();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 }

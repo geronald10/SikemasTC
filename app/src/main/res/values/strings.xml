@@ -81,10 +81,24 @@
     <string name="verifikasi_kehadiran_label">Verifikasi Kehadiran</string>
     <string name="kelola_data_set_wajah_btn_label">Kelola Data set wajah</string>
     <string name="training_data_set_btn_label">Training Data Set</string>
-    <string name="tambah_data_set_wajah">Tambah Data Set Wajah</string>
-    <string name="sinkronisasi_data_set_wajah">Sinkronisasi Data Set Wajah</string>
+    <string name="tambah_data_set_wajah">Tambah Data Set</string>
+    <string name="sinkronisasi_data_set_wajah">Sinkronisasi Data Set</string>
     <string name="wajah_terambil_label">Wajah Terambil</string>
     <string name="menambah_data_set_wajah_dari_message">Menambah data set wajah dari:</string>
-    <string name="training_data_set_wajah_btn_label">Training Data Set Wajah</string>
+    <string name="training_data_set_wajah_btn_label">Training Data Set</string>
     <string name="memproses_data_set_title">Memproses Data Set ...</string>
+    <string name="tv_email_empty_view"><![CDATA[<email>]]></string>
+    <string name="tv_id_pengguna_empty_view"><![CDATA[<id_pengguna>]]></string>
+    <string name="tv_nama_pengguna_empty_view"><![CDATA[<nama_pengguna>]]></string>
+    <string name="pertemuan_ke_label">Pertemuan ke-</string>
+    <string name="pertemuan_ke_hint"><![CDATA[<pertemuan-ke>]]></string>
+    <string name="pertemuan_ke_description">pertemuan ke description</string>
+    <string name="kode_matakuliah_hint"><![CDATA[<kode_matakuliah>]]></string>
+    <string name="nama_matakuliah_hint"><![CDATA[<nama_matakuliah>]]></string>
+    <string name="kelas_hint"><![CDATA[<kelas>]]></string>
+    <string name="mahasiswa_terlogin_label">Mahasiswa Terlogin</string>
+    <string name="nrp_nama_hint"><![CDATA[<NRP - Nama>]]></string>
+    <string name="jumlah_data_set_tersimpan_label">Jumlah Data Set Tersimpan</string>
+    <string name="data_set_wajah_tidak_ditemukan_hint">Data Set Wajah Tidak Ditemukan</string>
+    <string name="btn_upload_file_label">Upload File</string>
 </resources>

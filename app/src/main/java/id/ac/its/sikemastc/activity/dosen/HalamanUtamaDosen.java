@@ -32,7 +32,7 @@ import java.util.Map;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.BaseActivity;
-import id.ac.its.sikemastc.adapter.PerkuliahanAdapter;
+import id.ac.its.sikemastc.adapter.PerkuliahanDosenAdapter;
 import id.ac.its.sikemastc.data.SikemasContract;
 import id.ac.its.sikemastc.sync.SikemasSyncUtils;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
@@ -40,7 +40,7 @@ import id.ac.its.sikemastc.utilities.VolleySingleton;
 
 public class HalamanUtamaDosen extends BaseActivity implements
         LoaderManager.LoaderCallbacks<Cursor>,
-        PerkuliahanAdapter.PerkuliahanAdapterOnClickHandler {
+        PerkuliahanDosenAdapter.PerkuliahanAdapterOnClickHandler {
 
     private final String TAG = HalamanUtamaDosen.class.getSimpleName();
 
@@ -76,7 +76,7 @@ public class HalamanUtamaDosen extends BaseActivity implements
     private Button btnStatusKelasBerakhir;
 
     private RecyclerView mRecyclerView;
-    private PerkuliahanAdapter mPerkuliahanAdapter;
+    private PerkuliahanDosenAdapter mPerkuliahanDosenAdapter;
     private int mPosition = RecyclerView.NO_POSITION;
 
     private View emptyView;
@@ -97,8 +97,8 @@ public class HalamanUtamaDosen extends BaseActivity implements
 
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
-        mPerkuliahanAdapter = new PerkuliahanAdapter(this, this);
-        mRecyclerView.setAdapter(mPerkuliahanAdapter);
+        mPerkuliahanDosenAdapter = new PerkuliahanDosenAdapter(this, this);
+        mRecyclerView.setAdapter(mPerkuliahanDosenAdapter);
 
         btnAktifkanKelas = (Button) findViewById(R.id.btn_aktifkan_kelas);
         btnBatalkanKelas = (Button) findViewById(R.id.btn_nonaktifkan_kelas);
@@ -131,7 +131,7 @@ public class HalamanUtamaDosen extends BaseActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        mPerkuliahanAdapter.swapCursor(data);
+        mPerkuliahanDosenAdapter.swapCursor(data);
         if (mPosition == RecyclerView.NO_POSITION)
             mPosition = 0;
         mRecyclerView.smoothScrollToPosition(mPosition);
@@ -143,7 +143,7 @@ public class HalamanUtamaDosen extends BaseActivity implements
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-        mPerkuliahanAdapter.swapCursor(null);
+        mPerkuliahanDosenAdapter.swapCursor(null);
     }
 
     private void showPerkuliahanDataView() {

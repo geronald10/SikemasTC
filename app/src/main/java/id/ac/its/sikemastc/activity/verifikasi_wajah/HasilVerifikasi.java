@@ -1,6 +1,7 @@
 package id.ac.its.sikemastc.activity.verifikasi_wajah;
 
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,14 +33,10 @@ public class HasilVerifikasi extends AppCompatActivity {
 
     private final String TAG = HasilVerifikasi.class.getSimpleName();
 
-    private String identitasMahasiswa;
-    private String idMahasiswa;
     private String idPerkuliahan;
-    private String ketKehadiran;
 
-    private Button btnMenuUtama;
-    private Button btnCobaLagi;
     private ProgressBar mLoadingIndicator;
+    private ConstraintLayout clLayoutHasilVerifikasi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,18 +44,20 @@ public class HasilVerifikasi extends AppCompatActivity {
         setContentView(R.layout.activity_hasil_verifikasi);
 
         Intent intent = getIntent();
-        identitasMahasiswa = intent.getStringExtra("identitas_mahasiswa");
-        ketKehadiran = intent.getStringExtra("ket_kehadiran");
+        String identitasMahasiswa = intent.getStringExtra("identitas_mahasiswa");
+        String ketKehadiran = intent.getStringExtra("ket_kehadiran");
         idPerkuliahan = intent.getStringExtra("id_perkuliahan");
         String[] identitas = identitasMahasiswa.trim().split(Pattern.quote("-"));
-        idMahasiswa = identitas[0];
+        String idMahasiswa = identitas[0];
 
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
+        clLayoutHasilVerifikasi = (ConstraintLayout) findViewById(R.id.cl_hasil_verifikasi);
+
         TextView tvUserDetil = (TextView) findViewById(R.id.tv_user_detil);
         tvUserDetil.setText(identitasMahasiswa);
 
-        btnMenuUtama = (Button) findViewById(R.id.btn_menu_utama);
-        btnCobaLagi = (Button) findViewById(R.id.btn_coba_lagi);
+        Button btnMenuUtama = (Button) findViewById(R.id.btn_menu_utama);
+        Button btnCobaLagi = (Button) findViewById(R.id.btn_coba_lagi);
         btnMenuUtama.setOnClickListener(operate);
         btnCobaLagi.setOnClickListener(operate);
 
@@ -70,8 +69,9 @@ public class HasilVerifikasi extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_coba_lagi:
-                    Intent intentToMenuVerifikasi = new Intent(HasilVerifikasi.this, MenuVerifikasiWajah.class);
-                    startActivity(intentToMenuVerifikasi);
+//                    Intent intentToMenuVerifikasi = new Intent(HasilVerifikasi.this, MenuVerifikasiWajah.class);
+//                    intentToMenuVerifikasi.putExtra("id_perkuliahan", idPerkuliahan);
+//                    startActivity(intentToMenuVerifikasi);
                     finish();
                     break;
                 case R.id.btn_menu_utama:
@@ -114,7 +114,7 @@ public class HasilVerifikasi extends AppCompatActivity {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("id_perkuliahan", idPerkuliahan);
-                params.put("id_mahasiswa", idMahasiswa);
+                params.put("id_mahasiswa", nrpMahasiswa);
                 params.put("ket_kehadiran", ketKehadiran);
                 return params;
             }
@@ -124,9 +124,11 @@ public class HasilVerifikasi extends AppCompatActivity {
 
     private void showHasilVerifikasiDataView() {
         mLoadingIndicator.setVisibility(View.INVISIBLE);
+        clLayoutHasilVerifikasi.setVisibility(View.VISIBLE);
     }
 
     private void showLoading() {
+        clLayoutHasilVerifikasi.setVisibility(View.VISIBLE);
         mLoadingIndicator.setVisibility(View.VISIBLE);
     }
 }

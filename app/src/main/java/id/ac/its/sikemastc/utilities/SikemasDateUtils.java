@@ -2,6 +2,7 @@ package id.ac.its.sikemastc.utilities;
 
 import android.content.Context;
 import android.text.format.DateUtils;
+import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -184,16 +185,29 @@ public final class SikemasDateUtils {
         }
     }
 
-    public static String formatDate(String inputDate) {
+    public static String formatTime(String inputTime) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("HH:mm:ss");
+        Date time = null;
+        try {
+            time = inputFormat.parse(inputTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat outputFormat = new SimpleDateFormat("hh:mm a");
+        Log.d("cek converted time", outputFormat.format(time));
+        return outputFormat.format(time);
+}
+
+    public static String formatDate(String inputDate) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
         try {
             date = inputFormat.parse(inputDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        SimpleDateFormat outputFormat = new SimpleDateFormat("hh:mm a");
-        return outputFormat.format(date);
+        SimpleDateFormat outputLocalDateIndonesian = new SimpleDateFormat("EEEE, dd MMM yyyy", new Locale("id", "ID"));
+        return outputLocalDateIndonesian.format(date);
     }
 
     public static String getCurrentDate(Context context) {

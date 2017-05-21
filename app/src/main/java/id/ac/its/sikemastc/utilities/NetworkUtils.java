@@ -64,7 +64,9 @@ public final class NetworkUtils {
     // List rekap kehadiran mahasiswa perkuliahan
     public static final String LIST_REKAP_KEHADIRAN_MAHASISWA_PERKULIAHAN =
             "http://10.151.31.201/sikemas/public/mhs/rekapdariperkuliahan";
-
+    // List url for downloading image
+    public static final String LIST_FOTO_MAHASISWA_IMAGE_URL =
+            "http://10.151.31.201/sikemas/public/mhs/retrievewajah";
 
     private static final String KODE_DOSEN_PARAM = "kode_dosen";
     private static final String NRP_MAHASISWA_PARAM = "nrp";

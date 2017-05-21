@@ -12,8 +12,9 @@ import android.widget.TextView;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
+import id.ac.its.sikemastc.utilities.SikemasDateUtils;
 
-public class PerkuliahanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PerkuliahanDosenAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int VIEW_TYPE_TODAY_JADWAL = 0;
     private static final int VIEW_TYPE_FUTURE_DAY_JADWAL = 1;
@@ -29,7 +30,7 @@ public class PerkuliahanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         void onClick(int itemId, String idListKelas, String mataKuliah, String kodeKelas);
     }
 
-    public PerkuliahanAdapter(Context context, PerkuliahanAdapterOnClickHandler clickHandler) {
+    public PerkuliahanDosenAdapter(Context context, PerkuliahanAdapterOnClickHandler clickHandler) {
         mContext = context;
         mClickHandler = clickHandler;
         mUseTodayLayout = mContext.getResources().getBoolean(R.bool.use_today_layout);
@@ -59,13 +60,12 @@ public class PerkuliahanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         String statusDosen = mCursor.getString(HalamanUtamaDosen.INDEX_STATUS_DOSEN);
         String perkuliahanKe = mCursor.getString(HalamanUtamaDosen.INDEX_PERTEMUAN_KE);
-        String tanggalPerkuliahan = mCursor.getString(HalamanUtamaDosen.INDEX_HARI) + ", " +
-                mCursor.getString(HalamanUtamaDosen.INDEX_TANGGAL_PERKULIAHAN);
+        String tanggalPerkuliahan = SikemasDateUtils.formatDate(mCursor.getString(HalamanUtamaDosen.INDEX_TANGGAL_PERKULIAHAN));
         String mataKuliah = mCursor.getString(HalamanUtamaDosen.INDEX_NAMA_MK);
         String ruangKuliah = mCursor.getString(HalamanUtamaDosen.INDEX_NAMA_RUANGAN);
         String kodeKkelas = mCursor.getString(HalamanUtamaDosen.INDEX_KODE_KELAS);
-        String waktuKuliah = mCursor.getString(HalamanUtamaDosen.INDEX_MULAI) + " - " +
-                mCursor.getString(HalamanUtamaDosen.INDEX_SELESAI);
+        String waktuKuliah = SikemasDateUtils.formatTime(mCursor.getString(HalamanUtamaDosen.INDEX_MULAI) + " - " +
+                SikemasDateUtils.formatTime(mCursor.getString(HalamanUtamaDosen.INDEX_SELESAI)));
 
         int viewType = getItemViewType(position);
         switch (viewType) {

@@ -2,6 +2,7 @@ package id.ac.its.sikemastc.activity.verifikasi_wajah;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -63,6 +64,7 @@ public class TambahDataSetWajah extends AppCompatActivity implements CameraBridg
     private TextView counter;
     private TextView userTerlogin;
     private LibraryPreference preferences;
+    private SharedPreferences flagStatus;
 
     static {
         if (!OpenCVLoader.initDebug()) {
@@ -74,6 +76,8 @@ public class TambahDataSetWajah extends AppCompatActivity implements CameraBridg
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_data_set_wajah);
+
+        flagStatus = getSharedPreferences("flag_status", 0);
 
         preferences = new LibraryPreference(this);
         preferences.createCameraSettings();
@@ -222,6 +226,7 @@ public class TambahDataSetWajah extends AppCompatActivity implements CameraBridg
                                 returnIntent.putExtra("result_message", "Berhasil menambahkan data set wajah");
                                 returnIntent.putExtra("number_of_pictures", total);
                                 setResult(Activity.RESULT_OK, returnIntent);
+                                flagStatus.edit().putBoolean("upload_flag", true).apply();
                                 finish();
                             }
                             capturePressed = false;

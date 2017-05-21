@@ -1,17 +1,11 @@
 package id.ac.its.sikemastc.activity.mahasiswa;
 
-import android.app.LoaderManager;
-import android.content.Loader;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +13,6 @@ import java.util.List;
 
 import id.ac.its.sikemastc.activity.BaseActivity;
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.adapter.PerkuliahanAdapter;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
 import id.ac.its.sikemastc.sync.SikemasSyncUtils;
 

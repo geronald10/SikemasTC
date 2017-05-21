@@ -49,8 +49,8 @@ public class KelasMahasiswaAdapter extends RecyclerView.Adapter<KelasMahasiswaAd
         String kodeMk = mCursor.getString(LihatJadwal.INDEX_KELAS_KODE_MK);
         String ruangMK = mCursor.getString(LihatJadwal.INDEX_KELAS_NAMA_RUANGAN);
         String hari = mCursor.getString(LihatJadwal.INDEX_KELAS_HARI);
-        String waktuMulai = SikemasDateUtils.formatDate(mCursor.getString(LihatJadwal.INDEX_KELAS_MULAI));
-        String waktuSelesai= SikemasDateUtils.formatDate(mCursor.getString(LihatJadwal.INDEX_KELAS_SELESAI));
+        String waktuMulai = SikemasDateUtils.formatTime(mCursor.getString(LihatJadwal.INDEX_KELAS_MULAI));
+        String waktuSelesai= SikemasDateUtils.formatTime(mCursor.getString(LihatJadwal.INDEX_KELAS_SELESAI));
 
         kelasMahasiswaAdapterViewHolder.tvKodeMK.setText(kodeMk);
         kelasMahasiswaAdapterViewHolder.tvNamaMK.setText(namaMk);

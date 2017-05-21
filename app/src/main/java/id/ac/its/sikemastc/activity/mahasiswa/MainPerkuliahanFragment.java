@@ -32,21 +32,21 @@ import java.util.Map;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.verifikasi_wajah.MenuVerifikasiWajah;
-import id.ac.its.sikemastc.adapter.PerkuliahanAktifMahasiswaAdapter;
+import id.ac.its.sikemastc.adapter.PerkuliahanAktifAdapter;
 import id.ac.its.sikemastc.model.PerkuliahanMahasiswa;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
 import id.ac.its.sikemastc.utilities.SikemasDateUtils;
 import id.ac.its.sikemastc.utilities.VolleySingleton;
 
 public class MainPerkuliahanFragment extends Fragment implements
-        PerkuliahanAktifMahasiswaAdapter.PerkuliahanAktifMahasiswaOnClickHandler {
+        PerkuliahanAktifAdapter.PerkuliahanAktifOnClickHandler {
 
     private final String TAG = MainPerkuliahanFragment.class.getSimpleName();
 
     private TextView currentDate;
     private ProgressBar mLoadingIndicator;
     private RecyclerView mRecyclerView;
-    private PerkuliahanAktifMahasiswaAdapter mPerkuliahanAktifAdapter;
+    private PerkuliahanAktifAdapter mPerkuliahanAktifAdapter;
     private String bundleIdUser;
     private String bundleNamaUser;
     private List<PerkuliahanMahasiswa> perkuliahanAktifMahasiswaList;
@@ -79,21 +79,9 @@ public class MainPerkuliahanFragment extends Fragment implements
 
         showLoading();
 
-        Button btnVerifikasiWajah = (Button) view.findViewById(R.id.btn_verifikasi_wajah);
-        btnVerifikasiWajah.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentToVerifikasiWajah = new Intent(getActivity(), MenuVerifikasiWajah.class);
-//                intentToVerifikasiWajah.putExtra("id_perkuliaha", idPerkuliahan);
-                intentToVerifikasiWajah.putExtra("nrp_mahasiswa", bundleIdUser);
-                intentToVerifikasiWajah.putExtra("nama_mahasiswa", bundleNamaUser);
-                startActivity(intentToVerifikasiWajah);
-            }
-        });
-
         perkuliahanAktifMahasiswaList = new ArrayList<>();
         getPerkuliahanAktifList(bundleIdUser);
-        mPerkuliahanAktifAdapter = new PerkuliahanAktifMahasiswaAdapter(getActivity(), perkuliahanAktifMahasiswaList, this);
+        mPerkuliahanAktifAdapter = new PerkuliahanAktifAdapter(getActivity(), perkuliahanAktifMahasiswaList, this);
         mRecyclerView.setAdapter(mPerkuliahanAktifAdapter);
 
         if (perkuliahanAktifMahasiswaList != null) {
@@ -106,6 +94,16 @@ public class MainPerkuliahanFragment extends Fragment implements
         currentDate.setText(SikemasDateUtils.getCurrentDate(getActivity()));
 
         super.onViewCreated(view, savedInstanceState);
+
+        Button btnCocokanWajah = (Button) view.findViewById(R.id.btn_cocokan_wajah);
+        btnCocokanWajah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MenuVerifikasiWajah.class);
+                intent.putExtra("id_perkuliahan", "1");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -155,8 +153,8 @@ public class MainPerkuliahanFragment extends Fragment implements
                                 String statusPerkuliahan = detailKelasAktif.getString("status_perkuliahan");
                                 String statusDosen = detailKelasAktif.getString("status_dosen");
                                 String hari = detailKelasAktif.getString("hari");
-                                String waktuMulai = SikemasDateUtils.formatDate(detailKelasAktif.getString("mulai"));
-                                String waktuSelesai = SikemasDateUtils.formatDate(detailKelasAktif.getString("selesai"));
+                                String waktuMulai = SikemasDateUtils.formatTime(detailKelasAktif.getString("mulai"));
+                                String waktuSelesai = SikemasDateUtils.formatTime(detailKelasAktif.getString("selesai"));
 
                                 JSONObject kelas = detailKelasAktif.getJSONObject("kelas");
                                 String kodeSemester = kelas.getString("kode_semester");

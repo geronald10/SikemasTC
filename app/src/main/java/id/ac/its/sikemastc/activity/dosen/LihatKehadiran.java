@@ -2,8 +2,6 @@ package id.ac.its.sikemastc.activity.dosen;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.databinding.DataBindingComponent;
-import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.LoaderManager;
@@ -16,16 +14,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.adapter.KehadiranAdapter;
-import id.ac.its.sikemastc.adapter.PerkuliahanAdapter;
 import id.ac.its.sikemastc.data.SikemasContract;
-import id.ac.its.sikemastc.databinding.ActivityLihatKehadiranBinding;
-import id.ac.its.sikemastc.sync.SikemasSyncUtils;
 
 public class LihatKehadiran extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor>,

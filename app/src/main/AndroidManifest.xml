@@ -99,8 +99,24 @@
         <service
             android:name=".sync.SikemasSyncKelasMahasiswaIntentService"
             android:exported="false" />
+        <!--<service-->
+            <!--android:name=".sync.MyFirebaseMessagingService">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.google.firebase.MESSAGING_EVENT"/>-->
+            <!--</intent-filter>-->
+        <!--</service>-->
+        <!--<service-->
+            <!--android:name=".sync.MyFirebaseInstanceIDService"-->
+            <!--android:exported="true">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>-->
+            <!--</intent-filter>-->
+        <!--</service>-->
 
-        <activity android:name=".activity.verifikasi_wajah.HasilVerifikasi"></activity>
+
+
+        <activity android:name=".activity.verifikasi_wajah.HasilVerifikasi"/>
+
     </application>
 
 </manifest>
