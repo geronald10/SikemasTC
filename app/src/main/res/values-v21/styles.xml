@@ -10,6 +10,11 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <style name="MyToolbarTheme" parent="SuperMaterialTheme">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+
     <style name="AppLoginMaterialTheme" parent="SuperMaterialTheme">
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="android:textColor">@android:color/white</item>

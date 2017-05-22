@@ -101,4 +101,6 @@
     <string name="jumlah_data_set_tersimpan_label">Jumlah Data Set Tersimpan</string>
     <string name="data_set_wajah_tidak_ditemukan_hint">Data Set Wajah Tidak Ditemukan</string>
     <string name="btn_upload_file_label">Upload File</string>
+    <string name="judul_jawal_aktif_kosong">Jadwal Perkuliahan Aktif Tidak Ditemukan</string>
+    <string name="subjudul_jadwal_aktif_kosong">Jadwal aktif kosong, kemungkinan jadwal perkuliahan belum diaktifkan atau tidak ada perkuliahan</string>
 </resources>

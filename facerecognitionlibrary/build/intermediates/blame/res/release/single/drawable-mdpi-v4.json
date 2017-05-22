@@ -1,15 +1,15 @@
 [
     {
-        "merged": "E:\\TA\\SikemasTC\\facerecognitionlibrary\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png",
-        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\drawable-mdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
+        "merged": "E:\\TA\\SikemasTC\\facerecognitionlibrary\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\drawable-mdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
     },
     {
         "merged": "E:\\TA\\SikemasTC\\facerecognitionlibrary\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png",
         "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png"
     },
     {
-        "merged": "E:\\TA\\SikemasTC\\facerecognitionlibrary\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png",
-        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\drawable-mdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
+        "merged": "E:\\TA\\SikemasTC\\facerecognitionlibrary\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\drawable-mdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
         "merged": "E:\\TA\\SikemasTC\\facerecognitionlibrary\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png",
@@ -32,12 +32,12 @@
         "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\drawable-mdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
-        "merged": "E:\\TA\\SikemasTC\\facerecognitionlibrary\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\abc_list_focused_holo.9.png",
-        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\drawable-mdpi-v4\\abc_list_focused_holo.9.png"
-    },
-    {
         "merged": "E:\\TA\\SikemasTC\\facerecognitionlibrary\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\abc_ic_star_black_48dp.png",
         "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\drawable-mdpi-v4\\abc_ic_star_black_48dp.png"
+    },
+    {
+        "merged": "E:\\TA\\SikemasTC\\facerecognitionlibrary\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\abc_list_focused_holo.9.png",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\drawable-mdpi-v4\\abc_list_focused_holo.9.png"
     },
     {
         "merged": "E:\\TA\\SikemasTC\\facerecognitionlibrary\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\abc_list_pressed_holo_dark.9.png",

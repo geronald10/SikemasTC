@@ -75,7 +75,7 @@ public class BaseActivity extends AppCompatActivity implements
     }
 
     private void setupToolbarMenu(String title) {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_navigation);
         if (title == null)
             mToolbar.setTitle("Home");
         else
@@ -117,6 +117,7 @@ public class BaseActivity extends AppCompatActivity implements
             navigationView.getMenu().getItem(0).setChecked(false);
         else
             navigationView.setCheckedItem(checkedDrawerItemId);
+
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle drawerToogle = new ActionBarDrawerToggle(this,

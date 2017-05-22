@@ -1,11 +1,11 @@
 [
     {
-        "merged": "E:\\TA\\SikemasTC\\facerecognitionlibrary\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\abc_ic_star_half_black_48dp.png",
-        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_48dp.png"
-    },
-    {
         "merged": "E:\\TA\\SikemasTC\\facerecognitionlibrary\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png",
         "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\drawable-xhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "E:\\TA\\SikemasTC\\facerecognitionlibrary\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\abc_ic_star_half_black_48dp.png",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_48dp.png"
     },
     {
         "merged": "E:\\TA\\SikemasTC\\facerecognitionlibrary\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4\\abc_ic_star_black_16dp.png",

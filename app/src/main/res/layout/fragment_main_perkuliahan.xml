@@ -145,7 +145,7 @@
         android:id="@+id/pb_loading_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/rv_kelas_aktif"
         app:layout_constraintLeft_toLeftOf="@+id/rv_kelas_aktif"
         app:layout_constraintRight_toRightOf="@+id/rv_kelas_aktif"
@@ -158,12 +158,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:text="Cocokan Wajah"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_kelas_aktif"
@@ -172,11 +173,75 @@
         android:layout_marginBottom="0dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="@+id/cv_current_position_info"
         app:layout_constraintRight_toRightOf="@+id/cv_current_position_info"
         app:layout_constraintTop_toBottomOf="@+id/cv_current_position_info"
         app:layout_constraintVertical_bias="1.0" />
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/empty_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_current_position_info"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageView
+            android:id="@+id/iv_jadwal_empty"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.35000002"
+            app:srcCompat="@drawable/ic_empty_date" />
+
+        <TextView
+            android:id="@+id/tv_judul_jadwal_empty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="@string/judul_jawal_aktif_kosong"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/colorPrimaryText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_jadwal_empty" />
+
+        <TextView
+            android:id="@+id/tv_subjudul_jadwal_empty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:text="@string/subjudul_jadwal_aktif_kosong"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/colorSecondaryText"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_judul_jadwal_empty"
+            app:layout_constraintRight_toRightOf="@+id/tv_judul_jadwal_empty"
+            app:layout_constraintTop_toBottomOf="@+id/tv_judul_jadwal_empty" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

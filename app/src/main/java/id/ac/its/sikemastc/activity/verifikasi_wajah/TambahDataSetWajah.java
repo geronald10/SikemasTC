@@ -227,6 +227,7 @@ public class TambahDataSetWajah extends AppCompatActivity implements CameraBridg
                                 returnIntent.putExtra("number_of_pictures", total);
                                 setResult(Activity.RESULT_OK, returnIntent);
                                 flagStatus.edit().putBoolean("upload_flag", true).apply();
+                                flagStatus.edit().putBoolean("training_flag", false).apply();
                                 finish();
                             }
                             capturePressed = false;

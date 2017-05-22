@@ -5,6 +5,10 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="AppNavDrawerMaterialTheme" parent="SuperMaterialTheme" />
+
+    <style name="MyToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AppLoginMaterialTheme" parent="SuperMaterialTheme">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textColorPrimary">@android:color/white</item>
@@ -25,11 +29,6 @@
         <item name="colorControlHighlight">@color/colorControlHighlight</item>
         <item name="colorButtonNormal">@color/colorButtonNormal</item>
         <item name="colorControlActivated">@color/colorControlActivated</item>
-    </style>
-
-    <style name="MyToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">@android:color/white</item>
     </style>
     
     <style name="SettingsTheme" parent="Theme.AppCompat.Light.DarkActionBar">

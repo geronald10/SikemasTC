@@ -27,12 +27,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppMaterialTheme">
-        <activity android:name=".utilities.NavigationBar" />
-        <activity android:name=".utilities.ActionBarToolbar" />
-        <activity android:name=".activity.dosen.LihatKehadiran" />
-        <activity
-            android:name=".activity.dosen.ListKelasActivity"
-            android:theme="@style/AppNavDrawerMaterialTheme" />
+
+        <!-- General Activity Manifest -->
         <activity
             android:name=".activity.LoginActivity"
             android:theme="@style/AppLoginMaterialTheme">
@@ -43,28 +39,43 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.BaseActivity" />
+        <activity android:name=".activity.SettingsActivity" />
+
+        <!-- Dosen Activity Manifest-->
         <activity
             android:name=".activity.dosen.HalamanUtamaDosen"
             android:theme="@style/AppNavDrawerMaterialTheme" />
+        <activity android:name=".activity.dosen.LihatKehadiran" />
+        <activity
+            android:name=".activity.dosen.ListKelasActivity"
+            android:theme="@style/AppNavDrawerMaterialTheme" />
+        <activity android:name=".activity.dosen.DetailPerkuliahan" />
+        <activity android:name=".activity.dosen.DetailListKelas" />
+        <activity android:name=".activity.dosen.PenjadwalanUlangSementara" />
+        <activity android:name=".activity.dosen.PenjadwalanUlangPermanen" />
+        <activity android:name=".activity.dosen.DetailKehadiranPeserta" />
+        <activity android:name=".activity.dosen.DetailPertemuanKelas" />
+
+        <!-- Mahasiswa Activity Manifest -->
         <activity
             android:name=".activity.mahasiswa.HalamanUtamaMahasiswa"
             android:theme="@style/AppNavDrawerMaterialTheme" />
         <activity
+            android:name=".activity.mahasiswa.LihatJadwal"
+            android:theme="@style/AppNavDrawerMaterialTheme" />
+        <activity android:name=".activity.mahasiswa.DetailLihatJadwal" />
+
+        <!-- Orangtua Activity Manifest -->
+        <activity
             android:name=".activity.orangtua.HalamanUtamaOrangtua"
             android:theme="@style/AppNavDrawerMaterialTheme" />
-        <activity android:name=".activity.dosen.DetailPerkuliahan" />
-        <activity android:name=".activity.mahasiswa.LihatJadwal" />
         <activity android:name=".activity.orangtua.LihatJadwalMahasiswa" />
-        <activity android:name=".activity.dosen.DetailListKelas" />
-        <activity android:name=".activity.dosen.PenjadwalanUlangSementara" />
-        <activity android:name=".activity.dosen.PenjadwalanUlangPermanen" />
-        <activity android:name=".activity.SettingsActivity" />
-        <activity android:name=".activity.dosen.DetailKehadiranPeserta" />
-        <activity android:name=".activity.dosen.DetailPertemuanKelas" />
-        <activity android:name=".activity.mahasiswa.DetailLihatJadwal" />
+
+        <!-- Verifikasi Wajah Activity Manifest -->
         <activity android:name=".activity.verifikasi_wajah.MenuVerifikasiWajah" />
         <activity android:name=".activity.verifikasi_wajah.KelolaDataSetWajah" />
         <activity android:name=".activity.verifikasi_wajah.TrainingWajah" />
+        <activity android:name=".activity.verifikasi_wajah.HasilVerifikasi" />
         <activity
             android:name=".activity.verifikasi_wajah.VerifikasiWajah"
             android:screenOrientation="landscape" />
@@ -72,11 +83,13 @@
             android:name=".activity.verifikasi_wajah.TambahDataSetWajah"
             android:screenOrientation="landscape" />
 
+        <!-- Provider Manifest-->
         <provider
             android:name=".data.SikemasProvider"
             android:authorities="id.ac.its.sikemastc"
             android:exported="false" />
 
+        <!-- Services Manifest -->
         <service
             android:name=".sync.SikemasReminderIntentService"
             android:exported="false" />
@@ -100,23 +113,18 @@
             android:name=".sync.SikemasSyncKelasMahasiswaIntentService"
             android:exported="false" />
         <!--<service-->
-            <!--android:name=".sync.MyFirebaseMessagingService">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.firebase.MESSAGING_EVENT"/>-->
-            <!--</intent-filter>-->
+        <!--android:name=".sync.MyFirebaseMessagingService">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="com.google.firebase.MESSAGING_EVENT"/>-->
+        <!--</intent-filter>-->
         <!--</service>-->
         <!--<service-->
-            <!--android:name=".sync.MyFirebaseInstanceIDService"-->
-            <!--android:exported="true">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>-->
-            <!--</intent-filter>-->
+        <!--android:name=".sync.MyFirebaseInstanceIDService"-->
+        <!--android:exported="true">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>-->
+        <!--</intent-filter>-->
         <!--</service>-->
-
-
-
-        <activity android:name=".activity.verifikasi_wajah.HasilVerifikasi"/>
-
     </application>
 
 </manifest>
