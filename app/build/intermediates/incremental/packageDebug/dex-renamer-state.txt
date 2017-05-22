@@ -1,0 +1,7 @@
+#Mon May 22 01:23:05 ICT 2017
+base.0=D\:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\TugasAkhirLokasi\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_843ac2566bb4b5daaff1b16ce3a1ee7969ac27b2
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=D\:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\TugasAkhirLokasi\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_5f7fe28f4979167ecd78efc41686b1d38a5e9a6a\\classes.dex
+base.1=D\:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\TugasAkhirLokasi\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_5f7fe28f4979167ecd78efc41686b1d38a5e9a6a
+file.0=D\:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\TugasAkhirLokasi\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_843ac2566bb4b5daaff1b16ce3a1ee7969ac27b2\\classes.dex

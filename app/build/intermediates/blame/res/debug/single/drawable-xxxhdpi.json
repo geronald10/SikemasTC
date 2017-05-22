@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\TugasAkhirLokasi\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi\\powered_by_google_light.png",
+        "source": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\TugasAkhirLokasi\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.3.0\\res\\drawable-xxxhdpi\\powered_by_google_light.png"
+    },
+    {
+        "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\TugasAkhirLokasi\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi\\powered_by_google_dark.png",
+        "source": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\TugasAkhirLokasi\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-location\\8.3.0\\res\\drawable-xxxhdpi\\powered_by_google_dark.png"
+    }
+]

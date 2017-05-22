@@ -483,7 +483,9 @@ public class GoogleAPITracker extends Service implements LocationListener {
                 Double.toString(sumXY), Double.toString(medianX), Double.toString(medianY), Double.toString(a),
                 Double.toString(b), Double.toString(resultX), Double.toString(resultY)};
 
-        Log.d("Regresi Linier", "Long: " + resultX + "\nLat: " + resultY);
+        Log.d("Regresi Linier", "Sum X: " + sumX + "\nSum Y: " + sumY + "\nSum X2: " + sumX2 + "\nSum Y2: " + sumY2 +
+                "\nSum XY: " + sumXY + "\nMedian X: " + medianX + "\nMedian Y: " + medianY + "\nA: " + a + "\nB: " + b +
+                "\nLong: " + resultX + "\nLat: " + resultY);
 
         loc1 = new Location("");
         loc1.setLongitude(resultX);
@@ -514,10 +516,10 @@ public class GoogleAPITracker extends Service implements LocationListener {
     private void createCSVFile(String[] parameter) {
         String baseDir = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
         Long ts = System.currentTimeMillis()/1000;
-        String fileName = this.method + ts.toString();
+        String fileName = ts.toString() + ".csv";
         String filePath = baseDir + File.separator + fileName;
-        File f = new File(filePath );
-        CSVWriter writer = null;
+        File f = new File(filePath);
+        CSVWriter writer;
         try {
             writer = new CSVWriter(new FileWriter(filePath));
             if (this.method == "KNN") {
@@ -525,19 +527,19 @@ public class GoogleAPITracker extends Service implements LocationListener {
             }
             else if (this.method == "XY") {
                 writer.writeNext(new String[]{"x (longitude)", "y (latitude)", "accuracy", "", "meanX", "meanY", "meanAltitude"});
-                writer.writeNext(new String[]{this.dataIteration[0][0], this.dataIteration[0][1],
-                        this.dataIteration[0][3], " ", parameter[0], parameter[1], parameter[2]});
+                writer.writeNext(new String[]{this.dataIteration[0][1], this.dataIteration[0][2],
+                        this.dataIteration[0][4], " ", parameter[0], parameter[1], parameter[2]});
             }
             else {
                 writer.writeNext(new String[]{"x (longitude)", "y (latitude)", "accuracy", " ", "sumX", "sumY", "sumX2", "sumY2",
                         "sumXY", "medianX", "medianY", "a", "b", "resultX", "resultY"});
-                writer.writeNext(new String[]{this.dataIteration[0][0], this.dataIteration[0][1],
-                        this.dataIteration[0][3], " ", parameter[0], parameter[1], parameter[2], parameter[3], parameter[4],
+                writer.writeNext(new String[]{this.dataIteration[0][1], this.dataIteration[0][2],
+                        this.dataIteration[0][4], " ", parameter[0], parameter[1], parameter[2], parameter[3], parameter[4],
                         parameter[5], parameter[6], parameter[7], parameter[8], parameter[9], parameter[10]});
             }
             for (int i = 1; i < this.iteration; i++) {
-                writer.writeNext(new String[]{this.dataIteration[i][0], this.dataIteration[i][1],
-                        this.dataIteration[i][2], this.dataIteration[i][3], " ", "Haha"});
+                writer.writeNext(new String[]{this.dataIteration[i][1], this.dataIteration[i][2],
+                        this.dataIteration[i][4], " ", " "});
             }
             writer.close();
         } catch (IOException e) {
@@ -557,21 +559,41 @@ public class GoogleAPITracker extends Service implements LocationListener {
         this.latitude = location.getLatitude();
         this.longitude = location.getLongitude();
         this.altitude = location.getAltitude();
-        if(this.accuracy <= 5) {
-            if (iteration < 10) {
-                Log.d("Data", "Longitude: " + getLongitude() + "\nLatitude: " +
-                        getLatitude() + "\nAccuracy: " + getAccuracy() + "\nAltitude: " + getAltitude());
-                int i = 0;
-                dataIteration[iteration][i] = Integer.toString(iteration + 1);
-                i++;
-                dataIteration[iteration][i] = Double.toString(getLongitude());
-                i++;
-                dataIteration[iteration][i] = Double.toString(getLatitude());
-                i++;
-                dataIteration[iteration][i] = Double.toString(getAltitude());
-                i++;
-                dataIteration[iteration][i] = Double.toString(getAccuracy());
-                iteration++;
+        if(this.accuracy <= 10) {
+            if (this.iteration < 10) {
+                if (this.iteration > 0 && this.longitude != Double.parseDouble(this.dataIteration[this.iteration-1][1]) &&
+                        this.latitude != Double.parseDouble(this.dataIteration[this.iteration-1][2]) &&
+                        this.altitude != Double.parseDouble(this.dataIteration[this.iteration-1][3]) &&
+                        this.accuracy != Double.parseDouble(this.dataIteration[this.iteration-1][4])) {
+                    Log.d("Data", "Longitude: " + getLongitude() + "\nLatitude: " +
+                            getLatitude() + "\nAccuracy: " + getAccuracy() + "\nAltitude: " + getAltitude());
+                    int i = 0;
+                    this.dataIteration[iteration][i] = Integer.toString(iteration + 1);
+                    i++;
+                    this.dataIteration[iteration][i] = Double.toString(getLongitude());
+                    i++;
+                    this.dataIteration[iteration][i] = Double.toString(getLatitude());
+                    i++;
+                    this.dataIteration[iteration][i] = Double.toString(getAltitude());
+                    i++;
+                    this.dataIteration[iteration][i] = Double.toString(getAccuracy());
+                    this.iteration++;
+                }
+                else {
+                    Log.d("Data", "Longitude: " + getLongitude() + "\nLatitude: " +
+                            getLatitude() + "\nAccuracy: " + getAccuracy() + "\nAltitude: " + getAltitude());
+                    int i = 0;
+                    this.dataIteration[iteration][i] = Integer.toString(iteration + 1);
+                    i++;
+                    this.dataIteration[iteration][i] = Double.toString(getLongitude());
+                    i++;
+                    this.dataIteration[iteration][i] = Double.toString(getLatitude());
+                    i++;
+                    this.dataIteration[iteration][i] = Double.toString(getAltitude());
+                    i++;
+                    this.dataIteration[iteration][i] = Double.toString(getAccuracy());
+                    this.iteration++;
+                }
             }
             else {
                 if (this.method == "KNN")
