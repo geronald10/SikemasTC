@@ -83,10 +83,14 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
     View view; // tampilan -> menampilkan mContent
     Bitmap bitmap;
     private String userTerlogin;
+    private String idUserTerlogin;
+    private String namaUserTerlogin;
+    private String idPerkuliahan;
     private String StoredPath;
 
-    String DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signature/";
     private static final String TAG = "Verifikasi Kehadiran dengan Tanda Tangan";
+
+     private String DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signature/";
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -111,7 +115,8 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
+       setContentView(R.layout.activity_menu_verifikasi_tandatangan);
+
         // Setting ToolBar as ActionBar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -121,15 +126,16 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
 
         Intent intent = getIntent();
         userTerlogin = intent.getStringExtra("identitas_mahasiswa");
-        Log.v("log_tag", "identitas mahasiswa di verifikasitandatangan -> " + userTerlogin);
-        StoredPath = DIRECTORY + userTerlogin+ ".png";
+        idUserTerlogin = intent.getStringExtra("id_mahasiswa");
+        namaUserTerlogin = intent.getStringExtra("nama_mahasiswa");
+        idPerkuliahan = intent.getStringExtra("id_perkuliahan");
 
+        StoredPath = DIRECTORY + userTerlogin+ ".png";
 
         file = new File(DIRECTORY);
         if (!file.exists()) {
             file.mkdir();
         }
-
         // Dialog Function
         dialog = new Dialog(VerifikasiTandaTangan.this);
         // Removing the features of Normal Dialogs
@@ -137,17 +143,19 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
         dialog.setContentView(R.layout.tambah_data_set_tandatangan);
         dialog.setCancelable(true); // agar tidak muncul dialognya
         dialog_action();
-
     }
 
 
     // Function for Appear Digital Signature Layout
-    public void dialog_action() {
+        public void dialog_action() {
         mContent = (LinearLayout) dialog.findViewById(R.id.linearLayout_tambah_tandatangan);
         mSignature = new signature(getApplicationContext(), null);
         mSignature.setBackgroundColor(Color.WHITE);
 
         mContent.addView(mSignature, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        TextView header = (TextView)dialog.findViewById(R.id.tv_tambah_data_set_tandatangan);
+        header.setText("TANDA TANGAN DISINI");
         btn_tambah_tandatangan_cancel = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_cancel);
         btn_tambah_tandatangan_clear = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_clear);
         btn_tambah_tandatangan_simpan = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_simpan);
@@ -168,15 +176,22 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
         btn_tambah_tandatangan_cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.v("log_tag", "Panel Canceled");
-                dialog.dismiss();
+                Intent intentKembali = new Intent(v.getContext(), MenuVerifikasiTandaTangan.class);
+                intentKembali.putExtra("identitas_mahasiswa", userTerlogin);
+                intentKembali.putExtra("nrp_mahasiswa", idUserTerlogin);
+                intentKembali.putExtra("nama_mahasiswa", namaUserTerlogin);
+                intentKembali.putExtra("id_perkuliahan", idPerkuliahan);
+                startActivity(intentKembali);
+//                nrpMahasiswa = intent.getStringExtra("nrp_mahasiswa");
+//                namaMahasiswa = intent.getStringExtra("nama_mahasiswa");
+//                idPerkuliahan =intent.getStringExtra("id_perkuliahan");
+                //dialog.dismiss();
             }
         });
 
         btn_tambah_tandatangan_simpan.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-
-
                 Log.v("log_tag", "Panel Saved");
                 view.setDrawingCacheEnabled(true);
                 mSignature.save(view, StoredPath);
@@ -228,14 +243,11 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
             } catch (Exception e) {
                 Log.v("log_tag", e.toString());
             }
-
-
         }
 
         public void clear() {
             path.reset();
             invalidate();
-
         }
 
         @Override
@@ -318,7 +330,10 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
     void viewImage(Class x) {
         Intent intentToPencocokanTandaTangan = new Intent(getBaseContext(), x);
         intentToPencocokanTandaTangan.putExtra("user_terlogin", userTerlogin);
-        Log.v("log_tag","user_terlogin di verifikasi kirim ke pencocokan ->" + userTerlogin);
+        intentToPencocokanTandaTangan.putExtra("id_user_terlogin", idUserTerlogin);
+        intentToPencocokanTandaTangan.putExtra("id_perkuliahan", idPerkuliahan);
+
+     //   Log.v("log_tag","user_terlogin di verifikasi kirim ke pencocokan ->" + userTerlogin);
         startActivity(intentToPencocokanTandaTangan);
     }
 
