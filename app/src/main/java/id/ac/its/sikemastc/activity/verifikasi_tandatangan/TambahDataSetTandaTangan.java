@@ -42,31 +42,30 @@ public class TambahDataSetTandaTangan extends AppCompatActivity {
     Dialog dialog;
     Bitmap bitmap;
     int clickcount=0;
-    Toolbar toolbar;
+    Toolbar toolbar1;
     String StoredPath;
     private String userTerlogin;
     private TextView userLogin;
 
     private static final String TAG = "Tambah Data Set Tanda Tangan";
-    String DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signatureverification/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_tambah_data_set_tandatangan);
-
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_kelola_data_set_tandatangan);
 
         Intent intent = getIntent();
         userTerlogin = intent.getStringExtra("user_terlogin"); //nrp-nama
         Log.v("log_tag", "user ter login di tambahdatasettandatangan -> " + userTerlogin);
 
-        file = new File(DIRECTORY);
-        if (!file.exists()) {
-            file.mkdir();
-        }
+        toolbar1 = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar1);
+
+
+//        file = new File(DIRECTORY);
+//        if (!file.exists()) {
+//            file.mkdir();
+//        }
 
 
         // Dialog Function
@@ -86,6 +85,10 @@ public class TambahDataSetTandaTangan extends AppCompatActivity {
         mSignature.setBackgroundColor(Color.WHITE);
 
         mContent.addView(mSignature, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        TextView header = (TextView)dialog.findViewById(R.id.tv_tambah_data_set_tandatangan);
+        header.setText("TANDA TANGAN SEBANYAK 5 KALI");
+
         btn_tambah_tandatangan_cancel = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_cancel);
         btn_tambah_tandatangan_clear = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_clear);
         btn_tambah_tandatangan_simpan = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_simpan);
@@ -106,7 +109,11 @@ public class TambahDataSetTandaTangan extends AppCompatActivity {
         btn_tambah_tandatangan_cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.v("log_tag", "Panel Canceled");
+                Intent intentKembali = new Intent(v.getContext(), KelolaDataSetTandaTangan.class);
+                intentKembali.putExtra("identitas_mahasiswa", userTerlogin);
+                startActivity(intentKembali);
                 dialog.dismiss();
+
                 // Calling the same class
                 //recreate();
             }
@@ -120,7 +127,7 @@ public class TambahDataSetTandaTangan extends AppCompatActivity {
                 Log.v("log_tag", "clickcount->" +clickcount);
                 if (clickcount >5)
                 {
-                    Toast.makeText(getApplicationContext(), "Dataset Tanda Tangan Sudah Ada", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Dataset Tanda Tangan Sudah Ada, Silahkan klik KEMBALI", Toast.LENGTH_SHORT).show();
                     btn_tambah_tandatangan_simpan.setEnabled(true);
                 }
                 if(clickcount<=5)
@@ -129,10 +136,8 @@ public class TambahDataSetTandaTangan extends AppCompatActivity {
                     Log.v("log_tag", "Panel Saved");
                     view.setDrawingCacheEnabled(true);
                     mSignature.save(view, StoredPath);
-                    Toast.makeText(getApplicationContext(), "Sukses menyimpan Dataset Tanda Tangan ke- " + clickcount, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Sukses Simpan Dataset Tanda Tangan ke- " + clickcount, Toast.LENGTH_SHORT).show();
                     // Calling the same class
-
-
                 }
                 mSignature.clear();
                 //recreate();
@@ -170,26 +175,37 @@ public class TambahDataSetTandaTangan extends AppCompatActivity {
             if (bitmap == null) {
                 bitmap = Bitmap.createBitmap(mContent.getWidth(), mContent.getHeight(), Bitmap.Config.RGB_565);
             }
-            Canvas canvas = new Canvas(bitmap);
-            try {
-                // Output the file
-                StoredPath = DIRECTORY + userTerlogin+ "-" + clickcount+ ".png";
-                Log.v("log_tag", "user ter login: " + userTerlogin);
-                Log.v("log_tag", "store path ->" + StoredPath);
 
-                FileOutputStream mFileOutStream = new FileOutputStream(StoredPath);
-                v.draw(canvas);
+                Canvas canvas = new Canvas(bitmap);
+                try {
+                    // Output the file
+                    String DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signatureverification/"+userTerlogin;
+                    File dir = new File(DIRECTORY);
+                    String filename = userTerlogin+ "-" + clickcount+ ".png";
+                    if(!dir.exists())
+                    {
+                        dir.mkdirs();
+                    }
 
-                // Convert the output file to Image such as .png
-                bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
-                mFileOutStream.flush();
-                mFileOutStream.close();
+                    File myFile = new File(dir.getAbsolutePath(), filename);
+                    myFile.createNewFile();
 
-            } catch (Exception e) {
-                Log.v("log_tag", e.toString());
-            }
+                    Log.v("log_tag", "user ter login: " + userTerlogin);
+                    Log.v("log_tag", "dir ->" + dir);
+                    Log.v("log_tag", "filename ->" + filename);
 
+                    // FileOutputStream mFileOutStream = new FileOutputStream(StoredPath);
+                    FileOutputStream mFileOutStream = new FileOutputStream(myFile);
+                    v.draw(canvas);
 
+                    // Convert the output file to Image such as .png
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
+                    mFileOutStream.flush();
+                    mFileOutStream.close();
+
+                } catch (Exception e) {
+                    Log.v("log_tag", e.toString());
+                }
         }
 
         public void clear() {

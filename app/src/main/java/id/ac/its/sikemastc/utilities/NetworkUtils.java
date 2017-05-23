@@ -27,13 +27,17 @@ public final class NetworkUtils {
     public static final String LOGIN_SIKEMAS =
             "http://10.151.31.201/sikemas/public/loginmobile";
 
-    // Upload Dataset Wajah API
+    // Upload Dataset TTD API
     public static final String UPLOAD_DATASET_TANDATANGAN_SIKEMAS =
-            "http://10.151.31.201/sikemas/public/mhs/uploadfoto";
+            "http://10.151.31.201/sikemas/public/mhs/uploadsignature";
 
     // Upload Dataset Wajah API
     public static final String UPLOAD_DATASET_WAJAH_SIKEMAS =
             "http://10.151.31.201/sikemas/public/mhs/uploadfoto";
+
+    // Sinkronisasi Dataset Tanda Tangan
+    public static final String SINKRONISASI_DATASET_TANDATANGAN_SIKEMAS=
+            "http://10.151.31.201/sikemas/public/mhs/retrievesignature";
 
     // List Kelas Diampu oleh Dosen API
     public static final String LIST_KELAS_DOSEN_SIKEMAS =

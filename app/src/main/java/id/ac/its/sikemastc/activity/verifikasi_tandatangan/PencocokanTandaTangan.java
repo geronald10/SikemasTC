@@ -1,5 +1,6 @@
 package id.ac.its.sikemastc.activity.verifikasi_tandatangan;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +12,14 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.opencv.android.Utils;
 import org.opencv.core.Core;
@@ -29,9 +38,13 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import id.ac.its.sikemastc.R;
+import id.ac.its.sikemastc.utilities.NetworkUtils;
+import id.ac.its.sikemastc.utilities.VolleySingleton;
 
 import static org.opencv.imgproc.Imgproc.THRESH_BINARY;
 
@@ -50,13 +63,14 @@ public class PencocokanTandaTangan extends AppCompatActivity {
     private Bitmap bitmap1, bitmap2, new_img1;
     private double vertical_max, horisontal_max, luas_bounding_box, Ratio, pixel_area, normalize_area;
     private String userTerlogin;
-//    private ArrayList<Double> fitur_dataset_all;
-//    private Double[][] centroid;
+    private String idUserTerlogin;
+    private String idPerkuliahan;
+    private ProgressDialog progressDialog;
 
     private void preprocessing(Bitmap bitmap) {
 
         Bitmap bitmap3=bitmap;
-         bitmap3.getHeight();
+        bitmap3.getHeight();
         bitmap3.getWidth();
 
         int tinggi_img1 =bitmap3.getHeight();
@@ -154,12 +168,7 @@ public class PencocokanTandaTangan extends AppCompatActivity {
 
         }
 
-        // Log.v("log_tag", "ukuran image baru ->" + new_img1);
-        //   Log.v("log_tag", "image baru ->" + new_img1.getHeight() + " " + new_img1.getWidth());
-
-
         //ekstraksi fitur
-
         tinggi_img_baru = new_img1.getHeight();
         lebar_img_baru =new_img1.getWidth();
         int kolom_max=0, kolom_temp;
@@ -177,6 +186,7 @@ public class PencocokanTandaTangan extends AppCompatActivity {
                 gray_img_crop.setPixel(xa, ya, Color.rgb(R, R, R));
             }
         }
+
         //max horisontal;
         for(baris=0; baris<tinggi_img_baru; baris++){
             kolom_temp=0;
@@ -191,7 +201,6 @@ public class PencocokanTandaTangan extends AppCompatActivity {
             if(kolom_temp > kolom_max) {
                 kolom_max = kolom_temp;
                 horisontal_max = baris;
-
             }
 
         }
@@ -211,9 +220,7 @@ public class PencocokanTandaTangan extends AppCompatActivity {
             if(kolom_temp > kolom_max) {
                 kolom_max = kolom_temp;
                 vertical_max = kolom;
-
             }
-
         }
 
         //aspect ratio
@@ -221,8 +228,6 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         tinggi_new2 = tinggi_new;
         Ratio = lebar_new2/tinggi_new2;
         //  Log.v("log_tag", "ratio -> " + Ratio);
-
-
 
         //number black pixel in area
         pixel_area=0;
@@ -233,29 +238,7 @@ public class PencocokanTandaTangan extends AppCompatActivity {
                     pixel_area=pixel_area+1;
                 }
             }
-
         }
-        // Log.v("log_tag", "jml_pixel -> " + pixel_area);
-
-
-        //code hamming gambar di dd
-        int panjang_gambar = bitmap3.getHeight();
-        int lebar_gambar = bitmap3.getWidth();
-        int beda_pixel=0;
-        for (int i=0; i<lebar_gambar; i++){
-            for(int j=0; j<panjang_gambar; j++)
-            {
-                int pixel_gbr_1 = bitmap3.getPixel(i,j);
-                // int pixel_gbr_2 = bitmap2.getPixel(i,j);
-                // Log.v("log_tag", "warna img1 kolom ke -> " + kolom + "warna -> "+gray_img_crop.getPixel(kolom, baris));
-                //  if(pixel_gbr_1 != pixel_gbr_2)
-                {
-                    beda_pixel=beda_pixel+1;
-                    //   Log.v("log_tag", "kolom temp-> " + kolom_temp);
-                }
-            }
-        }
-
 
         //center of mass
         //Bitmap gray_img_crop = Bitmap.createBitmap( bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
@@ -318,8 +301,6 @@ public class PencocokanTandaTangan extends AppCompatActivity {
             Moments p = mu.get(i);
             int x = (int) (p.get_m10() / p.get_m00());
             int y = (int) (p.get_m01() / p.get_m00());
-            // Toast.makeText(this, "nilai x ->" + x, Toast.LENGTH_SHORT).show();
-            // Toast.makeText(this, "nilai y ->" + y, Toast.LENGTH_SHORT).show();
 
             //array untuk menyimpan data x,y bounding box
 
@@ -338,7 +319,6 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         //normalize area signature
         double luas_signature_crop= lebar_new2*tinggi_new2;
         normalize_area = luas_signature_crop/luas_bounding_box;
-
 
     }
     public double calculate_skew(int index, String image){
@@ -383,9 +363,9 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         }
 
         Mat result = deskew( img, rotatedRect.angle );
-        String outputFile = Environment.getExternalStorageDirectory().getPath()+ "/DCIM/DigitSign/TandaTangan/5113100016_Novita/"+index+"_skew.png";
+ //       String outputFile = Environment.getExternalStorageDirectory().getPath()+ "/DCIM/DigitSign/TandaTangan/5113100016_Novita/"+index+"_skew.png";
 
-        Imgcodecs.imwrite( outputFile, result );
+//        Imgcodecs.imwrite( outputFile, result );
         return resultAngle;
     }
 
@@ -398,20 +378,31 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         return src;
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tandatangan_berhasil);
 
         Intent intent = getIntent();
-        userTerlogin = intent.getStringExtra("user_terlogin");
+        userTerlogin = intent.getStringExtra("user_terlogin"); //nrp-nama
+        idUserTerlogin = intent.getStringExtra("id_user_terlogin");
+        idPerkuliahan = intent.getStringExtra("id_perkuliahan");
+
         Log.v("log_tag", "identitas mahasiswa di pencocokantandatangan -> " + userTerlogin);
+        Log.v("log_tag", "id perkuliahan di pencocokantandatangan -> " + idPerkuliahan);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Pengecekan Tanda Tangan... ");
+        progressDialog.show();
+
+
 
         Bitmap bitmap1;
 
-        String ImageSourcePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signatureverification/";
+        String ImageSourcePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signatureverification/"+ userTerlogin;
         String ImageSignaturePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signature/"+ userTerlogin+".png";
-
 
         //FITUR DATABASE MHS
         Double[][] fitur_ttd = new Double[6][7];
@@ -423,17 +414,16 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         ArrayList<Double> fitur_ttd_f= new ArrayList<>();
         ArrayList<Double> fitur_ttd_g= new ArrayList<>();
 
-
         for(int index=1; index<=5; index++)
         {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             options.inSampleSize=8;
 
-            bitmap1 = BitmapFactory.decodeFile(ImageSourcePath + userTerlogin + "-" +(index) + ".png");
+            bitmap1 = BitmapFactory.decodeFile(ImageSourcePath + "/" + userTerlogin + "-" +(index) + ".png");
 
             preprocessing(bitmap1);
-            double skew = calculate_skew(index, ImageSourcePath + userTerlogin + "-" +(index) + ".png");
+            double skew = calculate_skew(index, ImageSourcePath + "/" + userTerlogin + "-" +(index) + ".png");
 
             fitur_ttd[index][0]=horisontal_max; fitur_ttd_a.add(horisontal_max);
             fitur_ttd[index][1]=vertical_max; fitur_ttd_b.add(vertical_max);
@@ -445,9 +435,6 @@ public class PencocokanTandaTangan extends AppCompatActivity {
 
             //centerOfMass(bitmap1);
             //Toast.makeText(this, "centroid ke->" + i+ "nilai x ->" + centroid[i][0] + "nilai y ->" + centroid[i][1], Toast.LENGTH_SHORT).show();
-//            image_source = (ImageView) findViewById(R.id.img_ttd);
-//            image_source.setImageBitmap(bitmap1);
-
         }
 
         //FITUR TTD MHS
@@ -483,37 +470,21 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         max.add(Collections.max(fitur_ttd_g));
         min.add(Collections.min(fitur_ttd_g));
 
-
         Double[][] fitur_ttd_normalisasi = new Double[6][8];
         ArrayList<Double> fitur_ttd_mhs_normalisasi = new ArrayList<>();
         Double norm_atas, norm_bawah;
 
-
         for(int index=1; index<=5; index++){
-
-//           Log.v("log_tag", "normalisasi dataset ke -> "+ index);
             for(int i=0; i<7; i++)
             {
                 norm_atas= fitur_ttd[index][i]-min.get(i);
                 norm_bawah= max.get(i)-min.get(i);
                 fitur_ttd_normalisasi[index][i]=norm_atas/norm_bawah;
-
-                //              Log.v("log_tag", "normalisasi atas -> "+ i + "->" + (fitur_ttd[index][i]-min.get(i)));
-                //              Log.v("log_tag", "normalisasi bawa -> "+ i + "->" + (max.get(i)-min.get(i)));
-//               Log.v("log_tag", "normalisasi dataset fitur ke -> "+ i + "->" + fitur_ttd_normalisasi[index][i]);
-
                 if(index==1)
                 {
-//                    Log.v("log_tag", "fitur ttd ke -> "+ i + "->" + fitur_ttd_mhs.get(i));
-//                    Log.v("log_tag", "max ke -> "+ i + "->" + max.get(i));
-//                    Log.v("log_tag", "min ke -> "+ i + "->" + min.get(i));
-
                     norm_atas= fitur_ttd_mhs.get(i)-min.get(i);
                     norm_bawah= max.get(i)-min.get(i);
-//                  Log.v("log_tag", "normalisasi atas ttd -> "+ i + "->" + norm_atas);
-//                  Log.v("log_tag", "normalisasi bawa ttd -> "+ i + "->" + norm_bawah);
                     fitur_ttd_mhs_normalisasi.add(norm_atas/norm_bawah);
-//                  Log.v("log_tag", "normalisasi ttd fitur ke -> "+ i + "->" + fitur_ttd_mhs_normalisasi.get(i));
                 }
 
             }
@@ -555,17 +526,16 @@ public class PencocokanTandaTangan extends AppCompatActivity {
             Log.v("log_tag", "euclidean -> "+ i + "-> " + euclidean.get(i));
         }
 
-
         if(euclidean.get(0)<1 || euclidean.get(1)<1 || euclidean.get(2)<1 || euclidean.get(3)<1 || euclidean.get(4)<1)
         {
+            progressDialog.dismiss();
+            sendStatus();
             TextView verifikasi = (TextView) findViewById(R.id.tv_user_verifikasi_ttd);
             verifikasi.setText("Berhasil Presensi");
-
-            Toast.makeText(this, "Absen Berhasil", Toast.LENGTH_SHORT).show();
-
         }
         else
         {
+            progressDialog.dismiss();
             TextView verifikasi = (TextView) findViewById(R.id.tv_user_verifikasi_ttd);
             verifikasi.setText("Gagal Melakukan Presensi");
 
@@ -575,4 +545,43 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         TextView user_login = (TextView) findViewById(R.id.tv_user_detail_ttd);
         user_login.setText(userTerlogin);
     }
+
+
+    private void sendStatus() {
+
+    StringRequest stringRequest;
+    RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+    stringRequest = new StringRequest(Request.Method.POST, NetworkUtils.CHANGE_STATUS_KEHADIRAN,
+            new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //Showing toast message of the response
+                        Toast.makeText(PencocokanTandaTangan.this, "Verifikasi Kehadiran Berhasil", Toast.LENGTH_SHORT).show();
+                        Log.d("VolleyResponse", "Dapat Response Volley Berhasil Kirim Status Absensi");
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Log.d("VolleyErroyResponse", "Error");
+                        //Showing toast
+                        Toast.makeText(PencocokanTandaTangan.this, volleyError.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                // Adding parameters
+                params.put("id_perkuliahan",idPerkuliahan);
+                params.put("nrp", idUserTerlogin);
+                params.put("status", "M");
+
+                return params;
+            }
+        };
+        //Adding request to the queue
+        VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(stringRequest);
+    }
+
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
     private Toolbar toolbar;
     private String nrpMahasiswa;
     private String namaMahasiswa;
+    private String idPerkuliahan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,9 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
         Intent intent = getIntent();
         nrpMahasiswa = intent.getStringExtra("nrp_mahasiswa");
         namaMahasiswa = intent.getStringExtra("nama_mahasiswa");
+        idPerkuliahan =intent.getStringExtra("id_perkuliahan");
+
+        Log.v("log_tag", "id perkuliahan di menu verifikasi -> " + idPerkuliahan);
 
         TextView tvUserTerlogin = (TextView) findViewById(R.id.tv_user_detail);
         tvUserTerlogin.setText(nrpMahasiswa + " - " + namaMahasiswa);
@@ -72,23 +77,16 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
                     intentToSetTandaTangan.putExtra("id_mahasiswa", nrpMahasiswa);
                     startActivity(intentToSetTandaTangan);
                     break;
-//                case R.id.btn_detection_view:
-//                    Intent intentToDetectionView = new Intent(v.getContext(), DetectionView.class);
-//                    startActivity(intentToDetectionView);
-//                    break;
-//                case R.id.btn_recognition_training:
-//                    Intent intentToTraining = new Intent(v.getContext(), TrainingWajah.class);
-//                    startActivity(intentToTraining);
-//                    break;
+
                 case R.id.btn_verification_ttd_view:
                     Intent intentToSignatureRecognition = new Intent(v.getContext(), VerifikasiTandaTangan.class);
                     intentToSignatureRecognition.putExtra("identitas_mahasiswa", nrpMahasiswa + " - " + namaMahasiswa);
                     intentToSignatureRecognition.putExtra("id_mahasiswa", nrpMahasiswa);
+                    intentToSignatureRecognition.putExtra("nama_mahasiswa", namaMahasiswa);
+                    intentToSignatureRecognition.putExtra("id_perkuliahan", idPerkuliahan);
                     startActivity(intentToSignatureRecognition);
                     break;
             }
         }
     };
-
-
 }

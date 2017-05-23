@@ -88,7 +88,9 @@
     <string name="kelola_data_set_tanda_tangan">Kelola Data set tanda tangan</string>
     <string name="tambah_data_set_tanda_tangan">TAMBAH DATA SET TANDA TANGAN</string>
     <string name="tanda_tangan_disini">TANDA TANGAN DISINI</string>
-    <string name="batal_tandatangan">BATAL</string>
+    <string name="batal_tandatangan">KEMBALI</string>
     <string name="hapus_tandatangan">HAPUS</string>
     <string name="simpan_tandatangan">SIMPAN</string>
+    <string name="sinkronisasi_dataset_tanda_tangan">SINKRONISASI DATASET TANDA TANGAN</string>
+    <string name="header_tambah_dataset_ttd">TANDA TANGAN SEBANYAK 5 KALI</string>
 </resources>
