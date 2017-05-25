@@ -103,38 +103,4 @@
         app:layout_constraintTop_toTopOf="@+id/iv_user_status"
         app:layout_constraintVertical_bias="0.333" />
 
-    <ImageButton
-        android:id="@+id/btn_capture"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_counter"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_counter"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_camera" />
-
-    <Switch
-        android:id="@+id/switch_capture_mode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Capture Mode "
-        android:textOff="Manual"
-        android:textOn="Otomatis"
-        android:layout_marginRight="112dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_tambah_data_set"
-        android:layout_marginTop="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_user_detail"
-        android:layout_marginBottom="0dp" />
-
 </android.support.constraint.ConstraintLayout>

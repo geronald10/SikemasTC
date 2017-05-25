@@ -39,7 +39,9 @@ public class SikemasContract {
 
         public static final String TABLE_NAME = "perkuliahan";
         public static final String KEY_ID_PERKULIAHAN = "perkuliahan_id";
+        public static final String KEY_ID_KELAS = "id_kelas";
         public static final String KEY_STATUS_DOSEN = "status_dosen";
+        public static final String KEY_STATUS_PERKULIAHAN = "status_perkuliahan";
         public static final String KEY_PERTEMUAN_KE = "pertemuan";
         public static final String KEY_TANGGAL_PERKULIAHAN = "tanggal";
         public static final String KEY_KODE_SEMESTER = "kode_semester";
@@ -54,6 +56,12 @@ public class SikemasContract {
         public static Uri buildPerkuliahanUriPerkuliahanId(String perkuliahanId) {
             return CONTENT_URI.buildUpon()
                     .appendPath(perkuliahanId)
+                    .build();
+        }
+
+        public static Uri buildPerkuliahanUriKelasId(String kelasId) {
+            return CONTENT_URI.buildUpon()
+                    .appendPath(kelasId)
                     .build();
         }
     }
@@ -150,7 +158,8 @@ public class SikemasContract {
         public static final String KEY_ID_DOSEN = "id";
         public static final String KEY_ID_KELAS_DOSEN = "id_kelas";
         public static final String KEY_NAMA_DOSEN = "nama";
-        public static final String KEY_KODE_DOSEN = "kose_dosen";
+        public static final String KEY_KODE_DOSEN = "kode_dosen";
+        public static final String KEY_EMAIL_DOSEN = "email";
 
         public static Uri buildDosenUriKelasId(String kelasId) {
             return CONTENT_URI.buildUpon()

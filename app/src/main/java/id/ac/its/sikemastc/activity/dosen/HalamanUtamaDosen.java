@@ -109,7 +109,7 @@ public class HalamanUtamaDosen extends BaseActivity implements
 
         getSupportLoaderManager().initLoader(ID_LIST_PERKULIAHAN_LOADER, null, this);
 
-        SikemasSyncUtils.initializePerkuliahan(this);
+        SikemasSyncUtils.startImmediatePerkuliahanSync(this);
     }
 
     @Override

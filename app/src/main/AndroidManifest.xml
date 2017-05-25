@@ -41,7 +41,7 @@
         <activity android:name=".activity.BaseActivity" />
         <activity android:name=".activity.SettingsActivity" />
 
-        <!-- Dosen Activity Manifest-->
+        <!-- Dosen Activity Manifest -->
         <activity
             android:name=".activity.dosen.HalamanUtamaDosen"
             android:theme="@style/AppNavDrawerMaterialTheme" />
@@ -63,7 +63,6 @@
         <activity
             android:name=".activity.mahasiswa.LihatJadwal"
             android:theme="@style/AppNavDrawerMaterialTheme" />
-        <activity android:name=".activity.mahasiswa.DetailLihatJadwal" />
 
         <!-- Orangtua Activity Manifest -->
         <activity
@@ -72,7 +71,9 @@
         <activity android:name=".activity.orangtua.LihatJadwalMahasiswa" />
 
         <!-- Verifikasi Wajah Activity Manifest -->
-        <activity android:name=".activity.verifikasi_wajah.MenuVerifikasiWajah" />
+        <activity
+            android:name=".activity.verifikasi_wajah.MenuVerifikasiWajah"
+            android:theme="@style/AppMaterialTheme" />
         <activity android:name=".activity.verifikasi_wajah.KelolaDataSetWajah" />
         <activity android:name=".activity.verifikasi_wajah.TrainingWajah" />
         <activity android:name=".activity.verifikasi_wajah.HasilVerifikasi" />
@@ -83,7 +84,7 @@
             android:name=".activity.verifikasi_wajah.TambahDataSetWajah"
             android:screenOrientation="landscape" />
 
-        <!-- Provider Manifest-->
+        <!-- Provider Manifest -->
         <provider
             android:name=".data.SikemasProvider"
             android:authorities="id.ac.its.sikemastc"
@@ -107,24 +108,23 @@
             </intent-filter>
         </service>
         <service
-            android:name=".sync.SikemasSyncPerkuliahanMahasiswaIntentService"
+            android:name=".sync.SikemasSyncSikemasMahasiswaIntentService"
             android:exported="false" />
-        <service
-            android:name=".sync.SikemasSyncKelasMahasiswaIntentService"
-            android:exported="false" />
-        <!--<service-->
-        <!--android:name=".sync.MyFirebaseMessagingService">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.google.firebase.MESSAGING_EVENT"/>-->
-        <!--</intent-filter>-->
-        <!--</service>-->
-        <!--<service-->
-        <!--android:name=".sync.MyFirebaseInstanceIDService"-->
-        <!--android:exported="true">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>-->
-        <!--</intent-filter>-->
-        <!--</service>-->
+        <!-- <service -->
+        <!-- android:name=".sync.MyFirebaseMessagingService"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.firebase.MESSAGING_EVENT"/> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
+        <!-- <service -->
+        <!-- android:name=".sync.MyFirebaseInstanceIDService" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
+        <activity android:name=".activity.verifikasi_wajah.InstruksiTambahDataSetActivity" />
+        <activity android:name=".activity.mahasiswa.DetailPerkuliahanMahasiswa"></activity>
     </application>
 
 </manifest>

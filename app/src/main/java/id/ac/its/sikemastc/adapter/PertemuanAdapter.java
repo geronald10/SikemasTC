@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.dosen.PertemuanKelasFragment;
+import id.ac.its.sikemastc.utilities.SikemasDateUtils;
 
 public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.PertemuanAdapterViewHolder> {
 
@@ -48,12 +49,11 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
 
         String statusDosen = mCursor.getString(PertemuanKelasFragment.INDEX_STATUS_DOSEN);
         String pertemuanKe = mCursor.getString(PertemuanKelasFragment.INDEX_PERTEMUAN_KE);
-        String tanggal = mCursor.getString(PertemuanKelasFragment.INDEX_TANGGAL);
+        String tanggal = SikemasDateUtils.formatDate(mCursor.getString(PertemuanKelasFragment.INDEX_TANGGAL));
         String hari = mCursor.getString(PertemuanKelasFragment.INDEX_HARI);
-        String mulai = mCursor.getString(PertemuanKelasFragment.INDEX_MULAI);
-        String selesai = mCursor.getString(PertemuanKelasFragment.INDEX_SELESAI);
-        String tanggalPertemuan = hari + ", " + tanggal;
-        String waktuPertemuan = mulai + " - " + selesai;
+        String mulai = SikemasDateUtils.formatTime(mCursor.getString(PertemuanKelasFragment.INDEX_MULAI));
+        String selesai = SikemasDateUtils.formatTime(mCursor.getString(PertemuanKelasFragment.INDEX_SELESAI));
+        String waktuPertemuan = "mulai: " + mulai + "\n" + "selesai: " + selesai;
 
         switch (statusDosen) {
             case "1":
@@ -73,7 +73,7 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
                 break;
         }
         pertemuanAdapterViewHolder.tvPertemuanKe.setText(pertemuanKe);
-        pertemuanAdapterViewHolder.tvTanggalPertemuan.setText(tanggalPertemuan);
+        pertemuanAdapterViewHolder.tvTanggalPertemuan.setText(String.valueOf(tanggal));
         pertemuanAdapterViewHolder.tvWaktuPertemuan.setText(waktuPertemuan);
     }
 

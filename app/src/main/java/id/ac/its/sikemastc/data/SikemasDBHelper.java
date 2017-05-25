@@ -80,7 +80,9 @@ public class SikemasDBHelper extends SQLiteOpenHelper {
                 "CREATE TABLE " + SikemasContract.PerkuliahanEntry.TABLE_NAME + " (" +
                         PerkuliahanEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         PerkuliahanEntry.KEY_ID_PERKULIAHAN + " TEXT NOT NULL, " +
+                        PerkuliahanEntry.KEY_ID_KELAS + " TEXT NOT NULL, " +
                         PerkuliahanEntry.KEY_STATUS_DOSEN + " TEXT NOT NULL, " +
+                        PerkuliahanEntry.KEY_STATUS_PERKULIAHAN + " TEXT NOT NULL, " +
                         PerkuliahanEntry.KEY_PERTEMUAN_KE + " TEXT NOT NULL, " +
                         PerkuliahanEntry.KEY_TANGGAL_PERKULIAHAN + " TEXT NOT NULL, " +
                         PerkuliahanEntry.KEY_KODE_SEMESTER + " TEXT NOT NULL, " +
@@ -141,7 +143,8 @@ public class SikemasDBHelper extends SQLiteOpenHelper {
                         DosenEntry.KEY_ID_DOSEN + " TEXT NOT NULL, " +
                         DosenEntry.KEY_ID_KELAS_DOSEN + " TEXT NOT NULL, " +
                         DosenEntry.KEY_KODE_DOSEN + " TEXT NOT NULL, " +
-                        DosenEntry.KEY_NAMA_DOSEN + " TEXT NOT NULL ON CONFLICT REPLACE);";
+                        DosenEntry.KEY_NAMA_DOSEN + " TEXT NOT NULL, " +
+                        DosenEntry.KEY_EMAIL_DOSEN + " TEXT NOT NULL ON CONFLICT REPLACE);";
         sqLiteDatabase.execSQL(SQL_CREATE_DOSEN_TABLE);
     }
 }

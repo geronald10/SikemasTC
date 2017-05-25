@@ -1,9 +1,13 @@
 package id.ac.its.sikemastc.activity.mahasiswa;
 
 import android.content.Intent;
+import android.provider.SyncStateContract;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -44,8 +48,10 @@ public class MainPerkuliahanFragment extends Fragment implements
     private final String TAG = MainPerkuliahanFragment.class.getSimpleName();
 
     private TextView currentDate;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private ProgressBar mLoadingIndicator;
     private RecyclerView mRecyclerView;
+    private ConstraintLayout emptyView;
     private PerkuliahanAktifAdapter mPerkuliahanAktifAdapter;
     private String bundleIdUser;
     private String bundleNamaUser;
@@ -62,23 +68,36 @@ public class MainPerkuliahanFragment extends Fragment implements
             Log.d("bundleIdUser", bundleIdUser);
             Log.d("bundleNamaUser", bundleNamaUser);
         }
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_kelas_aktif);
         mLoadingIndicator = (ProgressBar) view.findViewById(R.id.pb_loading_indicator);
+        emptyView = (ConstraintLayout) view.findViewById(R.id.empty_view);
         currentDate = (TextView) view.findViewById(R.id.tv_tanggal_hari_ini);
+
+        currentDate = (TextView) view.findViewById(R.id.tv_tanggal_hari_ini);
+        currentDate.setText(SikemasDateUtils.getCurrentDate(getActivity()));
+
+        mSwipeRefreshLayout.setColorSchemeColors(
+                ContextCompat.getColor(getContext(), R.color.swipe_color_1),
+                ContextCompat.getColor(getContext(), R.color.swipe_color_2),
+                ContextCompat.getColor(getContext(), R.color.swipe_color_3),
+                ContextCompat.getColor(getContext(), R.color.swipe_color_4));
+
+        LinearLayoutManager layoutManager =
+                new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
 
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        LinearLayoutManager layoutManager =
-                new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        super.onViewCreated(view, savedInstanceState);
 
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setHasFixedSize(true);
-
-        showLoading();
-
+        if (!mSwipeRefreshLayout.isRefreshing()) {
+            showLoading();
+        }
         perkuliahanAktifMahasiswaList = new ArrayList<>();
         getPerkuliahanAktifList(bundleIdUser);
         mPerkuliahanAktifAdapter = new PerkuliahanAktifAdapter(getActivity(), perkuliahanAktifMahasiswaList, this);
@@ -87,23 +106,25 @@ public class MainPerkuliahanFragment extends Fragment implements
         if (perkuliahanAktifMahasiswaList != null) {
             showPerkuliahanAktifDataView();
         } else {
-            Toast.makeText(getActivity(), "Tidak ada perkuliahan yang aktif", Toast.LENGTH_SHORT).show();
+            showEmptyView();
         }
 
-        currentDate = (TextView) view.findViewById(R.id.tv_tanggal_hari_ini);
-        currentDate.setText(SikemasDateUtils.getCurrentDate(getActivity()));
-
-        super.onViewCreated(view, savedInstanceState);
-
-        Button btnCocokanWajah = (Button) view.findViewById(R.id.btn_cocokan_wajah);
-        btnCocokanWajah.setOnClickListener(new View.OnClickListener() {
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MenuVerifikasiWajah.class);
-                intent.putExtra("id_perkuliahan", "1");
-                startActivity(intent);
+            public void onRefresh() {
+                initiateRefresh();
             }
         });
+
+//        Button btnCocokanWajah = (Button) view.findViewById(R.id.btn_cocokan_wajah);
+//        btnCocokanWajah.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), MenuVerifikasiWajah.class);
+//                intent.putExtra("id_perkuliahan", "1");
+//                startActivity(intent);
+//            }
+//        });
     }
 
     @Override
@@ -122,18 +143,32 @@ public class MainPerkuliahanFragment extends Fragment implements
     }
 
     private void showPerkuliahanAktifDataView() {
-        mLoadingIndicator.setVisibility(View.INVISIBLE);
+        mLoadingIndicator.setVisibility(View.GONE);
+        emptyView.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
     }
 
     private void showLoading() {
-        mRecyclerView.setVisibility(View.INVISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
+        emptyView.setVisibility(View.GONE);
         mLoadingIndicator.setVisibility(View.VISIBLE);
+    }
+
+    private void showEmptyView() {
+        mRecyclerView.setVisibility(View.GONE);
+        mLoadingIndicator.setVisibility(View.GONE);
+        emptyView.setVisibility(View.VISIBLE);
+    }
+
+    private void initiateRefresh() {
+        Log.d(TAG, "initiate Refresh");
+        getPerkuliahanAktifList(bundleIdUser);
     }
 
     public void getPerkuliahanAktifList(final String idMahasiswa) {
         Log.d("idMahasiswa", idMahasiswa);
-        showLoading();
+        if (!mSwipeRefreshLayout.isRefreshing())
+            showLoading();
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 NetworkUtils.LIST_KELAS_MAHASISWA_AKTIF,
                 new Response.Listener<String>() {
@@ -142,6 +177,7 @@ public class MainPerkuliahanFragment extends Fragment implements
                         Log.d(TAG, "Peserta Kehadiran Response: " + response);
                         try {
                             mPerkuliahanAktifAdapter.clear();
+
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray listKelasAktif = jsonObject.getJSONArray("listkelas");
                             Log.d("length listkelas", String.valueOf(listKelasAktif.length()));
@@ -168,9 +204,22 @@ public class MainPerkuliahanFragment extends Fragment implements
                                         hari, waktuMulai, waktuSelesai, statusDosen, statusPerkuliahan);
                                 perkuliahanAktifMahasiswaList.add(perkuliahanAktifMahasiswa);
                             }
-                            mPerkuliahanAktifAdapter.notifyDataSetChanged();
-                            showPerkuliahanAktifDataView();
-                            Toast.makeText(getActivity(), "Berhasil Memuat Perkuliahan Aktif", Toast.LENGTH_LONG).show();
+
+                            if (mSwipeRefreshLayout.isRefreshing()) {
+                                mSwipeRefreshLayout.setRefreshing(false);
+                            }
+
+                            if (listKelasAktif.length() == 0) {
+                                mPerkuliahanAktifAdapter.notifyDataSetChanged();
+                                showEmptyView();
+                                Toast.makeText(getActivity(), "Tidak ada Perkuliahan aktif yang dimuat",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                mPerkuliahanAktifAdapter.notifyDataSetChanged();
+                                showPerkuliahanAktifDataView();
+                                Toast.makeText(getActivity(), "Berhasil Memuat Perkuliahan Aktif",
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getActivity(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();

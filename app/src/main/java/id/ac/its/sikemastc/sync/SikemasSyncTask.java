@@ -124,11 +124,10 @@ public class SikemasSyncTask {
         try {
             SikemasSessionManager session = new SikemasSessionManager(context);
             HashMap<String, String> mahasiswa = session.getUserDetails();
-            Log.d("SyncTask perkuliahan", mahasiswa.get(SikemasSessionManager.KEY_USER_CODE));
+            Log.d("SyncTask perkuliahan", mahasiswa.get(SikemasSessionManager.KEY_USER_ID));
 
-//            String jsonPerkuliahanMahasiswa = NetworkUtils.getResponseListPerkuliahanMahasiswa(context,
-//                    mahasiswa.get(SikemasSessionManager.KEY_USER_CODE));
-            String jsonPerkuliahanMahasiswa = NetworkUtils.getResponseListPerkuliahanMahasiswa(context, "5113100050");
+            String jsonPerkuliahanMahasiswa = NetworkUtils.getResponseListPerkuliahanMahasiswa(context,
+                    mahasiswa.get(SikemasSessionManager.KEY_USER_ID));
             Log.d("jsonPerkuliahan", jsonPerkuliahanMahasiswa);
 
             ContentValues[] perkuliahanMahasiswaValues = SikemasJsonUtils

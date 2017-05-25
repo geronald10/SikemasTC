@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -58,8 +59,8 @@ public class TambahDataSetWajah extends AppCompatActivity implements CameraBridg
     private boolean night_portrait;
     private int exposure_compensation;
 
-    private Switch switchCaptureMode;
-    private ImageButton btnCapture;
+//    private Switch switchCaptureMode;
+//    private ImageButton btnCapture;
     private ImageView capturedImagePreview;
     private TextView counter;
     private TextView userTerlogin;
@@ -75,6 +76,7 @@ public class TambahDataSetWajah extends AppCompatActivity implements CameraBridg
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         setContentView(R.layout.activity_tambah_data_set_wajah);
 
         flagStatus = getSharedPreferences("flag_status", 0);
@@ -90,34 +92,39 @@ public class TambahDataSetWajah extends AppCompatActivity implements CameraBridg
         }
         name = intent.getStringExtra("user_terlogin");
         method = intent.getIntExtra("method", 0);
-        switchCaptureMode = (Switch) findViewById(R.id.switch_capture_mode);
-        btnCapture = (ImageButton) findViewById(R.id.btn_capture);
+//        switchCaptureMode = (Switch) findViewById(R.id.switch_capture_mode);
+//        btnCapture = (ImageButton) findViewById(R.id.btn_capture);
 
-        switchCaptureMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    method = TIME;
-                    Toast.makeText(getApplicationContext(), "Menambahkan gambar secara OTOMATIS",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    method = MANUALLY;
-                    Toast.makeText(getApplicationContext(), "Menambahkan gambar secara MANUAL",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        switchCaptureMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    method = TIME;
+//                    Toast.makeText(getApplicationContext(), "Menambahkan gambar secara OTOMATIS",
+//                            Toast.LENGTH_SHORT).show();
+//                } else {
+//                    method = MANUALLY;
+//                    Toast.makeText(getApplicationContext(), "Menambahkan gambar secara MANUAL",
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
+//        if (method == MANUALLY) {
+//            btnCapture.setVisibility(View.VISIBLE);
+//            btnCapture.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    capturePressed = true;
+//                }
+//            });
+//        } else {
+//            btnCapture.setVisibility(View.GONE);
+//            capturePressed = false;
+//        }
         if (method == MANUALLY) {
-            btnCapture.setVisibility(View.VISIBLE);
-            btnCapture.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    capturePressed = true;
-                }
-            });
+            capturePressed = true;
         } else {
-            btnCapture.setVisibility(View.GONE);
             capturePressed = false;
         }
 

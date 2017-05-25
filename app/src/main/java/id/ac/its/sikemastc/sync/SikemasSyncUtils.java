@@ -110,13 +110,9 @@ public class SikemasSyncUtils {
         context.startService(intentToSyncImmediately);
     }
 
+    // Services For Sikemas User Log in Mahasiswa
     public static void startImmediatePerkuliahanMahasiswaSync(Context context) {
-        Intent intentToSyncImmediately = new Intent(context, SikemasSyncPerkuliahanMahasiswaIntentService.class);
-        context.startService(intentToSyncImmediately);
-    }
-
-    public static void startImmediateKelasMahasiswaSync(Context context) {
-        Intent intentToSyncImmediately = new Intent(context, SikemasSyncKelasMahasiswaIntentService.class);
+        Intent intentToSyncImmediately = new Intent(context, SikemasSyncSikemasMahasiswaIntentService.class);
         context.startService(intentToSyncImmediately);
     }
 }

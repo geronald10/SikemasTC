@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,7 @@ public class HasilVerifikasi extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         setContentView(R.layout.activity_hasil_verifikasi);
 
         Intent intent = getIntent();
@@ -116,6 +118,9 @@ public class HasilVerifikasi extends AppCompatActivity {
                 params.put("id_perkuliahan", idPerkuliahan);
                 params.put("id_mahasiswa", nrpMahasiswa);
                 params.put("ket_kehadiran", ketKehadiran);
+                Log.d("id_perkuliahan", idPerkuliahan);
+                Log.d("id_mahasiswa", nrpMahasiswa);
+                Log.d("ket_kehadiran", ketKehadiran);
                 return params;
             }
         };

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
@@ -54,6 +55,7 @@ public class KelolaDataSetWajah extends AppCompatActivity {
 
     private String userTerlogin;
     private String userId;
+    private String idPerkuliahan;
     private ArrayList<String> imageUrlList;
     private ArrayList<String> encodedImageList;
     private FileHelper fh;
@@ -72,6 +74,7 @@ public class KelolaDataSetWajah extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         setContentView(R.layout.activity_kelola_data_set_wajah);
         mContext = this;
 
@@ -98,6 +101,7 @@ public class KelolaDataSetWajah extends AppCompatActivity {
         Intent intent = getIntent();
         userTerlogin = intent.getStringExtra("identitas_mahasiswa");
         userId = intent.getStringExtra("id_mahasiswa");
+        idPerkuliahan = intent.getStringExtra("id_perkuliahan");
 
         tvUserTerlogin = (TextView) findViewById(R.id.tv_user_detail);
         tvJumlahDataSet = (TextView) findViewById(R.id.tv_data_set);
@@ -122,10 +126,10 @@ public class KelolaDataSetWajah extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_tambah_data_set_wajah:
-                    Intent intentToStart = new Intent(v.getContext(), TambahDataSetWajah.class);
+                    Intent intentToStart = new Intent(v.getContext(), InstruksiTambahDataSetActivity.class);
                     intentToStart.putExtra("user_terlogin", userTerlogin);
                     intentToStart.putExtra("method", TambahDataSetWajah.TIME);
-                    intentToStart.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intentToStart.putExtra("id_perkuliahan", idPerkuliahan);
                     // Add dataset photos to "Training" folder
                     FileHelper newFile = new FileHelper();
                     if (isNameAlreadyUsed(newFile.getTrainingList(), userTerlogin)) {
@@ -137,11 +141,17 @@ public class KelolaDataSetWajah extends AppCompatActivity {
                     }
                     break;
                 case R.id.btn_sinkronisasi_dataset:
-                    sinkronisasiDataSet(userId);
+                    if (getJumlahDataSet() < 20) {
+                        sinkronisasiDataSet(userId);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Data Set Wajah Ditemukan Sama Dengan Data Set Server Server",
+                                Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case R.id.btn_train_data_set_wajah:
                     if (!flagStatus.getBoolean("training_flag", true)) {
                         Intent intentToTraining = new Intent(v.getContext(), TrainingWajah.class);
+                        intentToTraining.putExtra("id_perkuliahan", idPerkuliahan);
                         startActivity(intentToTraining);
                     } else {
                         Toast.makeText(getApplication(), "Fitur Training Data Set tidak dapat " +
@@ -418,10 +428,10 @@ public class KelolaDataSetWajah extends AppCompatActivity {
                 btnTambahDataSet.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
             } else {
                 btnSinkronisasi.setCompoundDrawablesWithIntrinsicBounds(null,
-                        ResourcesCompat.getDrawable(getResources(), R.drawable.ic_check_circle, null), null, null);
+                        ContextCompat.getDrawable(this, R.drawable.ic_check_circle), null, null);
                 btnSinkronisasi.setTextColor(ContextCompat.getColor(this, R.color.colorSecondaryText));
                 btnTambahDataSet.setCompoundDrawablesWithIntrinsicBounds(null,
-                        ResourcesCompat.getDrawable(getResources(), R.drawable.ic_check_circle, null), null, null);
+                        ContextCompat.getDrawable(this, R.drawable.ic_check_circle), null, null);
                 btnTambahDataSet.setTextColor(ContextCompat.getColor(this, R.color.colorSecondaryText));
             }
 

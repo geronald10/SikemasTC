@@ -3,7 +3,7 @@
     package="ch.zhaw.facerecognitionlibrary.test" >
 
     <uses-sdk
-        android:minSdkVersion="16"
+        android:minSdkVersion="18"
         android:targetSdkVersion="25" />
 
     <instrumentation

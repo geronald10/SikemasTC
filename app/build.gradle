@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "id.ac.its.sikemastc"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -44,6 +44,8 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:10.2.6'
     testCompile 'junit:junit:4.12'
 }
+
+
 
 
 apply plugin: 'com.google.gms.google-services'

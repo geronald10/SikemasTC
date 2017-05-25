@@ -6,8 +6,10 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +39,7 @@ public class MenuVerifikasiWajah extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         setContentView(R.layout.activity_menu_verifikasi_wajah);
         mContext = this;
         session = new SikemasSessionManager(this);
@@ -89,7 +92,9 @@ public class MenuVerifikasiWajah extends AppCompatActivity {
                     Intent intentToSetWajah = new Intent(v.getContext(), KelolaDataSetWajah.class);
                     intentToSetWajah.putExtra("identitas_mahasiswa", nrpMahasiswa + " - " + namaMahasiswa);
                     intentToSetWajah.putExtra("id_mahasiswa", nrpMahasiswa);
+                    intentToSetWajah.putExtra("id_perkuliahan", idPerkuliahan);
                     startActivity(intentToSetWajah);
+                    finish();
                     break;
                 case R.id.btn_verification_view:
                     if (!flagStatus.getBoolean("training_flag", false)) {
@@ -101,6 +106,7 @@ public class MenuVerifikasiWajah extends AppCompatActivity {
                         intentToRecognition.putExtra("identitas_mahasiswa", nrpMahasiswa + " - " + namaMahasiswa);
                         intentToRecognition.putExtra("id_perkuliahan", idPerkuliahan);
                         startActivity(intentToRecognition);
+                        finish();
                     }
                     break;
             }
@@ -108,7 +114,8 @@ public class MenuVerifikasiWajah extends AppCompatActivity {
     };
 
     private void checkDataSetStatus() {
-        if (!flagStatus.getBoolean("training_flag", false)) {
+        boolean flag = flagStatus.getBoolean("training_flag", false);
+        if (!flag) {
             btnVerifikasiWajah.setCompoundDrawablesWithIntrinsicBounds(
                     ContextCompat.getDrawable(mContext, R.drawable.ic_error_outline), null, null, null);
             btnVerifikasiWajah.setTextColor(ContextCompat.getColor(mContext, R.color.colorSecondaryText));

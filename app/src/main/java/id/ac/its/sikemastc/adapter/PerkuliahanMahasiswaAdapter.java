@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.mahasiswa.ListPerkuliahanFragment;
 import id.ac.its.sikemastc.utilities.SikemasDateUtils;
@@ -20,7 +22,7 @@ public class PerkuliahanMahasiswaAdapter extends RecyclerView.Adapter<Perkuliaha
     final private PerkuliahanMahasiswaAdapterOnClickHandler mClickHandler;
 
     public interface PerkuliahanMahasiswaAdapterOnClickHandler {
-        void onClick(int itemId, String idListKelas, String mataKuliah, String kodeKelas);
+        void onClick(String idKelas, String idPerkuliahan);
     }
 
     public PerkuliahanMahasiswaAdapter(Context context, PerkuliahanMahasiswaAdapterOnClickHandler clickHandler) {
@@ -37,7 +39,7 @@ public class PerkuliahanMahasiswaAdapter extends RecyclerView.Adapter<Perkuliaha
         String tanggalPerkuliahan = SikemasDateUtils.formatDate(mCursor.getString(ListPerkuliahanFragment.INDEX_TANGGAL_PERKULIAHAN));
         String mataKuliah = mCursor.getString(ListPerkuliahanFragment.INDEX_NAMA_MK);
         String ruangKuliah = mCursor.getString(ListPerkuliahanFragment.INDEX_NAMA_RUANGAN);
-        String kodeKkelas = mCursor.getString(ListPerkuliahanFragment.INDEX_KODE_KELAS);
+        String kodeKelas = mCursor.getString(ListPerkuliahanFragment.INDEX_KODE_KELAS);
         String waktuMulai = SikemasDateUtils.formatTime(mCursor.getString(ListPerkuliahanFragment.INDEX_MULAI));
         String waktuSelesai = SikemasDateUtils.formatTime(mCursor.getString(ListPerkuliahanFragment.INDEX_SELESAI));
 
@@ -92,10 +94,9 @@ public class PerkuliahanMahasiswaAdapter extends RecyclerView.Adapter<Perkuliaha
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
             mCursor.moveToPosition(adapterPosition);
+            String idKelas = mCursor.getString(ListPerkuliahanFragment.INDEX_ID_KELAS);
             String idPerkuliahan = mCursor.getString(ListPerkuliahanFragment.INDEX_ID_PERKULIAHAN);
-            String mataKuliah = mCursor.getString(ListPerkuliahanFragment.INDEX_NAMA_MK);
-            String kodeKelas = mCursor.getString(ListPerkuliahanFragment.INDEX_KODE_KELAS);
-            mClickHandler.onClick(0, idPerkuliahan, mataKuliah, kodeKelas);
+            mClickHandler.onClick(idKelas, idPerkuliahan);
         }
     }
 }

@@ -25,6 +25,7 @@ public class SikemasProvider extends ContentProvider {
     public static final int CODE_USER = 500;
     public static final int CODE_PERTEMUAN = 600;
     public static final int CODE_PERTEMUAN_WITH_ID = 601;
+    public static final int CODE_DOSEN = 700;
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private SikemasDBHelper mOpenHelper;
@@ -45,6 +46,7 @@ public class SikemasProvider extends ContentProvider {
         matcher.addURI(authority, SikemasContract.PATH_PESERTA + "/#", CODE_PESERTA_WITH_ID);
         matcher.addURI(authority, SikemasContract.PATH_PERTEMUAN, CODE_PERTEMUAN);
         matcher.addURI(authority, SikemasContract.PATH_PERTEMUAN + "/#", CODE_PERTEMUAN_WITH_ID);
+        matcher.addURI(authority, SikemasContract.PATH_DOSEN, CODE_DOSEN);
 
         return matcher;
     }
@@ -155,6 +157,25 @@ public class SikemasProvider extends ContentProvider {
                 }
                 return pesertaInserted;
 
+            case CODE_DOSEN:
+                db.beginTransaction();
+                int dosenInserted = 0;
+                try {
+                    for (ContentValues value : values) {
+                        long _id = db.insert(SikemasContract.DosenEntry.TABLE_NAME, null, value);
+                        if (_id != -1) {
+                            dosenInserted++;
+                        }
+                    }
+                    db.setTransactionSuccessful();
+                } finally {
+                    db.endTransaction();
+                }
+                if (dosenInserted > 0) {
+                    getContext().getContentResolver().notifyChange(uri, null);
+                }
+                return dosenInserted;
+
             default:
                 return super.bulkInsert(uri, values);
         }
@@ -251,7 +272,16 @@ public class SikemasProvider extends ContentProvider {
                         null,
                         sortOrder);
                 break;
-
+            case CODE_DOSEN:
+                cursor = mOpenHelper.getReadableDatabase().query(
+                        SikemasContract.DosenEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder);
+                break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -278,7 +308,7 @@ public class SikemasProvider extends ContentProvider {
             selection = "1";
         switch (sUriMatcher.match(uri)) {
             case CODE_DB_ALL:
-                mOpenHelper.close();
+//                mOpenHelper.close();
                 Context context = getContext();
                 context.deleteDatabase(SikemasContract.DATABASE_NAME);
                 mOpenHelper = new SikemasDBHelper(context);
@@ -326,12 +356,19 @@ public class SikemasProvider extends ContentProvider {
                         selectionArgs
                 );
                 break;
+            case CODE_DOSEN:
+                numRowsDeleted = mOpenHelper.getWritableDatabase().delete(
+                        SikemasContract.DosenEntry.TABLE_NAME,
+                        selection,
+                        selectionArgs
+                );
+                break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
         if (numRowsDeleted != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
-            mOpenHelper.getWritableDatabase().close();
+//            mOpenHelper.getWritableDatabase().close();
         }
         return numRowsDeleted;
     }

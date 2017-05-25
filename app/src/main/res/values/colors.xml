@@ -29,4 +29,47 @@
     <color name="colorSuccessControlActivated">#4CAF50</color>
     <color name="colorSuccessUnselect">#E0E0E0</color>
 
+    <color name="swipe_color_1">#FFEE58</color>
+    <color name="swipe_color_2">#FFEB3B</color>
+    <color name="swipe_color_3">#FDD835</color>
+    <color name="swipe_color_4">#FBC02D</color>
+
+    <color name="color_screen_1">#FF6400</color>
+    <color name="color_screen_2">#FFC700</color>
+    <color name="color_screen_3">#72C800</color>
+    <color name="color_screen_4">#00A3CA</color>
+    <color name="color_screen_5">#0007A8</color>
+    <color name="color_screen_6">#EF0081</color>
+
+    <color name="dot_dark_screen_1">#B71C1C</color>
+    <color name="dot_dark_screen_2">#FF6F00</color>
+    <color name="dot_dark_screen_3">#33691E</color>
+    <color name="dot_dark_screen_4">#0D47A1</color>
+    <color name="dot_dark_screen_5">#1A237E</color>
+    <color name="dot_dark_screen_6">#880E4F</color>
+
+    <color name="dot_light_screen_1">#FFCDD2</color>
+    <color name="dot_light_screen_2">#FFECB3</color>
+    <color name="dot_light_screen_3">#DCEDC8</color>
+    <color name="dot_light_screen_4">#BBDEFB</color>
+    <color name="dot_light_screen_5">#C5CAE9</color>
+    <color name="dot_light_screen_6">#F8BBD0</color>
+
+    <array name="dot_active">
+        <item>@color/dot_light_screen_1</item>
+        <item>@color/dot_light_screen_2</item>
+        <item>@color/dot_light_screen_3</item>
+        <item>@color/dot_light_screen_4</item>
+        <item>@color/dot_light_screen_5</item>
+        <item>@color/dot_light_screen_6</item>
+    </array>
+
+    <array name="dot_inactive">
+        <item>@color/dot_dark_screen_1</item>
+        <item>@color/dot_dark_screen_2</item>
+        <item>@color/dot_dark_screen_3</item>
+        <item>@color/dot_dark_screen_4</item>
+        <item>@color/dot_dark_screen_5</item>
+        <item>@color/dot_dark_screen_6</item>
+    </array>
 </resources>

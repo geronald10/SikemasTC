@@ -79,7 +79,7 @@ public class LihatJadwal extends BaseActivity implements
 
         getSupportLoaderManager().initLoader(ID_LIST_KELAS_MAHASISWA_LOADER, null, this);
 
-        SikemasSyncUtils.startImmediateKelasMahasiswaSync(this);
+        SikemasSyncUtils.startImmediatePerkuliahanMahasiswaSync(this);
     }
 
     @Override
@@ -128,8 +128,8 @@ public class LihatJadwal extends BaseActivity implements
 
     @Override
     public void onClick(String idKelas) {
-        Intent intentToDetailJadwal = new Intent(LihatJadwal.this, DetailLihatJadwal.class);
-        intentToDetailJadwal.putExtra("id_kelas", idKelas);
-        startActivity(intentToDetailJadwal);
+//        Intent intentToDetailJadwal = new Intent(LihatJadwal.this, DetailLihatJadwal.class);
+//        intentToDetailJadwal.putExtra("id_kelas", idKelas);
+//        startActivity(intentToDetailJadwal);
     }
 }

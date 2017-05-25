@@ -4,11 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.Environment;
 import android.util.Log;
 
+import java.io.File;
 import java.util.HashMap;
 
+import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import id.ac.its.sikemastc.activity.LoginActivity;
+import id.ac.its.sikemastc.activity.verifikasi_wajah.KelolaDataSetWajah;
 import id.ac.its.sikemastc.sync.SikemasSyncTask;
 
 public class SikemasSessionManager {
@@ -82,6 +86,7 @@ public class SikemasSessionManager {
 
         // Staring Login Activity
         _context.startActivity(intent);
+        deleteFaceRecognitionLocalData();
 
         // Destroy the database
         SikemasSyncTask.syncLogoutSession(_context);
@@ -89,5 +94,18 @@ public class SikemasSessionManager {
 
     public boolean isLoggedIn() {
         return pref.getBoolean(KEY_IS_LOGGED_IN, false);
+    }
+
+    private void deleteFaceRecognitionLocalData() {
+        File fileOrDirectory = new File(Environment.getExternalStoragePublicDirectory
+                (Environment.DIRECTORY_PICTURES) + "/facerecognition/");
+        deleteRecursive(fileOrDirectory);
+    }
+
+    private void deleteRecursive(File fileOrDirectory) {
+        if (fileOrDirectory.isDirectory())
+            for (File child : fileOrDirectory.listFiles())
+                deleteRecursive(child);
+        fileOrDirectory.delete();
     }
 }

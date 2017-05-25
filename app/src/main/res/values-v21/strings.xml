@@ -103,4 +103,8 @@
     <string name="btn_upload_file_label">Upload File</string>
     <string name="judul_jawal_aktif_kosong">Jadwal Perkuliahan Aktif Tidak Ditemukan</string>
     <string name="subjudul_jadwal_aktif_kosong">Jadwal aktif kosong, kemungkinan jadwal perkuliahan belum diaktifkan atau tidak ada perkuliahan</string>
+    <string name="email_nrp_nip_prompt_label">Email / NRP / NIP</string>
+    <string name="perkuliahan_belum_aktif">Perkuliahan Belum Aktif</string>
+    <string name="perkuliahan_aktif">Perkuliahan Sedang Aktif</string>
+    <string name="perkuliahan_ditunda">Perkuliahan Ditunda</string>
 </resources>

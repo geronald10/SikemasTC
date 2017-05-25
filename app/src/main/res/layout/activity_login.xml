@@ -105,8 +105,9 @@
             android:id="@+id/edt_email_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/email_prompt_label"
-            android:inputType="textEmailAddress"
+            android:hint="@string/email_nrp_nip_prompt_label"
+            android:imeOptions="actionNext"
+            android:inputType="text"
             android:textColor="@color/colorAccent" />
 
     </android.support.design.widget.TextInputLayout>
@@ -124,8 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_prompt_label"
-            android:imeActionId="@+id/login"
-            android:imeOptions="actionUnspecified"
+            android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:textColor="@color/colorAccent" />
 

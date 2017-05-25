@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
@@ -68,6 +69,7 @@ public class VerifikasiWajah extends AppCompatActivity implements CameraBridgeVi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "called onCreate");
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_face_verification);

@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -44,6 +45,7 @@ public class TrainingWajah extends AppCompatActivity {
 
     private static final String TAG = "Training";
     private SharedPreferences flagStatus;
+    private String idPerkuliahan;
 
     TextView progress;
     Thread thread;
@@ -57,8 +59,12 @@ public class TrainingWajah extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         setContentView(R.layout.activity_face_training);
         flagStatus = getSharedPreferences("flag_status", 0);
+
+        Intent intent = getIntent();
+        idPerkuliahan = intent.getStringExtra("id_perkuliahan");
 
         progress = (TextView) findViewById(R.id.tv_training_progress);
         progress.setMovementMethod(new ScrollingMovementMethod());
@@ -194,6 +200,7 @@ public class TrainingWajah extends AppCompatActivity {
                                 }
                             }
                             final Intent intent = new Intent(getApplicationContext(), MenuVerifikasiWajah.class);
+                            intent.putExtra("id_perkuliahan", idPerkuliahan);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             if (rec.train()) {
                                 intent.putExtra("training", "Training successful");
