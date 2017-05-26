@@ -59,6 +59,7 @@ public class HalamanUtamaDosen extends BaseActivity implements
 
         progressDialog = new ProgressDialog(mContext);
         progressDialog.setCancelable(false);
+
         HashMap<String, String> dosen = session.getUserDetails();
         String kodeDosen = dosen.get(SikemasSessionManager.KEY_KODE_DOSEN);
 

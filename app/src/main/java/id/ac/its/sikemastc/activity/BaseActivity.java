@@ -57,7 +57,7 @@ public class BaseActivity extends AppCompatActivity implements
         String userId = userDetail.get(SikemasSessionManager.KEY_USER_ID);
         String userRole = userDetail.get(SikemasSessionManager.KEY_USER_ROLE);
         String kodeDosen = userDetail.get(SikemasSessionManager.KEY_KODE_DOSEN);
-        Log.d("kodeDosen", kodeDosen);
+//        Log.d("kodeDosen", kodeDosen);
         if (checkedDrawerItemId == 0) {
             if (userRole.equals("1"))
                 checkedDrawerItemId = R.id.item_home_dosen;
