@@ -43,7 +43,8 @@ public class TambahDataSetTandaTangan extends AppCompatActivity {
     Bitmap bitmap;
     int clickcount=0;
     Toolbar toolbar1;
-    String StoredPath;
+    private String DIRECTORY;
+    private File dir;
     private String userTerlogin;
     private TextView userLogin;
 
@@ -52,11 +53,15 @@ public class TambahDataSetTandaTangan extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kelola_data_set_tandatangan);
+  //      setContentView(R.layout.activity_kelola_data_set_tandatangan);
 
         Intent intent = getIntent();
         userTerlogin = intent.getStringExtra("user_terlogin"); //nrp-nama
         Log.v("log_tag", "user ter login di tambahdatasettandatangan -> " + userTerlogin);
+
+
+        //folder
+        DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signatureverification/"+userTerlogin;
 
         toolbar1 = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar1);
@@ -109,13 +114,20 @@ public class TambahDataSetTandaTangan extends AppCompatActivity {
         btn_tambah_tandatangan_cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.v("log_tag", "Panel Canceled");
-                Intent intentKembali = new Intent(v.getContext(), KelolaDataSetTandaTangan.class);
-                intentKembali.putExtra("identitas_mahasiswa", userTerlogin);
-                startActivity(intentKembali);
-                dialog.dismiss();
 
-                // Calling the same class
-                //recreate();
+                File[] files = dir.listFiles();
+                int numberOfFiles = files.length;
+
+                if(numberOfFiles != 5){
+                    Toast.makeText(TambahDataSetTandaTangan.this, "Dataset kurang dari 5, Dataset tersimpan -> " + numberOfFiles, Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Intent intentKembali = new Intent(v.getContext(), KelolaDataSetTandaTangan.class);
+                    intentKembali.putExtra("identitas_mahasiswa", userTerlogin);
+                    startActivity(intentKembali);
+                    dialog.dismiss();
+                }
             }
         });
 
@@ -135,7 +147,7 @@ public class TambahDataSetTandaTangan extends AppCompatActivity {
 
                     Log.v("log_tag", "Panel Saved");
                     view.setDrawingCacheEnabled(true);
-                    mSignature.save(view, StoredPath);
+                    mSignature.save(view);
                     Toast.makeText(getApplicationContext(), "Sukses Simpan Dataset Tanda Tangan ke- " + clickcount, Toast.LENGTH_SHORT).show();
                     // Calling the same class
                 }
@@ -168,7 +180,7 @@ public class TambahDataSetTandaTangan extends AppCompatActivity {
             paint.setStrokeWidth(STROKE_WIDTH);
         }
 
-        public void save(View v, String StoredPath) {
+        public void save(View v) {
             Log.v("log_tag", "Width: " + v.getWidth());
             Log.v("log_tag", "Height: " + v.getHeight());
 
@@ -179,8 +191,7 @@ public class TambahDataSetTandaTangan extends AppCompatActivity {
                 Canvas canvas = new Canvas(bitmap);
                 try {
                     // Output the file
-                    String DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signatureverification/"+userTerlogin;
-                    File dir = new File(DIRECTORY);
+                    dir = new File(DIRECTORY);
                     String filename = userTerlogin+ "-" + clickcount+ ".png";
                     if(!dir.exists())
                     {
@@ -194,7 +205,6 @@ public class TambahDataSetTandaTangan extends AppCompatActivity {
                     Log.v("log_tag", "dir ->" + dir);
                     Log.v("log_tag", "filename ->" + filename);
 
-                    // FileOutputStream mFileOutStream = new FileOutputStream(StoredPath);
                     FileOutputStream mFileOutStream = new FileOutputStream(myFile);
                     v.draw(canvas);
 

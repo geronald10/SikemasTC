@@ -69,26 +69,23 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
     private Toolbar toolbar;
     private String DIRECTORY;
     private String StoredPath;
-
+    private File dir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kelola_data_set_tandatangan);
         mContext = this;
-
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         // Progress Dialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
 
-        //flag status
-       // flagStatus = getSharedPreferences("flag_status", 0);
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Kelola Data Set");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+
         // Compatibility
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             toolbar.setElevation(10f);
@@ -102,13 +99,11 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
 
         Intent intent = getIntent();
         userTerlogin = intent.getStringExtra("identitas_mahasiswa"); //nrp_nama
-        userId = intent.getStringExtra("id_mahasiswa"); //nrp
 
-//        String training = intent.getStringExtra("training");
-//        if (training != null && !training.isEmpty()) {
-//            Toast.makeText(getApplicationContext(), training, Toast.LENGTH_SHORT).show();
-//            intent.removeExtra("training");
-//        }
+        //folder
+        DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/signatureverification/";
+        StoredPath = DIRECTORY + userTerlogin;
+        dir = new File(StoredPath);
 
         tvUserTerlogin = (TextView) findViewById(R.id.tv_user_detail);
         tvJumlahDataSet = (TextView) findViewById(R.id.tv_data_set);
@@ -126,6 +121,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
 
         int jml_data_set = getJumlahDataSetTandaTangan();
         tvJumlahDataSet.setText(String.valueOf(jml_data_set));
+
     }
 
     View.OnClickListener operate = new View.OnClickListener() {
@@ -133,22 +129,17 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_tambah_data_set_tandatangan:
-                    Intent intentToStart = new Intent(v.getContext(), TambahDataSetTandaTangan.class);
-                    intentToStart.putExtra("user_terlogin", userTerlogin);
-                    Log.v("log_tag", "user terlogin di keloladatasettandatangan" + userTerlogin);
-
-                 //   intentToStart.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                    // Add dataset photos to "Training" folder
-                //    FileHelper newFile = new FileHelper();
-
-//                    if (isNameAlreadyUsed(newFile.getTrainingList(), userTerlogin)) {
-//                        Log.d("TrainingList", String.valueOf(newFile.getTrainingList()));
-//                        Toast.makeText(getApplicationContext(), "Data Set Tanda Tangan Ditemukan", Toast.LENGTH_SHORT).show();
-//                    } else {
-                //    intentToStart.putExtra("Folder", "Training");
-                      startActivityForResult(intentToStart, 1);
-//                    }
+                    File[] files = dir.listFiles();
+                    int numberOfFiles = files.length;
+                    if (numberOfFiles == 5) {
+                        Toast.makeText(mContext, "Dataset Gambar Tanda Tangan Sudah Ada", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Intent intentToStart = new Intent(v.getContext(), TambahDataSetTandaTangan.class);
+                        intentToStart.putExtra("user_terlogin", userTerlogin);
+                        Log.v("log_tag", "user terlogin di keloladatasettandatangan" + userTerlogin);
+                        startActivityForResult(intentToStart, 1);
+                    }
                     break;
 
                 case R.id.btn_sinkronisasi_tandatangan:
@@ -156,9 +147,14 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                     break;
 
                 case R.id.btn_upload_file_ttd:
-                    encodedImageList = new ArrayList<>();
-                    encodedImageList = getAllEncodedImageFormat();
-                    uploadImages(encodedImageList);
+                    if (!dir.exists()) {
+                        Toast.makeText(mContext, "Dataset Gambar Tanda Tangan Kosong", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        encodedImageList = new ArrayList<>();
+                        encodedImageList = getAllEncodedImageFormat();
+                        uploadImages(encodedImageList);
+                    }
                     break;
             }
         }
@@ -183,12 +179,8 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
     }
 
     public int getJumlahDataSetTandaTangan() {
-        DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/signatureverification/";
-        StoredPath = DIRECTORY + userTerlogin;
-
-        File dir = new File(StoredPath);
         if (!dir.exists()) {
-            Log.d("->", "masuk if");
+            Log.d("->", "directory kosong");
             return 0;
         } else {
             File[] files = dir.listFiles();
@@ -196,10 +188,6 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
             Log.d("->","masuk else -> " + numberOfFiles);
             return numberOfFiles;
         }
-
-//        FileHelper imageFiles = new FileHelper(userTerlogin);
-//        File[] imageList = imageFiles.getTrainingList();
-//        return imageList.length;
 
     }
 

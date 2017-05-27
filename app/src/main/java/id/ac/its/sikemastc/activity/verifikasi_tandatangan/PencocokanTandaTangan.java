@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +38,7 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.imgproc.Moments;
 import org.w3c.dom.Text;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -544,7 +547,24 @@ public class PencocokanTandaTangan extends AppCompatActivity {
 
         TextView user_login = (TextView) findViewById(R.id.tv_user_detail_ttd);
         user_login.setText(userTerlogin);
+
+        Button finish = (Button) findViewById(R.id.btn_finish_verifikasi_ttd);
+        finish.setOnClickListener(operate);
     }
+
+    View.OnClickListener operate = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.btn_finish_verifikasi_ttd:
+                    Intent intentToStart = new Intent(getBaseContext(), TambahDataSetTandaTangan.class);
+                    startActivityForResult(intentToStart, 1);
+                    finish();
+                    break;
+            }
+        }
+    };
+
 
 
     private void sendStatus() {

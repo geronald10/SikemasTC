@@ -194,8 +194,7 @@ public class MainPerkuliahanFragment extends Fragment implements
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getActivity(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }) {
             @Override

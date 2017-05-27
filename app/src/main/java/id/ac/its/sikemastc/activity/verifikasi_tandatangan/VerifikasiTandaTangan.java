@@ -115,7 +115,7 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_menu_verifikasi_tandatangan);
+  //     setContentView(R.layout.activity_menu_verifikasi_tandatangan);
 
         // Setting ToolBar as ActionBar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -176,16 +176,16 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
         btn_tambah_tandatangan_cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.v("log_tag", "Panel Canceled");
-                Intent intentKembali = new Intent(v.getContext(), MenuVerifikasiTandaTangan.class);
-                intentKembali.putExtra("identitas_mahasiswa", userTerlogin);
-                intentKembali.putExtra("nrp_mahasiswa", idUserTerlogin);
-                intentKembali.putExtra("nama_mahasiswa", namaUserTerlogin);
-                intentKembali.putExtra("id_perkuliahan", idPerkuliahan);
-                startActivity(intentKembali);
+//                Intent intentKembali = new Intent(v.getContext(), MenuVerifikasiTandaTangan.class);
+//                intentKembali.putExtra("identitas_mahasiswa", userTerlogin);
+//                intentKembali.putExtra("nrp_mahasiswa", idUserTerlogin);
+//                intentKembali.putExtra("nama_mahasiswa", namaUserTerlogin);
+//                intentKembali.putExtra("id_perkuliahan", idPerkuliahan);
+//                startActivity(intentKembali);
 //                nrpMahasiswa = intent.getStringExtra("nrp_mahasiswa");
 //                namaMahasiswa = intent.getStringExtra("nama_mahasiswa");
 //                idPerkuliahan =intent.getStringExtra("id_perkuliahan");
-                //dialog.dismiss();
+                dialog.dismiss();
             }
         });
 
@@ -335,6 +335,7 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
 
      //   Log.v("log_tag","user_terlogin di verifikasi kirim ke pencocokan ->" + userTerlogin);
         startActivity(intentToPencocokanTandaTangan);
+        finish();
     }
 
     @Override
