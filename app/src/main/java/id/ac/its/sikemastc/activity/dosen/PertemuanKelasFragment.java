@@ -1,5 +1,6 @@
 package id.ac.its.sikemastc.activity.dosen;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -55,6 +57,7 @@ public class PertemuanKelasFragment extends Fragment implements
     private PertemuanAdapter mPertemuanAdapter;
     private int mPosition = RecyclerView.NO_POSITION;
     private String bundleIdKelas;
+    private String bundleInfoKelas;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +66,7 @@ public class PertemuanKelasFragment extends Fragment implements
         Bundle bundle = getArguments();
         if (bundle != null) {
             bundleIdKelas = bundle.getString("id_kelas");
+            bundleInfoKelas = bundle.getString("info_kelas");
         }
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list_pertemuan);
         mLoadingIndicator = (ProgressBar) view.findViewById(R.id.pb_loading_indicator);
@@ -133,11 +137,62 @@ public class PertemuanKelasFragment extends Fragment implements
     }
 
     @Override
-    public void onClick(String idPertemuan, String idKelas, String pertemuanKe) {
-        Intent intentToDetailPertemuanKelas = new Intent(getActivity(), DetailPertemuanKelas.class);
-        intentToDetailPertemuanKelas.putExtra("id_pertemuan", idPertemuan);
-        intentToDetailPertemuanKelas.putExtra("id_kelas", idKelas);
-        intentToDetailPertemuanKelas.putExtra("pertemuan_ke", pertemuanKe);
-        startActivity(intentToDetailPertemuanKelas);
+    public void onClick(String itemId, String idPertemuan, String idKelas, String pertemuanKe) {
+        switch (itemId) {
+            case "1":
+                showAlertDialog(itemId, idPertemuan, pertemuanKe, bundleInfoKelas);
+                break;
+            case "2":
+                showAlertDialog(itemId, idKelas, pertemuanKe, bundleInfoKelas);
+                break;
+            default:
+                Intent intentToDetailPertemuanKelas = new Intent(getActivity(), DetailPertemuanKelas.class);
+                intentToDetailPertemuanKelas.putExtra("id_pertemuan", idPertemuan);
+                intentToDetailPertemuanKelas.putExtra("id_kelas", idKelas);
+                intentToDetailPertemuanKelas.putExtra("pertemuan_ke", pertemuanKe);
+                startActivity(intentToDetailPertemuanKelas);
+                break;
+        }
+    }
+
+    private void intentToJadwalSementaraActivity(String idPerkuliahan) {
+        Intent intentToJadwalSementara = new Intent(getActivity(), PenjadwalanUlangSementara.class);
+        intentToJadwalSementara.putExtra("id_perkuliahan", idPerkuliahan);
+        startActivity(intentToJadwalSementara);
+    }
+
+    private void intentToJadwalPermanenActivity(String idKelas) {
+        Intent intentToJadwalPermanen = new Intent(getActivity(), PenjadwalanUlangPermanen.class);
+        intentToJadwalPermanen.putExtra("id_kelas", idKelas);
+        startActivity(intentToJadwalPermanen);
+    }
+
+    private void showAlertDialog(String btnClicked, final String idToPenjadwalan, String pertemuanKe, String infoKelas) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        switch (btnClicked) {
+            case "1":
+                builder.setTitle("Peringatan")
+                        .setMessage("Apakah Anda yakin mengubah jadwal pertemuan ke -" + pertemuanKe + " untuk mata kuliah " + infoKelas + "?")
+                        .setNegativeButton("Tidak", null)
+                        .setPositiveButton("Iya", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                intentToJadwalSementaraActivity(idToPenjadwalan);
+                            }
+                        });
+                break;
+            case "2":
+            builder.setTitle("Peringatan")
+                        .setMessage("Apakah Anda yakin mengubah jadwal permanen " +
+                                "untuk mata kuliah " + infoKelas + "?")
+                        .setNegativeButton("Tidak", null)
+                        .setPositiveButton("Iya", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                intentToJadwalPermanenActivity(idToPenjadwalan);
+                            }
+                        });
+            break;
+        }
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

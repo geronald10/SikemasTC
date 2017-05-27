@@ -4,10 +4,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.media.Image;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,7 +27,7 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
 
     // interface that receives onClick message
     public interface PertemuanAdapterOnClickHandler {
-        void onClick(String idPertemuan, String idKelas, String pertemuanKe);
+        void onClick(String itemId, String idPertemuan, String idKelas, String pertemuanKe);
     }
 
     public PertemuanAdapter(@NonNull Context context, PertemuanAdapterOnClickHandler clickHandler) {
@@ -60,16 +62,19 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
                 pertemuanAdapterViewHolder.ivStatusLabel.setImageResource(R.color.colorStatusHadir);
                 pertemuanAdapterViewHolder.ivStatusKehadiran1.setImageResource(R.color.colorStatusHadir);
                 pertemuanAdapterViewHolder.tvStatusPertemuan.setText(R.string.status_aktif);
+                pertemuanAdapterViewHolder.clPenjadwalanUlang.setVisibility(View.GONE);
                 break;
             case "2":
                 pertemuanAdapterViewHolder.ivStatusLabel.setImageResource(R.color.colorStatusAbsen);
                 pertemuanAdapterViewHolder.ivStatusKehadiran1.setImageResource(R.color.colorStatusAbsen);
                 pertemuanAdapterViewHolder.tvStatusPertemuan.setText(R.string.status_selesai);
+                pertemuanAdapterViewHolder.clPenjadwalanUlang.setVisibility(View.GONE);
                 break;
             default:
                 pertemuanAdapterViewHolder.ivStatusLabel.setImageResource(R.color.colorStatusIdle);
                 pertemuanAdapterViewHolder.ivStatusKehadiran1.setImageResource(R.color.colorStatusIdle);
                 pertemuanAdapterViewHolder.tvStatusPertemuan.setText(R.string.status_belum_aktif);
+                pertemuanAdapterViewHolder.clPenjadwalanUlang.setVisibility(View.VISIBLE);
                 break;
         }
         pertemuanAdapterViewHolder.tvPertemuanKe.setText(pertemuanKe);
@@ -91,12 +96,15 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
 
     class PertemuanAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private ConstraintLayout clPenjadwalanUlang;
         private TextView tvPertemuanKe;
         private TextView tvTanggalPertemuan;
         private TextView tvWaktuPertemuan;
         private TextView tvStatusPertemuan;
         private ImageView ivStatusKehadiran1;
         private ImageView ivStatusLabel;
+        private Button btnPermanen;
+        private Button btnSementara;
 
         public PertemuanAdapterViewHolder(View itemView) {
             super(itemView);
@@ -106,7 +114,12 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
             tvStatusPertemuan = (TextView) itemView.findViewById(R.id.tv_status_pertemuan);
             ivStatusKehadiran1 = (ImageView) itemView.findViewById(R.id.iv_status_kehadiran);
             ivStatusLabel = (ImageView) itemView.findViewById(R.id.iv_label);
+            btnPermanen = (Button) itemView.findViewById(R.id.btn_ganti_jadwal_permanen);
+            btnSementara = (Button) itemView.findViewById(R.id.btn_ganti_jadwal_sementara);
+            clPenjadwalanUlang = (ConstraintLayout) itemView.findViewById(R.id.cl_penjadwalan_ulang);
 
+            btnPermanen.setOnClickListener(this);
+            btnSementara.setOnClickListener(this);
             itemView.setOnClickListener(this);
         }
 
@@ -117,7 +130,17 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
             String idPertemuan = mCursor.getString(PertemuanKelasFragment.INDEX_ID_PERTEMUAN);
             String idKelas = mCursor.getString(PertemuanKelasFragment.INDEX_ID_KELAS);
             String pertemuanKe = mCursor.getString(PertemuanKelasFragment.INDEX_PERTEMUAN_KE);
-            mClickHandler.onClick(idPertemuan, idKelas, pertemuanKe);
+            switch (v.getId()) {
+                case R.id.btn_ganti_jadwal_sementara:
+                    mClickHandler.onClick("1", idPertemuan, null, pertemuanKe);
+                    break;
+                case R.id.btn_ganti_jadwal_permanen:
+                    mClickHandler.onClick("2", idPertemuan, idKelas, null);
+                    break;
+                default:
+                    mClickHandler.onClick("0", idPertemuan, idKelas, pertemuanKe);
+                    break;
+            }
         }
     }
 }

@@ -10,10 +10,10 @@
             android:icon="@drawable/ic_home"
             android:title="Home" />
         <item
-            android:id="@+id/item_lihat_jadwal"
+            android:id="@+id/item_lihat_jadwal_kelas"
             android:checkable="true"
             android:icon="@drawable/ic_today"
-            android:title="Jadwal Kuliah" />
+            android:title="Jadwal Kelas" />
 
     </group>
 

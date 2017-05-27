@@ -175,7 +175,6 @@ public class SikemasProvider extends ContentProvider {
                     getContext().getContentResolver().notifyChange(uri, null);
                 }
                 return dosenInserted;
-
             default:
                 return super.bulkInsert(uri, values);
         }

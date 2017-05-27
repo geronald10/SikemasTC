@@ -115,13 +115,13 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
                             JSONArray perkuliahan = jsonObject.getJSONArray("perkuliahan");
                             for (int i = 0; i < perkuliahan.length(); i++) {
                                 JSONObject kehadiran = perkuliahan.getJSONObject(i);
+                                String idPerkuliahan = kehadiran.getString("id");
                                 JSONArray kehadiranList = kehadiran.getJSONArray("kehadiran");
                                 for (int j = 0; j < kehadiranList.length(); j++) {
                                     JSONObject detailKehadiran = kehadiranList.getJSONObject(j);
                                     String namaPeserta = detailKehadiran.getString("nama");
                                     String nrpPeserta = detailKehadiran.getString("nrp");
                                     JSONObject pivot = detailKehadiran.getJSONObject("pivot");
-                                    String idPerkuliahan = pivot.getString("id_perkuliahanmahasiswa");
                                     String idPeserta = pivot.getString("id_mahasiswa");
                                     String ketKehadiran = pivot.getString("ket_kehadiran");
 
@@ -162,7 +162,7 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
         Log.d("idMahasiswa", idPeserta);
         Log.d("kodeKehadiran", ketKehadiran);
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                NetworkUtils.CHANGE_STATUS_KEHADIRAN,
+                NetworkUtils.KIRIM_STATUS_KEHADIRAN,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -247,7 +247,7 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
         builder.setPositiveButton(R.string.pilih, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
-                changeStatusKehadiran(idPerkuliahan, idMahasiswa, kodeKehadiran[0]);
+                changeStatusKehadiran(idPerkuliahan, nrpPeserta, kodeKehadiran[0]);
             }
         });
 

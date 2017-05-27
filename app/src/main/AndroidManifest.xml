@@ -61,7 +61,7 @@
             android:name=".activity.mahasiswa.HalamanUtamaMahasiswa"
             android:theme="@style/AppNavDrawerMaterialTheme" />
         <activity
-            android:name=".activity.mahasiswa.LihatJadwal"
+            android:name=".activity.mahasiswa.ListKelasMahasiswa"
             android:theme="@style/AppNavDrawerMaterialTheme" />
 
         <!-- Orangtua Activity Manifest -->
@@ -124,7 +124,8 @@
         <!-- </intent-filter> -->
         <!-- </service> -->
         <activity android:name=".activity.verifikasi_wajah.InstruksiTambahDataSetActivity" />
-        <activity android:name=".activity.mahasiswa.DetailPerkuliahanMahasiswa"></activity>
+        <activity android:name=".activity.mahasiswa.DetailPerkuliahanMahasiswa" />
+        <activity android:name=".activity.mahasiswa.DetailJadwalKelasMahasiswa"></activity>
     </application>
 
 </manifest>

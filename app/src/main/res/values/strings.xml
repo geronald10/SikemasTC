@@ -109,4 +109,21 @@
     <string name="perkuliahan_aktif">Perkuliahan Sedang Aktif</string>
     <string name="perkuliahan_berakhir">Perkuliahan Telah Berakhir</string>
     <string name="perkuliahan_ditunda">Perkuliahan Ditunda</string>
+    <string name="tv_status_ijin_label">I\nJ\nI\nN</string>
+    <string name="tv_status_absen_label">A\nB\nS\nE\nN</string>
+    <string name="tv_status_hadir_label">H\nA\nD\nI\nR</string>
+    <string name="pilih_tanggal_btn_label">Pilih Tanggal</string>
+    <string name="btn_pilih_ruangan_label">pilih ruangan</string>
+    <string name="tanggal_terpilih_label">Tanggal Terpilih</string>
+    <string name="btn_next">Next</string>
+    <string name="btn_pilih_waktu_label">pilih waktu</string>
+    <string name="waktu_terpilih_label">Waktu Terpilih</string>
+    <string name="perubahan_jadwal_label">Perubahan Jadwal</string>
+    <string name="caption_ruangan_baru_label">Ruangan Baru</string>
+    <string name="lokasi_caption_label">Lokasi</string>
+    <string name="kelas_caption_label">Kelas</string>
+    <string name="ruangan_caption_label">Ruangan</string>
+    <string name="waktu_perkuliahan_caption_label">Waktu Perkuliahan</string>
+    <string name="konfirmasi_perubahan_btn_label">Simpan Perubahan</string>
+    <string name="batalkan_perubahan_btn_label">Batalkan Perubahan</string>
 </resources>

@@ -29,6 +29,10 @@ public final class NetworkUtils {
     // Upload Dataset Wajah API
     public static final String UPLOAD_DATASET_WAJAH_SIKEMAS =
             "http://10.151.31.201/sikemas/public/mhs/uploadfoto";
+    // Kirim status kehadiran ke server
+    public static final String KIRIM_STATUS_KEHADIRAN =
+            "http://10.151.31.201/sikemas/public/mhs/ubahstatuskehadiran";
+
 
     // List Kelas Diampu oleh Dosen API
     public static final String LIST_KELAS_DOSEN_SIKEMAS =
@@ -39,12 +43,18 @@ public final class NetworkUtils {
     // Change Status kelas
     public static final String CHANGE_STATUS_KELAS =
             "http://10.151.31.201/sikemas/public/ubahstatuskelas";
-    // Change Status kehadiran mahasiswa
-    public static final String CHANGE_STATUS_KEHADIRAN =
-            "http://10.151.31.201/sikemas/public/ubah_ket_kehadiran_mahasiswa";
     // Detail peserta kelas yang dipilih
     public static final String GET_PESERTA_PERKULIAHAN =
             "http://10.151.31.201/sikemas/public/peserta_perkuliahan_ini";
+    // Penjadwalan ulang kirim tanggal
+    public static final String REQUEST_PENJADWALAN_BY_TANGGAL =
+            "http://10.151.31.201/sikemas/public/jadwal_ulang_tanggal";
+    // Penjadwalan ulang kirim tanggal, kirim waktu
+    public static final String REQUEST_PENJADWALAN_BY_TANGGAL_WAKTU =
+            "http://10.151.31.201/sikemas/public/jadwal_ulang_waktu";
+    // Penjadwalan ulang kirim tanggal, kirim waktu
+    public static final String CONFIRM_PENJADWALAN_SEMENTARA =
+            "http://10.151.31.201/sikemas/public/konfirm_ganti_jadwal";
 
     // List perkuliahan Mahasiswa saat ini
     public static final String LIST_PERKULIAHAN_MAHASISWA_SAAT_INI =
@@ -55,9 +65,6 @@ public final class NetworkUtils {
     // List kelas aktif Mahasiswa
     public static final String LIST_KELAS_MAHASISWA_AKTIF =
             "http://10.151.31.201/sikemas/public/mhs/kelasaktif";
-    // Kirim status kehadiran ke server
-    public static final String KIRIM_STATUS_KEHADIRAN_MAHASISWA =
-            "http://10.151.31.201/sikemas/public/mhs/ubahstatuskehadiran";
     // List rekap kehadiran mahasiswa kelas
     public static final String LIST_REKAP_KEHADIRAN_MAHASISWA_KELAS =
             "http://10.151.31.201/sikemas/public/mhs/rekapdarikelas";
@@ -70,6 +77,7 @@ public final class NetworkUtils {
 
     private static final String KODE_DOSEN_PARAM = "kode_dosen";
     private static final String NRP_MAHASISWA_PARAM = "nrp";
+    private static final String ID_KELAS = "id_kelas";
 
     public static String getResponseListKelasDosen(Context context, final String kodeDosen) {
         int REQUEST_TIMEOUT = 5;
@@ -172,6 +180,30 @@ public final class NetworkUtils {
         RequestFuture<JSONObject> requestFuture = RequestFuture.newFuture();
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST,
                 LIST_KELAS_MAHASISWA_AKTIF, new JSONObject(params), requestFuture, requestFuture);
+        VolleySingleton.getmInstance(context).addToRequestQueue(jsonRequest);
+        try {
+            response = requestFuture.get(REQUEST_TIMEOUT, TimeUnit.SECONDS);
+            Log.d("response perkuliahan", String.valueOf(response));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+        return response.toString();
+    }
+
+    public static String getResponseRekapKehadiranMahasiswa(Context context, final String nrpMahasiswa, final String idKelas) {
+        int REQUEST_TIMEOUT = 5;
+        JSONObject response = null;
+        HashMap<String, String> params = new HashMap<>();
+        params.put(NRP_MAHASISWA_PARAM, nrpMahasiswa);
+        params.put(ID_KELAS, idKelas);
+
+        RequestFuture<JSONObject> requestFuture = RequestFuture.newFuture();
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST,
+                LIST_REKAP_KEHADIRAN_MAHASISWA_KELAS, new JSONObject(params), requestFuture, requestFuture);
         VolleySingleton.getmInstance(context).addToRequestQueue(jsonRequest);
         try {
             response = requestFuture.get(REQUEST_TIMEOUT, TimeUnit.SECONDS);

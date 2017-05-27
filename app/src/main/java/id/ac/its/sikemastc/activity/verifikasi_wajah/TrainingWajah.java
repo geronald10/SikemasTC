@@ -214,6 +214,7 @@ public class TrainingWajah extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     startActivity(intent);
+                                    finish();
                                 }
                             });
                         } else {

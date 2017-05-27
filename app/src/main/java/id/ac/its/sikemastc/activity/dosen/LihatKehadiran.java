@@ -32,7 +32,7 @@ public class LihatKehadiran extends AppCompatActivity implements
             SikemasContract.KehadiranEntry.KEY_ID_MAHASISWA,
             SikemasContract.KehadiranEntry.KEY_NRP_MAHASISWA,
             SikemasContract.KehadiranEntry.KEY_NAMA_MAHASISWA,
-            SikemasContract.KehadiranEntry.KEY_KET_KEHADIRAN
+            SikemasContract.KehadiranEntry.KEY_STATUS_KEHADIRAN
     };
 
     public static final int INDEX_ID_PERKULIAHAN_MAHASISWA = 0;

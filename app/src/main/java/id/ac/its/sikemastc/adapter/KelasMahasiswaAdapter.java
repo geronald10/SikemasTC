@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.activity.mahasiswa.LihatJadwal;
+import id.ac.its.sikemastc.activity.mahasiswa.ListKelasMahasiswa;
 import id.ac.its.sikemastc.utilities.SikemasDateUtils;
 
 public class KelasMahasiswaAdapter extends RecyclerView.Adapter<KelasMahasiswaAdapter.KelasMahasiswaAdapterViewHolder> {
@@ -22,7 +22,7 @@ public class KelasMahasiswaAdapter extends RecyclerView.Adapter<KelasMahasiswaAd
 
     // interface that receives onClick message
     public interface  KelasMahasiswaAdapterOnClickHandler {
-        void onClick(String idKelas);
+        void onClick(String idKelas, String infoKelas);
     }
 
     public KelasMahasiswaAdapter(Context context, KelasMahasiswaAdapterOnClickHandler clickHandler) {
@@ -44,13 +44,13 @@ public class KelasMahasiswaAdapter extends RecyclerView.Adapter<KelasMahasiswaAd
     public void onBindViewHolder(KelasMahasiswaAdapterViewHolder kelasMahasiswaAdapterViewHolder, int position) {
         mCursor.moveToPosition(position);
 
-        String kelasMk = mCursor.getString(LihatJadwal.INDEX_KODE_KELAS);
-        String namaMk = mCursor.getString(LihatJadwal.INDEX_KELAS_NAMA_MK);
-        String kodeMk = mCursor.getString(LihatJadwal.INDEX_KELAS_KODE_MK);
-        String ruangMK = mCursor.getString(LihatJadwal.INDEX_KELAS_NAMA_RUANGAN);
-        String hari = mCursor.getString(LihatJadwal.INDEX_KELAS_HARI);
-        String waktuMulai = SikemasDateUtils.formatTime(mCursor.getString(LihatJadwal.INDEX_KELAS_MULAI));
-        String waktuSelesai= SikemasDateUtils.formatTime(mCursor.getString(LihatJadwal.INDEX_KELAS_SELESAI));
+        String kelasMk = mCursor.getString(ListKelasMahasiswa.INDEX_KODE_KELAS);
+        String namaMk = mCursor.getString(ListKelasMahasiswa.INDEX_KELAS_NAMA_MK);
+        String kodeMk = mCursor.getString(ListKelasMahasiswa.INDEX_KELAS_KODE_MK);
+        String ruangMK = mCursor.getString(ListKelasMahasiswa.INDEX_KELAS_NAMA_RUANGAN);
+        String hari = mCursor.getString(ListKelasMahasiswa.INDEX_KELAS_HARI);
+        String waktuMulai = SikemasDateUtils.formatTime(mCursor.getString(ListKelasMahasiswa.INDEX_KELAS_MULAI));
+        String waktuSelesai= SikemasDateUtils.formatTime(mCursor.getString(ListKelasMahasiswa.INDEX_KELAS_SELESAI));
 
         kelasMahasiswaAdapterViewHolder.tvKodeMK.setText(kodeMk);
         kelasMahasiswaAdapterViewHolder.tvNamaMK.setText(namaMk);
@@ -101,8 +101,10 @@ public class KelasMahasiswaAdapter extends RecyclerView.Adapter<KelasMahasiswaAd
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
             mCursor.moveToPosition(adapterPosition);
-            String idKelas = mCursor.getString(LihatJadwal.INDEX_ID_KELAS);
-            mClickHandler.onClick(idKelas);
+            String idKelas = mCursor.getString(ListKelasMahasiswa.INDEX_ID_KELAS);
+            String infoKelas = mCursor.getString(ListKelasMahasiswa.INDEX_KELAS_NAMA_MK) + " " +
+                    mCursor.getString(ListKelasMahasiswa.INDEX_KODE_KELAS);
+            mClickHandler.onClick(idKelas, infoKelas);
         }
     }
 }

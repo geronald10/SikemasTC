@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import id.ac.its.sikemastc.activity.BaseActivity;
 import id.ac.its.sikemastc.R;
@@ -125,61 +126,10 @@ public class ListKelasActivity extends BaseActivity implements
     }
 
     @Override
-    public void onClick(int itemId, String idKelas, String infoKelas) {
-        switch (itemId) {
-            case 1:
-                showAlertDialog(itemId, idKelas, infoKelas);
-                break;
-            case 2:
-                showAlertDialog(itemId, idKelas, infoKelas);
-                break;
-            default:
-                Intent intentToDetailKelas = new Intent(ListKelasActivity.this, DetailListKelas.class);
-                intentToDetailKelas.putExtra("id_kelas", idKelas);
-                startActivity(intentToDetailKelas);
-                break;
-        }
-    }
-
-    private void intentToJadwalSementaraActivity(String idKelas) {
-        Intent intentToJadwalSementara = new Intent(this, PenjadwalanUlangPermanen.class);
-        intentToJadwalSementara.putExtra("id_kelas", idKelas);
-        startActivity(intentToJadwalSementara);
-    }
-
-    private void intentToJadwalPermanenActivity(String idKelas) {
-        Intent intentToJadwalPermanen = new Intent(this, PenjadwalanUlangPermanen.class);
-        intentToJadwalPermanen.putExtra("id_kelas", idKelas);
-        startActivity(intentToJadwalPermanen);
-    }
-
-    private void showAlertDialog(int btnClicked, final String idKelas, String infoKelas) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        switch (btnClicked) {
-            case 1:
-                builder.setTitle("Peringatan")
-                        .setMessage("Apakah Anda yakin mengubah jadwal permanen " +
-                                "untuk mata kuliah " + infoKelas + "?")
-                        .setNegativeButton("Tidak", null)
-                        .setPositiveButton("Iya", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                intentToJadwalPermanenActivity(idKelas);
-                            }
-                        });
-                break;
-            case 2:
-                builder.setTitle("Peringatan")
-                        .setMessage("Apakah Anda yakin mengubah jadwal pertemuan tertentu " +
-                                "(sementara) untuk mata kuliah " + infoKelas + "?")
-                        .setNegativeButton("Tidak", null)
-                        .setPositiveButton("Iya", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                intentToJadwalSementaraActivity(idKelas);
-                            }
-                        });
-                break;
-        }
-        AlertDialog dialog = builder.create();
-        dialog.show();
+    public void onClick(String idKelas, String infoKelas) {
+        Intent intentToDetailKelas = new Intent(ListKelasActivity.this, DetailListKelas.class);
+        intentToDetailKelas.putExtra("id_kelas", idKelas);
+        intentToDetailKelas.putExtra("info_kelas", infoKelas);
+        startActivity(intentToDetailKelas);
     }
 }

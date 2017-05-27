@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import javax.xml.transform.dom.DOMLocator;
-
 import id.ac.its.sikemastc.data.SikemasContract.UserEntry;
 import id.ac.its.sikemastc.data.SikemasContract.KelasEntry;
 import id.ac.its.sikemastc.data.SikemasContract.PerkuliahanEntry;
@@ -100,11 +98,17 @@ public class SikemasDBHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_KEHADIRAN_TABLE =
                 "CREATE TABLE " + KehadiranEntry.TABLE_NAME + " (" +
                         KehadiranEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        KehadiranEntry.KEY_ID_PERKULIAHAN_MAHASISWA + " TEXT NOT NULL, " +
-                        KehadiranEntry.KEY_ID_MAHASISWA + " TEXT NOT NULL, " +
-                        KehadiranEntry.KEY_NRP_MAHASISWA + " TEXT NOT NULL, " +
-                        KehadiranEntry.KEY_NAMA_MAHASISWA + " TEXT NOT NULL, " +
-                        KehadiranEntry.KEY_KET_KEHADIRAN + " TEXT );";
+                        KehadiranEntry.KEY_ID_PERKULIAHAN_MAHASISWA + " TEXT, " +
+                        KehadiranEntry.KEY_ID_KELAS_MAHASISWA + " TEXT, " +
+                        KehadiranEntry.KEY_ID_MAHASISWA + " TEXT, " +
+                        KehadiranEntry.KEY_PERTEMUAN_KE + " TEXT, " +
+                        KehadiranEntry.KEY_TANGGAL_PERTEMUAN + " TEXT, " +
+                        KehadiranEntry.KEY_NRP_MAHASISWA + " TEXT, " +
+                        KehadiranEntry.KEY_NAMA_MAHASISWA + " TEXT, " +
+                        KehadiranEntry.KEY_STATUS_KEHADIRAN + " TEXT, " +
+                        KehadiranEntry.KEY_WAKTU_CHEKIN + " TEXT, " +
+                        KehadiranEntry.KEY_TEMPAT_CHECKIN + " TEXT, " +
+                        KehadiranEntry.KEY_KET_KEHADIRAN + " TEXT);";
         sqLiteDatabase.execSQL(SQL_CREATE_KEHADIRAN_TABLE);
     }
 

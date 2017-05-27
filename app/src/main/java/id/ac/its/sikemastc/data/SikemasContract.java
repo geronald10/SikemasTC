@@ -98,14 +98,26 @@ public class SikemasContract {
 
         public static final String TABLE_NAME = "kehadiran";
         public static final String KEY_ID_PERKULIAHAN_MAHASISWA = "id_perkuliahanmahasiswa";
+        public static final String KEY_ID_KELAS_MAHASISWA = "id_kelas";
         public static final String KEY_ID_MAHASISWA = "id_mahasiswa";
-        public static final String KEY_KET_KEHADIRAN = "ket_kehadiran";
+        public static final String KEY_PERTEMUAN_KE = "pertemuan";
+        public static final String KEY_TANGGAL_PERTEMUAN = "tanggal_pertemuan";
         public static final String KEY_NAMA_MAHASISWA = "nama";
         public static final String KEY_NRP_MAHASISWA = "nrp";
+        public static final String KEY_WAKTU_CHEKIN = "waktu_checkin";
+        public static final String KEY_TEMPAT_CHECKIN = "tempat_checkin";
+        public static final String KEY_STATUS_KEHADIRAN = "ket_kehadiran";
+        public static final String KEY_KET_KEHADIRAN = "keterangan";
 
         public static Uri buildKehadiranUriPerkuliahanId(String perkuliahanId) {
             return CONTENT_URI.buildUpon()
                     .appendPath(perkuliahanId)
+                    .build();
+        }
+
+        public static Uri buildKehadiranUriKelasId(String kelasId) {
+            return CONTENT_URI.buildUpon()
+                    .appendPath(kelasId)
                     .build();
         }
     }

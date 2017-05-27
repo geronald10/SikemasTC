@@ -9,7 +9,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -24,7 +23,7 @@ import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
 import id.ac.its.sikemastc.activity.dosen.ListKelasActivity;
 import id.ac.its.sikemastc.activity.mahasiswa.HalamanUtamaMahasiswa;
-import id.ac.its.sikemastc.activity.mahasiswa.LihatJadwal;
+import id.ac.its.sikemastc.activity.mahasiswa.ListKelasMahasiswa;
 import id.ac.its.sikemastc.activity.orangtua.HalamanUtamaOrangtua;
 import id.ac.its.sikemastc.activity.orangtua.LihatJadwalMahasiswa;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
@@ -166,11 +165,11 @@ public class BaseActivity extends AppCompatActivity implements
                 startActivity(intentToListKelas);
                 finish();
                 break;
-            case R.id.item_lihat_jadwal:
-                Intent intentToJadwal = new Intent(this, LihatJadwal.class);
-                intentToJadwal.putExtra("checkedDrawerItemId", menuItem.getItemId());
-                intentToJadwal.putExtra("title", menuItem.getTitle());
-                startActivity(intentToJadwal);
+            case R.id.item_lihat_jadwal_kelas:
+                Intent intentToJadwalKelas = new Intent(this, ListKelasMahasiswa.class);
+                intentToJadwalKelas.putExtra("checkedDrawerItemId", menuItem.getItemId());
+                intentToJadwalKelas.putExtra("title", menuItem.getTitle());
+                startActivity(intentToJadwalKelas);
                 finish();
                 break;
             case R.id.item_lihat_jadwal_mahasiswa:

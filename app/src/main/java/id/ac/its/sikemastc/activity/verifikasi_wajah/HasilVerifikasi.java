@@ -89,7 +89,7 @@ public class HasilVerifikasi extends AppCompatActivity {
                                     final String ketKehadiran) {
         showLoading();
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                NetworkUtils.CHANGE_STATUS_KEHADIRAN,
+                NetworkUtils.KIRIM_STATUS_KEHADIRAN,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

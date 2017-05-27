@@ -1,6 +1,5 @@
 package id.ac.its.sikemastc.utilities;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.util.Log;
@@ -9,13 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import id.ac.its.sikemastc.data.SikemasContract;
-import id.ac.its.sikemastc.data.SikemasSessionManager;
-import id.ac.its.sikemastc.model.PerkuliahanMahasiswa;
 
 public class SikemasJsonUtils {
 
@@ -186,7 +179,7 @@ public class SikemasJsonUtils {
                 kehadiranPesertaValue.put(SikemasContract.KehadiranEntry.KEY_NAMA_MAHASISWA, namaMahasiswa);
                 kehadiranPesertaValue.put(SikemasContract.KehadiranEntry.KEY_ID_PERKULIAHAN_MAHASISWA, idPerkuliahanMahasiswa);
                 kehadiranPesertaValue.put(SikemasContract.KehadiranEntry.KEY_ID_MAHASISWA, idMahasiswa);
-                kehadiranPesertaValue.put(SikemasContract.KehadiranEntry.KEY_KET_KEHADIRAN, ketKehadiran);
+                kehadiranPesertaValue.put(SikemasContract.KehadiranEntry.KEY_STATUS_KEHADIRAN, ketKehadiran);
 
                 kehadiranPesertaContentValues[index] = kehadiranPesertaValue;
                 index++;
@@ -426,5 +419,41 @@ public class SikemasJsonUtils {
             perkuliahanMahasiswaContentValues[i] = perkuliahanMahasiswaValue;
         }
         return perkuliahanMahasiswaContentValues;
+    }
+
+    public static ContentValues[] getRekapKehadiranMahasiswaContentValuesFromJson(Context context,
+        String listRekapKehadiranMahasiswaJsonStr) throws JSONException {
+            JSONObject jsonObject = new JSONObject(listRekapKehadiranMahasiswaJsonStr);
+            JSONArray rekapAbsen = jsonObject.getJSONArray("rekapabsen");
+            Log.d("rekapAbsen", String.valueOf(rekapAbsen.length()));
+            ContentValues[] rekapAbsenMahasiswaContentValues = new ContentValues[rekapAbsen.length()];
+
+            int index = 0;
+            for (int i = 0; i < rekapAbsen.length(); i++) {
+                JSONObject absenMahasiswa = rekapAbsen.getJSONObject(i);
+                String waktuTimeStamp = absenMahasiswa.getString("updated_at");
+                String tanggal = SikemasDateUtils.formatDateFromTimestamp(waktuTimeStamp);
+                String waktu = SikemasDateUtils.formatTimeFromTimestamp(waktuTimeStamp);
+                String statusHadir = absenMahasiswa.getString("ket_kehadiran");
+                String pesanKehadiran = absenMahasiswa.getString("pesan");
+
+                JSONArray perkuliahanMahasiswa = absenMahasiswa.getJSONArray("perkuliahanmahasiswa");
+                for (int j = 0; j < perkuliahanMahasiswa.length(); j++) {
+                    JSONObject perkuliahan = perkuliahanMahasiswa.getJSONObject(j);
+                    String pertemuanKe = perkuliahan.getString("pertemuan");
+
+                    ContentValues rekapKehadiranMahasiswaValue = new ContentValues();
+                    rekapKehadiranMahasiswaValue.put(SikemasContract.KehadiranEntry.KEY_TANGGAL_PERTEMUAN, tanggal);
+                    rekapKehadiranMahasiswaValue.put(SikemasContract.KehadiranEntry.KEY_WAKTU_CHEKIN, waktu);
+                    rekapKehadiranMahasiswaValue.put(SikemasContract.KehadiranEntry.KEY_TEMPAT_CHECKIN, "null");
+                    rekapKehadiranMahasiswaValue.put(SikemasContract.KehadiranEntry.KEY_STATUS_KEHADIRAN, statusHadir);
+                    rekapKehadiranMahasiswaValue.put(SikemasContract.KehadiranEntry.KEY_PERTEMUAN_KE, pertemuanKe);
+                    rekapKehadiranMahasiswaValue.put(SikemasContract.KehadiranEntry.KEY_KET_KEHADIRAN, pesanKehadiran);
+
+                    rekapAbsenMahasiswaContentValues[i] = rekapKehadiranMahasiswaValue;
+                }
+                index++;
+            }
+            return rekapAbsenMahasiswaContentValues;
     }
 }

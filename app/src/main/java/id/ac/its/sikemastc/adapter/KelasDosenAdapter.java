@@ -24,7 +24,7 @@ public class KelasDosenAdapter extends RecyclerView.Adapter<KelasDosenAdapter.Ke
 
     // interface that receives onClick message
     public interface KelasDosenAdapterOnClickHandler {
-        void onClick(int itemId, String idKelas, String infoKelas);
+        void onClick(String idKelas, String infoKelas);
     }
 
     public KelasDosenAdapter(@NonNull Context context, KelasDosenAdapterOnClickHandler clickHandler) {
@@ -84,8 +84,6 @@ public class KelasDosenAdapter extends RecyclerView.Adapter<KelasDosenAdapter.Ke
         private TextView tvWaktuMulaiMK;
         private TextView tvWaktuSelesaiMK;
         private TextView tvRuangMK;
-        private Button btnPermanen;
-        private Button btnSementara;
 
         public KelasDosenAdapterViewHolder(View itemView) {
             super(itemView);
@@ -97,11 +95,7 @@ public class KelasDosenAdapter extends RecyclerView.Adapter<KelasDosenAdapter.Ke
             tvWaktuMulaiMK = (TextView) itemView.findViewById(R.id.tv_waktu_mulai);
             tvWaktuSelesaiMK = (TextView) itemView.findViewById(R.id.tv_waktu_selesai);
             tvRuangMK = (TextView) itemView.findViewById(R.id.tv_ruang);
-            btnPermanen = (Button) itemView.findViewById(R.id.btn_ganti_jadwal_permanen);
-            btnSementara = (Button) itemView.findViewById(R.id.btn_ganti_jadwal_sementara);
 
-            btnPermanen.setOnClickListener(this);
-            btnSementara.setOnClickListener(this);
             itemView.setOnClickListener(this);
         }
 
@@ -110,19 +104,9 @@ public class KelasDosenAdapter extends RecyclerView.Adapter<KelasDosenAdapter.Ke
             int adapterPosition = getAdapterPosition();
             mCursor.moveToPosition(adapterPosition);
             String idKelas = mCursor.getString(ListKelasActivity.INDEX_ID_KELAS);
-            String infoKelas = mCursor.getString(ListKelasActivity.INDEX_KELAS_NAMA_MK) + " kelas "
-                    + mCursor.getString(ListKelasActivity.INDEX_KODE_KELAS);
-            switch (v.getId()) {
-                case R.id.btn_ganti_jadwal_permanen:
-                    mClickHandler.onClick(1, idKelas, infoKelas);
-                    break;
-                case R.id.btn_ganti_jadwal_sementara:
-                    mClickHandler.onClick(2, idKelas, infoKelas);
-                    break;
-                default:
-                    mClickHandler.onClick(0, idKelas, null);
-                    break;
-            }
+            String infoKelas = mCursor.getString(ListKelasActivity.INDEX_KELAS_NAMA_MK) + " kelas " +
+                    mCursor.getString(ListKelasActivity.INDEX_KODE_KELAS);
+            mClickHandler.onClick(idKelas, infoKelas);
         }
     }
 }

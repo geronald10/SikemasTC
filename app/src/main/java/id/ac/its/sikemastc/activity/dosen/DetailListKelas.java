@@ -27,6 +27,7 @@ public class DetailListKelas extends AppCompatActivity {
     };
 
     private String idKelas;
+    private String infoKelas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class DetailListKelas extends AppCompatActivity {
         setContentView(R.layout.activity_detail_list_kelas);
 
         idKelas = getIntent().getStringExtra("id_kelas");
+        infoKelas = getIntent().getStringExtra("info_kelas");
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Detail Kelas");
@@ -83,6 +85,7 @@ public class DetailListKelas extends AppCompatActivity {
         public Fragment getItem(int position) {
             Bundle data = new Bundle();
             data.putString("id_kelas", idKelas);
+            data.putString("info_kelas", infoKelas);
             mFragmentList.get(position).setArguments(data);
             return mFragmentList.get(position);
         }
