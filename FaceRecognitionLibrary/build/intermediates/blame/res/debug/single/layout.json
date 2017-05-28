@@ -4,12 +4,12 @@
         "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\layout\\abc_screen_toolbar.xml"
     },
     {
-        "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\layout\\notification_action_tombstone.xml",
-        "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\layout\\notification_action_tombstone.xml"
-    },
-    {
         "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
         "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\layout\\abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\layout\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\layout\\notification_action_tombstone.xml"
     },
     {
         "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media_custom.xml",

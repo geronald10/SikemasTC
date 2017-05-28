@@ -33,7 +33,7 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Verifikasi Wajah");
+        toolbar.setTitle("Verifikasi Tanda Tangan");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         // Compatibility
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

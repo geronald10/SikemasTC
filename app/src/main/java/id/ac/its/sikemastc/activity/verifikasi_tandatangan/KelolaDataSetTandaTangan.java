@@ -1,22 +1,33 @@
 package id.ac.its.sikemastc.activity.verifikasi_tandatangan;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,7 +69,10 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
     private String userId;
     private ArrayList<String> imageUrlList;
     private ArrayList<String> encodedImageList;
-
+    LinearLayout mContent;
+    signature mSignature;  // fungsi untuk menampilkan dialog pop up
+    View view;
+    private Button btn_tambah_tandatangan_cancel, btn_tambah_tandatangan_clear, btn_tambah_tandatangan_simpan;
     private Context mContext;
     private TextView tvUserTerlogin;
     private TextView tvJumlahDataSet;
@@ -66,10 +80,13 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
     private Button btnSinkronisasi;
     private Button btnUploadFile;
     private ProgressDialog progressDialog;
-    private Toolbar toolbar;
+    private Toolbar toolbar, toolbar1;
     private String DIRECTORY;
     private String StoredPath;
     private File dir;
+    Dialog dialog;
+    Bitmap bitmap;
+    int clickcount=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,11 +116,15 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
 
         Intent intent = getIntent();
         userTerlogin = intent.getStringExtra("identitas_mahasiswa"); //nrp_nama
+        userId = intent.getStringExtra("id_mahasiswa");
 
         //folder
         DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/signatureverification/";
         StoredPath = DIRECTORY + userTerlogin;
+        Log.d("storepath->", StoredPath);
+
         dir = new File(StoredPath);
+
 
         tvUserTerlogin = (TextView) findViewById(R.id.tv_user_detail);
         tvJumlahDataSet = (TextView) findViewById(R.id.tv_data_set);
@@ -124,21 +145,41 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
 
     }
 
+    public int getJumlahDataSetTandaTangan() {
+        Log.d("->", " masuk fungsi jumlah dataset tanda tangan");
+
+        if (!dir.exists()) {
+            Log.d("->", "directory kosong");
+            return 0;
+        } else {
+            File[] files = dir.listFiles();
+            int numberOfFiles = files.length;
+            Log.d("->","masuk else -> " + numberOfFiles);
+            return numberOfFiles;
+        }
+
+    }
+
     View.OnClickListener operate = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_tambah_data_set_tandatangan:
-                    File[] files = dir.listFiles();
-                    int numberOfFiles = files.length;
-                    if (numberOfFiles == 5) {
-                        Toast.makeText(mContext, "Dataset Gambar Tanda Tangan Sudah Ada", Toast.LENGTH_SHORT).show();
+                    if (!dir.exists()) {
+                        toolbar1 = (Toolbar) findViewById(R.id.toolbar);
+                        setSupportActionBar(toolbar1);
+
+                        // Dialog Function
+                        dialog = new Dialog(KelolaDataSetTandaTangan.this);
+                        // Removing the features of Normal Dialogs
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.tambah_data_set_tandatangan);
+                        dialog.setCancelable(true); // agar tidak muncul dialognya
+                        dialog_action();
                     }
-                    else {
-                        Intent intentToStart = new Intent(v.getContext(), TambahDataSetTandaTangan.class);
-                        intentToStart.putExtra("user_terlogin", userTerlogin);
-                        Log.v("log_tag", "user terlogin di keloladatasettandatangan" + userTerlogin);
-                        startActivityForResult(intentToStart, 1);
+                    else
+                    {
+                        Toast.makeText(mContext, "Dataset Gambar Tanda Tangan Sudah Ada", Toast.LENGTH_SHORT).show();
                     }
                     break;
 
@@ -161,32 +202,226 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
     };
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == Activity.RESULT_OK) {
-                String resultMessage = data.getStringExtra("result_message");
-                int numberOfPictures = data.getIntExtra("number_of_pictures", 0);
-                Toast.makeText(mContext, resultMessage, Toast.LENGTH_SHORT).show();
-                tvJumlahDataSet.setText(String.valueOf(numberOfPictures));
-//                encodedImageList = new ArrayList<>();
-//                encodedImageList = getAllEncodedImageFormat();
-//                uploadImages(encodedImageList);
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
+
+    //tambah dataset
+    public void dialog_action() {
+        mContent = (LinearLayout) dialog.findViewById(R.id.linearLayout_tambah_tandatangan);
+        mSignature = new signature(getApplicationContext(), null);
+        mSignature.setBackgroundColor(Color.WHITE);
+
+        mContent.addView(mSignature, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        TextView header = (TextView)dialog.findViewById(R.id.tv_tambah_data_set_tandatangan);
+        header.setText("TANDA TANGAN SEBANYAK 5 KALI");
+
+        btn_tambah_tandatangan_cancel = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_cancel);
+        btn_tambah_tandatangan_clear = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_clear);
+        btn_tambah_tandatangan_simpan = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_simpan);
+        btn_tambah_tandatangan_simpan.setEnabled(false);
+
+
+
+        view = mContent;
+
+        btn_tambah_tandatangan_clear.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.v("log_tag", "Panel Cleared");
+                mSignature.clear();
+                btn_tambah_tandatangan_simpan.setEnabled(false);
             }
-        }
+        });
+
+        btn_tambah_tandatangan_cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.v("log_tag", "Panel Canceled");
+
+                File[] files = dir.listFiles();
+                if (!dir.exists()) {
+                    Toast.makeText(KelolaDataSetTandaTangan.this, "Dataset belum ada, silahkan melakukan tanda tangan", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    int numberOfFiles = files.length;
+                    if(numberOfFiles != 5){
+                        Toast.makeText(KelolaDataSetTandaTangan.this, "Dataset kurang dari 5, Dataset tersimpan -> " + numberOfFiles, Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        dialog.dismiss();
+
+                    }
+
+                }
+            }
+        });
+
+        btn_tambah_tandatangan_simpan.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                clickcount=clickcount+1;
+                Log.v("log_tag", "clickcount->" +clickcount);
+                if (clickcount >5)
+                {
+                    Toast.makeText(getApplicationContext(), "Dataset Tanda Tangan Sudah Ada, Silahkan klik KEMBALI", Toast.LENGTH_SHORT).show();
+                    btn_tambah_tandatangan_simpan.setEnabled(true);
+                }
+                if(clickcount<=5)
+                {
+
+                    Log.v("log_tag", "Panel Saved");
+                    view.setDrawingCacheEnabled(true);
+                    mSignature.save(view);
+                    Toast.makeText(getApplicationContext(), "Sukses Simpan Dataset Tanda Tangan ke- " + clickcount, Toast.LENGTH_SHORT).show();
+                    // Calling the same class
+                }
+                mSignature.clear();
+                //recreate();
+
+
+            }
+        });
+        dialog.show();
     }
 
-    public int getJumlahDataSetTandaTangan() {
-        if (!dir.exists()) {
-            Log.d("->", "directory kosong");
-            return 0;
-        } else {
-            File[] files = dir.listFiles();
-            int numberOfFiles = files.length;
-            Log.d("->","masuk else -> " + numberOfFiles);
-            return numberOfFiles;
+    public class signature extends View {
+
+        private static final float STROKE_WIDTH = 5f;
+        private static final float HALF_STROKE_WIDTH = STROKE_WIDTH / 2;
+        private Paint paint = new Paint();
+        private Path path = new Path();
+
+        private float lastTouchX;
+        private float lastTouchY;
+        private final RectF dirtyRect = new RectF();
+
+        public signature(Context context, AttributeSet attrs) {
+            super(context, attrs);
+            paint.setAntiAlias(true);
+            paint.setColor(Color.BLACK);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeJoin(Paint.Join.ROUND);
+            paint.setStrokeWidth(STROKE_WIDTH);
+        }
+
+        public void save(View v) {
+            Log.v("log_tag", "Width: " + v.getWidth());
+            Log.v("log_tag", "Height: " + v.getHeight());
+
+            if (bitmap == null) {
+                bitmap = Bitmap.createBitmap(mContent.getWidth(), mContent.getHeight(), Bitmap.Config.RGB_565);
+            }
+
+            Canvas canvas = new Canvas(bitmap);
+            try {
+                // Output the file
+                dir = new File(StoredPath);
+                String filename = userTerlogin+ "-" + clickcount+ ".png";
+                if(!dir.exists())
+                {
+                    dir.mkdirs();
+                }
+
+                File myFile = new File(dir.getAbsolutePath(), filename);
+                myFile.createNewFile();
+
+                Log.v("log_tag", "user ter login: " + userTerlogin);
+                Log.v("log_tag", "dir ->" + dir);
+                Log.v("log_tag", "filename ->" + filename);
+
+                FileOutputStream mFileOutStream = new FileOutputStream(myFile);
+                v.draw(canvas);
+
+                // Convert the output file to Image such as .png
+                bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
+                mFileOutStream.flush();
+                mFileOutStream.close();
+
+            } catch (Exception e) {
+                Log.v("log_tag", e.toString());
+            }
+        }
+
+        public void clear() {
+            path.reset();
+            invalidate();
+
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            canvas.drawPath(path, paint);
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent event) {
+            float eventX = event.getX();
+            float eventY = event.getY();
+            btn_tambah_tandatangan_simpan.setEnabled(true);
+
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    path.moveTo(eventX, eventY);
+                    lastTouchX = eventX;
+                    lastTouchY = eventY;
+                    return true;
+
+                case MotionEvent.ACTION_MOVE:
+
+                case MotionEvent.ACTION_UP:
+
+                    resetDirtyRect(eventX, eventY);
+                    int historySize = event.getHistorySize();
+                    for (int i = 0; i < historySize; i++) {
+                        float historicalX = event.getHistoricalX(i);
+                        float historicalY = event.getHistoricalY(i);
+                        expandDirtyRect(historicalX, historicalY);
+                        path.lineTo(historicalX, historicalY);
+                    }
+                    path.lineTo(eventX, eventY);
+                    break;
+
+                default:
+                    // debug("Ignored touch event: " + event.toString());
+                    //return false;
+            }
+
+            invalidate((int) (dirtyRect.left - HALF_STROKE_WIDTH),
+                    (int) (dirtyRect.top - HALF_STROKE_WIDTH),
+                    (int) (dirtyRect.right + HALF_STROKE_WIDTH),
+                    (int) (dirtyRect.bottom + HALF_STROKE_WIDTH));
+
+            lastTouchX = eventX;
+            lastTouchY = eventY;
+
+            return true;
+        }
+
+
+        private void debug(String string) {
+
+            Log.v("log_tag", string);
+
+        }
+
+        private void expandDirtyRect(float historicalX, float historicalY) {
+            if (historicalX < dirtyRect.left) {
+                dirtyRect.left = historicalX;
+            } else if (historicalX > dirtyRect.right) {
+                dirtyRect.right = historicalX;
+            }
+
+            if (historicalY < dirtyRect.top) {
+                dirtyRect.top = historicalY;
+            } else if (historicalY > dirtyRect.bottom) {
+                dirtyRect.bottom = historicalY;
+            }
+        }
+
+        private void resetDirtyRect(float eventX, float eventY) {
+            dirtyRect.left = Math.min(lastTouchX, eventX);
+            dirtyRect.right = Math.max(lastTouchX, eventX);
+            dirtyRect.top = Math.min(lastTouchY, eventY);
+            dirtyRect.bottom = Math.max(lastTouchY, eventY);
         }
 
     }
@@ -278,7 +513,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                                     FileOutputStream outputStream = new FileOutputStream(outputFile);
                                     outputStream.write(response);
                                     outputStream.close();
-                                    if (index + 1 == imageUrlList.size()) {
+                                    if ((index + 1) == imageUrlList.size()) {
                           //              flagStatus.edit().putBoolean("training_flag", false).apply();
                            //             flagStatus.edit().putBoolean("upload_flag", true).apply();
                                         progressDialog.dismiss();
@@ -319,6 +554,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
         File dir = new File(StoredPath);
         File[] files = dir.listFiles();
         int numberOfFiles = files.length;
+        Log.d("number of files", String.valueOf(numberOfFiles));
 
         if (files != null && numberOfFiles > 0) {
             for (File image : files) {
@@ -393,4 +629,6 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
             VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(stringRequest);
         }
     }
+
+
 }

@@ -67,7 +67,6 @@
         <activity android:name=".activity.mahasiswa.DetailLihatJadwal" />
         <activity android:name=".activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan" />
         <activity android:name=".activity.verifikasi_tandatangan.KelolaDataSetTandaTangan" />
-        <activity android:name=".activity.verifikasi_tandatangan.TambahDataSetTandaTangan" />
         <activity android:name=".activity.verifikasi_tandatangan.VerifikasiTandaTangan" />
         <activity android:name=".activity.verifikasi_tandatangan.PencocokanTandaTangan" />
         <activity android:name=".activity.verifikasi_wajah.MenuVerifikasiWajah" />

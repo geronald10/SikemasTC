@@ -207,7 +207,6 @@ public class PencocokanTandaTangan extends AppCompatActivity {
             }
 
         }
-        //   Log.v("log_tag", "horisontal max, baris ke  -> " + horisontal_max+ "jumlah max hitam -> " + kolom_max);
 
         //max vertical;
         for(kolom=0; kolom<lebar_img_baru; kolom++){
@@ -324,7 +323,7 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         normalize_area = luas_signature_crop/luas_bounding_box;
 
     }
-    public double calculate_skew(int index, String image){
+    public double calculate_skew(String image){
         Mat img = Imgcodecs.imread( image, Imgcodecs.IMREAD_GRAYSCALE );
 
         //Binarize it
@@ -366,9 +365,9 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         }
 
         Mat result = deskew( img, rotatedRect.angle );
- //       String outputFile = Environment.getExternalStorageDirectory().getPath()+ "/DCIM/DigitSign/TandaTangan/5113100016_Novita/"+index+"_skew.png";
+        String outputFile = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signature/skew.png";
 
-//        Imgcodecs.imwrite( outputFile, result );
+        Imgcodecs.imwrite( outputFile, result );
         return resultAngle;
     }
 
@@ -407,6 +406,9 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         String ImageSourcePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signatureverification/"+ userTerlogin;
         String ImageSignaturePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signature/"+ userTerlogin+".png";
 
+        Log.v("log_tag", "image source -> " + ImageSourcePath);
+        Log.v("log_tag", "image signature -> " + ImageSignaturePath);
+
         //FITUR DATABASE MHS
         Double[][] fitur_ttd = new Double[6][7];
         ArrayList<Double> fitur_ttd_a = new ArrayList<>();
@@ -417,16 +419,16 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         ArrayList<Double> fitur_ttd_f= new ArrayList<>();
         ArrayList<Double> fitur_ttd_g= new ArrayList<>();
 
-        for(int index=1; index<=5; index++)
+        for(int index=0; index<5; index++)
         {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             options.inSampleSize=8;
-
-            bitmap1 = BitmapFactory.decodeFile(ImageSourcePath + "/" + userTerlogin + "-" +(index) + ".png");
-
+            String filename = userTerlogin + "-" + (index) + ".png";
+            bitmap1 = BitmapFactory.decodeFile(ImageSourcePath +"/"+ filename);
             preprocessing(bitmap1);
-            double skew = calculate_skew(index, ImageSourcePath + "/" + userTerlogin + "-" +(index) + ".png");
+
+            double skew = calculate_skew(ImageSourcePath + "/" + filename);
 
             fitur_ttd[index][0]=horisontal_max; fitur_ttd_a.add(horisontal_max);
             fitur_ttd[index][1]=vertical_max; fitur_ttd_b.add(vertical_max);
@@ -445,7 +447,7 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         bitmap2 = BitmapFactory.decodeFile(ImageSignaturePath);
         preprocessing(bitmap2);
 
-        double skew = calculate_skew(100, ImageSignaturePath);
+        double skew = calculate_skew(ImageSignaturePath);
 
         fitur_ttd_mhs.add(horisontal_max); fitur_ttd_a.add(horisontal_max);
         fitur_ttd_mhs.add(vertical_max); fitur_ttd_b.add(vertical_max);
@@ -477,7 +479,7 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         ArrayList<Double> fitur_ttd_mhs_normalisasi = new ArrayList<>();
         Double norm_atas, norm_bawah;
 
-        for(int index=1; index<=5; index++){
+        for(int index=0; index<5; index++){
             for(int i=0; i<7; i++)
             {
                 norm_atas= fitur_ttd[index][i]-min.get(i);
@@ -502,7 +504,7 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         ArrayList<Double> fitur_f= new ArrayList<>();
         ArrayList<Double> fitur_g= new ArrayList<>();
 
-        for(int i=1; i<=5; i++)
+        for(int i=0; i<5; i++)
         {
             fitur_a.add(fitur_ttd_normalisasi[i][0]-fitur_ttd_mhs_normalisasi.get(0));
             fitur_b.add(fitur_ttd_normalisasi[i][1]-fitur_ttd_mhs_normalisasi.get(1));
@@ -557,7 +559,7 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_finish_verifikasi_ttd:
-                    Intent intentToStart = new Intent(getBaseContext(), TambahDataSetTandaTangan.class);
+                    Intent intentToStart = new Intent(getBaseContext(), KelolaDataSetTandaTangan.class);
                     startActivityForResult(intentToStart, 1);
                     finish();
                     break;
