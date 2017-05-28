@@ -124,4 +124,5 @@
     <string name="waktu_perkuliahan_caption_label">Waktu Perkuliahan</string>
     <string name="konfirmasi_perubahan_btn_label">Simpan Perubahan</string>
     <string name="batalkan_perubahan_btn_label">Batalkan Perubahan</string>
+    <string name="pilih_ruangan_label">Pilih Ruangan</string>
 </resources>

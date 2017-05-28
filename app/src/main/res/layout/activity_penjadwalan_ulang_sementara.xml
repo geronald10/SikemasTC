@@ -27,7 +27,7 @@
         android:id="@+id/detailView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-19dp"
+        android:layout_marginTop="0dp"
         android:paddingBottom="56dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -59,6 +59,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="8dp">
+
+                    <ProgressBar
+                        android:id="@id/pb_loading_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/state_reschedule_progress_bar" />
 
                     <ImageView
                         android:id="@+id/iv_ganti_jadwal"
@@ -126,6 +140,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:padding="8dp"
+                        android:visibility="visible"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/state_reschedule_progress_bar">
@@ -133,14 +148,15 @@
                         <Button
                             android:id="@+id/btn_pilih_tanggal"
                             android:layout_width="wrap_content"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
                             android:drawableTop="@drawable/ic_today_black"
                             android:gravity="center"
                             android:text="@string/pilih_tanggal_btn_label"
                             android:theme="@style/WhiteButtonTheme"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
 
                         <TextView
                             android:id="@+id/tv_tanggal_terpilih_label"
@@ -159,36 +175,36 @@
 
                         <TextView
                             android:id="@+id/tv_tanggal_terpilih"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="0dp"
                             android:layout_marginTop="4dp"
+                            android:gravity="center"
                             android:text="@string/tv_empty_value"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="24sp"
+                            app:layout_constraintHorizontal_bias="0.503"
                             app:layout_constraintLeft_toLeftOf="@+id/tv_tanggal_terpilih_label"
                             app:layout_constraintRight_toRightOf="@+id/tv_tanggal_terpilih_label"
                             app:layout_constraintTop_toBottomOf="@id/tv_tanggal_terpilih_label" />
 
                         <Button
-                            android:id="@+id/btn_next"
+                            android:id="@+id/btn_next_to_waktu"
                             android:layout_width="0dp"
                             android:layout_height="48dp"
-                            android:layout_marginBottom="0dp"
-                            android:layout_marginLeft="32dp"
-                            android:layout_marginRight="32dp"
-                            android:layout_marginTop="0dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="8dp"
                             android:text="@string/btn_next"
                             android:textAppearance="@style/TextAppearance.AppCompat.Button"
                             android:textColor="@android:color/white"
                             android:textSize="18sp"
                             android:theme="@style/ListKelasButtonPermanenTheme"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintLeft_toLeftOf="@+id/tv_tanggal_terpilih_label"
                             app:layout_constraintRight_toRightOf="@+id/tv_tanggal_terpilih_label"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_tanggal_terpilih"
-                            app:layout_constraintVertical_bias="0.0" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_tanggal_terpilih" />
 
                     </android.support.constraint.ConstraintLayout>
 
@@ -205,36 +221,54 @@
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/state_reschedule_progress_bar">
 
-                        <Button
-                            android:id="@+id/btn_pilih_waktu"
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:drawableTop="@drawable/ic_access_time"
-                            android:gravity="center"
-                            android:text="@string/btn_pilih_waktu_label"
-                            android:theme="@style/WhiteButtonTheme"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                        <TextView
+                            android:id="@+id/tv_pilihan_waktu_label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp"
+                            android:text="Pilih Waktu"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                            android:textColor="@color/colorPrimaryDark"
+                            app:layout_constraintHorizontal_bias="1.0"
                             app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toLeftOf="@+id/tv_waktu_terpilih_label"
                             app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <RadioGroup
+                            android:id="@+id/pilihan_waktu_radio_group"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="0dp"
+                            android:layout_marginTop="8dp"
+                            android:gravity="start"
+                            android:orientation="vertical"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintLeft_toLeftOf="@+id/tv_pilihan_waktu_label"
+                            app:layout_constraintRight_toRightOf="@+id/tv_pilihan_waktu_label"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_pilihan_waktu_label" />
+
 
                         <TextView
                             android:id="@+id/tv_waktu_terpilih_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
                             android:layout_marginStart="16dp"
-                            android:layout_marginTop="0dp"
+                            android:layout_marginTop="8dp"
                             android:gravity="center"
                             android:text="@string/waktu_terpilih_label"
                             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                             android:textSize="16sp"
-                            app:layout_constraintHorizontal_bias="0.602"
-                            app:layout_constraintLeft_toRightOf="@id/btn_pilih_waktu"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/btn_pilih_waktu" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/tv_waktu_terpilih"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="@string/tv_empty_value"
@@ -246,19 +280,19 @@
                             app:layout_constraintTop_toBottomOf="@id/tv_waktu_terpilih_label" />
 
                         <Button
-                            android:id="@+id/btn_to_state_ruangan"
+                            android:id="@+id/btn_next_to_ruangan"
                             android:layout_width="0dp"
                             android:layout_height="48dp"
                             android:layout_marginBottom="0dp"
-                            android:layout_marginLeft="32dp"
-                            android:layout_marginRight="32dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="0dp"
                             android:layout_marginTop="0dp"
                             android:text="@string/btn_next"
                             android:textAppearance="@style/TextAppearance.AppCompat.Button"
                             android:textColor="@android:color/white"
                             android:textSize="18sp"
                             android:theme="@style/ListKelasButtonPermanenTheme"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@+id/pilihan_waktu_radio_group"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintLeft_toLeftOf="@+id/tv_waktu_terpilih_label"
                             app:layout_constraintRight_toRightOf="@+id/tv_waktu_terpilih_label"
@@ -270,7 +304,7 @@
 
                     <android.support.constraint.ConstraintLayout
                         android:id="@+id/cl_pilih_ruangan"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_marginStart="16dp"
@@ -281,647 +315,662 @@
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/state_reschedule_progress_bar">
 
-                        <Button
-                            android:id="@+id/btn_pilih_ruangan"
-                            android:layout_width="wrap_content"
+                        <ImageView
+                            android:id="@+id/iv_classroom_icon"
+                            android:layout_width="72dp"
+                            android:layout_height="72dp"
+                            android:layout_marginEnd="0dp"
+                            android:layout_marginTop="0dp"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_classroom" />
+
+                        <TextView
+                            android:id="@+id/tv_pilihan_ruangan_label"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:drawablePadding="8dp"
-                            android:drawableTop="@drawable/ic_classroom"
-                            android:gravity="center"
-                            android:text="@string/btn_pilih_ruangan_label"
-                            android:theme="@style/WhiteButtonTheme"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp"
+                            android:gravity="start"
+                            android:text="@string/pilih_ruangan_label"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="18sp"
+                            app:layout_constraintHorizontal_bias="1.0"
                             app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toLeftOf="@+id/iv_classroom_icon"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <RadioGroup
+                            android:id="@+id/pilihan_ruang_radio_group"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="0dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="8dp"
+                            android:orientation="vertical"
+                            app:layout_constraintHorizontal_bias="0.791"
+                            app:layout_constraintLeft_toLeftOf="@+id/tv_pilihan_ruangan_label"
+                            app:layout_constraintRight_toRightOf="@+id/tv_pilihan_ruangan_label"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_pilihan_ruangan_label" />
 
                         <TextView
                             android:id="@+id/tv_ruangan_terpilih_label"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="0dp"
-                            android:gravity="center"
-                            android:text="@string/tanggal_terpilih_label"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="16dp"
+                            android:gravity="start"
+                            android:text="Ruangan terpilih"
                             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                             android:textSize="16sp"
-                            app:layout_constraintHorizontal_bias="0.602"
-                            app:layout_constraintLeft_toRightOf="@id/btn_pilih_ruangan"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/btn_pilih_ruangan" />
+                            app:layout_constraintLeft_toLeftOf="@+id/tv_pilihan_ruangan_label"
+                            app:layout_constraintTop_toBottomOf="@+id/pilihan_ruang_radio_group" />
 
                         <TextView
                             android:id="@+id/tv_ruangan_terpilih"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="8dp"
+                            android:gravity="start"
                             android:text="@string/tv_empty_value"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="24sp"
+                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintLeft_toLeftOf="@+id/tv_ruangan_terpilih_label"
-                            app:layout_constraintRight_toRightOf="@+id/tv_ruangan_terpilih_label"
-                            app:layout_constraintTop_toBottomOf="@id/tv_ruangan_terpilih_label" />
+                            app:layout_constraintRight_toRightOf="@+id/pilihan_ruang_radio_group"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_ruangan_terpilih_label" />
 
                         <Button
                             android:id="@+id/btn_next_to_konfirmasi"
-                            android:layout_width="0dp"
-                            android:layout_height="48dp"
-                            android:layout_marginBottom="0dp"
-                            android:layout_marginLeft="32dp"
-                            android:layout_marginRight="32dp"
-                            android:layout_marginTop="0dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="0dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
                             android:text="@string/btn_next"
                             android:textAppearance="@style/TextAppearance.AppCompat.Button"
                             android:textColor="@android:color/white"
                             android:textSize="18sp"
                             android:theme="@style/ListKelasButtonPermanenTheme"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintLeft_toLeftOf="@+id/tv_ruangan_terpilih_label"
-                            app:layout_constraintRight_toRightOf="@+id/tv_ruangan_terpilih_label"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_ruangan_terpilih"
-                            app:layout_constraintVertical_bias="0.0" />
+                            app:layout_constraintLeft_toRightOf="@+id/tv_ruangan_terpilih"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_ruangan_terpilih" />
 
                     </android.support.constraint.ConstraintLayout>
 
-                    <android.support.constraint.ConstraintLayout
-                        android:id="@+id/cl_konfirmasi"
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:padding="8dp"
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_mata_kuliah_baru"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:padding="16dp"
+                android:visibility="gone"
+                app:cardCornerRadius="5dp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cv_jadwal_pengganti">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp">
+
+                    <ImageView
+                        android:id="@+id/iv_perubahan_jadwal"
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_marginTop="0dp"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/state_reschedule_progress_bar">
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@color/colorPrimaryDark" />
 
-                        <android.support.v7.widget.CardView
-                            android:id="@+id/cv_mata_kuliah_baru"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="1dp"
-                            android:layout_marginLeft="1dp"
-                            android:layout_marginRight="1dp"
-                            android:layout_marginStart="1dp"
-                            android:layout_marginTop="1dp"
-                            android:padding="16dp"
-                            app:cardCornerRadius="5dp"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                    <TextView
+                        android:id="@+id/tv_info_perubahan_jadwal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/perubahan_jadwal_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@android:color/white"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_perubahan_jadwal"
+                        app:layout_constraintLeft_toLeftOf="@+id/iv_perubahan_jadwal"
+                        app:layout_constraintRight_toRightOf="@+id/iv_perubahan_jadwal"
+                        app:layout_constraintTop_toTopOf="@+id/iv_perubahan_jadwal" />
 
-                            <android.support.constraint.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingBottom="8dp">
+                    <TextView
+                        android:id="@+id/tv_pertemuan_ke_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/pertemuan_ke_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_perubahan_jadwal" />
 
-                                <ImageView
-                                    android:id="@+id/iv_perubahan_jadwal"
-                                    android:layout_width="0dp"
-                                    android:layout_height="32dp"
-                                    android:layout_marginTop="0dp"
-                                    app:layout_constraintHorizontal_bias="0.0"
-                                    app:layout_constraintLeft_toLeftOf="parent"
-                                    app:layout_constraintRight_toRightOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="@color/colorPrimaryDark" />
-
-                                <TextView
-                                    android:id="@+id/tv_info_perubahan_jadwal"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="@string/perubahan_jadwal_label"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                                    android:textColor="@android:color/white"
-                                    app:layout_constraintBottom_toBottomOf="@+id/iv_perubahan_jadwal"
-                                    app:layout_constraintLeft_toLeftOf="@+id/iv_perubahan_jadwal"
-                                    app:layout_constraintRight_toRightOf="@+id/iv_perubahan_jadwal"
-                                    app:layout_constraintTop_toTopOf="@+id/iv_perubahan_jadwal" />
-
-                                <TextView
-                                    android:id="@+id/tv_pertemuan_ke_label"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="16dp"
-                                    android:layout_marginTop="8dp"
-                                    android:text="@string/pertemuan_ke_label"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                                    app:layout_constraintLeft_toLeftOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/iv_perubahan_jadwal" />
-
-                                <TextView
-                                    android:id="@+id/tv_pertemuan_ke_baru"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="0dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="0dp"
-                                    android:text="@string/tv_empty_value"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                    android:textSize="18sp"
-                                    app:layout_constraintBottom_toBottomOf="@+id/tv_pertemuan_ke_label"
-                                    app:layout_constraintLeft_toRightOf="@+id/tv_pertemuan_ke_label"
-                                    app:layout_constraintTop_toTopOf="@+id/tv_pertemuan_ke_label" />
+                    <TextView
+                        android:id="@+id/tv_pertemuan_ke_baru"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="0dp"
+                        android:text="@string/tv_empty_value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_pertemuan_ke_label"
+                        app:layout_constraintLeft_toRightOf="@+id/tv_pertemuan_ke_label"
+                        app:layout_constraintTop_toTopOf="@+id/tv_pertemuan_ke_label" />
 
 
-                                <ImageView
-                                    android:id="@id/iv_subject"
-                                    android:layout_width="64dp"
-                                    android:layout_height="64dp"
-                                    android:layout_marginStart="16dp"
-                                    android:layout_marginTop="8dp"
-                                    app:layout_constraintLeft_toLeftOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_ke_label"
-                                    app:srcCompat="@drawable/ic_schedule" />
+                    <ImageView
+                        android:id="@id/iv_subject"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_ke_label"
+                        app:srcCompat="@drawable/ic_schedule" />
 
-                                <TextView
-                                    android:id="@id/tv_kode_matakuliah"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="16dp"
-                                    android:text="@string/tv_empty_value"
-                                    android:textColor="@color/colorSecondaryText"
-                                    android:textSize="16sp"
-                                    app:layout_constraintLeft_toRightOf="@+id/iv_subject"
-                                    app:layout_constraintTop_toTopOf="@+id/iv_subject" />
+                    <TextView
+                        android:id="@id/tv_kode_matakuliah"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/tv_empty_value"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textSize="16sp"
+                        app:layout_constraintLeft_toRightOf="@+id/iv_subject"
+                        app:layout_constraintTop_toTopOf="@+id/iv_subject" />
 
-                                <TextView
-                                    android:id="@id/tv_matakuliah"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="8dp"
-                                    android:layout_marginEnd="16dp"
-                                    android:text="@string/tv_empty_value"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                    android:textSize="20sp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintHorizontal_bias="0.0"
-                                    app:layout_constraintLeft_toLeftOf="@id/tv_kode_matakuliah"
-                                    app:layout_constraintRight_toRightOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_kode_matakuliah"
-                                    app:layout_constraintVertical_bias="0.0" />
+                    <TextView
+                        android:id="@id/tv_matakuliah"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="@string/tv_empty_value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintLeft_toLeftOf="@id/tv_kode_matakuliah"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_kode_matakuliah"
+                        app:layout_constraintVertical_bias="0.0" />
 
-                                <View
-                                    android:id="@+id/divider_4"
-                                    android:layout_width="0dp"
-                                    android:layout_height="2dp"
-                                    android:layout_marginTop="8dp"
-                                    android:background="@color/colorAccent"
-                                    app:layout_constraintHorizontal_bias="0.0"
-                                    app:layout_constraintLeft_toLeftOf="@+id/iv_subject"
-                                    app:layout_constraintRight_toRightOf="@+id/tv_matakuliah"
-                                    app:layout_constraintTop_toBottomOf="@+id/iv_subject" />
+                    <View
+                        android:id="@+id/divider_4"
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/colorAccent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintLeft_toLeftOf="@+id/iv_subject"
+                        app:layout_constraintRight_toRightOf="@+id/tv_matakuliah"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_subject" />
 
-                                <TextView
-                                    android:id="@id/tv_caption_lokasi"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="4dp"
-                                    android:layout_marginTop="4dp"
-                                    android:text="@string/lokasi_caption_label"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                    app:layout_constraintLeft_toLeftOf="@+id/divider_4"
-                                    app:layout_constraintTop_toBottomOf="@+id/divider_4" />
+                    <TextView
+                        android:id="@id/tv_caption_lokasi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/lokasi_caption_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        app:layout_constraintLeft_toLeftOf="@+id/divider_4"
+                        app:layout_constraintTop_toBottomOf="@+id/divider_4" />
 
-                                <ImageView
-                                    android:id="@+id/iv_kelas_icon_lama"
-                                    android:layout_width="48dp"
-                                    android:layout_height="48dp"
-                                    android:layout_marginEnd="24dp"
-                                    android:layout_marginTop="8dp"
-                                    app:layout_constraintLeft_toLeftOf="@+id/tv_ruangan_lama"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_ruangan_lama"
-                                    app:srcCompat="@drawable/ic_classroom" />
+                    <ImageView
+                        android:id="@+id/iv_kelas_icon_lama"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_ruangan_lama"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_ruangan_lama"
+                        app:srcCompat="@drawable/ic_classroom" />
 
-                                <TextView
-                                    android:id="@+id/tv_caption_kelas_lama"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="0dp"
-                                    android:text="@string/kelas_caption_label"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                    android:textColor="@color/colorPrimaryText"
-                                    app:layout_constraintLeft_toRightOf="@+id/iv_kelas_icon_lama"
-                                    app:layout_constraintTop_toTopOf="@+id/iv_kelas_icon_lama" />
+                    <TextView
+                        android:id="@+id/tv_caption_kelas_lama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="0dp"
+                        android:text="@string/kelas_caption_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/colorPrimaryText"
+                        app:layout_constraintLeft_toRightOf="@+id/iv_kelas_icon_lama"
+                        app:layout_constraintTop_toTopOf="@+id/iv_kelas_icon_lama" />
 
-                                <TextView
-                                    android:id="@+id/tv_kelas_lama"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
-                                    android:text="@string/tv_empty_value"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                    android:textSize="24sp"
-                                    app:layout_constraintLeft_toLeftOf="@+id/tv_caption_kelas_lama"
-                                    app:layout_constraintRight_toRightOf="@+id/tv_caption_kelas_lama"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_caption_kelas_lama" />
+                    <TextView
+                        android:id="@+id/tv_kelas_lama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/tv_empty_value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textSize="24sp"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_caption_kelas_lama"
+                        app:layout_constraintRight_toRightOf="@+id/tv_caption_kelas_lama"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_caption_kelas_lama" />
 
-                                <TextView
-                                    android:id="@+id/tv_caption_ruangan_lama"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="4dp"
-                                    android:text="@string/ruangan_caption_label"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                    android:textColor="@color/colorPrimaryText"
-                                    app:layout_constraintLeft_toLeftOf="@+id/tv_caption_lokasi"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_caption_lokasi" />
+                    <TextView
+                        android:id="@+id/tv_caption_ruangan_lama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/ruangan_caption_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/colorPrimaryText"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_caption_lokasi"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_caption_lokasi" />
 
-                                <TextView
-                                    android:id="@+id/tv_ruangan_lama"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="0dp"
-                                    android:text="@string/tv_empty_value"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                    android:textColor="@color/colorStatusAbsen"
-                                    android:textSize="24sp"
-                                    app:layout_constraintLeft_toLeftOf="@+id/tv_caption_ruangan_lama"
-                                    app:layout_constraintRight_toLeftOf="@+id/iv_changes_1"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_caption_ruangan_lama" />
+                    <TextView
+                        android:id="@+id/tv_ruangan_lama"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:text="@string/tv_empty_value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/colorStatusAbsen"
+                        android:textSize="24sp"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_caption_ruangan_lama"
+                        app:layout_constraintRight_toLeftOf="@+id/iv_changes_1"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_caption_ruangan_lama" />
 
-                                <TextView
-                                    android:id="@+id/tv_caption_ruangan_baru"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="16dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="0dp"
-                                    android:text="@string/caption_ruangan_baru_label"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                    android:textColor="@color/colorPrimaryText"
-                                    app:layout_constraintHorizontal_bias="0.0"
-                                    app:layout_constraintLeft_toRightOf="@+id/iv_changes_1"
-                                    app:layout_constraintRight_toRightOf="@+id/divider_4"
-                                    app:layout_constraintTop_toTopOf="@+id/tv_caption_ruangan_lama" />
+                    <TextView
+                        android:id="@+id/tv_caption_ruangan_baru"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="0dp"
+                        android:text="@string/caption_ruangan_baru_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/colorPrimaryText"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintLeft_toRightOf="@+id/iv_changes_1"
+                        app:layout_constraintRight_toRightOf="@+id/divider_4"
+                        app:layout_constraintTop_toTopOf="@+id/tv_caption_ruangan_lama" />
 
-                                <TextView
-                                    android:id="@+id/tv_ruangan_baru"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="0dp"
-                                    android:text="@string/tv_empty_value"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="24sp"
-                                    app:layout_constraintLeft_toLeftOf="@+id/tv_caption_ruangan_baru"
-                                    app:layout_constraintRight_toRightOf="@+id/divider_4"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_caption_ruangan_baru" />
+                    <TextView
+                        android:id="@+id/tv_ruangan_baru"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:text="@string/tv_empty_value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="24sp"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_caption_ruangan_baru"
+                        app:layout_constraintRight_toRightOf="@+id/divider_4"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_caption_ruangan_baru" />
 
-                                <View
-                                    android:id="@+id/divider2"
-                                    android:layout_width="0dp"
-                                    android:layout_height="2dp"
-                                    android:layout_marginTop="18dp"
-                                    android:background="@color/colorAccent"
-                                    app:layout_constraintLeft_toLeftOf="@+id/divider_4"
-                                    app:layout_constraintRight_toRightOf="@+id/divider_4"
-                                    app:layout_constraintTop_toBottomOf="@+id/iv_kelas_icon_lama" />
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="18dp"
+                        android:background="@color/colorAccent"
+                        app:layout_constraintLeft_toLeftOf="@+id/divider_4"
+                        app:layout_constraintRight_toRightOf="@+id/divider_4"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_kelas_icon_lama" />
 
-                                <ImageView
-                                    android:id="@+id/iv_changes_1"
-                                    android:layout_width="32dp"
-                                    android:layout_height="32dp"
-                                    android:layout_marginBottom="0dp"
-                                    android:layout_marginEnd="0dp"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="0dp"
-                                    app:layout_constraintBottom_toBottomOf="@id/tv_ruangan_lama"
-                                    app:layout_constraintLeft_toLeftOf="@id/guideline_50"
-                                    app:layout_constraintRight_toLeftOf="@id/guideline_50"
-                                    app:layout_constraintTop_toTopOf="@id/tv_ruangan_lama"
-                                    app:srcCompat="@drawable/ic_forward" />
+                    <ImageView
+                        android:id="@+id/iv_changes_1"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_ruangan_lama"
+                        app:layout_constraintLeft_toLeftOf="@id/guideline_50"
+                        app:layout_constraintRight_toLeftOf="@id/guideline_50"
+                        app:layout_constraintTop_toTopOf="@id/tv_ruangan_lama"
+                        app:srcCompat="@drawable/ic_forward" />
 
-                                <TextView
-                                    android:id="@id/tv_caption_waktu_perkuliahan"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="4dp"
-                                    android:text="@string/waktu_perkuliahan_caption_label"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                    app:layout_constraintLeft_toLeftOf="@id/tv_caption_lokasi"
-                                    app:layout_constraintTop_toBottomOf="@id/divider2" />
+                    <TextView
+                        android:id="@id/tv_caption_waktu_perkuliahan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/waktu_perkuliahan_caption_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        app:layout_constraintLeft_toLeftOf="@id/tv_caption_lokasi"
+                        app:layout_constraintTop_toBottomOf="@id/divider2" />
 
-                                <ImageView
-                                    android:id="@+id/iv_date_lama"
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_marginBottom="0dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="0dp"
-                                    android:tint="@color/colorStatusAbsen"
-                                    app:layout_constraintBottom_toBottomOf="@+id/tv_date_lama"
-                                    app:layout_constraintRight_toLeftOf="@+id/tv_date_lama"
-                                    app:layout_constraintTop_toTopOf="@+id/tv_date_lama"
-                                    app:srcCompat="@drawable/ic_today_black" />
+                    <ImageView
+                        android:id="@+id/iv_date_lama"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="0dp"
+                        android:tint="@color/colorStatusAbsen"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_date_lama"
+                        app:layout_constraintRight_toLeftOf="@+id/tv_date_lama"
+                        app:layout_constraintTop_toTopOf="@+id/tv_date_lama"
+                        app:srcCompat="@drawable/ic_today_black" />
 
-                                <TextView
-                                    android:id="@+id/tv_date_lama"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="0dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="8dp"
-                                    android:text="@string/tv_empty_value"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                    android:textColor="@color/colorStatusAbsen"
-                                    android:textSize="18sp"
-                                    app:layout_constraintLeft_toLeftOf="@+id/iv_changes_2"
-                                    app:layout_constraintRight_toRightOf="@+id/iv_changes_2"
-                                    app:layout_constraintTop_toBottomOf="@id/tv_caption_waktu_perkuliahan" />
+                    <TextView
+                        android:id="@+id/tv_date_lama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/tv_empty_value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/colorStatusAbsen"
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toLeftOf="@+id/iv_changes_2"
+                        app:layout_constraintRight_toRightOf="@+id/iv_changes_2"
+                        app:layout_constraintTop_toBottomOf="@id/tv_caption_waktu_perkuliahan" />
 
-                                <ImageView
-                                    android:id="@+id/iv_changes_2"
-                                    android:layout_width="32dp"
-                                    android:layout_height="32dp"
-                                    android:layout_marginEnd="0dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="8dp"
-                                    android:rotation="90"
-                                    app:layout_constraintLeft_toLeftOf="@+id/guideline_50"
-                                    app:layout_constraintRight_toLeftOf="@+id/guideline_50"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_date_lama"
-                                    app:srcCompat="@drawable/ic_forward" />
+                    <ImageView
+                        android:id="@+id/iv_changes_2"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:rotation="90"
+                        app:layout_constraintLeft_toLeftOf="@+id/guideline_50"
+                        app:layout_constraintRight_toLeftOf="@+id/guideline_50"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_date_lama"
+                        app:srcCompat="@drawable/ic_forward" />
 
-                                <ImageView
-                                    android:id="@+id/iv_date_baru"
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_marginBottom="0dp"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="0dp"
-                                    android:tint="@color/colorPrimaryDark"
-                                    app:layout_constraintBottom_toBottomOf="@+id/tv_date_baru"
-                                    app:layout_constraintRight_toLeftOf="@+id/tv_date_baru"
-                                    app:layout_constraintTop_toTopOf="@+id/tv_date_baru"
-                                    app:srcCompat="@drawable/ic_today_black" />
+                    <ImageView
+                        android:id="@+id/iv_date_baru"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="0dp"
+                        android:tint="@color/colorPrimaryDark"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_date_baru"
+                        app:layout_constraintRight_toLeftOf="@+id/tv_date_baru"
+                        app:layout_constraintTop_toTopOf="@+id/tv_date_baru"
+                        app:srcCompat="@drawable/ic_today_black" />
 
-                                <TextView
-                                    android:id="@+id/tv_date_baru"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="0dp"
-                                    android:layout_marginRight="0dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="9dp"
-                                    android:text="@string/tv_empty_value"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="18sp"
-                                    app:layout_constraintLeft_toLeftOf="@+id/iv_changes_2"
-                                    app:layout_constraintRight_toRightOf="@+id/iv_changes_2"
-                                    app:layout_constraintTop_toBottomOf="@+id/iv_changes_2" />
+                    <TextView
+                        android:id="@+id/tv_date_baru"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="9dp"
+                        android:text="@string/tv_empty_value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toLeftOf="@+id/iv_changes_2"
+                        app:layout_constraintRight_toRightOf="@+id/iv_changes_2"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_changes_2" />
 
-                                <ImageView
-                                    android:id="@+id/iv_waktu_mulai_lama"
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_marginBottom="0dp"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="8dp"
-                                    android:tint="@color/colorStatusAbsen"
-                                    app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_mulai_lama"
-                                    app:layout_constraintLeft_toLeftOf="@id/tv_caption_waktu_perkuliahan"
-                                    app:layout_constraintTop_toTopOf="@+id/tv_waktu_mulai_lama"
-                                    app:layout_constraintVertical_bias="1.0"
-                                    app:srcCompat="@drawable/ic_access_time" />
+                    <ImageView
+                        android:id="@+id/iv_waktu_mulai_lama"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="8dp"
+                        android:tint="@color/colorStatusAbsen"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_mulai_lama"
+                        app:layout_constraintLeft_toLeftOf="@id/tv_caption_waktu_perkuliahan"
+                        app:layout_constraintTop_toTopOf="@+id/tv_waktu_mulai_lama"
+                        app:layout_constraintVertical_bias="1.0"
+                        app:srcCompat="@drawable/ic_access_time" />
 
-                                <TextView
-                                    android:id="@+id/tv_waktu_mulai_lama"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="0dp"
-                                    android:text="@string/tv_empty_value"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                    android:textColor="@color/colorStatusAbsen"
-                                    android:textSize="20sp"
-                                    app:layout_constraintHorizontal_bias="0.47"
-                                    app:layout_constraintLeft_toRightOf="@+id/iv_waktu_mulai_lama"
-                                    app:layout_constraintRight_toLeftOf="@+id/iv_changes_3"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_mulai_lama" />
+                    <TextView
+                        android:id="@+id/tv_waktu_mulai_lama"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="0dp"
+                        android:text="@string/tv_empty_value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/colorStatusAbsen"
+                        android:textSize="20sp"
+                        app:layout_constraintHorizontal_bias="0.47"
+                        app:layout_constraintLeft_toRightOf="@+id/iv_waktu_mulai_lama"
+                        app:layout_constraintRight_toLeftOf="@+id/iv_changes_3"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_mulai_lama" />
 
-                                <TextView
-                                    android:id="@+id/tv_mulai_lama"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:text="@string/from_label"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                    android:textColor="@color/colorPrimaryText"
-                                    app:layout_constraintLeft_toLeftOf="@+id/tv_waktu_mulai_lama"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_date_baru" />
+                    <TextView
+                        android:id="@+id/tv_mulai_lama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/from_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/colorPrimaryText"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_waktu_mulai_lama"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_date_baru" />
 
-                                <ImageView
-                                    android:id="@+id/iv_changes_3"
-                                    android:layout_width="32dp"
-                                    android:layout_height="32dp"
-                                    android:layout_marginBottom="0dp"
-                                    android:layout_marginEnd="0dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="0dp"
-                                    app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_mulai_lama"
-                                    app:layout_constraintLeft_toLeftOf="@+id/guideline_50"
-                                    app:layout_constraintRight_toLeftOf="@+id/guideline_50"
-                                    app:layout_constraintTop_toTopOf="@+id/tv_waktu_mulai_lama"
-                                    app:srcCompat="@drawable/ic_forward" />
+                    <ImageView
+                        android:id="@+id/iv_changes_3"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_mulai_lama"
+                        app:layout_constraintLeft_toLeftOf="@+id/guideline_50"
+                        app:layout_constraintRight_toLeftOf="@+id/guideline_50"
+                        app:layout_constraintTop_toTopOf="@+id/tv_waktu_mulai_lama"
+                        app:srcCompat="@drawable/ic_forward" />
 
-                                <ImageView
-                                    android:id="@+id/iv_waktu_mulai_baru"
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_marginBottom="0dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="8dp"
-                                    android:tint="@color/colorPrimaryDark"
-                                    app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_mulai_baru"
-                                    app:layout_constraintLeft_toRightOf="@+id/iv_changes_3"
-                                    app:layout_constraintTop_toTopOf="@+id/tv_waktu_mulai_baru"
-                                    app:layout_constraintVertical_bias="1.0"
-                                    app:srcCompat="@drawable/ic_access_time" />
+                    <ImageView
+                        android:id="@+id/iv_waktu_mulai_baru"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:tint="@color/colorPrimaryDark"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_mulai_baru"
+                        app:layout_constraintLeft_toRightOf="@+id/iv_changes_3"
+                        app:layout_constraintTop_toTopOf="@+id/tv_waktu_mulai_baru"
+                        app:layout_constraintVertical_bias="1.0"
+                        app:srcCompat="@drawable/ic_access_time" />
 
-                                <TextView
-                                    android:id="@+id/tv_waktu_mulai_baru"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="0dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="0dp"
-                                    android:text="@string/tv_empty_value"                                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="20sp"
-                                    app:layout_constraintHorizontal_bias="0.0"
-                                    app:layout_constraintLeft_toRightOf="@+id/iv_waktu_mulai_baru"
-                                    app:layout_constraintRight_toRightOf="@+id/divider2"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_mulai_baru" />
+                    <TextView
+                        android:id="@+id/tv_waktu_mulai_baru"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="0dp"
+                        android:text="@string/tv_empty_value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="20sp"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintLeft_toRightOf="@+id/iv_waktu_mulai_baru"
+                        app:layout_constraintRight_toRightOf="@+id/divider2"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_mulai_baru" />
 
-                                <TextView
-                                    android:id="@+id/tv_mulai_baru"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="10dp"
-                                    android:text="@string/from_label"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                    android:textColor="@color/colorPrimaryText"
-                                    app:layout_constraintLeft_toLeftOf="@+id/tv_waktu_mulai_baru"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_date_baru" />
+                    <TextView
+                        android:id="@+id/tv_mulai_baru"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/from_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/colorPrimaryText"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_waktu_mulai_baru"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_date_baru" />
 
-                                <android.support.constraint.Guideline
-                                    android:id="@id/guideline_50"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    app:layout_constraintGuide_percent="0.5" />
+                    <android.support.constraint.Guideline
+                        android:id="@id/guideline_50"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5" />
 
-                                <ImageView
-                                    android:id="@+id/iv_waktu_selesai_lama"
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_marginBottom="0dp"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="0dp"
-                                    android:tint="@color/colorStatusAbsen"
-                                    app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_selesai_lama"
-                                    app:layout_constraintLeft_toLeftOf="@+id/iv_waktu_mulai_lama"
-                                    app:layout_constraintTop_toTopOf="@+id/tv_waktu_selesai_lama"
-                                    app:layout_constraintVertical_bias="0.0"
-                                    app:srcCompat="@drawable/ic_access_time" />
+                    <ImageView
+                        android:id="@+id/iv_waktu_selesai_lama"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:tint="@color/colorStatusAbsen"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_selesai_lama"
+                        app:layout_constraintLeft_toLeftOf="@+id/iv_waktu_mulai_lama"
+                        app:layout_constraintTop_toTopOf="@+id/tv_waktu_selesai_lama"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/ic_access_time" />
 
-                                <TextView
-                                    android:id="@+id/tv_waktu_selesai_lama"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="8dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="2dp"
-                                    android:text="@string/tv_empty_value"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                    android:textColor="@color/colorStatusAbsen"
-                                    android:textSize="20sp"
-                                    app:layout_constraintHorizontal_bias="1.0"
-                                    app:layout_constraintLeft_toRightOf="@+id/iv_waktu_selesai_lama"
-                                    app:layout_constraintRight_toLeftOf="@+id/iv_changes_4"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_selesai_lama" />
+                    <TextView
+                        android:id="@+id/tv_waktu_selesai_lama"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/tv_empty_value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/colorStatusAbsen"
+                        android:textSize="20sp"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintLeft_toRightOf="@+id/iv_waktu_selesai_lama"
+                        app:layout_constraintRight_toLeftOf="@+id/iv_changes_4"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_selesai_lama" />
 
-                                <TextView
-                                    android:id="@+id/tv_selesai_lama"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="8dp"
-                                    android:text="@string/to_label"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                    android:textColor="@color/colorPrimaryText"
-                                    app:layout_constraintLeft_toLeftOf="@+id/tv_waktu_selesai_lama"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_waktu_mulai_lama" />
+                    <TextView
+                        android:id="@+id/tv_selesai_lama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/to_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/colorPrimaryText"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_waktu_selesai_lama"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_waktu_mulai_lama" />
 
-                                <ImageView
-                                    android:id="@+id/iv_changes_4"
-                                    android:layout_width="32dp"
-                                    android:layout_height="32dp"
-                                    android:layout_marginBottom="0dp"
-                                    android:layout_marginEnd="0dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="0dp"
-                                    app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_selesai_lama"
-                                    app:layout_constraintLeft_toLeftOf="@+id/guideline_50"
-                                    app:layout_constraintRight_toLeftOf="@+id/guideline_50"
-                                    app:layout_constraintTop_toTopOf="@+id/tv_waktu_selesai_lama"
-                                    app:srcCompat="@drawable/ic_forward" />
+                    <ImageView
+                        android:id="@+id/iv_changes_4"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_selesai_lama"
+                        app:layout_constraintLeft_toLeftOf="@+id/guideline_50"
+                        app:layout_constraintRight_toLeftOf="@+id/guideline_50"
+                        app:layout_constraintTop_toTopOf="@+id/tv_waktu_selesai_lama"
+                        app:srcCompat="@drawable/ic_forward" />
 
-                                <ImageView
-                                    android:id="@+id/iv_waktu_selesai_baru"
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_marginBottom="0dp"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="0dp"
-                                    android:tint="@color/colorPrimaryDark"
-                                    app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_selesai_baru"
-                                    app:layout_constraintLeft_toLeftOf="@+id/iv_waktu_mulai_baru"
-                                    app:layout_constraintTop_toTopOf="@+id/tv_waktu_selesai_baru"
-                                    app:layout_constraintVertical_bias="0.0"
-                                    app:srcCompat="@drawable/ic_access_time" />
+                    <ImageView
+                        android:id="@+id/iv_waktu_selesai_baru"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:tint="@color/colorPrimaryDark"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_selesai_baru"
+                        app:layout_constraintLeft_toLeftOf="@+id/iv_waktu_mulai_baru"
+                        app:layout_constraintTop_toTopOf="@+id/tv_waktu_selesai_baru"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/ic_access_time" />
 
-                                <TextView
-                                    android:id="@+id/tv_waktu_selesai_baru"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="0dp"
-                                    android:layout_marginLeft="8dp"
-                                    android:layout_marginRight="8dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_marginTop="2dp"
-                                    android:text="@string/tv_empty_value"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="20sp"
-                                    app:layout_constraintHorizontal_bias="1.0"
-                                    app:layout_constraintLeft_toRightOf="@+id/iv_waktu_selesai_baru"
-                                    app:layout_constraintRight_toRightOf="@+id/divider2"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_selesai_baru" />
+                    <TextView
+                        android:id="@+id/tv_waktu_selesai_baru"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/tv_empty_value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="20sp"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintLeft_toRightOf="@+id/iv_waktu_selesai_baru"
+                        app:layout_constraintRight_toRightOf="@+id/divider2"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_selesai_baru" />
 
-                                <TextView
-                                    android:id="@+id/tv_selesai_baru"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="8dp"
-                                    android:text="@string/to_label"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                    android:textColor="@color/colorPrimaryText"
-                                    app:layout_constraintLeft_toLeftOf="@+id/tv_waktu_selesai_baru"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_waktu_mulai_baru" />
+                    <TextView
+                        android:id="@+id/tv_selesai_baru"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/to_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        android:textColor="@color/colorPrimaryText"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_waktu_selesai_baru"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_waktu_mulai_baru" />
 
-                                <Button
-                                    android:id="@+id/btn_konfirmasi_perubahan"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="8dp"
-                                    android:layout_marginTop="16dp"
-                                    android:text="@string/konfirmasi_perubahan_btn_label"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Button"
-                                    android:textColor="@color/colorIcons"
-                                    android:theme="@style/PerkuliahanButtonActivateKuliahTheme"
-                                    app:layout_constraintLeft_toLeftOf="@+id/guideline_50"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_waktu_selesai_baru"
-                                    android:layout_marginRight="8dp"
-                                    app:layout_constraintRight_toRightOf="parent"
-                                    app:layout_constraintHorizontal_bias="1.0" />
+                    <Button
+                        android:id="@+id/btn_konfirmasi_perubahan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/konfirmasi_perubahan_btn_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                        android:textColor="@color/colorIcons"
+                        android:theme="@style/PerkuliahanButtonActivateKuliahTheme"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintLeft_toLeftOf="@+id/guideline_50"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_waktu_selesai_baru" />
 
-                                <Button
-                                    android:id="@+id/btn_batalkan_perubahan"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="16dp"
-                                    android:text="@string/batalkan_perubahan_btn_label"
-                                    android:textAppearance="@style/TextAppearance.AppCompat.Button"
-                                    android:textColor="@color/colorIcons"
-                                    android:theme="@style/PerkuliahanButtonEndKuliahTheme"
-                                    app:layout_constraintTop_toBottomOf="@+id/tv_waktu_selesai_baru"
-                                    app:layout_constraintRight_toLeftOf="@+id/guideline_50"
-                                    android:layout_marginRight="8dp"
-                                    android:layout_marginLeft="8dp"
-                                    app:layout_constraintLeft_toLeftOf="parent"
-                                    app:layout_constraintHorizontal_bias="1.0" />
+                    <Button
+                        android:id="@+id/btn_batalkan_perubahan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/batalkan_perubahan_btn_label"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                        android:textColor="@color/colorIcons"
+                        android:theme="@style/PerkuliahanButtonEndKuliahTheme"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/guideline_50"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_waktu_selesai_baru" />
 
-
-                            </android.support.constraint.ConstraintLayout>
-                        </android.support.v7.widget.CardView>
-                    </android.support.constraint.ConstraintLayout>
                 </android.support.constraint.ConstraintLayout>
             </android.support.v7.widget.CardView>
 
@@ -956,7 +1005,6 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/iv_status_perkuliahan" />
-
 
                     <TextView
                         android:id="@+id/tv_pertemuan_ke"
