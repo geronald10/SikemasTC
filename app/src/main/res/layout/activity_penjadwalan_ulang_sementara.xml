@@ -996,7 +996,7 @@
                     android:paddingBottom="8dp">
 
                     <TextView
-                        android:id="@+id/tv_pertemuan_ke_label"
+                        android:id="@+id/tv_pertemuan_ke_label_lama"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -1016,9 +1016,9 @@
                         android:text="16"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textSize="18sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_pertemuan_ke_label"
-                        app:layout_constraintLeft_toRightOf="@+id/tv_pertemuan_ke_label"
-                        app:layout_constraintTop_toTopOf="@+id/tv_pertemuan_ke_label" />
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_pertemuan_ke_label_lama"
+                        app:layout_constraintLeft_toRightOf="@+id/tv_pertemuan_ke_label_lama"
+                        app:layout_constraintTop_toTopOf="@+id/tv_pertemuan_ke_label_lama" />
 
                     <ImageView
                         android:id="@+id/iv_status_perkuliahan"
@@ -1058,7 +1058,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_ke_label"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_ke_label_lama"
                         app:srcCompat="@drawable/ic_schedule" />
 
                     <TextView

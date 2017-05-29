@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -130,12 +131,12 @@ public class TambahDataSetWajah extends AppCompatActivity implements CameraBridg
 
         fh = new FileHelper();
         total = 0;
+        numberOfPictures = 20;
         lastTime = new Date().getTime();
 
         timerDiff = Integer.valueOf(cameraSettings.get(LibraryPreference.KEY_TIMERDIFF));
         mAddSetWajahView = (CustomCameraView) findViewById(R.id.AddSetWajahPreview);
         front_camera = Boolean.valueOf(cameraSettings.get(LibraryPreference.KEY_FRONT_CAMERA));
-        numberOfPictures = Integer.valueOf(cameraSettings.get(LibraryPreference.KEY_NUMBER_OF_PICTURES));
         night_portrait = Boolean.valueOf(cameraSettings.get(LibraryPreference.KEY_NIGHT_PORTRAIT_MODE));
         exposure_compensation = Integer.valueOf(cameraSettings.get(LibraryPreference.KEY_EXPOSURE));
 
@@ -228,12 +229,15 @@ public class TambahDataSetWajah extends AppCompatActivity implements CameraBridg
                             });
 
                             // Stop after numberOfPictures (settings option)
-                            if (total >= numberOfPictures) {
-                                Intent returnIntent = new Intent();
+                            if (total == numberOfPictures) {
+                                Intent returnIntent = new Intent(TambahDataSetWajah.this, KelolaDataSetWajah.class);
+                                Log.d("total", String.valueOf(total));
+                                Log.d("numberOfPicture", String.valueOf(numberOfPictures));
                                 returnIntent.putExtra("result_message", "Berhasil menambahkan data set wajah");
                                 returnIntent.putExtra("number_of_pictures", total);
-                                setResult(Activity.RESULT_OK, returnIntent);
-                                flagStatus.edit().putBoolean("upload_flag", true).apply();
+                                setResult(123, returnIntent);
+                                Log.d("returnintent", String.valueOf(Activity.RESULT_OK));
+                                flagStatus.edit().putBoolean("upload_flag", false).apply();
                                 flagStatus.edit().putBoolean("training_flag", false).apply();
                                 finish();
                             }

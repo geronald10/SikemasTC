@@ -574,7 +574,7 @@ public class PencocokanTandaTangan extends AppCompatActivity {
     StringRequest stringRequest;
     RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-    stringRequest = new StringRequest(Request.Method.POST, NetworkUtils.CHANGE_STATUS_KEHADIRAN,
+    stringRequest = new StringRequest(Request.Method.POST, NetworkUtils.KIRIM_STATUS_KEHADIRAN,
             new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

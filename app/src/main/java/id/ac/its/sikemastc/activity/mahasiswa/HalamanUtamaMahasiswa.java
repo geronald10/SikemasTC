@@ -22,8 +22,6 @@ import java.util.List;
 
 import id.ac.its.sikemastc.activity.BaseActivity;
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan;
-import id.ac.its.sikemastc.adapter.PerkuliahanAdapter;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
 import id.ac.its.sikemastc.sync.SikemasSyncUtils;
 

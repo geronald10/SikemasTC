@@ -57,13 +57,10 @@
         <activity android:name=".activity.dosen.PenjadwalanUlangPermanen" />
         <activity android:name=".activity.dosen.DetailKehadiranPeserta" />
         <activity android:name=".activity.dosen.DetailPertemuanKelas" />
-        <activity android:name=".activity.mahasiswa.DetailLihatJadwal" />
         <activity android:name=".activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan" />
         <activity android:name=".activity.verifikasi_tandatangan.KelolaDataSetTandaTangan" />
         <activity android:name=".activity.verifikasi_tandatangan.VerifikasiTandaTangan" />
         <activity android:name=".activity.verifikasi_tandatangan.PencocokanTandaTangan" />
-        <activity android:name=".activity.verifikasi_wajah.MenuVerifikasiWajah" />
-        <activity android:name=".activity.verifikasi_wajah.KelolaDataSetWajah" />
 
         <!-- Mahasiswa Activity Manifest -->
         <activity
@@ -134,7 +131,7 @@
         <!-- </service> -->
         <activity android:name=".activity.verifikasi_wajah.InstruksiTambahDataSetActivity" />
         <activity android:name=".activity.mahasiswa.DetailPerkuliahanMahasiswa" />
-        <activity android:name=".activity.mahasiswa.DetailJadwalKelasMahasiswa"></activity>
+        <activity android:name=".activity.mahasiswa.DetailJadwalKelasMahasiswa"/>
     </application>
 
 </manifest>

@@ -75,11 +75,7 @@ public class InstruksiTambahDataSetActivity extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentToTambahWajah = new Intent(InstruksiTambahDataSetActivity.this, TambahDataSetWajah.class);
-                intentToTambahWajah.putExtra("user_terlogin", userTerlogin);
-                intentToTambahWajah.putExtra("method", method);
-                intentToTambahWajah.putExtra("Folder", "Training");
-                startActivity(intentToTambahWajah);
+                setResult(KelolaDataSetWajah.ACTIVITY_INSTRUKSI_CODE);
                 finish();
             }
         });
@@ -91,11 +87,7 @@ public class InstruksiTambahDataSetActivity extends AppCompatActivity {
                 if (current < layouts.length) {
                     viewPager.setCurrentItem(current);
                 } else{
-                    Intent intentToTambahWajah = new Intent(InstruksiTambahDataSetActivity.this, TambahDataSetWajah.class);
-                    intentToTambahWajah.putExtra("user_terlogin", userTerlogin);
-                    intentToTambahWajah.putExtra("method", method);
-                    intentToTambahWajah.putExtra("Folder", "Training");
-                    startActivity(intentToTambahWajah);
+                    setResult(KelolaDataSetWajah.ACTIVITY_INSTRUKSI_CODE);
                     finish();
                 }
             }

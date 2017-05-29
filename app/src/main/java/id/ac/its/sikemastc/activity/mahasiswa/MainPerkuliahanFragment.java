@@ -38,7 +38,6 @@ import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan;
 import id.ac.its.sikemastc.activity.verifikasi_wajah.MenuVerifikasiWajah;
 import id.ac.its.sikemastc.adapter.PerkuliahanAktifAdapter;
-import id.ac.its.sikemastc.adapter.PerkuliahanAktifMahasiswaAdapter;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
 import id.ac.its.sikemastc.model.PerkuliahanMahasiswa;
 import id.ac.its.sikemastc.utilities.NetworkUtils;

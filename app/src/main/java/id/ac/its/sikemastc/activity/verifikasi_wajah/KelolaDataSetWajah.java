@@ -50,6 +50,9 @@ import id.ac.its.sikemastc.utilities.VolleySingleton;
 public class KelolaDataSetWajah extends AppCompatActivity {
 
     private static final String TAG = KelolaDataSetWajah.class.getSimpleName();
+    public static final int ACTIVITY_INSTRUKSI_CODE = 10;
+    private int ACTIVITY_TAMBAH_DATA_SET_CODE;
+
     // flag if the data has been trained or not
     private SharedPreferences flagStatus;
 
@@ -58,6 +61,7 @@ public class KelolaDataSetWajah extends AppCompatActivity {
     private String idPerkuliahan;
     private ArrayList<String> imageUrlList;
     private ArrayList<String> encodedImageList;
+    private FileHelper fh;
 
     private Context mContext;
     private TextView tvUserTerlogin;
@@ -125,18 +129,14 @@ public class KelolaDataSetWajah extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_tambah_data_set_wajah:
-                    Intent intentToStart = new Intent(v.getContext(), InstruksiTambahDataSetActivity.class);
-                    intentToStart.putExtra("user_terlogin", userTerlogin);
-                    intentToStart.putExtra("method", TambahDataSetWajah.TIME);
-                    intentToStart.putExtra("id_perkuliahan", idPerkuliahan);
+                    Intent intentToInstruksi = new Intent(mContext, InstruksiTambahDataSetActivity.class);
                     // Add dataset photos to "Training" folder
                     FileHelper newFile = new FileHelper();
                     if (isNameAlreadyUsed(newFile.getTrainingList(), userTerlogin)) {
                         Log.d("TrainingList", String.valueOf(newFile.getTrainingList()));
                         Toast.makeText(getApplicationContext(), "Data Set Wajah Ditemukan", Toast.LENGTH_SHORT).show();
                     } else {
-                        intentToStart.putExtra("Folder", "Training");
-                        startActivityForResult(intentToStart, 1);
+                        startActivityForResult(intentToInstruksi, ACTIVITY_INSTRUKSI_CODE);
                     }
                     break;
                 case R.id.btn_sinkronisasi_dataset:
@@ -152,6 +152,7 @@ public class KelolaDataSetWajah extends AppCompatActivity {
                         Intent intentToTraining = new Intent(v.getContext(), TrainingWajah.class);
                         intentToTraining.putExtra("id_perkuliahan", idPerkuliahan);
                         startActivity(intentToTraining);
+                        finish();
                     } else {
                         Toast.makeText(getApplication(), "Fitur Training Data Set tidak dapat " +
                                         "digunakan\nFitur ini aktif ketika sistem mendapatkan data set baru",
@@ -175,11 +176,22 @@ public class KelolaDataSetWajah extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == Activity.RESULT_OK) {
+        Log.d("cek", String.valueOf(requestCode));
+        if (requestCode == 0) {
+            Log.d("cek", String.valueOf(resultCode));
+            if (resultCode == ACTIVITY_INSTRUKSI_CODE) {
+                Intent intentToTambahWajah = new Intent(mContext, TambahDataSetWajah.class);
+                intentToTambahWajah.putExtra("user_terlogin", userTerlogin);
+                intentToTambahWajah.putExtra("method", TambahDataSetWajah.TIME);
+                intentToTambahWajah.putExtra("Folder", "Training");
+                startActivityForResult(intentToTambahWajah, 20);
+            }
+            if (resultCode == ACTIVITY_TAMBAH_DATA_SET_CODE) {
+                Log.d("masuk activityresult", String.valueOf(resultCode));
                 String resultMessage = data.getStringExtra("result_message");
                 int numberOfPictures = data.getIntExtra("number_of_pictures", 0);
                 Toast.makeText(mContext, resultMessage, Toast.LENGTH_SHORT).show();
+
                 tvJumlahDataSet.setText(String.valueOf(numberOfPictures));
                 encodedImageList = new ArrayList<>();
                 encodedImageList = getAllEncodedImageFormat();
@@ -464,9 +476,9 @@ public class KelolaDataSetWajah extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        checkDataSetStatus();
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        checkDataSetStatus();
+//    }
 }
