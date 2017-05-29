@@ -35,8 +35,11 @@ import java.util.List;
 import java.util.Map;
 
 import id.ac.its.sikemastc.R;
+import id.ac.its.sikemastc.activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan;
 import id.ac.its.sikemastc.activity.verifikasi_wajah.MenuVerifikasiWajah;
 import id.ac.its.sikemastc.adapter.PerkuliahanAktifAdapter;
+import id.ac.its.sikemastc.adapter.PerkuliahanAktifMahasiswaAdapter;
+import id.ac.its.sikemastc.data.SikemasSessionManager;
 import id.ac.its.sikemastc.model.PerkuliahanMahasiswa;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
 import id.ac.its.sikemastc.utilities.SikemasDateUtils;
@@ -56,6 +59,7 @@ public class MainPerkuliahanFragment extends Fragment implements
     private String bundleIdUser;
     private String bundleNamaUser;
     private List<PerkuliahanMahasiswa> perkuliahanAktifMahasiswaList;
+    private SikemasSessionManager session;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -131,7 +135,13 @@ public class MainPerkuliahanFragment extends Fragment implements
     public void onClick(int buttonId, String idPerkuliahan) {
         switch (buttonId) {
             case R.id.btn_verifikasi_tandatangan:
+                Intent intentToVerifikasiTandaTangan = new Intent (getActivity(), MenuVerifikasiTandaTangan.class);
+                intentToVerifikasiTandaTangan.putExtra("id_perkuliahan", idPerkuliahan);
+                intentToVerifikasiTandaTangan.putExtra("nrp_mahasiswa", bundleIdUser);
+                intentToVerifikasiTandaTangan.putExtra("nama_mahasiswa", bundleNamaUser);
+                startActivity(intentToVerifikasiTandaTangan);
                 break;
+
             case R.id.btn_verifikasi_wajah:
                 Intent intentToVerifikasiWajah = new Intent(getActivity(), MenuVerifikasiWajah.class);
                 intentToVerifikasiWajah.putExtra("id_perkuliahan", idPerkuliahan);
@@ -229,8 +239,7 @@ public class MainPerkuliahanFragment extends Fragment implements
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getActivity(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
             }
         }) {
             @Override

@@ -58,7 +58,6 @@ public class KelolaDataSetWajah extends AppCompatActivity {
     private String idPerkuliahan;
     private ArrayList<String> imageUrlList;
     private ArrayList<String> encodedImageList;
-    private FileHelper fh;
 
     private Context mContext;
     private TextView tvUserTerlogin;
