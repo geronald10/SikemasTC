@@ -74,12 +74,12 @@
     <string name="recognition_training_btn_label">Recognition Training</string>
     <string name="detection_view_btn_label">Detection View</string>
     <string name="settings_btn_label">Settings</string>
-    <string name="verification_view_btn_label">Verifikasi Kehadiran</string>
+    <string name="verification_view_btn_label">VERIFIKASI KEHADIRAN</string>
     <string name="menu_verifikasi_wajah_title">Mahasiswa Terlogin</string>
     <string name="mahasiswa_terlogin_empty">NRP - Nama</string>
     <string name="now_date_label">now date</string>
     <string name="green_line_divider_description">green line divider</string>
-    <string name="verifikasi_kehadiran_label">Verifikasi Kehadiran</string>
+    <string name="verifikasi_kehadiran_label">VERIFIKASI KEHADIRAN</string>
     <string name="kelola_data_set_wajah_btn_label">Kelola Data set wajah</string>
     <string name="training_data_set_btn_label">Training Data Set</string>
     <string name="tambah_data_set_wajah">Tambah Data Set Wajah</string>

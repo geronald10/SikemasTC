@@ -3,6 +3,7 @@ package id.ac.its.sikemastc.activity.verifikasi_tandatangan;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.verifikasi_wajah.KelolaDataSetWajah;
@@ -22,9 +26,13 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
     private final String TAG = MenuVerifikasiTandaTangan.class.getSimpleName();
 
     private Toolbar toolbar;
+    private String userTerlogin;
     private String nrpMahasiswa;
     private String namaMahasiswa;
     private String idPerkuliahan;
+    private String DIRECTORY;
+    private String StoredPath;
+    File dir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +58,16 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
         nrpMahasiswa = intent.getStringExtra("nrp_mahasiswa");
         namaMahasiswa = intent.getStringExtra("nama_mahasiswa");
         idPerkuliahan =intent.getStringExtra("id_perkuliahan");
-
         Log.v("log_tag", "id perkuliahan di menu verifikasi -> " + idPerkuliahan);
+        userTerlogin= nrpMahasiswa + " - " + namaMahasiswa;
+
+        DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/signatureverification/";
+        StoredPath = DIRECTORY + userTerlogin;
+        Log.d("storepath->", StoredPath);
+        dir = new File(StoredPath);
 
         TextView tvUserTerlogin = (TextView) findViewById(R.id.tv_user_detail);
-        tvUserTerlogin.setText(nrpMahasiswa + " - " + namaMahasiswa);
-//        Button callDetectionView = (Button) findViewById(R.id.btn_detection_view);
-//        Button callTraining = (Button) findViewById(R.id.btn_recognition_training);
+        tvUserTerlogin.setText(userTerlogin);
 
         Button btnKelolaDataSetTandaTangan = (Button) findViewById(R.id.btn_kelola_data_set_tandatangan);
         Button btnVerifikasiTandaTangan = (Button) findViewById(R.id.btn_verifikasi_tandatangan);
@@ -79,12 +90,17 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
                     break;
 
                 case R.id.btn_verifikasi_tandatangan:
-                    Intent intentToSignatureRecognition = new Intent(v.getContext(), VerifikasiTandaTangan.class);
-                    intentToSignatureRecognition.putExtra("identitas_mahasiswa", nrpMahasiswa + " - " + namaMahasiswa);
-                    intentToSignatureRecognition.putExtra("id_mahasiswa", nrpMahasiswa);
-                    intentToSignatureRecognition.putExtra("nama_mahasiswa", namaMahasiswa);
-                    intentToSignatureRecognition.putExtra("id_perkuliahan", idPerkuliahan);
-                    startActivity(intentToSignatureRecognition);
+                    if(!dir.exists()) {
+                        Toast.makeText(MenuVerifikasiTandaTangan.this, "Dataset Kosong, Silahkan Tambah Dataset", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Intent intentToSignatureRecognition = new Intent(v.getContext(), VerifikasiTandaTangan.class);
+                        intentToSignatureRecognition.putExtra("identitas_mahasiswa", nrpMahasiswa + " - " + namaMahasiswa);
+                        intentToSignatureRecognition.putExtra("id_mahasiswa", nrpMahasiswa);
+                        intentToSignatureRecognition.putExtra("nama_mahasiswa", namaMahasiswa);
+                        intentToSignatureRecognition.putExtra("id_perkuliahan", idPerkuliahan);
+                        startActivity(intentToSignatureRecognition);
+                    }
                     break;
             }
         }

@@ -100,7 +100,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Kelola Data Set");
+        toolbar.setTitle("Kelola Dataset");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
 
         // Compatibility
@@ -122,7 +122,6 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
         DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/signatureverification/";
         StoredPath = DIRECTORY + userTerlogin;
         Log.d("storepath->", StoredPath);
-
         dir = new File(StoredPath);
 
         tvUserTerlogin = (TextView) findViewById(R.id.tv_user_detail);
@@ -175,17 +174,22 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(mContext, "Dataset Gambar Tanda Tangan Sudah Ada", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Dataset Tanda Tangan Sudah Ada", Toast.LENGTH_LONG).show();
                     }
                     break;
 
                 case R.id.btn_sinkronisasi_tandatangan:
-                    SinkronisasiDatasetTandaTangan(userId);
+                    if(dir.exists()){
+                        Toast.makeText(mContext, "Dataset Tanda Tangan Sudah Ada", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        SinkronisasiDatasetTandaTangan(userId);
+                    }
                     break;
 
                 case R.id.btn_upload_file_tandatangan:
                     if (!dir.exists()) {
-                        Toast.makeText(mContext, "Dataset Gambar Tanda Tangan Kosong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Dataset Tanda Tangan Kosong", Toast.LENGTH_LONG).show();
                     }
                     else {
                         encodedImageList = new ArrayList<>();
@@ -256,7 +260,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                     Log.v("log_tag", "Panel Saved");
                     view.setDrawingCacheEnabled(true);
                     mSignature.save(view);
-                    Toast.makeText(getApplicationContext(), "Sukses Simpan Dataset Tanda Tangan ke- " + clickcount, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Sukses Simpan Dataset ke- " + clickcount, Toast.LENGTH_SHORT).show();
                     // Calling the same class
                 }
                 if (clickcount == 5)
@@ -418,7 +422,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
     private void SinkronisasiDatasetTandaTangan(final String userId) {
         //Showing the progress dialog
         imageUrlList = new ArrayList<>();
-        progressDialog.setMessage("Pengecekan Data Set Server... ");
+        progressDialog.setMessage("Pengecekan Dataset Server... ");
         progressDialog.show();
         Log.d(TAG, "masuk fungsi sinkronisasi");
 
@@ -439,11 +443,11 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                                 }
                                 progressDialog.dismiss();
                                 downloadImageFromUrl();
-                                Toast.makeText(KelolaDataSetTandaTangan.this, "Data Set ditemukan",
+                                Toast.makeText(KelolaDataSetTandaTangan.this, "Dataset ditemukan",
                                         Toast.LENGTH_SHORT).show();
                             } else {
                                 progressDialog.dismiss();
-                                Toast.makeText(KelolaDataSetTandaTangan.this, "Data Set tidak ditemukan, " +
+                                Toast.makeText(KelolaDataSetTandaTangan.this, "Dataset tidak ditemukan, " +
                                         "Anda belum mendaftarkan Tanda Tangan Anda", Toast.LENGTH_SHORT).show();
                             }
 
@@ -477,7 +481,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
     // Download image from url
     private void downloadImageFromUrl() {
         //Showing the progress dialog
-        progressDialog.setMessage("Sinkronisasi Data Set... ");
+        progressDialog.setMessage("Unduh Dataset... ");
         progressDialog.show();
 
         for (int i = 0; i < imageUrlList.size(); i++) {
@@ -503,7 +507,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                                     outputStream.close();
                                     if ((index + 1) == imageUrlList.size()) {
                                         progressDialog.dismiss();
-                                        Toast.makeText(getApplicationContext(), "Berhasil melakukan sinkronisasi",
+                                        Toast.makeText(getApplicationContext(), "Berhasil melakukan unduh dataset",
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -559,7 +563,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
         Log.d(TAG, "masuk fungsi upload");
 
         //Showing the progress dialog
-        progressDialog.setMessage("Mengunggah Data Tandatangan ke Server ... ");
+        progressDialog.setMessage("Mengunggah Dataset ke Server ... ");
         progressDialog.show();
 
         final int[] numberOfPhotos = {0};
@@ -574,7 +578,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                             //Showing toast message of the response
                             if (numberOfPhotos[0] == encodedImagesList.size()) {
                                 progressDialog.dismiss();
-                                Toast.makeText(KelolaDataSetTandaTangan.this, "Berhasil Kirim Data Set ke Server",
+                                Toast.makeText(KelolaDataSetTandaTangan.this, "Berhasil Kirim Dataset ke Server",
                                         Toast.LENGTH_SHORT).show();
                             }
                             Log.d("VolleyResponse", "Dapat ResponseVolley Upload Images");
