@@ -78,16 +78,16 @@
 
         <!-- Verifikasi Wajah Activity Manifest -->
         <activity
-            android:name=".activity.verifikasi_wajah.MenuVerifikasiWajah"
+            android:name=".activity.verifikasi_wajah.VerifikasiWajahMenuActivity"
             android:theme="@style/AppMaterialTheme" />
-        <activity android:name=".activity.verifikasi_wajah.KelolaDataSetWajah" />
-        <activity android:name=".activity.verifikasi_wajah.TrainingWajah" />
-        <activity android:name=".activity.verifikasi_wajah.HasilVerifikasi" />
+        <activity android:name=".activity.verifikasi_wajah.KelolaDataSetWajahActivity" />
+        <activity android:name=".activity.verifikasi_wajah.TrainingWajahActivity" />
+        <activity android:name=".activity.verifikasi_wajah.HasilVerifikasiActivity" />
         <activity
-            android:name=".activity.verifikasi_wajah.VerifikasiWajah"
+            android:name=".activity.verifikasi_wajah.VerifikasiWajahActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".activity.verifikasi_wajah.TambahDataSetWajah"
+            android:name=".activity.verifikasi_wajah.TambahDataSetWajahActivity"
             android:screenOrientation="landscape" />
 
         <!-- Provider Manifest -->
@@ -113,22 +113,24 @@
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
+        <service android:name=".sync.DeleteTokenIntentService"
+            android:exported="false"/>
         <service
             android:name=".sync.SikemasSyncSikemasMahasiswaIntentService"
             android:exported="false" />
-        <!-- <service -->
-        <!-- android:name=".sync.MyFirebaseMessagingService"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="com.google.firebase.MESSAGING_EVENT"/> -->
-        <!-- </intent-filter> -->
-        <!-- </service> -->
-        <!-- <service -->
-        <!-- android:name=".sync.MyFirebaseInstanceIDService" -->
-        <!-- android:exported="true"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/> -->
-        <!-- </intent-filter> -->
-        <!-- </service> -->
+        <service android:name=".sync.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".sync.MyFirebaseInstanceIDService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity android:name=".activity.verifikasi_wajah.InstruksiTambahDataSetActivity" />
         <activity android:name=".activity.mahasiswa.DetailPerkuliahanMahasiswa" />
         <activity android:name=".activity.mahasiswa.DetailJadwalKelasMahasiswa"/>

@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.activity.verifikasi_wajah.KelolaDataSetWajah;
 
 /**
  * Created by novitarpl on 5/16/2017.

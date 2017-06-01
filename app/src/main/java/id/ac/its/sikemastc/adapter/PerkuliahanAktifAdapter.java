@@ -2,7 +2,6 @@ package id.ac.its.sikemastc.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,12 @@ import android.widget.TextView;
 import java.util.List;
 
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.model.PerkuliahanMahasiswa;
-import id.ac.its.sikemastc.utilities.SikemasDateUtils;
+import id.ac.its.sikemastc.model.Perkuliahan;
 
 public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAktifAdapter.PerkuliahanAktifViewHolder> {
 
     private final Context mContext;
-    private List<PerkuliahanMahasiswa> perkuliahanAktifList;
+    private List<Perkuliahan> perkuliahanAktifList;
 
     // handle clicks on items
     final private PerkuliahanAktifOnClickHandler mClickHandler;
@@ -28,10 +26,10 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
         void onClick(int buttonId, String idPerkuliahan);
     }
 
-    public PerkuliahanAktifAdapter(Context context, List<PerkuliahanMahasiswa> perkuliahanMahasiswaList,
+    public PerkuliahanAktifAdapter(Context context, List<Perkuliahan> perkuliahanList,
                                    PerkuliahanAktifOnClickHandler clickHandler) {
         mContext = context;
-        perkuliahanAktifList = perkuliahanMahasiswaList;
+        perkuliahanAktifList = perkuliahanList;
         mClickHandler = clickHandler;
     }
 
@@ -46,7 +44,7 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
 
     @Override
     public void onBindViewHolder(PerkuliahanAktifViewHolder holder, int position) {
-        PerkuliahanMahasiswa currentPerkuliahan = perkuliahanAktifList.get(position);
+        Perkuliahan currentPerkuliahan = perkuliahanAktifList.get(position);
 
         holder.tvPertemuanKe.setText(currentPerkuliahan.getPertemuanKe());
         holder.tvKelas.setText(currentPerkuliahan.getKelasMk());

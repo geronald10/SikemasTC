@@ -5,13 +5,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import id.ac.its.sikemastc.data.SikemasContract;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
-import id.ac.its.sikemastc.model.PerkuliahanMahasiswa;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
 import id.ac.its.sikemastc.utilities.SikemasJsonUtils;
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    tools:context=".activity.verifikasi_wajah.TambahDataSetWajah">
+    tools:context=".activity.verifikasi_wajah.TambahDataSetWajahActivity">
 
     <ch.zhaw.facerecognitionlibrary.Helpers.CustomCameraView
         android:id="@+id/AddSetWajahPreview"

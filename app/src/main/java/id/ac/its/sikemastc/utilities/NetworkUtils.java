@@ -23,6 +23,10 @@ public final class NetworkUtils {
 
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
+    // Token FCM
+    public static final String KIRIM_TOKEN =
+            "http://10.151.31.201/sikemas/public/kirim_token";
+
     // Login API
     public static final String LOGIN_SIKEMAS =
             "http://10.151.31.201/sikemas/public/loginmobile";
@@ -64,6 +68,9 @@ public final class NetworkUtils {
     // Penjadwalan ulang kirim tanggal, kirim waktu
     public static final String CONFIRM_PENJADWALAN_SEMENTARA =
             "http://10.151.31.201/sikemas/public/konfirm_ganti_jadwal";
+    // Penjadwalan sementara request perkuliahan terpilih
+    public static final String REQUEST_JADWAL_PERKULIAHAN =
+            "http://10.151.31.201/sikemas/public/req_perkuliahan";
 
     // List perkuliahan Mahasiswa saat ini
     public static final String LIST_PERKULIAHAN_MAHASISWA_SAAT_INI =

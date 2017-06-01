@@ -10,9 +10,7 @@ import android.util.Log;
 import java.io.File;
 import java.util.HashMap;
 
-import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import id.ac.its.sikemastc.activity.LoginActivity;
-import id.ac.its.sikemastc.activity.verifikasi_wajah.KelolaDataSetWajah;
 import id.ac.its.sikemastc.sync.SikemasSyncTask;
 
 public class SikemasSessionManager {

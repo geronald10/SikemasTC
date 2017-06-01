@@ -5,7 +5,7 @@
     android:id="@+id/btn_add_person"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.verifikasi_wajah.MenuVerifikasiWajah">
+    tools:context=".activity.verifikasi_wajah.VerifikasiWajahMenuActivity">
 
     <include
         android:id="@+id/toolbar"

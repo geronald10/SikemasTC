@@ -79,7 +79,8 @@ public class FileHelper {
     }
 
     public static boolean isFileAnImage(File file){
-        if (file.toString().endsWith(".jpg") || file.toString().endsWith(".jpeg") || file.toString().endsWith(".gif") || file.toString().endsWith(".png")){
+        if (file.toString().endsWith(".jpg") || file.toString().endsWith(".jpeg") ||
+                file.toString().endsWith(".gif") || file.toString().endsWith(".png")){
             return true;
         } else {
             return false;

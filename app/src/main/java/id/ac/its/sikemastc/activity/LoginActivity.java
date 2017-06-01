@@ -32,6 +32,8 @@ import id.ac.its.sikemastc.activity.mahasiswa.HalamanUtamaMahasiswa;
 import id.ac.its.sikemastc.activity.orangtua.HalamanUtamaOrangtua;
 import id.ac.its.sikemastc.data.SikemasContract;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
+import id.ac.its.sikemastc.sync.DeleteTokenIntentService;
+import id.ac.its.sikemastc.sync.MyFirebaseInstanceIDService;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
 
 public class LoginActivity extends AppCompatActivity {
@@ -68,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         if (session.isLoggedIn()) {
             Intent intent = null;
             String loggedUserId = session.getUserDetails().get(SikemasSessionManager.KEY_USER_ROLE);
+            startImmediateDeleteToken(this);
             switch (loggedUserId) {
                 case "1":
                     intent = new Intent(LoginActivity.this, HalamanUtamaDosen.class);
@@ -241,4 +244,8 @@ public class LoginActivity extends AppCompatActivity {
         return true;
     }
 
+    private static void startImmediateDeleteToken(Context context) {
+        Intent intentToDeleteToken = new Intent(context, DeleteTokenIntentService.class);
+        context.startService(intentToDeleteToken);
+    }
 }

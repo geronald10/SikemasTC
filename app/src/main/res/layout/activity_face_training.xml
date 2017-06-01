@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    tools:context=".activity.verifikasi_wajah.TrainingWajah">
+    tools:context=".activity.verifikasi_wajah.TrainingWajahActivity">
 
     <include
         android:id="@+id/toolbar"

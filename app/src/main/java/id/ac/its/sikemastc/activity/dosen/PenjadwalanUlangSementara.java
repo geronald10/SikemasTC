@@ -1,13 +1,18 @@
 package id.ac.its.sikemastc.activity.dosen;
 
+import android.app.ProgressDialog;
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.IdRes;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -35,6 +40,7 @@ import com.wdullaer.materialdatetimepicker.date.TextViewWithCircularIndicator;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,6 +50,7 @@ import java.util.Map;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.data.SikemasContract;
+import id.ac.its.sikemastc.model.Perkuliahan;
 import id.ac.its.sikemastc.model.RuangKelas;
 import id.ac.its.sikemastc.model.WaktuKelas;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
@@ -54,35 +61,14 @@ public class PenjadwalanUlangSementara extends AppCompatActivity implements
         DatePickerDialog.OnDateSetListener {
 
     private String[] progressState = {"Tanggal", "Waktu", "Ruangan", "Konfirmasi"};
-
     private final String TAG = PenjadwalanUlangSementara.class.getSimpleName();
 
-    public static final String[] MAIN_SELECTED_KELAS_DOSEN_PROJECTION = {
-            SikemasContract.KelasEntry.KEY_ID_KELAS,
-            SikemasContract.KelasEntry.KEY_KODE_KELAS,
-            SikemasContract.KelasEntry.KEY_KODE_MK,
-            SikemasContract.KelasEntry.KEY_NAMA_MK,
-            SikemasContract.KelasEntry.KEY_NAMA_RUANGAN,
-            SikemasContract.KelasEntry.KEY_HARI,
-            SikemasContract.KelasEntry.KEY_MULAI,
-            SikemasContract.KelasEntry.KEY_SELESAI
-    };
-
-    public static final int INDEX_ID_KELAS = 0;
-    public static final int INDEX_KODE_KELAS = 1;
-    public static final int INDEX_KELAS_KODE_MK = 3;
-    public static final int INDEX_KELAS_NAMA_MK = 4;
-    public static final int INDEX_KELAS_NAMA_RUANGAN = 5;
-    public static final int INDEX_KELAS_HARI = 6;
-    public static final int INDEX_KELAS_MULAI = 7;
-    public static final int INDEX_KELAS_SELESAI = 8;
-
-    private static final int ID_SELECTED_KELAS_LOADER = 46;
-
+    private Perkuliahan perkuliahanTerpilih;
     private List<WaktuKelas> waktuKelasList;
     private List<RuangKelas> ruangKelasList;
 
     private ProgressBar mLoadingIndicator;
+    private ProgressDialog mProgressDialog;
     private StateProgressBar stateProgressBar;
 
     private TextView tvSelectedDate;
@@ -103,6 +89,9 @@ public class PenjadwalanUlangSementara extends AppCompatActivity implements
     private String selectedDate;
     private String selectedTime;
     private String selectedRoom;
+    private String selectedRoomName;
+    private String selectedTimeStart;
+    private String selectedTimeEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,9 +99,10 @@ public class PenjadwalanUlangSementara extends AppCompatActivity implements
         setContentView(R.layout.activity_penjadwalan_ulang_sementara);
 
         idPerkuliahan = getIntent().getStringExtra("id_perkuliahan");
-
         waktuKelasList = new ArrayList<>();
         ruangKelasList = new ArrayList<>();
+        mProgressDialog = new ProgressDialog(this);
+        getJadwalTerpilih(idPerkuliahan);
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle("Penjadwalan Ulang");
@@ -135,7 +125,6 @@ public class PenjadwalanUlangSementara extends AppCompatActivity implements
         stateProgressBar.setStateDescriptionData(progressState);
         showPilihTanggalState();
 
-//        getSupportLoaderManager().initLoader(ID_SELECTED_KELAS_LOADER, null, this);
         Button btnNextToWaktu = (Button) findViewById(R.id.btn_next_to_waktu);
         Button btnNextToRuangan = (Button) findViewById(R.id.btn_next_to_ruangan);
         Button btnNextToKonfirmasi = (Button) findViewById(R.id.btn_next_to_konfirmasi);
@@ -201,27 +190,15 @@ public class PenjadwalanUlangSementara extends AppCompatActivity implements
                         Toast.makeText(getApplicationContext(), "Anda belum memilih ruang kelas perkuliahan pengganti",
                                 Toast.LENGTH_SHORT).show();
                     break;
-                case R.id.btn_simpan_perubahan:
-                    postJadwalBaru(selectedDate, selectedTime, selectedRoom, idPerkuliahan);
+                case R.id.btn_konfirmasi_perubahan:
+                    showAlertDialog(R.id.btn_konfirmasi_perubahan);
+                    break;
+                case R.id.btn_batalkan_perubahan:
+                    showAlertDialog(R.id.btn_batalkan_perubahan);
                     break;
             }
         }
     };
-
-//    @Override
-//    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-//        return null;
-//    }
-//
-//    @Override
-//    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-//
-//    }
-//
-//    @Override
-//    public void onLoaderReset(Loader<Cursor> loader) {
-//
-//    }
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
@@ -231,6 +208,26 @@ public class PenjadwalanUlangSementara extends AppCompatActivity implements
 
     private void showLoading() {
         mLoadingIndicator.setVisibility(View.VISIBLE);
+    }
+
+    private void showJadwalTerpilih() {
+        TextView tvPertemuanKe = (TextView) findViewById(R.id.tv_pertemuan_ke);
+        TextView tvKodePerkuliahan = (TextView) findViewById(R.id.tv_kode_matakuliah);
+        TextView tvNamaMk = (TextView) findViewById(R.id.tv_matakuliah);
+        TextView tvRuangan = (TextView) findViewById(R.id.tv_ruangan);
+        TextView tvKelas = (TextView) findViewById(R.id.tv_kelas);
+        TextView tvTanggal = (TextView) findViewById(R.id.tv_date);
+        TextView tvWaktuMulai = (TextView) findViewById(R.id.tv_waktu_mulai);
+        TextView tvWaktuSelesai = (TextView) findViewById(R.id.tv_waktu_selesai);
+
+        tvPertemuanKe.setText(perkuliahanTerpilih.getPertemuanKe());
+        tvKodePerkuliahan.setText(perkuliahanTerpilih.getKodeSemester());
+        tvNamaMk.setText(perkuliahanTerpilih.getNamaMk());
+        tvRuangan.setText(perkuliahanTerpilih.getRuangMk());
+        tvKelas.setText(perkuliahanTerpilih.getKelasMk());
+        tvTanggal.setText(perkuliahanTerpilih.getTanggal());
+        tvWaktuMulai.setText(perkuliahanTerpilih.getWaktuMulai());
+        tvWaktuSelesai.setText(perkuliahanTerpilih.getWaktuSelesai());
     }
 
     private void showPilihTanggalState() {
@@ -252,6 +249,12 @@ public class PenjadwalanUlangSementara extends AppCompatActivity implements
                 selectedTime = String.valueOf(checkedId);
                 pilihanWaktu = (RadioButton) findViewById(checkedId);
                 tvSelectedTime.setText(pilihanWaktu.getText());
+                String selectedTimeFull = (String) pilihanWaktu.getText();
+                String[] splittedTime = selectedTimeFull.split(" - ");
+                selectedTimeStart = splittedTime[0];
+                selectedTimeEnd = splittedTime[1];
+
+
             }
         });
     }
@@ -265,8 +268,9 @@ public class PenjadwalanUlangSementara extends AppCompatActivity implements
         ruangRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                selectedRoom = String.valueOf(checkedId);
                 pilihanRuang = (RadioButton) findViewById(checkedId);
+                selectedRoom = String.valueOf(checkedId);
+                selectedRoomName = (String) pilihanRuang.getText();
                 tvSelectedRoom.setText(pilihanRuang.getText());
             }
         });
@@ -280,6 +284,90 @@ public class PenjadwalanUlangSementara extends AppCompatActivity implements
         cvMataKuliah.setVisibility(View.GONE);
         cvMataKuliahBaru.setVisibility(View.VISIBLE);
         stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR);
+        showPerubahanJadwal();
+    }
+
+    private void showPerubahanJadwal() {
+        TextView tvPertemuanKe = (TextView) findViewById(R.id.tv_pertemuan_ke_baru);
+        TextView tvKodePerkuliahan = (TextView) findViewById(R.id.tv_kode_matakuliah);
+        TextView tvNamaMk = (TextView) findViewById(R.id.tv_matakuliah_baru);
+        TextView tvKelas = (TextView) findViewById(R.id.tv_kelas_lama);
+
+        TextView tvRuanganLama = (TextView) findViewById(R.id.tv_ruangan_lama);
+        TextView tvRuanganBaru = (TextView) findViewById(R.id.tv_ruangan_baru);
+        TextView tvTanggalLama = (TextView) findViewById(R.id.tv_date_lama);
+        TextView tvTanggalBaru = (TextView) findViewById(R.id.tv_date_baru);
+        TextView tvWaktuMulaiLama = (TextView) findViewById(R.id.tv_waktu_mulai_lama);
+        TextView tvWaktuSelesaiLama = (TextView) findViewById(R.id.tv_waktu_selesai_lama);
+        TextView tvWaktuMulaiBaru = (TextView) findViewById(R.id.tv_waktu_mulai_baru);
+        TextView tvWaktuSelesaiBaru = (TextView) findViewById(R.id.tv_waktu_selesai_baru);
+
+        tvPertemuanKe.setText(perkuliahanTerpilih.getPertemuanKe());
+        tvKodePerkuliahan.setText(perkuliahanTerpilih.getKodeSemester());
+        tvNamaMk.setText(perkuliahanTerpilih.getNamaMk());
+        tvKelas.setText(perkuliahanTerpilih.getKelasMk());
+
+        tvRuanganLama.setText(perkuliahanTerpilih.getRuangMk());
+        tvTanggalLama.setText(perkuliahanTerpilih.getTanggal());
+        tvWaktuMulaiLama.setText(perkuliahanTerpilih.getWaktuMulai());
+        tvWaktuSelesaiLama.setText(perkuliahanTerpilih.getWaktuSelesai());
+
+        tvRuanganBaru.setText(selectedRoomName);
+        tvTanggalBaru.setText(SikemasDateUtils.formatDate(selectedDate));
+        tvWaktuMulaiBaru.setText(selectedTimeStart);
+        tvWaktuSelesaiBaru.setText(selectedTimeEnd);
+    }
+
+    private void getJadwalTerpilih(final String idPerkuliahan) {
+        mProgressDialog.setMessage("Memuat Jadwal Perkuliahan Terpilih ...");
+        mProgressDialog.show();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                NetworkUtils.REQUEST_JADWAL_PERKULIAHAN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, "Perkuliahan terpilih response: " + response);
+                        try {
+                            JSONArray jsonObject = new JSONArray(response);
+                            JSONObject list = jsonObject.getJSONObject(0);
+                            String pertemuanKe = list.getString("pertemuan");
+                            String tanggal = SikemasDateUtils.formatDate(list.getString("tanggal"));
+                            String waktuMulai = SikemasDateUtils.formatTime(list.getString("mulai"));
+                            String waktuSelesai = SikemasDateUtils.formatTime(list.getString("selesai"));
+                            JSONObject kelas = list.getJSONObject("kelas");
+                            String kodeKelas = kelas.getString("kode_kelas");
+                            String kodeMk = kelas.getString("kode_matakuliah");
+                            String namaMk = kelas.getString("nama_kelas");
+                            Log.d(TAG, namaMk);
+                            JSONObject ruangan = list.getJSONObject("ruangan");
+                            String namaRuangan = ruangan.getString("nama");
+                            perkuliahanTerpilih = new Perkuliahan(idPerkuliahan, kodeMk, namaMk,
+                                    kodeKelas, namaRuangan, pertemuanKe, tanggal, waktuMulai, waktuSelesai);
+                            showJadwalTerpilih();
+                            mProgressDialog.dismiss();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id_perkuliahan", idPerkuliahan);
+                return params;
+            }
+        };
+        VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(stringRequest);
     }
 
     private void getWaktuTersedia(final String tanggalTerpilih) {
@@ -382,26 +470,24 @@ public class PenjadwalanUlangSementara extends AppCompatActivity implements
 
     private void postJadwalBaru(final String tanggalTerpilih, final String idWaktu,
                                 final String idRuangan, final String idPerkuliahan) {
-        showLoading();
+        mProgressDialog.setMessage("Mengubah Jadwal Sementara ...");
+        mProgressDialog.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                NetworkUtils.REQUEST_PENJADWALAN_BY_TANGGAL_WAKTU,
+                NetworkUtils.CONFIRM_PENJADWALAN_SEMENTARA,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d(TAG, "Peserta Kehadiran Response: " + response);
+                        Log.d(TAG, "response konfirmasi: " + response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            JSONArray listRuangan = jsonObject.getJSONArray("listruangan");
-                            for (int i = 0; i < listRuangan.length(); i++) {
-                                JSONObject listRuanganKelas = listRuangan.getJSONObject(i);
-                                String idRuangan = listRuanganKelas.getString("id");
-                                String namaRuangan = listRuanganKelas.getString("nama");
-
-                                RuangKelas ruangKelas = new RuangKelas(idRuangan, namaRuangan);
-                                ruangKelasList.add(ruangKelas);
-                                Log.d("waktu kelas", String.valueOf(ruangKelas));
+                            String code = jsonObject.getString("code");
+                            String status = jsonObject.getString("status");
+                            switch (code) {
+                                case "1":
+                                    Toast.makeText(getApplicationContext(), status,
+                                            Toast.LENGTH_SHORT).show();
                             }
-                            showPilihWaktuState();
+                            mProgressDialog.dismiss();
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(),
@@ -422,6 +508,8 @@ public class PenjadwalanUlangSementara extends AppCompatActivity implements
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("tanggal", tanggalTerpilih);
                 params.put("id_waktu", idWaktu);
+                params.put("id_ruangan", idRuangan);
+                params.put("id_perkuliahan", idPerkuliahan);
                 return params;
             }
         };
@@ -445,7 +533,7 @@ public class PenjadwalanUlangSementara extends AppCompatActivity implements
         }
     }
 
-    private void addRuangRadioButton(){
+    private void addRuangRadioButton() {
         for (int i = 0; i < 1; i++) {
             ruangRadioGroup = new RadioGroup(this);
             ruangRadioGroup.setOrientation(LinearLayout.VERTICAL);
@@ -459,5 +547,38 @@ public class PenjadwalanUlangSementara extends AppCompatActivity implements
             }
             ((ViewGroup) findViewById(R.id.pilihan_ruang_radio_group)).addView(ruangRadioGroup);
         }
+    }
+
+    private void showAlertDialog(int btnClickId) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        switch (btnClickId) {
+            case R.id.btn_konfirmasi_perubahan:
+                builder.setTitle("Konfirmasi")
+                        .setMessage("Apakah Anda yakin mengubah jadwal pertemuan ini?")
+                        .setNegativeButton("Tidak", null)
+                        .setPositiveButton("Iya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                postJadwalBaru(selectedDate, selectedTime, selectedRoom, idPerkuliahan);
+                                dialog.dismiss();
+                                finish();
+                            }
+                        });
+                break;
+            case R.id.btn_batalkan_perubahan:
+                builder.setTitle("Batalkan")
+                        .setMessage("Apakah Anda yakin ingin membatalkan perubahan jadwal pertemuan ini?")
+                        .setNegativeButton("Tidak", null)
+                        .setPositiveButton("Iya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                finish();
+                            }
+                        });
+                break;
+        }
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

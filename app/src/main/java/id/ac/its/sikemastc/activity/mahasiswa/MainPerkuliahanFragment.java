@@ -1,7 +1,6 @@
 package id.ac.its.sikemastc.activity.mahasiswa;
 
 import android.content.Intent;
-import android.provider.SyncStateContract;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
@@ -14,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,10 +34,10 @@ import java.util.Map;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan;
-import id.ac.its.sikemastc.activity.verifikasi_wajah.MenuVerifikasiWajah;
+import id.ac.its.sikemastc.activity.verifikasi_wajah.VerifikasiWajahMenuActivity;
 import id.ac.its.sikemastc.adapter.PerkuliahanAktifAdapter;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
-import id.ac.its.sikemastc.model.PerkuliahanMahasiswa;
+import id.ac.its.sikemastc.model.Perkuliahan;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
 import id.ac.its.sikemastc.utilities.SikemasDateUtils;
 import id.ac.its.sikemastc.utilities.VolleySingleton;
@@ -57,7 +55,7 @@ public class MainPerkuliahanFragment extends Fragment implements
     private PerkuliahanAktifAdapter mPerkuliahanAktifAdapter;
     private String bundleIdUser;
     private String bundleNamaUser;
-    private List<PerkuliahanMahasiswa> perkuliahanAktifMahasiswaList;
+    private List<Perkuliahan> perkuliahanAktifMahasiswaList;
     private SikemasSessionManager session;
 
     @Override
@@ -123,7 +121,7 @@ public class MainPerkuliahanFragment extends Fragment implements
 //        btnCocokanWajah.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), MenuVerifikasiWajah.class);
+//                Intent intent = new Intent(getActivity(), VerifikasiWajahMenuActivity.class);
 //                intent.putExtra("id_perkuliahan", "1");
 //                startActivity(intent);
 //            }
@@ -142,7 +140,7 @@ public class MainPerkuliahanFragment extends Fragment implements
                 break;
 
             case R.id.btn_verifikasi_wajah:
-                Intent intentToVerifikasiWajah = new Intent(getActivity(), MenuVerifikasiWajah.class);
+                Intent intentToVerifikasiWajah = new Intent(getActivity(), VerifikasiWajahMenuActivity.class);
                 intentToVerifikasiWajah.putExtra("id_perkuliahan", idPerkuliahan);
                 intentToVerifikasiWajah.putExtra("nrp_mahasiswa", bundleIdUser);
                 intentToVerifikasiWajah.putExtra("nama_mahasiswa", bundleNamaUser);
@@ -208,7 +206,7 @@ public class MainPerkuliahanFragment extends Fragment implements
                                 String namaMk = kelas.getString("nama_kelas");
                                 String ruangMK = kelas.getString("nama_ruangan");
 
-                                PerkuliahanMahasiswa perkuliahanAktifMahasiswa = new PerkuliahanMahasiswa(
+                                Perkuliahan perkuliahanAktifMahasiswa = new Perkuliahan(
                                         idPerkuliahan, kodeMk, kodeSemester, namaMk, kelasMk, ruangMK, pertemuanKe,
                                         hari, waktuMulai, waktuSelesai, statusDosen, statusPerkuliahan);
                                 perkuliahanAktifMahasiswaList.add(perkuliahanAktifMahasiswa);

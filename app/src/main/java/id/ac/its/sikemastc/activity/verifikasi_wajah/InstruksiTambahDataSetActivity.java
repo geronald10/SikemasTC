@@ -1,5 +1,6 @@
 package id.ac.its.sikemastc.activity.verifikasi_wajah;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -28,8 +29,6 @@ public class InstruksiTambahDataSetActivity extends AppCompatActivity {
     private ViewPagerAdapter viewPagerAdapter;
     private UserGuideManager userGuideManager;
     private TextView[] dots;
-    private String userTerlogin;
-    private int method;
     private Button btnNext;
     private Button btnSkip;
     private LinearLayout dotsLayout;
@@ -39,18 +38,10 @@ public class InstruksiTambahDataSetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-        Intent intent = getIntent();
-        userTerlogin = intent.getStringExtra("user_terlogin");
-        method = intent.getIntExtra("method", 0);
         userGuideManager = new UserGuideManager(this);
-        if (!userGuideManager.Check())
-        {
+        if (!userGuideManager.Check()) {
             userGuideManager.setFirstPage(false);
-            Intent intentToTambahWajah = new Intent(InstruksiTambahDataSetActivity.this, TambahDataSetWajah.class);
-            intentToTambahWajah.putExtra("user_terlogin", userTerlogin);
-            intentToTambahWajah.putExtra("method", method);
-            intentToTambahWajah.putExtra("Folder", "Training");
-            startActivity(intentToTambahWajah);
+            setResult(Activity.RESULT_OK);
             finish();
         }
         if (Build.VERSION.SDK_INT >= 21) {
@@ -60,10 +51,10 @@ public class InstruksiTambahDataSetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_instruksi_tambah_data_set);
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
-        dotsLayout = (LinearLayout)findViewById(R.id.layout_dots);
+        dotsLayout = (LinearLayout) findViewById(R.id.layout_dots);
         btnSkip = (Button) findViewById(R.id.btn_skip);
         btnNext = (Button) findViewById(R.id.btn_next);
-        layouts =  new int[]{R.layout.activity_screen_1, R.layout.activity_screen_2,
+        layouts = new int[]{R.layout.activity_screen_1, R.layout.activity_screen_2,
                 R.layout.activity_screen_3, R.layout.activity_screen_4, R.layout.activity_screen_5,
                 R.layout.activity_screen_6};
         addBottomDots(0);
@@ -75,7 +66,7 @@ public class InstruksiTambahDataSetActivity extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setResult(KelolaDataSetWajah.ACTIVITY_INSTRUKSI_CODE);
+                setResult(Activity.RESULT_OK);
                 finish();
             }
         });
@@ -86,8 +77,8 @@ public class InstruksiTambahDataSetActivity extends AppCompatActivity {
                 int current = getItem(+1);
                 if (current < layouts.length) {
                     viewPager.setCurrentItem(current);
-                } else{
-                    setResult(KelolaDataSetWajah.ACTIVITY_INSTRUKSI_CODE);
+                } else {
+                    setResult(Activity.RESULT_OK);
                     finish();
                 }
             }
@@ -131,7 +122,7 @@ public class InstruksiTambahDataSetActivity extends AppCompatActivity {
         @Override
         public void onPageSelected(int position) {
             addBottomDots(position);
-            if (position == layouts.length-1) {
+            if (position == layouts.length - 1) {
                 btnNext.setText("PROCEED");
                 btnSkip.setVisibility(View.INVISIBLE);
             } else {
