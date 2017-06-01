@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "952528226584",
+    "firebase_url": "https://sikemastc.firebaseio.com",
+    "project_id": "sikemastc",
+    "storage_bucket": "sikemastc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952528226584:android:c7896c08e21dad06",
+        "android_client_info": {
+          "package_name": "id.ac.its.sikemastc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952528226584-9vplrtgt8bajcubfrk06h2lko8id42b1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ac.its.sikemastc",
+            "certificate_hash": "5fc7384e31b3375ed92dc8721763900049cbf6d7"
+          }
+        },
+        {
+          "client_id": "952528226584-h0tiivfn9nlj1aksclcjeuthn6q4crln.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ac.its.sikemastc",
+            "certificate_hash": "ca833d9a5af45595b4488b2d5b177b420d205797"
+          }
+        },
+        {
+          "client_id": "952528226584-5lu46gtuo291thoub4a68ie4se6khj50.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4Uu5YT3a98ZOC0nT9wfURriUXdD14pQM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952528226584-5lu46gtuo291thoub4a68ie4se6khj50.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
