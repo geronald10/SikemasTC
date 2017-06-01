@@ -58,8 +58,8 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
 //        Button callDetectionView = (Button) findViewById(R.id.btn_detection_view);
 //        Button callTraining = (Button) findViewById(R.id.btn_recognition_training);
 
-        Button btnKelolaDataSetTandaTangan = (Button) findViewById(R.id.btn_kelola_data_set_tandatangan_view);
-        Button btnVerifikasiTandaTangan = (Button) findViewById(R.id.btn_verification_ttd_view);
+        Button btnKelolaDataSetTandaTangan = (Button) findViewById(R.id.btn_kelola_data_set_tandatangan);
+        Button btnVerifikasiTandaTangan = (Button) findViewById(R.id.btn_verifikasi_tandatangan);
 
         btnKelolaDataSetTandaTangan.setOnClickListener(operate);
         btnVerifikasiTandaTangan.setOnClickListener(operate);
@@ -71,14 +71,14 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.btn_kelola_data_set_tandatangan_view:
+                case R.id.btn_kelola_data_set_tandatangan:
                     Intent intentToSetTandaTangan = new Intent(v.getContext(), KelolaDataSetTandaTangan.class);
                     intentToSetTandaTangan.putExtra("identitas_mahasiswa", nrpMahasiswa + " - " + namaMahasiswa);
                     intentToSetTandaTangan.putExtra("id_mahasiswa", nrpMahasiswa);
                     startActivity(intentToSetTandaTangan);
                     break;
 
-                case R.id.btn_verification_ttd_view:
+                case R.id.btn_verifikasi_tandatangan:
                     Intent intentToSignatureRecognition = new Intent(v.getContext(), VerifikasiTandaTangan.class);
                     intentToSignatureRecognition.putExtra("identitas_mahasiswa", nrpMahasiswa + " - " + namaMahasiswa);
                     intentToSignatureRecognition.putExtra("id_mahasiswa", nrpMahasiswa);

@@ -5,6 +5,10 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="AppNavDrawerMaterialTheme" parent="SuperMaterialTheme" />
+
+    <style name="MyToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AppLoginMaterialTheme" parent="SuperMaterialTheme">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textColorPrimary">@android:color/white</item>
@@ -27,11 +31,6 @@
         <item name="colorControlActivated">@color/colorControlActivated</item>
     </style>
 
-    <style name="MyToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">@android:color/white</item>
-    </style>
-    
     <style name="SettingsTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -43,22 +42,40 @@
         <item name="colorControlActivated">@color/colorControlActivated</item>
     </style>
 
-    <style name="ListKelasButtonPermanenTheme" parent="SuperMaterialTheme">
+    <style name="ListKelasButtonPermanenTheme" parent="Widget.AppCompat.Button">
         <item name="colorControlHighlight">@color/colorPrimaryLight</item>
         <item name="colorButtonNormal">@color/colorPrimaryDark</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
 
-    <style name="PerkuliahanButtonEndKuliahTheme" parent="SuperMaterialTheme">
+    <style name="PerkuliahanButtonEndKuliahTheme" parent="Widget.AppCompat.Button">
         <item name="colorControlHighlight">@color/colorDangerControlHight</item>
         <item name="colorButtonNormal">@color/colorDangerButtonNormal</item>
         <item name="colorControlActivated">@color/colorDangerControlActivated</item>
     </style>
 
-    <style name="PerkuliahanButtonActivateKuliahTheme" parent="SuperMaterialTheme">
+    <style name="PerkuliahanButtonActivateKuliahTheme" parent="Widget.AppCompat.Button">
         <item name="colorControlHighlight">@color/colorSuccessControlHight</item>
         <item name="colorButtonNormal">@color/colorSuccessButtonNormal</item>
         <item name="colorControlActivated">@color/colorSuccessControlActivated</item>
     </style>
+
+    <style name="WhiteButtonTheme" parent="Widget.AppCompat.Button">
+        <item name="colorControlHighlight">@android:color/white</item>
+        <item name="colorButtonNormal">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/darker_gray</item>
+    </style>
+
+    <style name="ActivityScreenTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">false</item>
+    </style>
+
+    <style name="ActivityScreenTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="ActivityScreenTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

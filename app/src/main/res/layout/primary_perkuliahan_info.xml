@@ -70,7 +70,8 @@
             app:srcCompat="@drawable/ic_lecture_3"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_ke_label" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_ke_label"
+            app:layout_constraintHorizontal_bias="0.457" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"

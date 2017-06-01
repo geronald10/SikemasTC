@@ -79,14 +79,14 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
     private Button btnTambah;
     private Button btnSinkronisasi;
     private Button btnUploadFile;
-    private ProgressDialog progressDialog;
     private Toolbar toolbar, toolbar1;
     private String DIRECTORY;
     private String StoredPath;
     private File dir;
-    Dialog dialog;
-    Bitmap bitmap;
-    int clickcount=0;
+    private ProgressDialog progressDialog;
+    private Dialog dialog;
+    private Bitmap bitmap;
+    int clickcount = 0 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +125,6 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
 
         dir = new File(StoredPath);
 
-
         tvUserTerlogin = (TextView) findViewById(R.id.tv_user_detail);
         tvJumlahDataSet = (TextView) findViewById(R.id.tv_data_set);
 
@@ -133,7 +132,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
 
         btnTambah = (Button) findViewById(R.id.btn_tambah_data_set_tandatangan);
         btnSinkronisasi = (Button) findViewById(R.id.btn_sinkronisasi_tandatangan);
-        btnUploadFile = (Button) findViewById(R.id.btn_upload_file_ttd);
+        btnUploadFile = (Button) findViewById(R.id.btn_upload_file_tandatangan);
 
         btnTambah.setOnClickListener(operate);
         btnSinkronisasi.setOnClickListener(operate);
@@ -166,15 +165,12 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.btn_tambah_data_set_tandatangan:
                     if (!dir.exists()) {
-                        toolbar1 = (Toolbar) findViewById(R.id.toolbar);
-                        setSupportActionBar(toolbar1);
-
                         // Dialog Function
                         dialog = new Dialog(KelolaDataSetTandaTangan.this);
                         // Removing the features of Normal Dialogs
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setContentView(R.layout.tambah_data_set_tandatangan);
-                        dialog.setCancelable(true); // agar tidak muncul dialognya
+                        dialog.setCancelable(false); // supaya dialog tidak close ketika click sembarang
                         dialog_action();
                     }
                     else
@@ -187,7 +183,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                     SinkronisasiDatasetTandaTangan(userId);
                     break;
 
-                case R.id.btn_upload_file_ttd:
+                case R.id.btn_upload_file_tandatangan:
                     if (!dir.exists()) {
                         Toast.makeText(mContext, "Dataset Gambar Tanda Tangan Kosong", Toast.LENGTH_SHORT).show();
                     }
@@ -201,8 +197,6 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
         }
     };
 
-
-
     //tambah dataset
     public void dialog_action() {
         mContent = (LinearLayout) dialog.findViewById(R.id.linearLayout_tambah_tandatangan);
@@ -211,16 +205,14 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
 
         mContent.addView(mSignature, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-        TextView header = (TextView)dialog.findViewById(R.id.tv_tambah_data_set_tandatangan);
+        TextView header = (TextView) dialog.findViewById(R.id.tv_tambah_data_set_tandatangan);
         header.setText("TANDA TANGAN SEBANYAK 5 KALI");
 
         btn_tambah_tandatangan_cancel = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_cancel);
         btn_tambah_tandatangan_clear = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_clear);
         btn_tambah_tandatangan_simpan = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_simpan);
+
         btn_tambah_tandatangan_simpan.setEnabled(false);
-
-
-
         view = mContent;
 
         btn_tambah_tandatangan_clear.setOnClickListener(new View.OnClickListener() {
@@ -234,23 +226,22 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
         btn_tambah_tandatangan_cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.v("log_tag", "Panel Canceled");
-
                 File[] files = dir.listFiles();
-                if (!dir.exists()) {
-                    Toast.makeText(KelolaDataSetTandaTangan.this, "Dataset belum ada, silahkan melakukan tanda tangan", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    int numberOfFiles = files.length;
-                    if(numberOfFiles != 5){
-                        Toast.makeText(KelolaDataSetTandaTangan.this, "Dataset kurang dari 5, Dataset tersimpan -> " + numberOfFiles, Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        dialog.dismiss();
-
-                    }
-
-                }
+                dialog.dismiss();
+//                if (!dir.exists()) {
+//                    Toast.makeText(KelolaDataSetTandaTangan.this, "Dataset belum ada, silahkan melakukan tanda tangan", Toast.LENGTH_SHORT).show();
+//                }
+//                else
+//                {
+//                    dialog.dismiss();
+//                    int numberOfFiles = files.length;
+//                    if(numberOfFiles != 5){
+//                        Toast.makeText(KelolaDataSetTandaTangan.this, "Dataset kurang dari 5, Dataset tersimpan -> " + numberOfFiles, Toast.LENGTH_SHORT).show();
+//                    }
+//                    else {
+//                        dialog.dismiss();
+//                    }
+//                }
             }
         });
 
@@ -258,38 +249,37 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                Log.v("log_tag", "clickcount->" + clickcount);
                 clickcount=clickcount+1;
-                Log.v("log_tag", "clickcount->" +clickcount);
-                if (clickcount >5)
-                {
-                    Toast.makeText(getApplicationContext(), "Dataset Tanda Tangan Sudah Ada, Silahkan klik KEMBALI", Toast.LENGTH_SHORT).show();
-                    btn_tambah_tandatangan_simpan.setEnabled(true);
-                }
                 if(clickcount<=5)
                 {
-
                     Log.v("log_tag", "Panel Saved");
                     view.setDrawingCacheEnabled(true);
                     mSignature.save(view);
                     Toast.makeText(getApplicationContext(), "Sukses Simpan Dataset Tanda Tangan ke- " + clickcount, Toast.LENGTH_SHORT).show();
                     // Calling the same class
                 }
+                if (clickcount == 5)
+                {
+                    // upload
+                    encodedImageList = new ArrayList<>();
+                    encodedImageList = getAllEncodedImageFormat();
+                    uploadImages(encodedImageList);
+                    btn_tambah_tandatangan_simpan.setEnabled(true);
+                    dialog.dismiss();
+                }
                 mSignature.clear();
                 //recreate();
-
-
             }
         });
         dialog.show();
     }
 
     public class signature extends View {
-
         private static final float STROKE_WIDTH = 5f;
         private static final float HALF_STROKE_WIDTH = STROKE_WIDTH / 2;
         private Paint paint = new Paint();
         private Path path = new Path();
-
         private float lastTouchX;
         private float lastTouchY;
         private final RectF dirtyRect = new RectF();
@@ -344,7 +334,6 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
         public void clear() {
             path.reset();
             invalidate();
-
         }
 
         @Override
@@ -398,7 +387,6 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
 
 
         private void debug(String string) {
-
             Log.v("log_tag", string);
 
         }
@@ -426,8 +414,8 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
 
     }
 
+    //sinkronisasi dataset
     private void SinkronisasiDatasetTandaTangan(final String userId) {
-
         //Showing the progress dialog
         imageUrlList = new ArrayList<>();
         progressDialog.setMessage("Pengecekan Data Set Server... ");
@@ -486,7 +474,6 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
         VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(stringRequest);
     }
 
-
     // Download image from url
     private void downloadImageFromUrl() {
         //Showing the progress dialog
@@ -506,7 +493,8 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                                   //  String wholeFolderPath = fh.TRAINING_PATH + userTerlogin;
                                     String wholeFolderPath= StoredPath;
                                     new File(wholeFolderPath).mkdirs();
-                                    String name = userTerlogin + "-" + index + ".png";
+                                    int nomor=index+1;
+                                    String name = userTerlogin + "-" + nomor + ".png";
                                     String fullpath = wholeFolderPath + "/" + name;
                                     File outputFile = new File(fullpath);
 
@@ -514,18 +502,9 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                                     outputStream.write(response);
                                     outputStream.close();
                                     if ((index + 1) == imageUrlList.size()) {
-                          //              flagStatus.edit().putBoolean("training_flag", false).apply();
-                           //             flagStatus.edit().putBoolean("upload_flag", true).apply();
                                         progressDialog.dismiss();
                                         Toast.makeText(getApplicationContext(), "Berhasil melakukan sinkronisasi",
                                                 Toast.LENGTH_SHORT).show();
-//                                        runOnUiThread(new Runnable() {
-//                                            @Override
-//                                            public void run() {
-//                                                tvJumlahDataSet.setText(String.valueOf(imageUrlList.size()));
-//                                                checkDataSetStatus();
-//                                            }
-//                                        });
                                     }
                                 }
                             } catch (Exception e) {
@@ -565,7 +544,6 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
                 byte[] imageBytes = baos.toByteArray();
                 encodedImage.add(Base64.encodeToString(imageBytes, Base64.DEFAULT));
-
             }
             return encodedImage;
         } else {
@@ -581,7 +559,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
         Log.d(TAG, "masuk fungsi upload");
 
         //Showing the progress dialog
-        progressDialog.setMessage("Mengunggah Data Set ke Server ... ");
+        progressDialog.setMessage("Mengunggah Data Tandatangan ke Server ... ");
         progressDialog.show();
 
         final int[] numberOfPhotos = {0};
@@ -592,10 +570,10 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             //Disimissing the progress dialog
-                            progressDialog.dismiss();
                             numberOfPhotos[0]++;
                             //Showing toast message of the response
                             if (numberOfPhotos[0] == encodedImagesList.size()) {
+                                progressDialog.dismiss();
                                 Toast.makeText(KelolaDataSetTandaTangan.this, "Berhasil Kirim Data Set ke Server",
                                         Toast.LENGTH_SHORT).show();
                             }
@@ -629,6 +607,4 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
             VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(stringRequest);
         }
     }
-
-
 }
