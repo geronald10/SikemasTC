@@ -330,6 +330,15 @@ public class PencocokanTandaTangan extends AppCompatActivity {
                     startActivityForResult(intentToStart, 1);
                     finish();
                     break;
+                case R.id.btn_coba_lagi_ttd:
+                    Intent intentTryAgain = new Intent(getBaseContext(), VerifikasiTandaTangan.class);
+                    intentTryAgain.putExtra("identitas_mahasiswa", idUserTerlogin + " - " + namaUserTerlogin);
+                    intentTryAgain.putExtra("id_mahasiswa", idUserTerlogin);
+                    intentTryAgain.putExtra("nama_mahasiswa", namaUserTerlogin);
+                    intentTryAgain.putExtra("id_perkuliahan", idPerkuliahan);
+                    startActivityForResult(intentTryAgain, 1);
+                    finish();
+                    break;
             }
         }
     };
@@ -351,7 +360,7 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-
+            TextView status = (TextView) findViewById(R.id.tv_status_verifikasi_ttd);
             TextView verifikasi = (TextView) findViewById(R.id.tv_user_verifikasi_ttd);
             TextView user_login = (TextView) findViewById(R.id.tv_user_detail_ttd);
             Button finish = (Button) findViewById(R.id.btn_finish_verifikasi_ttd);
@@ -361,8 +370,10 @@ public class PencocokanTandaTangan extends AppCompatActivity {
 
             if (flagStatusPencocokan == 1) {
                 sendStatus();
+                status.setText("OK");
                 verifikasi.setText("Berhasil Presensi");
             } else
+                status.setText("GAGAL");
                 verifikasi.setText("Gagal Melakukan Presensi");
             progressDialog.dismiss();
         }
