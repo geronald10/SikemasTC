@@ -32,10 +32,21 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="NRP - Nama"
+        android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_user_detail_info" />
+
+    <ImageView
+        android:id="@+id/iv_underline"
+        android:layout_width="203dp"
+        android:layout_height="2dp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_user_detail"
+        app:layout_constraintRight_toRightOf="@+id/tv_user_detail"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_detail"
+        app:srcCompat="@color/colorAccent"
+        android:layout_marginTop="2dp"/>
 
     <TextView
         android:id="@+id/tv_data_set_info"
@@ -44,7 +55,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="32dp"
-        android:text="Jumlah Data Set Tersimpan"
+        android:text="@string/jumlah_data_set_tersimpan"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16sp"
         app:layout_constraintHorizontal_bias="0.502"
@@ -58,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="Data Set Tanda Tangan Tidak Ditemukan"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -85,28 +96,54 @@
 
     <Button
         android:id="@+id/btn_tambah_data_set_tandatangan"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_marginTop="32dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:layout_marginTop="24dp"
+        android:drawableLeft="@drawable/ic_add"
+        android:gravity="center"
         android:text="@string/tambah_data_set_tanda_tangan"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_data_set" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="15sp"
+        android:theme="@style/WhiteButtonTheme"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_data_set"
+        app:layout_constraintRight_toRightOf="@+id/tv_data_set"
+        app:layout_constraintTop_toBottomOf="@+id/tv_data_set"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <Button
         android:id="@+id/btn_sinkronisasi_tandatangan"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/sinkronisasi_dataset_tanda_tangan"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/ic_down_download"
+        android:gravity="center"
+        android:text="@string/unduh_dataset_tanda_tangan"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="15sp"
+        android:theme="@style/WhiteButtonTheme"
+        app:layout_constraintLeft_toLeftOf="@+id/btn_tambah_data_set_tandatangan"
+        app:layout_constraintRight_toRightOf="@+id/btn_tambah_data_set_tandatangan"
         app:layout_constraintTop_toBottomOf="@+id/btn_tambah_data_set_tandatangan" />
 
+    <Button
+        android:id="@+id/btn_upload_file_tandatangan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/ic_up_upload"
+        android:text="@string/upload_file"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="15sp"
+        android:theme="@style/WhiteButtonTheme"
+        app:layout_constraintRight_toRightOf="@+id/btn_sinkronisasi_tandatangan"
+        app:layout_constraintLeft_toLeftOf="@+id/btn_sinkronisasi_tandatangan"
+        app:layout_constraintTop_toBottomOf="@+id/btn_sinkronisasi_tandatangan" />
 
 </android.support.constraint.ConstraintLayout>

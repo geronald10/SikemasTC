@@ -30,7 +30,8 @@
         <item name="colorButtonNormal">@color/colorButtonNormal</item>
         <item name="colorControlActivated">@color/colorControlActivated</item>
     </style>
-    
+
+
     <style name="SettingsTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -75,7 +76,7 @@
     </style>
 
     <style name="ActivityScreenTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    
+
     <style name="ActivityScreenTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

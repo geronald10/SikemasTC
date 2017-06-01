@@ -74,12 +74,12 @@
     <string name="recognition_training_btn_label">Recognition Training</string>
     <string name="detection_view_btn_label">Detection View</string>
     <string name="settings_btn_label">Settings</string>
-    <string name="verification_view_btn_label">Verifikasi Kehadiran</string>
+    <string name="verification_view_btn_label">VERIFIKASI KEHADIRAN</string>
     <string name="menu_verifikasi_wajah_title">Mahasiswa Terlogin</string>
     <string name="mahasiswa_terlogin_empty">NRP - Nama</string>
     <string name="now_date_label">now date</string>
     <string name="green_line_divider_description">green line divider</string>
-    <string name="verifikasi_kehadiran_label">Verifikasi Kehadiran</string>
+    <string name="verifikasi_kehadiran_label">VERIFIKASI KEHADIRAN</string>
     <string name="kelola_data_set_wajah_btn_label">Kelola Data set wajah</string>
     <string name="training_data_set_btn_label">Training Data Set</string>
     <string name="tambah_data_set_wajah">Tambah Data Set</string>
@@ -129,10 +129,14 @@
     <string name="pilih_ruangan_label">Pilih Ruangan</string>
     <string name="kelola_data_set_tanda_tangan">Kelola Data set tanda tangan</string>
     <string name="tambah_data_set_tanda_tangan">TAMBAH DATA SET TANDA TANGAN</string>
+    <string name="kelola_data_set_tanda_tangan">KELOLA DATASET</string>
+    <string name="tambah_data_set_tanda_tangan">TAMBAH DATASET</string>
     <string name="tanda_tangan_disini">TANDA TANGAN DISINI</string>
-    <string name="batal_tandatangan">KEMBALI</string>
+    <string name="batal_tandatangan">TUTUP</string>
     <string name="hapus_tandatangan">HAPUS</string>
-    <string name="simpan_tandatangan">SIMPAN</string>
-    <string name="sinkronisasi_dataset_tanda_tangan">SINKRONISASI DATASET TANDA TANGAN</string>
+    <string name="simpan_tandatangan">KIRIM</string>
+    <string name="unduh_dataset_tanda_tangan">UNDUH DATASET</string>
     <string name="header_tambah_dataset_ttd">TANDA TANGAN SEBANYAK 5 KALI</string>
+    <string name="upload_file">UNGGAH DATASET</string>
+    <string name="jumlah_data_set_tersimpan">Jumlah Dataset Tersimpan</string>
 </resources>

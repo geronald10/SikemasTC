@@ -73,7 +73,7 @@ import static org.opencv.imgproc.Imgproc.THRESH_BINARY;
  * Created by novitarpl on 5/16/2017.
  */
 
-public class VerifikasiTandaTangan extends AppCompatActivity{
+public class VerifikasiTandaTangan extends AppCompatActivity {
     Toolbar toolbar;
     Button btn_tambah_tandatangan_cancel, btn_tambah_tandatangan_clear, btn_tambah_tandatangan_simpan;
     File file;
@@ -90,7 +90,7 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
 
     private static final String TAG = "Verifikasi Kehadiran dengan Tanda Tangan";
 
-     private String DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signature/";
+    private String DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/signature/";
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -109,20 +109,17 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
     };
 
     static {
-      // System.loadLibrary("MyLibs");
+        // System.loadLibrary("MyLibs");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-  //     setContentView(R.layout.activity_menu_verifikasi_tandatangan);
-
+        setContentView(R.layout.activity_menu_verifikasi_tandatangan);
         // Setting ToolBar as ActionBar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        toolbar.setTitle("Verifikasi Tanda Tangan");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
 
         Intent intent = getIntent();
         userTerlogin = intent.getStringExtra("identitas_mahasiswa");
@@ -130,7 +127,7 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
         namaUserTerlogin = intent.getStringExtra("nama_mahasiswa");
         idPerkuliahan = intent.getStringExtra("id_perkuliahan");
 
-        StoredPath = DIRECTORY + userTerlogin+ ".png";
+        StoredPath = DIRECTORY + userTerlogin + ".png";
 
         file = new File(DIRECTORY);
         if (!file.exists()) {
@@ -138,33 +135,30 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
         }
         // Dialog Function
         dialog = new Dialog(VerifikasiTandaTangan.this);
+        dialog.setCancelable(false);
         // Removing the features of Normal Dialogs
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.tambah_data_set_tandatangan);
-        dialog.setCancelable(true); // agar tidak muncul dialognya
+        //dialog.setCancelable(true); // agar tidak muncul dialognya
         dialog_action();
     }
 
-
     // Function for Appear Digital Signature Layout
-        public void dialog_action() {
+    public void dialog_action() {
         mContent = (LinearLayout) dialog.findViewById(R.id.linearLayout_tambah_tandatangan);
         mSignature = new signature(getApplicationContext(), null);
         mSignature.setBackgroundColor(Color.WHITE);
 
         mContent.addView(mSignature, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-        TextView header = (TextView)dialog.findViewById(R.id.tv_tambah_data_set_tandatangan);
+        TextView header = (TextView) dialog.findViewById(R.id.tv_tambah_data_set_tandatangan);
         header.setText("TANDA TANGAN DISINI");
         btn_tambah_tandatangan_cancel = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_cancel);
         btn_tambah_tandatangan_clear = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_clear);
         btn_tambah_tandatangan_simpan = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_simpan);
         btn_tambah_tandatangan_simpan.setEnabled(false);
 
-
-
         view = mContent;
-
         btn_tambah_tandatangan_clear.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.v("log_tag", "Panel Cleared");
@@ -176,6 +170,7 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
         btn_tambah_tandatangan_cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.v("log_tag", "Panel Canceled");
+
 //                Intent intentKembali = new Intent(v.getContext(), MenuVerifikasiTandaTangan.class);
 //                intentKembali.putExtra("identitas_mahasiswa", userTerlogin);
 //                intentKembali.putExtra("nrp_mahasiswa", idUserTerlogin);
@@ -186,6 +181,7 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
 //                namaMahasiswa = intent.getStringExtra("nama_mahasiswa");
 //                idPerkuliahan =intent.getStringExtra("id_perkuliahan");
                 dialog.dismiss();
+                finish();
             }
         });
 
@@ -194,10 +190,12 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
             public void onClick(View v) {
                 Log.v("log_tag", "Panel Saved");
                 view.setDrawingCacheEnabled(true);
+//                progressDialog.setMessage("Memproses Tandatangan ...");
+//                progressDialog.show();
                 mSignature.save(view, StoredPath);
-                dialog.dismiss();
-      //          Toast.makeText(getApplicationContext(), "Successfully Saved", Toast.LENGTH_SHORT).show();
-                recreate();
+                finish();
+                //          Toast.makeText(getApplicationContext(), "Successfully Saved", Toast.LENGTH_SHORT).show();
+//                recreate();
 
             }
         });
@@ -331,10 +329,15 @@ public class VerifikasiTandaTangan extends AppCompatActivity{
         Intent intentToPencocokanTandaTangan = new Intent(getBaseContext(), x);
         intentToPencocokanTandaTangan.putExtra("user_terlogin", userTerlogin);
         intentToPencocokanTandaTangan.putExtra("id_user_terlogin", idUserTerlogin);
+        intentToPencocokanTandaTangan.putExtra("nama_user_terlogin", namaUserTerlogin);
         intentToPencocokanTandaTangan.putExtra("id_perkuliahan", idPerkuliahan);
 
-     //   Log.v("log_tag","user_terlogin di verifikasi kirim ke pencocokan ->" + userTerlogin);
         startActivity(intentToPencocokanTandaTangan);
+
+        //   Log.v("log_tag","user_terlogin di verifikasi kirim ke pencocokan ->" + userTerlogin);
+//        startActivity(intentToPencocokanTandaTangan);
+//        progressDialog.dismiss();
+//        dialog.dismiss();
         finish();
     }
 
