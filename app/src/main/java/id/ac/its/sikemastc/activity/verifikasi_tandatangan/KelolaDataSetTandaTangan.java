@@ -297,16 +297,13 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
         }
 
         public void save(View v) {
-            Log.v("log_tag", "Width: " + v.getWidth());
-            Log.v("log_tag", "Height: " + v.getHeight());
-
             if (bitmap == null) {
                 bitmap = Bitmap.createBitmap(mContent.getWidth(), mContent.getHeight(), Bitmap.Config.RGB_565);
             }
 
             Canvas canvas = new Canvas(bitmap);
             try {
-                // Output the file
+
                 dir = new File(StoredPath);
                 String filename = userTerlogin+ "-" + clickcount+ ".png";
                 if(!dir.exists())
@@ -314,17 +311,13 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                     dir.mkdirs();
                 }
 
+                // file output binary
                 File myFile = new File(dir.getAbsolutePath(), filename);
                 myFile.createNewFile();
-
-                Log.v("log_tag", "user ter login: " + userTerlogin);
-                Log.v("log_tag", "dir ->" + dir);
-                Log.v("log_tag", "filename ->" + filename);
-
                 FileOutputStream mFileOutStream = new FileOutputStream(myFile);
                 v.draw(canvas);
 
-                // Convert the output file to Image such as .png
+                // Mengkonversi file output ke gambar .png
                 bitmap.compress(Bitmap.CompressFormat.PNG, 90, mFileOutStream);
                 mFileOutStream.flush();
                 mFileOutStream.close();
