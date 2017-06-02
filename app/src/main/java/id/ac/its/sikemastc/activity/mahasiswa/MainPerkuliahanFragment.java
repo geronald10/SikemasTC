@@ -41,8 +41,6 @@ import java.util.List;
 import java.util.Map;
 
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.activity.verifikasi_lokasi.BroadcastResult;
-import id.ac.its.sikemastc.activity.verifikasi_lokasi.GoogleAPITracker;
 import id.ac.its.sikemastc.activity.verifikasi_lokasi.LocationService;
 import id.ac.its.sikemastc.activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan;
 import id.ac.its.sikemastc.activity.verifikasi_wajah.VerifikasiWajahMenuActivity;

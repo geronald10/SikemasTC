@@ -517,7 +517,7 @@ public class GoogleAPITracker extends Service implements LocationListener {
     private void createCSVFile() {
         String baseDir = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
         Long ts = System.currentTimeMillis()/1000;
-        String fileName = ts.toString() + ".csv";
+        String fileName = NRP + "-" + ts.toString() + ".csv";
         String filePath = baseDir + File.separator + fileName;
         File f = new File(filePath);
         CSVWriter writer;
