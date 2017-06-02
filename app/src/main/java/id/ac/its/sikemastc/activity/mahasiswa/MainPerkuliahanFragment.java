@@ -1,6 +1,12 @@
 package id.ac.its.sikemastc.activity.mahasiswa;
 
+import android.app.Activity;
+import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
@@ -13,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +29,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.vision.text.Text;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +41,9 @@ import java.util.List;
 import java.util.Map;
 
 import id.ac.its.sikemastc.R;
+import id.ac.its.sikemastc.activity.verifikasi_lokasi.BroadcastResult;
+import id.ac.its.sikemastc.activity.verifikasi_lokasi.GoogleAPITracker;
+import id.ac.its.sikemastc.activity.verifikasi_lokasi.LocationService;
 import id.ac.its.sikemastc.activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan;
 import id.ac.its.sikemastc.activity.verifikasi_wajah.VerifikasiWajahMenuActivity;
 import id.ac.its.sikemastc.adapter.PerkuliahanAktifAdapter;
@@ -58,10 +69,15 @@ public class MainPerkuliahanFragment extends Fragment implements
     private List<Perkuliahan> perkuliahanAktifMahasiswaList;
     private SikemasSessionManager session;
 
+    //Verifikasi Lokasi
+    private ImageButton searchLocationButton;
+    public static TextView location;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main_perkuliahan, container, false);
+        final View view = inflater.inflate(R.layout.fragment_main_perkuliahan, container, false);
+
         Bundle bundle = getArguments();
         if (bundle != null) {
             bundleIdUser = bundle.getString("id_mahasiswa");
@@ -69,6 +85,7 @@ public class MainPerkuliahanFragment extends Fragment implements
             Log.d("bundleIdUser", bundleIdUser);
             Log.d("bundleNamaUser", bundleNamaUser);
         }
+
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_kelas_aktif);
         mLoadingIndicator = (ProgressBar) view.findViewById(R.id.pb_loading_indicator);
@@ -88,6 +105,21 @@ public class MainPerkuliahanFragment extends Fragment implements
                 new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
+
+        // Verifikasi Lokasi
+        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
+        this.searchLocationButton = (ImageButton)view.findViewById(R.id.ib_refresh_location);
+        this.location = (TextView)view.findViewById(R.id.tv_classroom_position);
+        final Intent i = new Intent(view.getContext(), LocationService.class);
+        i.putExtra("NRP", this.bundleIdUser);
+        view.getContext().startService(i);
+
+        this.searchLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                view.getContext().startService(i);
+            }
+        });
 
         return view;
     }

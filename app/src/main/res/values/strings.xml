@@ -135,4 +135,5 @@
     <string name="simpan_tandatangan">SIMPAN</string>
     <string name="sinkronisasi_dataset_tanda_tangan">SINKRONISASI DATASET TANDA TANGAN</string>
     <string name="header_tambah_dataset_ttd">TANDA TANGAN SEBANYAK 5 KALI</string>
+    <string name="locationService">Location Service</string>
 </resources>

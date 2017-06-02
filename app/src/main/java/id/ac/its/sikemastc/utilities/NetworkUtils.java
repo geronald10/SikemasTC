@@ -23,6 +23,9 @@ public final class NetworkUtils {
 
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
+    public static final String KIRIM_LOKASI =
+            "http://10.151.31.201/sikemas/public/mhs/kirim_lokasi";
+
     // Token FCM
     public static final String KIRIM_TOKEN =
             "http://10.151.31.201/sikemas/public/kirim_token";
