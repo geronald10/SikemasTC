@@ -137,4 +137,6 @@
     <string name="header_tambah_dataset_ttd">TANDA TANGAN SEBANYAK 5 KALI</string>
     <string name="upload_file">UNGGAH DATASET</string>
     <string name="jumlah_data_set_tersimpan">Jumlah Dataset Tersimpan</string>
+    <string name="locationService">Location Service</string>
+
 </resources>
