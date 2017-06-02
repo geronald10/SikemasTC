@@ -1,10 +1,18 @@
 [
     {
+        "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
         "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
     },
     {
         "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
         "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
     }
 ]
