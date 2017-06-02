@@ -305,7 +305,6 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Pengecekan Tanda Tangan... ");
-        progressDialog.show();
 
 //        Bitmap bitmap1;
 
@@ -364,17 +363,21 @@ public class PencocokanTandaTangan extends AppCompatActivity {
             TextView verifikasi = (TextView) findViewById(R.id.tv_user_verifikasi_ttd);
             TextView user_login = (TextView) findViewById(R.id.tv_user_detail_ttd);
             Button finish = (Button) findViewById(R.id.btn_finish_verifikasi_ttd);
+            Button coba_lagi = (Button) findViewById(R.id.btn_coba_lagi_ttd);
 
             user_login.setText(userTerlogin);
             finish.setOnClickListener(operate);
+            coba_lagi.setOnClickListener(operate);
 
             if (flagStatusPencocokan == 1) {
                 sendStatus();
                 status.setText("OK");
-                verifikasi.setText("Berhasil Presensi");
-            } else
+                verifikasi.setText("Berhasil Melakukan Presensi");
+            }
+            else {
                 status.setText("GAGAL");
                 verifikasi.setText("Gagal Melakukan Presensi");
+            }
             progressDialog.dismiss();
         }
     }

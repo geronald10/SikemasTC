@@ -170,16 +170,6 @@ public class VerifikasiTandaTangan extends AppCompatActivity {
         btn_tambah_tandatangan_cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.v("log_tag", "Panel Canceled");
-
-//                Intent intentKembali = new Intent(v.getContext(), MenuVerifikasiTandaTangan.class);
-//                intentKembali.putExtra("identitas_mahasiswa", userTerlogin);
-//                intentKembali.putExtra("nrp_mahasiswa", idUserTerlogin);
-//                intentKembali.putExtra("nama_mahasiswa", namaUserTerlogin);
-//                intentKembali.putExtra("id_perkuliahan", idPerkuliahan);
-//                startActivity(intentKembali);
-//                nrpMahasiswa = intent.getStringExtra("nrp_mahasiswa");
-//                namaMahasiswa = intent.getStringExtra("nama_mahasiswa");
-//                idPerkuliahan =intent.getStringExtra("id_perkuliahan");
                 dialog.dismiss();
                 finish();
             }
@@ -190,13 +180,9 @@ public class VerifikasiTandaTangan extends AppCompatActivity {
             public void onClick(View v) {
                 Log.v("log_tag", "Panel Saved");
                 view.setDrawingCacheEnabled(true);
-//                progressDialog.setMessage("Memproses Tandatangan ...");
-//                progressDialog.show();
                 mSignature.save(view, StoredPath);
+                dialog.dismiss();
                 finish();
-                //          Toast.makeText(getApplicationContext(), "Successfully Saved", Toast.LENGTH_SHORT).show();
-//                recreate();
-
             }
         });
         dialog.show();

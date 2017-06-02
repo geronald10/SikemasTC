@@ -6,52 +6,165 @@
     android:layout_height="match_parent"
     tools:context=".activity.verifikasi_tandatangan.KelolaDataSetTandaTangan">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
-
-    <TextView
-        android:id="@+id/tv_user_verifikasi_ttd"
+    <ProgressBar
+        android:id="@+id/pb_loading_indicator"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="32dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <TextView
-        android:id="@+id/tv_user_detail_ttd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="20dp"
-        android:text="NRP - Nama"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_user_verifikasi_ttd" />
-
-
-
-    <Button
-        android:id="@+id/btn_finish_verifikasi_ttd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OK"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_user_detail"
-        app:layout_constraintVertical_bias="1.0" />
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_hasil_verifikasi"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/tv_status_verifikasi_ttd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="64dp"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@+id/iv_divider_1"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/iv_divider_1"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="72dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_user_detail_ttd"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@color/colorPrimary" />
+
+        <ImageView
+            android:id="@+id/iv_divider_2"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="72dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_coba_lagi_ttd"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@color/colorPrimary" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintGuide_percent="0.5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_coba_lagi_ttd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:background="@android:color/holo_blue_dark"
+            android:text="Coba Lagi"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/guideline_vertical" />
+
+        <Button
+            android:id="@+id/btn_finish_verifikasi_ttd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:background="@android:color/holo_blue_dark"
+            android:text="Menu Utama"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline_vertical"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_user_verifikasi_ttd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="31dp"
+            app:layout_constraintBottom_toTopOf="@+id/iv_divider_2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/iv_icon_mahasiswa"
+            app:layout_constraintRight_toRightOf="@+id/iv_divider_2"
+            app:layout_constraintTop_toTopOf="@+id/iv_icon_mahasiswa" />
+
+        <ImageView
+            android:id="@+id/iv_icon_mahasiswa"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_user_verifikasi_ttd"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_divider_2"
+            app:layout_constraintTop_toTopOf="@+id/tv_user_detail_ttd"
+            app:srcCompat="@drawable/ic_id_card" />
+
+        <TextView
+            android:id="@+id/tv_user_detail_ttd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/colorPrimaryText"
+            app:layout_constraintBottom_toTopOf="@+id/tv_user_verifikasi_ttd"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/iv_icon_mahasiswa"
+            app:layout_constraintRight_toRightOf="@+id/iv_divider_2" />
+
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
