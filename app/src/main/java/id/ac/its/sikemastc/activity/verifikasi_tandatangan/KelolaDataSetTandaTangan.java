@@ -93,7 +93,6 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kelola_data_set_tandatangan);
         mContext = this;
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         // Progress Dialog
         progressDialog = new ProgressDialog(this);

@@ -70,7 +70,6 @@ public class LoginActivity extends AppCompatActivity {
         if (session.isLoggedIn()) {
             Intent intent = null;
             String loggedUserId = session.getUserDetails().get(SikemasSessionManager.KEY_USER_ROLE);
-            startImmediateDeleteToken(this);
             switch (loggedUserId) {
                 case "1":
                     intent = new Intent(LoginActivity.this, HalamanUtamaDosen.class);
@@ -156,6 +155,7 @@ public class LoginActivity extends AppCompatActivity {
                             String userCode = "MHS";
                             session.createLoginSession(userId, name, email, role, userCode);
                         }
+                        startImmediateDeleteToken(mContext);
                         checkUserRole(role);
                         finish();
                     } else {

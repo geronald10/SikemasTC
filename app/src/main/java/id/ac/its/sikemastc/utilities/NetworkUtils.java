@@ -39,7 +39,7 @@ public final class NetworkUtils {
     public static final String UPLOAD_DATASET_WAJAH_SIKEMAS =
             "http://10.151.31.201/sikemas/public/mhs/uploadfoto";
     // Kirim status kehadiran ke server
-    public static final String KIRIM_STATUS_KEHADIRAN =
+    public static final String KIRIM_STATUS_KEHADIRAN_MAHASISWA =
             "http://10.151.31.201/sikemas/public/mhs/ubahstatuskehadiran";
 
 

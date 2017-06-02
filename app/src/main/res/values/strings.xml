@@ -129,8 +129,6 @@
     <string name="pilih_ruangan_label">Pilih Ruangan</string>
     <string name="kelola_data_set_tanda_tangan">Kelola Data set tanda tangan</string>
     <string name="tambah_data_set_tanda_tangan">TAMBAH DATA SET TANDA TANGAN</string>
-    <string name="kelola_data_set_tanda_tangan">KELOLA DATASET</string>
-    <string name="tambah_data_set_tanda_tangan">TAMBAH DATASET</string>
     <string name="tanda_tangan_disini">TANDA TANGAN DISINI</string>
     <string name="batal_tandatangan">TUTUP</string>
     <string name="hapus_tandatangan">HAPUS</string>

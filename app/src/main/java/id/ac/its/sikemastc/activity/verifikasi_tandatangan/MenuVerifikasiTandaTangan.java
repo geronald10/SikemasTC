@@ -38,7 +38,6 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_verifikasi_tandatangan);
 
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Verifikasi Tanda Tangan");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);

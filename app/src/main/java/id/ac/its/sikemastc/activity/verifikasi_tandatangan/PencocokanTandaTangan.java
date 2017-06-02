@@ -541,5 +541,4 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         //Adding request to the queue
         VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(stringRequest);
     }
-
 }
