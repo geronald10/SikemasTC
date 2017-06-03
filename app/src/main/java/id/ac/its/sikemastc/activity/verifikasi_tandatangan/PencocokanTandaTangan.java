@@ -306,7 +306,6 @@ public class PencocokanTandaTangan extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Pengecekan Tanda Tangan... ");
 
-//        Bitmap bitmap1;
 
         ImageSourcePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signatureverification/"+ userTerlogin;
         ImageSignaturePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signature/"+ userTerlogin+".png";
