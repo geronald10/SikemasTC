@@ -413,7 +413,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
 
     //sinkronisasi dataset
     private void SinkronisasiDatasetTandaTangan(final String userId) {
-        //Showing the progress dialog
+        //menampilkan progress dialog
         imageUrlList = new ArrayList<>();
         progressDialog.setMessage("Pengecekan Dataset Server... ");
         progressDialog.show();
