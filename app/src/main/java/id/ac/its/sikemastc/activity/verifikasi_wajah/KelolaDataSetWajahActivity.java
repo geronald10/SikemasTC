@@ -313,7 +313,6 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
 
     // Download imageUrl from server
     private void sinkronisasiDataSet(final String userId) {
-
         //Showing the progress dialog
         imageUrlList = new ArrayList<>();
         progressDialog.setMessage("Pengecekan Data Set Server... ");

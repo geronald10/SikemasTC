@@ -3,6 +3,7 @@ package id.ac.its.sikemastc.model;
 public class Perkuliahan {
 
     private String idPerkuliahan;
+    private String kodeRuangan;
     private String kodeMk;
     private String kodeSemester;
     private String namaMk;
@@ -16,11 +17,12 @@ public class Perkuliahan {
     private String statusDosen;
     private String statusPerkuliahan;
 
-    public Perkuliahan(String idPerkuliahan, String kodeMk, String kodeSemester, String namaMK,
+    public Perkuliahan(String idPerkuliahan, String kodeRuangan, String kodeMk, String kodeSemester, String namaMK,
                        String kelasMK, String ruangMK, String pertemuanKe, String hari,
                        String waktuMulai, String waktuSelesai, String statusDosen,
                        String statusPerkuliahan) {
         this.idPerkuliahan = idPerkuliahan;
+        this.kodeRuangan = kodeRuangan;
         this.kodeMk = kodeMk;
         this.kodeSemester = kodeSemester;
         this.namaMk = namaMK;
@@ -54,6 +56,14 @@ public class Perkuliahan {
 
     public void setIdPerkuliahan(String idPerkuliahan) {
         this.idPerkuliahan = idPerkuliahan;
+    }
+
+    public String getKodeRuangan() {
+        return kodeRuangan;
+    }
+
+    public void setKodeRuangan(String kodeRuangan) {
+        this.kodeRuangan = kodeRuangan;
     }
 
     public String getKodeMk() {

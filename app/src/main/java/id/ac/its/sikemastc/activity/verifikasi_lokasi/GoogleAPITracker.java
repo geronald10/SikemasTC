@@ -12,6 +12,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.StrictMode;
@@ -515,11 +516,15 @@ public class GoogleAPITracker extends Service implements LocationListener {
     }
 
     private void createCSVFile() {
-        String baseDir = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
+        String baseDir = android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + "/Sikemas/lokasi/";
         Long ts = System.currentTimeMillis()/1000;
         String fileName = NRP + "-" + ts.toString() + ".csv";
-        String filePath = baseDir + File.separator + fileName;
+        String filePath = baseDir + fileName;
         File f = new File(filePath);
+        if(!f.exists())
+        {
+            f.mkdirs();
+        }
         CSVWriter writer;
         try {
             if (this.iteration == 10) {
@@ -603,6 +608,7 @@ public class GoogleAPITracker extends Service implements LocationListener {
             finalResult[1] = place;
             finalResult[2] = Double.toString(distance);
             MainPerkuliahanFragment.location.setText(finalResult[1]);
+            MainPerkuliahanFragment.showLocationFounded();
             //sendFinalResult();
 
         } catch (IOException e) {
@@ -622,7 +628,7 @@ public class GoogleAPITracker extends Service implements LocationListener {
         this.latitude = location.getLatitude();
         this.longitude = location.getLongitude();
         this.altitude = location.getAltitude();
-        if(this.accuracy <= 15) {
+        if(this.accuracy <= 20) {
             if (this.iteration < 10) {
                 Log.d("Data", "Longitude: " + getLongitude() + "\nLatitude: " +
                         getLatitude() + "\nAccuracy: " + getAccuracy() + "\nAltitude: " + getAltitude());
