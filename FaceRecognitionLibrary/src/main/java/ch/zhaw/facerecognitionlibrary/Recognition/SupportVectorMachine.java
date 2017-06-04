@@ -192,7 +192,8 @@ public class SupportVectorMachine implements Recognition {
 
     @Override
     public void addImage(Mat img, String label, boolean featuresAlreadyExtracted) {
-        // Ignore featuresAlreadyExtracted because either SVM get the features from TensorFlow or Caffe, or it takes the image reshaping method (image itself)
+        // Ignore featuresAlreadyExtracted because either SVM get the features from TensorFlow or Caffe,
+        // or it takes the image reshaping method (image itself)
         if(method == TRAINING){
             trainingList.add(imageToSvmString(img, label));
         } else {

@@ -245,6 +245,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private static void startImmediateDeleteToken(Context context) {
+        Log.d(TAG, "start immediate delete token");
         Intent intentToDeleteToken = new Intent(context, DeleteTokenIntentService.class);
         context.startService(intentToDeleteToken);
     }
