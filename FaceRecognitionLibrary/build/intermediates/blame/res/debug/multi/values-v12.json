@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v12\\values-v12.xml",
+        "outputFile": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-merge-face-signature\\FaceRecognitionLibrary\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v12\\values-v12.xml",
         "map": [
             {
                 "to": {
@@ -12,7 +12,7 @@
                     "endOffset": 274
                 },
                 "from": {
-                    "file": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\values-v12\\values-v12.xml",
+                    "file": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\values-v12\\values-v12.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -33,7 +33,7 @@
                     "endOffset": 474
                 },
                 "from": {
-                    "file": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\values-v12\\values-v12.xml",
+                    "file": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\values-v12\\values-v12.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -53,7 +53,7 @@
                     "endOffset": 593
                 },
                 "from": {
-                    "file": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\values-v12\\values-v12.xml",
+                    "file": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\values-v12\\values-v12.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -72,7 +72,7 @@
                     "endOffset": 688
                 },
                 "from": {
-                    "file": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\values-v12\\values-v12.xml",
+                    "file": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\values-v12\\values-v12.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
