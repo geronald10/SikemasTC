@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-merge-face-signature\\FaceRecognitionLibrary\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
+        "outputFile": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 106
                 },
                 "from": {
-                    "file": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\values-port\\values-port.xml",
+                    "file": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\values-port\\values-port.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

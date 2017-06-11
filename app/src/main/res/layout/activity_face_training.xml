@@ -85,7 +85,7 @@
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="16dp"
-        android:text="Proses Training"
+        android:text="Proses Latihan"
         android:textColor="@color/colorPrimaryText"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_training_icon"

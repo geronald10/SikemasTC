@@ -84,7 +84,7 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Kelola Data Set");
+        toolbar.setTitle("Kelola Data Wajah");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
 
         // Compatibility
@@ -129,7 +129,7 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
                     FileHelper newFile = new FileHelper();
                     if (isNameAlreadyUsed(newFile.getTrainingList(), userTerlogin)) {
                         Log.d("TrainingList", String.valueOf(newFile.getTrainingList()));
-                        Toast.makeText(getApplicationContext(), "Data Set Wajah Ditemukan", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Data Wajah Ditemukan", Toast.LENGTH_SHORT).show();
                     } else {
                         startActivityForResult(intentToInstruksi, ACTIVITY_INSTRUKSI_CODE);
                     }
@@ -138,7 +138,7 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
                     if (getJumlahDataSet() < 20) {
                         sinkronisasiDataSet(userId);
                     } else {
-                        Toast.makeText(getApplicationContext(), "Data Set Wajah Ditemukan Sama Dengan Data Set Server Server",
+                        Toast.makeText(getApplicationContext(), "Data Wajah Ditemukan Sama Dengan Data Wajah di Server",
                                 Toast.LENGTH_SHORT).show();
                     }
                     break;
@@ -315,7 +315,7 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
     private void sinkronisasiDataSet(final String userId) {
         //Showing the progress dialog
         imageUrlList = new ArrayList<>();
-        progressDialog.setMessage("Pengecekan Data Set Server... ");
+        progressDialog.setMessage("Pengecekan Data Wajah di Server... ");
         progressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, NetworkUtils.LIST_FOTO_MAHASISWA_IMAGE_URL,
@@ -373,7 +373,7 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
     // Download image from imageUrl
     private void downloadImageFromUrl() {
         //Showing the progress dialog
-        progressDialog.setMessage("Sinkronisasi Data Set... ");
+        progressDialog.setMessage("Mengunduh Data Wajah... ");
         progressDialog.show();
 
         for (int i = 0; i < imageUrlList.size(); i++) {
@@ -399,7 +399,7 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
                                         flagStatus.edit().putBoolean("training_flag", false).apply();
                                         flagStatus.edit().putBoolean("upload_flag", true).apply();
                                         progressDialog.dismiss();
-                                        Toast.makeText(getApplicationContext(), "Berhasil melakukan sinkronisasi",
+                                        Toast.makeText(getApplicationContext(), "Berhasil mengunduh data wajah",
                                                 Toast.LENGTH_SHORT).show();
                                         runOnUiThread(new Runnable() {
                                             @Override

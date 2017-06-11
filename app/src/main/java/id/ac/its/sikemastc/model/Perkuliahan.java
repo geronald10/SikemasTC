@@ -16,6 +16,7 @@ public class Perkuliahan {
     private String waktuSelesai;
     private String statusDosen;
     private String statusPerkuliahan;
+    private String statusKehdiran;
 
     public Perkuliahan(String idPerkuliahan, String kodeRuangan, String kodeMk, String kodeSemester, String namaMK,
                        String kelasMK, String ruangMK, String pertemuanKe, String hari,
@@ -36,6 +37,26 @@ public class Perkuliahan {
         this.statusPerkuliahan = statusPerkuliahan;
     }
 
+    public Perkuliahan(String idPerkuliahan, String kodeRuangan, String kodeMk, String kodeSemester, String namaMK,
+                       String kelasMK, String ruangMK, String pertemuanKe, String hari,
+                       String waktuMulai, String waktuSelesai, String statusDosen,
+                       String statusPerkuliahan, String statusKehadiran) {
+        this.idPerkuliahan = idPerkuliahan;
+        this.kodeRuangan = kodeRuangan;
+        this.kodeMk = kodeMk;
+        this.kodeSemester = kodeSemester;
+        this.namaMk = namaMK;
+        this.kelasMk = kelasMK;
+        this.ruangMk = ruangMK;
+        this.pertemuanKe = pertemuanKe;
+        this.hari = hari;
+        this.waktuMulai = waktuMulai;
+        this.waktuSelesai = waktuSelesai;
+        this.statusDosen = statusDosen;
+        this.statusPerkuliahan = statusPerkuliahan;
+        this.statusKehdiran = statusKehadiran;
+    }
+
     public Perkuliahan(String idPerkuliahan, String kodeMk, String namaMk, String kelasMk,
                        String ruangMk, String pertemuanKe, String tanggal, String waktuMulai,
                        String waktuSelesai) {
@@ -48,6 +69,14 @@ public class Perkuliahan {
         this.tanggal = tanggal;
         this.waktuMulai = waktuMulai;
         this.waktuSelesai = waktuSelesai;
+    }
+
+    public String getStatusKehdiran() {
+        return statusKehdiran;
+    }
+
+    public void setStatusKehdiran(String statusKehdiran) {
+        this.statusKehdiran = statusKehdiran;
     }
 
     public String getIdPerkuliahan() {

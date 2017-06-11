@@ -135,6 +135,7 @@ public class DetailPerkuliahan extends AppCompatActivity implements
             public void onClick(View v) {
                 Intent intentToLihatKehadiran = new Intent(DetailPerkuliahan.this, LihatKehadiran.class);
                 Uri uriKehadiranClicked = SikemasContract.KehadiranEntry.buildKehadiranUriPerkuliahanId(idPerkuliahan);
+                intentToLihatKehadiran.putExtra("id_perkuliahan", idPerkuliahan);
                 intentToLihatKehadiran.setData(uriKehadiranClicked);
                 startActivity(intentToLihatKehadiran);
             }

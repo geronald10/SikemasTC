@@ -164,7 +164,8 @@ public class SikemasJsonUtils {
         for (int i = 0; i < listKelas.length(); i++) {
             JSONObject detailKelas = listKelas.getJSONObject(i);
             JSONArray kehadiran = detailKelas.getJSONArray("kehadiran");
-            String idMahasiswa, nrpMahasiswa, namaMahasiswa, idPerkuliahanMahasiswa, ketKehadiran;
+            String idMahasiswa, nrpMahasiswa, namaMahasiswa, idPerkuliahanMahasiswa, ketKehadiran,
+            waktuKehadiran;
             for (int j = 0; j < kehadiran.length(); j++) {
                 JSONObject peserta = kehadiran.getJSONObject(j);
                 nrpMahasiswa = peserta.getString("nrp");
@@ -173,6 +174,9 @@ public class SikemasJsonUtils {
                 idPerkuliahanMahasiswa = pivot.getString("id_perkuliahanmahasiswa");
                 idMahasiswa = pivot.getString("id_mahasiswa");
                 ketKehadiran = pivot.getString("ket_kehadiran");
+                waktuKehadiran = pivot.getString("updated_at");
+                if (waktuKehadiran != "null")
+                    waktuKehadiran = SikemasDateUtils.formatTimeFromTimestamp(waktuKehadiran);
 
                 ContentValues kehadiranPesertaValue = new ContentValues();
                 kehadiranPesertaValue.put(SikemasContract.KehadiranEntry.KEY_NRP_MAHASISWA, nrpMahasiswa);
@@ -180,6 +184,7 @@ public class SikemasJsonUtils {
                 kehadiranPesertaValue.put(SikemasContract.KehadiranEntry.KEY_ID_PERKULIAHAN_MAHASISWA, idPerkuliahanMahasiswa);
                 kehadiranPesertaValue.put(SikemasContract.KehadiranEntry.KEY_ID_MAHASISWA, idMahasiswa);
                 kehadiranPesertaValue.put(SikemasContract.KehadiranEntry.KEY_STATUS_KEHADIRAN, ketKehadiran);
+                kehadiranPesertaValue.put(SikemasContract.KehadiranEntry.KEY_WAKTU_CHEKIN, waktuKehadiran);
 
                 kehadiranPesertaContentValues[index] = kehadiranPesertaValue;
                 index++;

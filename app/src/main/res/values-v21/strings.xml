@@ -80,13 +80,13 @@
     <string name="now_date_label">now date</string>
     <string name="green_line_divider_description">green line divider</string>
     <string name="verifikasi_kehadiran_label">VERIFIKASI KEHADIRAN</string>
-    <string name="kelola_data_set_wajah_btn_label">Kelola Data set wajah</string>
-    <string name="training_data_set_btn_label">Training Data Set</string>
-    <string name="tambah_data_set_wajah">Tambah Data Set</string>
-    <string name="sinkronisasi_data_set_wajah">Sinkronisasi Data Set</string>
+    <string name="kelola_data_set_wajah_btn_label">Kelola Data Wajah</string>
+    <string name="training_data_set_btn_label">Latih Data Wajah</string>
+    <string name="tambah_data_set_wajah">Daftarkan Data Wajah</string>
+    <string name="sinkronisasi_data_set_wajah">Unduh Data Wajah</string>
     <string name="wajah_terambil_label">Wajah Terambil</string>
-    <string name="menambah_data_set_wajah_dari_message">Menambah data set wajah dari:</string>
-    <string name="memproses_data_set_title">Memproses Data Set ...</string>
+    <string name="menambah_data_set_wajah_dari_message">Mendaftarkan data wajah dari:</string>
+    <string name="memproses_data_set_title">Memproses Data Wajah…</string>
     <string name="tv_email_empty_view"><![CDATA[<email>]]></string>
     <string name="tv_id_pengguna_empty_view"><![CDATA[<id_pengguna>]]></string>
     <string name="tv_nama_pengguna_empty_view"><![CDATA[<nama_pengguna>]]></string>
@@ -98,9 +98,9 @@
     <string name="kelas_hint"><![CDATA[<kelas>]]></string>
     <string name="mahasiswa_terlogin_label">Mahasiswa Terlogin</string>
     <string name="nrp_nama_hint"><![CDATA[<NRP - Nama>]]></string>
-    <string name="jumlah_data_set_tersimpan_label">Jumlah Data Set Tersimpan</string>
-    <string name="data_set_wajah_tidak_ditemukan_hint">Data Set Wajah Tidak Ditemukan</string>
-    <string name="btn_upload_file_label">Upload File</string>
+    <string name="jumlah_data_set_tersimpan_label">Jumlah Data Wajah Tersimpan</string>
+    <string name="data_set_wajah_tidak_ditemukan_hint">Data Wajah Tidak Ditemukan</string>
+    <string name="btn_upload_file_label">Unggah Data Wajah</string>
     <string name="judul_jawal_aktif_kosong">Jadwal Perkuliahan Aktif Tidak Ditemukan</string>
     <string name="subjudul_jadwal_aktif_kosong">Jadwal aktif kosong, kemungkinan jadwal perkuliahan belum diaktifkan atau tidak ada perkuliahan</string>
     <string name="email_nrp_nip_prompt_label">Email / NRP / NIP</string>
@@ -110,6 +110,10 @@
     <string name="tv_status_ijin_label">I\nJ\nI\nN</string>
     <string name="tv_status_absen_label">A\nB\nS\nE\nN</string>
     <string name="tv_status_hadir_label">H\nA\nD\nI\nR</string>
+    <string name="tv_status_kehadiran_ijin_label">Ijin</string>
+    <string name="tv_status_kehadiran_absen_label">Absen</string>
+    <string name="tv_status_kehadiran_hadir_label">Hadir</string>
+    <string name="tv_status_presensi_kosong_label">Belum\nPresensi</string>
     <string name="pilih_tanggal_btn_label">Pilih Tanggal</string>
     <string name="btn_pilih_ruangan_label">pilih ruangan</string>
     <string name="tanggal_terpilih_label">Tanggal Terpilih</string>
@@ -125,4 +129,7 @@
     <string name="konfirmasi_perubahan_btn_label">Simpan Perubahan</string>
     <string name="batalkan_perubahan_btn_label">Batalkan Perubahan</string>
     <string name="pilih_ruangan_label">Pilih Ruangan</string>
+    <string name="alasan_ijin_kehadiran_label">Alasan ijin kehadiran</string>
+    <string name="status_kehadiran_label">Pilih Status kehadiran</string>
+    <string name="ubah_kehadiran_message">Apakah Anda yakin ingin mengubah status kehadiran dari:</string>
 </resources>

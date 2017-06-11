@@ -30,8 +30,8 @@
             android:id="@+id/tv_pertemuan_kuliah_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="Pertemuan ke-"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/colorSecondaryText"
@@ -112,14 +112,14 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/iv_label"
             app:layout_constraintRight_toRightOf="@id/iv_label"
             app:layout_constraintTop_toTopOf="@+id/tv_pertemuan_kuliah_label"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_school_2"
-            android:layout_marginTop="8dp" />
+            app:srcCompat="@drawable/ic_school_2" />
 
         <ImageView
             android:id="@+id/iv_label"
@@ -155,13 +155,13 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <android.support.constraint.ConstraintLayout
-            android:visibility="gone"
             android:id="@+id/cl_penjadwalan_ulang"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
+            android:visibility="gone"
             app:layout_constraintLeft_toRightOf="@+id/iv_status_kehadiran"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_waktu_pertemuan">
@@ -203,6 +203,7 @@
                 android:id="@+id/btn_ganti_jadwal_permanen"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="0dp"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
@@ -212,12 +213,12 @@
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:theme="@style/ListKelasButtonPermanenTheme"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/guideline_50"
-                app:layout_constraintTop_toBottomOf="@+id/tv_penjadwalan_ulang_label"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="8dp" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_penjadwalan_ulang_label" />
 
             <Button
                 android:id="@+id/btn_ganti_jadwal_sementara"
@@ -225,15 +226,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="0dp"
-                android:text="@string/sementara_button_label"
+                android:text="Ganti Jadwal"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
+                android:theme="@style/ListKelasButtonPermanenTheme"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toRightOf="@+id/btn_ganti_jadwal_permanen"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btn_ganti_jadwal_permanen"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="8dp" />
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
 
 
         </android.support.constraint.ConstraintLayout>

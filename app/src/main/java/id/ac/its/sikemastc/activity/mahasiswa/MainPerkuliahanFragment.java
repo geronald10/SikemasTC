@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,17 +59,16 @@ public class MainPerkuliahanFragment extends Fragment implements
     private final String TAG = MainPerkuliahanFragment.class.getSimpleName();
 
     private TextView currentDate;
-//    private TextView searchLoading;
+    private TextView tvStatusKehadiran;
+    private ImageView ivStatusKehadiran;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private ProgressBar mLoadingIndicator;
-//    private ProgressBar mSearchingIndicator;
     private RecyclerView mRecyclerView;
     private ConstraintLayout emptyView;
     private PerkuliahanAktifAdapter mPerkuliahanAktifAdapter;
     private String bundleIdUser;
     private String bundleNamaUser;
     private List<Perkuliahan> perkuliahanAktifMahasiswaList;
-    private SikemasSessionManager session;
 
     //Verifikasi Lokasi
     private ImageButton searchLocationButton;
@@ -101,6 +101,9 @@ public class MainPerkuliahanFragment extends Fragment implements
 
         currentDate = (TextView) view.findViewById(R.id.tv_tanggal_hari_ini);
         currentDate.setText(SikemasDateUtils.getCurrentDate(getActivity()));
+
+        tvStatusKehadiran = (TextView) view.findViewById(R.id.tv_status_kehadiran);
+        ivStatusKehadiran = (ImageView) view.findViewById(R.id.iv_status_kehadiran);
 
         mSwipeRefreshLayout.setColorSchemeColors(
                 ContextCompat.getColor(getContext(), R.color.swipe_color_1),
@@ -164,7 +167,7 @@ public class MainPerkuliahanFragment extends Fragment implements
     public void onClick(int buttonId, String idPerkuliahan, String kodeRuangan) {
         switch (buttonId) {
             case R.id.btn_verifikasi_tandatangan:
-                if (Objects.equals(GoogleAPITracker.finalResult[0], kodeRuangan)) {
+                if (GoogleAPITracker.finalResult[0] == kodeRuangan) {
                     Intent intentToVerifikasiTandaTangan = new Intent(getActivity(), MenuVerifikasiTandaTangan.class);
                     intentToVerifikasiTandaTangan.putExtra("id_perkuliahan", idPerkuliahan);
                     intentToVerifikasiTandaTangan.putExtra("nrp_mahasiswa", bundleIdUser);
@@ -178,7 +181,7 @@ public class MainPerkuliahanFragment extends Fragment implements
                 break;
 
             case R.id.btn_verifikasi_wajah:
-                if (Objects.equals(GoogleAPITracker.finalResult[0], kodeRuangan)) {
+                if (GoogleAPITracker.finalResult[0] == kodeRuangan) {
                     Intent intentToVerifikasiWajah = new Intent(getActivity(), VerifikasiWajahMenuActivity.class);
                     intentToVerifikasiWajah.putExtra("id_perkuliahan", idPerkuliahan);
                     intentToVerifikasiWajah.putExtra("nrp_mahasiswa", bundleIdUser);
@@ -245,17 +248,22 @@ public class MainPerkuliahanFragment extends Fragment implements
                             Log.d("length listkelas", String.valueOf(listKelasAktif.length()));
 
                             for (int i = 0; i < listKelasAktif.length(); i++) {
-                                JSONObject detailKelasAktif = listKelasAktif.getJSONObject(i);
-                                String idPerkuliahan = detailKelasAktif.getString("id");
-                                String pertemuanKe = detailKelasAktif.getString("pertemuan");
-                                String statusPerkuliahan = detailKelasAktif.getString("status_perkuliahan");
-                                String statusDosen = detailKelasAktif.getString("status_dosen");
-                                String hari = detailKelasAktif.getString("hari");
-                                String waktuMulai = SikemasDateUtils.formatTime(detailKelasAktif.getString("mulai"));
-                                String waktuSelesai = SikemasDateUtils.formatTime(detailKelasAktif.getString("selesai"));
+                                JSONObject detailKehadiran = listKelasAktif.getJSONObject(i);
+                                String statusKehadiran = detailKehadiran.getString("ket_kehadiran");
 
-                                JSONObject kelas = detailKelasAktif.getJSONObject("kelas");
-                                String kodeRuangan = kelas.getString("kode_ruangan");
+                                JSONObject perkuliahan = detailKehadiran.getJSONObject("perkuliahanmahasiswa");
+                                String idPerkuliahan = perkuliahan.getString("id");
+                                String pertemuanKe = perkuliahan.getString("pertemuan");
+                                String statusPerkuliahan = perkuliahan.getString("status_perkuliahan");
+                                String statusDosen = perkuliahan.getString("status_dosen");
+                                String hari = perkuliahan.getString("hari");
+                                String waktuMulai = SikemasDateUtils.formatTime(perkuliahan.getString("mulai"));
+                                String waktuSelesai = SikemasDateUtils.formatTime(perkuliahan.getString("selesai"));
+
+                                JSONObject ruangan = perkuliahan.getJSONObject("ruangan");
+                                String kodeRuangan = ruangan.getString("id");
+
+                                JSONObject kelas = perkuliahan.getJSONObject("kelas");
                                 String kodeSemester = kelas.getString("kode_semester");
                                 String kodeMk = kelas.getString("kode_matakuliah");
                                 String kelasMk = kelas.getString("kode_kelas");
@@ -265,7 +273,7 @@ public class MainPerkuliahanFragment extends Fragment implements
                                 Perkuliahan perkuliahanAktifMahasiswa = new Perkuliahan(
                                         idPerkuliahan, kodeRuangan, kodeMk, kodeSemester, namaMk,
                                         kelasMk, ruangMK, pertemuanKe, hari, waktuMulai,
-                                        waktuSelesai, statusDosen, statusPerkuliahan);
+                                        waktuSelesai, statusDosen, statusPerkuliahan, statusKehadiran);
                                 perkuliahanAktifMahasiswaList.add(perkuliahanAktifMahasiswa);
                             }
 

@@ -217,8 +217,6 @@ public class VerifikasiWajahActivity extends AppCompatActivity implements Camera
         });
 
         t.start();
-
-        // Wait until Eigenfaces loading thread has finished
         try {
             t.join();
         } catch (InterruptedException e) {

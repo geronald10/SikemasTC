@@ -74,6 +74,9 @@ public final class NetworkUtils {
     // Penjadwalan sementara request perkuliahan terpilih
     public static final String REQUEST_JADWAL_PERKULIAHAN =
             "http://10.151.31.201/sikemas/public/req_perkuliahan";
+    // Refresh Kehadiran
+    public static final String REFRESH_KEHADIRAN =
+            "http://10.151.31.201/sikemas/public/refresh_kehadiran";
 
     // List perkuliahan Mahasiswa saat ini
     public static final String LIST_PERKULIAHAN_MAHASISWA_SAAT_INI =

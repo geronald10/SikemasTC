@@ -20,7 +20,7 @@ public class KehadiranAdapter extends RecyclerView.Adapter<KehadiranAdapter.Keha
     final private KehadiranAdapterOnClickHandler mClickHandler;
 
     public interface KehadiranAdapterOnClickHandler {
-        void onClick(String idPerkuliahan, String idMahasiswa);
+        void onClick(String idPerkuliahan, String idMahasiswa, String nrpMahasiswa, String namaMahasiswa);
     }
 
     public KehadiranAdapter(Context context, KehadiranAdapterOnClickHandler clickHandler) {
@@ -45,7 +45,7 @@ public class KehadiranAdapter extends RecyclerView.Adapter<KehadiranAdapter.Keha
         String nrpPeserta = mCursor.getString(LihatKehadiran.INDEX_NRP_MAHASISWA);
         String namaPeserta = mCursor.getString(LihatKehadiran.INDEX_NAMA_MAHASISWA);
         String ketPeserta = mCursor.getString(LihatKehadiran.INDEX_KET_KEHADIRAN);
-//        String waktuHadir = mCursor.getString(LihatKehadiran.INDEX);
+        String waktuHadir = mCursor.getString(LihatKehadiran.INDEX_WAKTU_CHECKIN);
         switch (ketPeserta) {
             case "A":
                 kehadiranAdapterViewHolder.ivStatusLabel.setImageResource(R.color.colorStatusAbsen);
@@ -70,6 +70,7 @@ public class KehadiranAdapter extends RecyclerView.Adapter<KehadiranAdapter.Keha
         }
         kehadiranAdapterViewHolder.tvNRPPeserta.setText(nrpPeserta);
         kehadiranAdapterViewHolder.tvNamaPeserta.setText(namaPeserta);
+        kehadiranAdapterViewHolder.tvWaktuHadir.setText(waktuHadir);
 
     }
 
@@ -90,6 +91,8 @@ public class KehadiranAdapter extends RecyclerView.Adapter<KehadiranAdapter.Keha
             tvStatus = (TextView) itemView.findViewById(R.id.tv_status);
             ivStatusKehadiran = (ImageView) itemView.findViewById(R.id.iv_status_kehadiran);
             ivStatusLabel = (ImageView) itemView.findViewById(R.id.iv_status_label);
+
+            itemView.setOnClickListener(this);
         }
 
         @Override
@@ -98,7 +101,9 @@ public class KehadiranAdapter extends RecyclerView.Adapter<KehadiranAdapter.Keha
             mCursor.moveToPosition(adapterPosition);
             String IdPerkuliahan = mCursor.getString(LihatKehadiran.INDEX_ID_PERKULIAHAN_MAHASISWA);
             String IdMahasiswa = mCursor.getString(LihatKehadiran.INDEX_ID_MAHASISWA);
-            mClickHandler.onClick(IdPerkuliahan, IdMahasiswa);
+            String nrpMahasiswa = mCursor.getString(LihatKehadiran.INDEX_NRP_MAHASISWA);
+            String namaMahasiswa = mCursor.getString(LihatKehadiran.INDEX_NAMA_MAHASISWA);
+            mClickHandler.onClick(IdPerkuliahan, IdMahasiswa, nrpMahasiswa, namaMahasiswa);
         }
     }
 

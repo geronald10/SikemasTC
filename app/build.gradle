@@ -47,6 +47,7 @@ dependencies {
     compile 'com.wdullaer:materialdatetimepicker:3.2.2'
     testCompile 'junit:junit:4.12'
     compile 'com.google.android.gms:play-services-location:10.2.6'
+    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
 
 }
 
