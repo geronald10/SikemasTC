@@ -146,4 +146,5 @@
     <string name="status_kehadiran_label">Pilih Status kehadiran</string>
     <string name="ubah_kehadiran_message">Apakah Anda yakin ingin mengubah status kehadiran dari:</string>
 
+    <string name="label_status">Status</string>
 </resources>
