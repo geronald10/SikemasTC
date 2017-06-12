@@ -142,7 +142,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
 
     }
 
-    public int getJumlahDataSetTandaTangan() {
+    private int getJumlahDataSetTandaTangan() {
         Log.d("->", " masuk fungsi jumlah dataset tanda tangan");
 
         if (!dir.exists()) {
@@ -162,7 +162,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_tambah_data_set_tandatangan:
-                    if (!dir.exists()) {
+                    if (getJumlahDataSetTandaTangan() < 5) {
                         // Dialog Function
                         dialog = new Dialog(KelolaDataSetTandaTangan.this);
                         // Removing the features of Normal Dialogs
@@ -260,7 +260,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                     view.setDrawingCacheEnabled(true);
                     mSignature.save(view);
                     Toast.makeText(getApplicationContext(), "Sukses Simpan Dataset ke- " + clickcount, Toast.LENGTH_SHORT).show();
-                    // Calling the same class
+                    checkDataSetStatus();
                 }
                 if (clickcount == 5)
                 {
@@ -269,6 +269,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                     encodedImageList = getAllEncodedImageFormat();
                     uploadImages(encodedImageList);
                     btn_tambah_tandatangan_simpan.setEnabled(true);
+                    checkDataSetStatus();
                     dialog.dismiss();
                 }
                 mSignature.clear();
@@ -501,6 +502,7 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
                                         progressDialog.dismiss();
                                         Toast.makeText(getApplicationContext(), "Berhasil melakukan unduh dataset",
                                                 Toast.LENGTH_SHORT).show();
+                                        checkDataSetStatus();
                                     }
                                 }
                             } catch (Exception e) {
@@ -602,5 +604,16 @@ public class KelolaDataSetTandaTangan extends AppCompatActivity {
             //Adding request to the queue
             VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(stringRequest);
         }
+    }
+
+    private void checkDataSetStatus() {
+        int jumlahDataSetClient = getJumlahDataSetTandaTangan();
+        tvJumlahDataSet.setText(String.valueOf(jumlahDataSetClient));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkDataSetStatus();
     }
 }

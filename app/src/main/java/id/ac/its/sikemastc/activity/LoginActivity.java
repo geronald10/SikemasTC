@@ -135,8 +135,6 @@ public class LoginActivity extends AppCompatActivity {
                 hideDialog();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    int jumlahWajah = jsonObject.getInt("jumlahwajah");
-                    int jumlahSignature = jsonObject.getInt("jumlahsignature");
                     String code = jsonObject.getString("code");
                     String message = jsonObject.getString("status");
                     // Check for error node in json
@@ -155,6 +153,8 @@ public class LoginActivity extends AppCompatActivity {
                             session.createLoginSession(userId, name, email, role, userCode);
                         } else if (role.equals("4")) {
                             String userCode = "MHS";
+                            int jumlahWajah = jsonObject.getInt("jumlahwajah");
+                            int jumlahSignature = jsonObject.getInt("jumlahsignature");
                             session.createLoginSession(userId, name, email, role, userCode);
                             session.checkUserDataSet(jumlahWajah, jumlahSignature);
                         }
