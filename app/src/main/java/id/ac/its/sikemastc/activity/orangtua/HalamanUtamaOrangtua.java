@@ -2,15 +2,17 @@ package id.ac.its.sikemastc.activity.orangtua;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.widget.ProgressBar;
 
 import java.util.HashMap;
 
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.BaseActivity;
-import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
-import id.ac.its.sikemastc.adapter.JadwalUtamaMkAdapter;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
 
 public class HalamanUtamaOrangtua extends BaseActivity{
@@ -19,7 +21,10 @@ public class HalamanUtamaOrangtua extends BaseActivity{
     private String userId;
     private String userNama;
 
-
+    private ProgressBar mLoadingIndicator;
+    private ConstraintLayout clEmptyView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private RecyclerView mRecyclerView;
 
 
     private Context mContext;

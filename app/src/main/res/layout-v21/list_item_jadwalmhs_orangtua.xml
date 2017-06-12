@@ -48,12 +48,12 @@
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/iv_school_subject"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_kode_mata_kuliah"
-            card_view:layout_constraintRight_toRightOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_kode_mata_kuliah"
-            card_view:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintBottom_toBottomOf="@+id/iv_school_subject"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_kode_mata_kuliah"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_kode_mata_kuliah"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tv_kelas_label"
@@ -64,8 +64,8 @@
             android:layout_marginTop="8dp"
             android:text="@string/kelas_label"
             android:textSize="16sp"
-            card_view:layout_constraintLeft_toLeftOf="@+id/iv_school_subject"
-            card_view:layout_constraintTop_toBottomOf="@+id/iv_school_subject" />
+            app:layout_constraintLeft_toLeftOf="@+id/iv_school_subject"
+            app:layout_constraintTop_toBottomOf="@+id/iv_school_subject" />
 
         <TextView
             android:id="@+id/tv_colon_1"
@@ -78,12 +78,12 @@
             android:gravity=""
             android:text="@string/tv_colon"
             android:textSize="16sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/tv_kelas_label"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintLeft_toRightOf="@+id/tv_kelas_label"
-            card_view:layout_constraintRight_toLeftOf="@+id/tv_kelas"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_kelas_label"
-            card_view:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_kelas_label"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/tv_kelas_label"
+            app:layout_constraintRight_toLeftOf="@+id/tv_kelas"
+            app:layout_constraintTop_toTopOf="@+id/tv_kelas_label"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tv_hari_label"
@@ -92,8 +92,8 @@
             android:layout_marginTop="0dp"
             android:text="@string/hari_label"
             android:textSize="16sp"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_kelas_label"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_kelas_label" />
+            app:layout_constraintLeft_toLeftOf="@+id/tv_kelas_label"
+            app:layout_constraintTop_toBottomOf="@+id/tv_kelas_label" />
 
         <TextView
             android:id="@+id/tv_colon_2"
@@ -105,12 +105,12 @@
             android:layout_marginTop="0dp"
             android:text="@string/tv_colon"
             android:textSize="16sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/tv_hari_label"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_colon_1"
-            card_view:layout_constraintRight_toLeftOf="@+id/tv_kelas"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_hari_label"
-            card_view:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hari_label"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_colon_1"
+            app:layout_constraintRight_toLeftOf="@+id/tv_kelas"
+            app:layout_constraintTop_toTopOf="@+id/tv_hari_label"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/tv_kelas"
@@ -125,10 +125,10 @@
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/tv_kelas_label"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_colon_1"
-            card_view:layout_constraintRight_toLeftOf="@+id/iv_room"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_kelas_label" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_kelas_label"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_colon_1"
+            app:layout_constraintRight_toLeftOf="@+id/iv_room"
+            app:layout_constraintTop_toTopOf="@+id/tv_kelas_label" />
 
         <TextView
             android:id="@+id/tv_hari"
@@ -141,10 +141,10 @@
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/tv_hari_label"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_kelas"
-            card_view:layout_constraintRight_toLeftOf="@+id/iv_waktu"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_hari_label" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hari_label"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_kelas"
+            app:layout_constraintRight_toLeftOf="@+id/iv_waktu"
+            app:layout_constraintTop_toTopOf="@+id/tv_hari_label" />
 
         <TextView
             android:id="@+id/tv_status_label"
@@ -153,8 +153,8 @@
             android:layout_marginTop="0dp"
             android:text="@string/label_status"
             android:textSize="16sp"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_hari_label"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_hari_label" />
+            app:layout_constraintLeft_toLeftOf="@+id/tv_hari_label"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hari_label" />
 
         <TextView
             android:id="@+id/tv_colon_3"
@@ -165,12 +165,11 @@
             android:layout_marginTop="0dp"
             android:text="@string/tv_colon"
             android:textSize="16sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/tv_status_label"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_status_label"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_status_label"
-            card_view:layout_constraintVertical_bias="1.0"
-            app:layout_constraintVertical_bias="0.055" />
+            app:layout_constraintBottom_toBottomOf="@+id/tv_status_label"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_status_label"
+            app:layout_constraintTop_toTopOf="@+id/tv_status_label"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/tv_status"
@@ -183,10 +182,10 @@
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/tv_status_label"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_kelas"
-            card_view:layout_constraintRight_toLeftOf="@+id/iv_waktu"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_status_label"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_status_label"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_kelas"
+            app:layout_constraintRight_toLeftOf="@+id/iv_waktu"
+            app:layout_constraintTop_toTopOf="@+id/tv_status_label"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintVertical_bias="1.0" />
 
@@ -198,8 +197,8 @@
             android:layout_height="20dp"
             android:layout_marginTop="0dp"
             android:src="@drawable/ic_room"
-            card_view:layout_constraintLeft_toLeftOf="@+id/guideline_vertical"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_kelas_label" />
+            app:layout_constraintLeft_toLeftOf="@+id/guideline_vertical"
+            app:layout_constraintTop_toTopOf="@+id/tv_kelas_label" />
 
         <TextView
             android:id="@+id/tv_ruang"
@@ -214,11 +213,11 @@
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/iv_room"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintLeft_toRightOf="@+id/iv_room"
-            card_view:layout_constraintRight_toRightOf="parent"
-            card_view:layout_constraintTop_toTopOf="@+id/iv_room" />
+            app:layout_constraintBottom_toBottomOf="@+id/iv_room"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/iv_room"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_room" />
 
         <ImageView
             android:id="@+id/iv_waktu"
@@ -229,9 +228,9 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:src="@drawable/ic_access_time"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintLeft_toLeftOf="@+id/iv_room"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_hari_label" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_room"
+            app:layout_constraintTop_toTopOf="@+id/tv_hari_label" />
 
         <TextView
             android:id="@+id/tv_waktu"
@@ -246,10 +245,10 @@
             android:text="@string/tv_empty_value"
             android:textColor="@android:color/black"
             android:textSize="16sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/iv_waktu"
-            card_view:layout_constraintLeft_toLeftOf="@+id/tv_ruang"
-            card_view:layout_constraintRight_toRightOf="parent"
-            card_view:layout_constraintTop_toTopOf="@+id/iv_waktu" />
+            app:layout_constraintBottom_toBottomOf="@+id/iv_waktu"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_ruang"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_waktu" />
 
         <ImageView
             android:id="@+id/iv_school_subject"
@@ -260,10 +259,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/ic_lecture"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintLeft_toLeftOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
     </android.support.constraint.ConstraintLayout>
 

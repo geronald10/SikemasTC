@@ -135,6 +135,8 @@ public class LoginActivity extends AppCompatActivity {
                 hideDialog();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    int jumlahWajah = jsonObject.getInt("jumlahwajah");
+                    int jumlahSignature = jsonObject.getInt("jumlahsignature");
                     String code = jsonObject.getString("code");
                     String message = jsonObject.getString("status");
                     // Check for error node in json
@@ -154,6 +156,7 @@ public class LoginActivity extends AppCompatActivity {
                         } else if (role.equals("4")) {
                             String userCode = "MHS";
                             session.createLoginSession(userId, name, email, role, userCode);
+                            session.checkUserDataSet(jumlahWajah, jumlahSignature);
                         }
                         startImmediateDeleteToken(mContext);
                         checkUserRole(role);
@@ -174,9 +177,9 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-//                Log.e(TAG, "Login Error: " + error.getMessage());
-//                Toast.makeText(getApplicationContext(),
-//                        error.getMessage(), Toast.LENGTH_LONG).show();
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
             }
         }) {

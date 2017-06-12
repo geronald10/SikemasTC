@@ -41,6 +41,7 @@ import java.util.Map;
 
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import id.ac.its.sikemastc.R;
+import id.ac.its.sikemastc.data.SikemasSessionManager;
 import id.ac.its.sikemastc.utilities.InputStreamVolleyRequest;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
 import id.ac.its.sikemastc.utilities.VolleySingleton;
@@ -55,6 +56,7 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
     // flag if the data has been trained or not
     private SharedPreferences flagStatus;
 
+    private int jumlahDataSetServer;
     private String userTerlogin;
     private String userId;
     private String idPerkuliahan;
@@ -74,7 +76,6 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         setContentView(R.layout.activity_kelola_data_set_wajah);
         mContext = this;
 
@@ -91,6 +92,7 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             toolbar.setElevation(10f);
         }
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +104,11 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
         userTerlogin = intent.getStringExtra("identitas_mahasiswa");
         userId = intent.getStringExtra("id_mahasiswa");
         idPerkuliahan = intent.getStringExtra("id_perkuliahan");
+
+        SikemasSessionManager session = new SikemasSessionManager(this);
+        HashMap<String, Integer> jumlahDataSet = session.getDataSetLength();
+        jumlahDataSetServer = jumlahDataSet.get("jumlah_wajah");
+        Log.d("wajah di server", String.valueOf(jumlahDataSetServer));
 
         TextView tvUserTerlogin = (TextView) findViewById(R.id.tv_user_detail);
         tvJumlahDataSet = (TextView) findViewById(R.id.tv_data_set);
@@ -135,7 +142,7 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.btn_sinkronisasi_dataset:
-                    if (getJumlahDataSet() < 20) {
+                    if (getJumlahDataSetClient() < 20) {
                         sinkronisasiDataSet(userId);
                     } else {
                         Toast.makeText(getApplicationContext(), "Data Wajah Ditemukan Sama Dengan Data Wajah di Server",
@@ -222,7 +229,7 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
     }
 
     // Get jumlah data set wajah di local file system
-    private int getJumlahDataSet() {
+    private int getJumlahDataSetClient() {
         FileHelper imageFiles = new FileHelper(userTerlogin);
         File[] imageList = imageFiles.getTrainingList();
         return imageList.length;
@@ -432,10 +439,20 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
 
     // Check upload flag and training flag status
     private void checkDataSetStatus() {
-        int jumlahDataSet = getJumlahDataSet();
-        tvJumlahDataSet.setText(String.valueOf(jumlahDataSet));
-        if (jumlahDataSet > 0) {
-            if (jumlahDataSet < 20) {
+        int jumlahDataSetClient = getJumlahDataSetClient();
+        tvJumlahDataSet.setText(String.valueOf(jumlahDataSetClient));
+
+        if (jumlahDataSetServer == 20) {
+            btnTambahDataSet.setCompoundDrawablesWithIntrinsicBounds(null,
+                    ContextCompat.getDrawable(this, R.drawable.ic_check_circle), null, null);
+            btnTambahDataSet.setTextColor(ContextCompat.getColor(this, R.color.colorSecondaryText));
+            btnSinkronisasi.setCompoundDrawablesWithIntrinsicBounds(null,
+                    ContextCompat.getDrawable(this, R.drawable.ic_sync), null, null);
+            btnTambahDataSet.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        }
+
+        if (jumlahDataSetClient > 0) {
+            if (jumlahDataSetClient < 20) {
                 btnTambahDataSet.setCompoundDrawablesWithIntrinsicBounds(null,
                         ContextCompat.getDrawable(this, R.drawable.ic_check_circle), null, null);
                 btnTambahDataSet.setTextColor(ContextCompat.getColor(this, R.color.colorSecondaryText));
