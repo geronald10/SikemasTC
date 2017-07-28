@@ -108,7 +108,7 @@ public class GoogleAPITracker extends Service implements LocationListener {
     private int iteration = 0;
 
     // Connection to SERVER
-    private String link = "http://10.151.31.201/sikemas/public/get_ruang";
+    private String link = "http://absensi.if.its.ac.id/sikemas/public/get_ruang";
     private String[][] dataPlaces;
     private InputStream inputStream = null;
     private String line;
