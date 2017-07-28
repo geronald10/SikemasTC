@@ -1,11 +1,13 @@
 package id.ac.its.sikemastc.adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -23,7 +25,7 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
 
     // interface that receives onClick message
     public interface PerkuliahanAktifOnClickHandler {
-        void onClick(int buttonId, String idPerkuliahan);
+        void onClick(int buttonId, String idPerkuliahan, String kodeRuangan);
     }
 
     public PerkuliahanAktifAdapter(Context context, List<Perkuliahan> perkuliahanList,
@@ -53,6 +55,25 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
         holder.tvWaktuSelesaiKuliah.setText(currentPerkuliahan.getWaktuSelesai());
         holder.tvMataKuliah.setText(currentPerkuliahan.getNamaMk());
         holder.tvKodeMataKuliah.setText(currentPerkuliahan.getKodeMk());
+
+        switch (currentPerkuliahan.getStatusKehdiran()) {
+            case "M":
+                holder.ivStatusKehadiran.setImageResource(R.color.colorStatusHadir);
+                holder.tvStatusKehadiran.setText(R.string.tv_status_kehadiran_hadir_label);
+                break;
+            case "I":
+                holder.ivStatusKehadiran.setImageResource(R.color.colorStatusIjin);
+                holder.tvStatusKehadiran.setText(R.string.tv_status_kehadiran_ijin_label);
+                break;
+            case "A":
+                holder.ivStatusKehadiran.setImageResource(R.color.colorStatusAbsen);
+                holder.tvStatusKehadiran.setText(R.string.tv_status_kehadiran_absen_label);
+                break;
+            default:
+                holder.ivStatusKehadiran.setImageResource(R.color.colorStatusIdle);
+                holder.tvStatusKehadiran.setText(R.string.tv_status_presensi_kosong_label);
+                break;
+        }
     }
 
     @Override
@@ -71,6 +92,8 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
         private TextView tvKodeMataKuliah;
         private Button btnTandaTangan;
         private Button btnPencocokanWajah;
+        private TextView tvStatusKehadiran;
+        private ImageView ivStatusKehadiran;
 
         public PerkuliahanAktifViewHolder(View itemView) {
             super(itemView);
@@ -84,6 +107,8 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
             tvMataKuliah = (TextView) itemView.findViewById(R.id.tv_mata_kuliah);
             btnTandaTangan = (Button) itemView.findViewById(R.id.btn_verifikasi_tandatangan);
             btnPencocokanWajah = (Button) itemView.findViewById(R.id.btn_verifikasi_wajah);
+            tvStatusKehadiran = (TextView) itemView.findViewById(R.id.tv_status_kehadiran);
+            ivStatusKehadiran = (ImageView) itemView.findViewById(R.id.iv_status_kehadiran);
 
             btnTandaTangan.setOnClickListener(this);
             btnPencocokanWajah.setOnClickListener(this);
@@ -96,11 +121,13 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
             switch (v.getId()) {
                 case R.id.btn_verifikasi_tandatangan:
                     mClickHandler.onClick(R.id.btn_verifikasi_tandatangan,
-                            perkuliahanAktifList.get(adapterPosition).getIdPerkuliahan());
+                            perkuliahanAktifList.get(adapterPosition).getIdPerkuliahan(),
+                            perkuliahanAktifList.get(adapterPosition).getKodeRuangan());
                     break;
                 case R.id.btn_verifikasi_wajah:
                     mClickHandler.onClick(R.id.btn_verifikasi_wajah,
-                            perkuliahanAktifList.get(adapterPosition).getIdPerkuliahan());
+                            perkuliahanAktifList.get(adapterPosition).getIdPerkuliahan(),
+                            perkuliahanAktifList.get(adapterPosition).getKodeRuangan());
                     break;
                 default:
                     break;

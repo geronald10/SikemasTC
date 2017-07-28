@@ -41,6 +41,7 @@ import java.util.Map;
 
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import id.ac.its.sikemastc.R;
+import id.ac.its.sikemastc.data.SikemasSessionManager;
 import id.ac.its.sikemastc.utilities.InputStreamVolleyRequest;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
 import id.ac.its.sikemastc.utilities.VolleySingleton;
@@ -55,6 +56,7 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
     // flag if the data has been trained or not
     private SharedPreferences flagStatus;
 
+    private int jumlahDataSetServer;
     private String userTerlogin;
     private String userId;
     private String idPerkuliahan;
@@ -74,7 +76,6 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         setContentView(R.layout.activity_kelola_data_set_wajah);
         mContext = this;
 
@@ -84,13 +85,14 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Kelola Data Set");
+        toolbar.setTitle("Kelola Data Wajah");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
 
         // Compatibility
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             toolbar.setElevation(10f);
         }
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +104,11 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
         userTerlogin = intent.getStringExtra("identitas_mahasiswa");
         userId = intent.getStringExtra("id_mahasiswa");
         idPerkuliahan = intent.getStringExtra("id_perkuliahan");
+
+        SikemasSessionManager session = new SikemasSessionManager(this);
+        HashMap<String, Integer> jumlahDataSet = session.getDataSetLength();
+        jumlahDataSetServer = jumlahDataSet.get("jumlah_wajah");
+        Log.d("wajah di server", String.valueOf(jumlahDataSetServer));
 
         TextView tvUserTerlogin = (TextView) findViewById(R.id.tv_user_detail);
         tvJumlahDataSet = (TextView) findViewById(R.id.tv_data_set);
@@ -129,16 +136,16 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
                     FileHelper newFile = new FileHelper();
                     if (isNameAlreadyUsed(newFile.getTrainingList(), userTerlogin)) {
                         Log.d("TrainingList", String.valueOf(newFile.getTrainingList()));
-                        Toast.makeText(getApplicationContext(), "Data Set Wajah Ditemukan", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Data Wajah Ditemukan", Toast.LENGTH_SHORT).show();
                     } else {
                         startActivityForResult(intentToInstruksi, ACTIVITY_INSTRUKSI_CODE);
                     }
                     break;
                 case R.id.btn_sinkronisasi_dataset:
-                    if (getJumlahDataSet() < 20) {
+                    if (getJumlahDataSetClient() < 20) {
                         sinkronisasiDataSet(userId);
                     } else {
-                        Toast.makeText(getApplicationContext(), "Data Set Wajah Ditemukan Sama Dengan Data Set Server Server",
+                        Toast.makeText(getApplicationContext(), "Data Wajah Ditemukan Sama Dengan Data Wajah di Server",
                                 Toast.LENGTH_SHORT).show();
                     }
                     break;
@@ -222,7 +229,7 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
     }
 
     // Get jumlah data set wajah di local file system
-    private int getJumlahDataSet() {
+    private int getJumlahDataSetClient() {
         FileHelper imageFiles = new FileHelper(userTerlogin);
         File[] imageList = imageFiles.getTrainingList();
         return imageList.length;
@@ -313,10 +320,9 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
 
     // Download imageUrl from server
     private void sinkronisasiDataSet(final String userId) {
-
         //Showing the progress dialog
         imageUrlList = new ArrayList<>();
-        progressDialog.setMessage("Pengecekan Data Set Server... ");
+        progressDialog.setMessage("Pengecekan Data Wajah di Server... ");
         progressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, NetworkUtils.LIST_FOTO_MAHASISWA_IMAGE_URL,
@@ -374,7 +380,7 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
     // Download image from imageUrl
     private void downloadImageFromUrl() {
         //Showing the progress dialog
-        progressDialog.setMessage("Sinkronisasi Data Set... ");
+        progressDialog.setMessage("Mengunduh Data Wajah... ");
         progressDialog.show();
 
         for (int i = 0; i < imageUrlList.size(); i++) {
@@ -400,7 +406,7 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
                                         flagStatus.edit().putBoolean("training_flag", false).apply();
                                         flagStatus.edit().putBoolean("upload_flag", true).apply();
                                         progressDialog.dismiss();
-                                        Toast.makeText(getApplicationContext(), "Berhasil melakukan sinkronisasi",
+                                        Toast.makeText(getApplicationContext(), "Berhasil mengunduh data wajah",
                                                 Toast.LENGTH_SHORT).show();
                                         runOnUiThread(new Runnable() {
                                             @Override
@@ -433,10 +439,20 @@ public class KelolaDataSetWajahActivity extends AppCompatActivity {
 
     // Check upload flag and training flag status
     private void checkDataSetStatus() {
-        int jumlahDataSet = getJumlahDataSet();
-        tvJumlahDataSet.setText(String.valueOf(jumlahDataSet));
-        if (jumlahDataSet > 0) {
-            if (jumlahDataSet < 20) {
+        int jumlahDataSetClient = getJumlahDataSetClient();
+        tvJumlahDataSet.setText(String.valueOf(jumlahDataSetClient));
+
+        if (jumlahDataSetServer == 20) {
+            btnTambahDataSet.setCompoundDrawablesWithIntrinsicBounds(null,
+                    ContextCompat.getDrawable(this, R.drawable.ic_check_circle), null, null);
+            btnTambahDataSet.setTextColor(ContextCompat.getColor(this, R.color.colorSecondaryText));
+            btnSinkronisasi.setCompoundDrawablesWithIntrinsicBounds(null,
+                    ContextCompat.getDrawable(this, R.drawable.ic_sync), null, null);
+            btnTambahDataSet.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        }
+
+        if (jumlahDataSetClient > 0) {
+            if (jumlahDataSetClient < 20) {
                 btnTambahDataSet.setCompoundDrawablesWithIntrinsicBounds(null,
                         ContextCompat.getDrawable(this, R.drawable.ic_check_circle), null, null);
                 btnTambahDataSet.setTextColor(ContextCompat.getColor(this, R.color.colorSecondaryText));

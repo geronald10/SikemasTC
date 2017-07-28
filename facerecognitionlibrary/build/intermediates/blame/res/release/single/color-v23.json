@@ -1,13 +1,5 @@
 [
     {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_btn_colored_text_material.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\color-v23\\abc_btn_colored_text_material.xml"
-    },
-    {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_default.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\color-v23\\abc_tint_default.xml"
-    },
-    {
         "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_btn_checkable.xml",
         "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\color-v23\\abc_tint_btn_checkable.xml"
     },
@@ -24,24 +16,8 @@
         "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\color-v23\\abc_btn_colored_text_material.xml"
     },
     {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_seek_thumb.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\color-v23\\abc_tint_seek_thumb.xml"
-    },
-    {
         "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_seek_thumb.xml",
         "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\color-v23\\abc_tint_seek_thumb.xml"
-    },
-    {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_spinner.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\color-v23\\abc_tint_spinner.xml"
-    },
-    {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_switch_track.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\color-v23\\abc_tint_switch_track.xml"
-    },
-    {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_switch_thumb.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\color-v23\\abc_tint_switch_thumb.xml"
     },
     {
         "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_btn_colored_borderless_text_material.xml",
@@ -62,21 +38,5 @@
     {
         "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_color_highlight_material.xml",
         "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\color-v23\\abc_color_highlight_material.xml"
-    },
-    {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_btn_colored_borderless_text_material.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
-    },
-    {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_color_highlight_material.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\color-v23\\abc_color_highlight_material.xml"
-    },
-    {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_edittext.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\color-v23\\abc_tint_edittext.xml"
-    },
-    {
-        "merged": "D:\\5113100112\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\color-v23\\abc_tint_btn_checkable.xml",
-        "source": "C:\\Users\\5113100112\\.android\\build-cache\\b4a6eea5cd45850e889b7b0973b5362381091d27\\output\\res\\color-v23\\abc_tint_btn_checkable.xml"
     }
 ]

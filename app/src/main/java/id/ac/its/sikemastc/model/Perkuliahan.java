@@ -3,6 +3,7 @@ package id.ac.its.sikemastc.model;
 public class Perkuliahan {
 
     private String idPerkuliahan;
+    private String kodeRuangan;
     private String kodeMk;
     private String kodeSemester;
     private String namaMk;
@@ -15,12 +16,14 @@ public class Perkuliahan {
     private String waktuSelesai;
     private String statusDosen;
     private String statusPerkuliahan;
+    private String statusKehdiran;
 
-    public Perkuliahan(String idPerkuliahan, String kodeMk, String kodeSemester, String namaMK,
+    public Perkuliahan(String idPerkuliahan, String kodeRuangan, String kodeMk, String kodeSemester, String namaMK,
                        String kelasMK, String ruangMK, String pertemuanKe, String hari,
                        String waktuMulai, String waktuSelesai, String statusDosen,
                        String statusPerkuliahan) {
         this.idPerkuliahan = idPerkuliahan;
+        this.kodeRuangan = kodeRuangan;
         this.kodeMk = kodeMk;
         this.kodeSemester = kodeSemester;
         this.namaMk = namaMK;
@@ -32,6 +35,26 @@ public class Perkuliahan {
         this.waktuSelesai = waktuSelesai;
         this.statusDosen = statusDosen;
         this.statusPerkuliahan = statusPerkuliahan;
+    }
+
+    public Perkuliahan(String idPerkuliahan, String kodeRuangan, String kodeMk, String kodeSemester, String namaMK,
+                       String kelasMK, String ruangMK, String pertemuanKe, String hari,
+                       String waktuMulai, String waktuSelesai, String statusDosen,
+                       String statusPerkuliahan, String statusKehadiran) {
+        this.idPerkuliahan = idPerkuliahan;
+        this.kodeRuangan = kodeRuangan;
+        this.kodeMk = kodeMk;
+        this.kodeSemester = kodeSemester;
+        this.namaMk = namaMK;
+        this.kelasMk = kelasMK;
+        this.ruangMk = ruangMK;
+        this.pertemuanKe = pertemuanKe;
+        this.hari = hari;
+        this.waktuMulai = waktuMulai;
+        this.waktuSelesai = waktuSelesai;
+        this.statusDosen = statusDosen;
+        this.statusPerkuliahan = statusPerkuliahan;
+        this.statusKehdiran = statusKehadiran;
     }
 
     public Perkuliahan(String idPerkuliahan, String kodeMk, String namaMk, String kelasMk,
@@ -48,12 +71,28 @@ public class Perkuliahan {
         this.waktuSelesai = waktuSelesai;
     }
 
+    public String getStatusKehdiran() {
+        return statusKehdiran;
+    }
+
+    public void setStatusKehdiran(String statusKehdiran) {
+        this.statusKehdiran = statusKehdiran;
+    }
+
     public String getIdPerkuliahan() {
         return idPerkuliahan;
     }
 
     public void setIdPerkuliahan(String idPerkuliahan) {
         this.idPerkuliahan = idPerkuliahan;
+    }
+
+    public String getKodeRuangan() {
+        return kodeRuangan;
+    }
+
+    public void setKodeRuangan(String kodeRuangan) {
+        this.kodeRuangan = kodeRuangan;
     }
 
     public String getKodeMk() {

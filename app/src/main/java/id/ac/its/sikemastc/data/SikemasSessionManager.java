@@ -50,6 +50,14 @@ public class SikemasSessionManager {
         Log.d(TAG, "User login session modified!");
     }
 
+    // session check data wajah / signature
+    public void checkUserDataSet(int jumlahWajah, int jumlahSignature) {
+        editor.putInt("jumlah_wajah", jumlahWajah);
+        editor.putInt("jumlah_signature", jumlahSignature);
+        editor.commit();
+        Log.d(TAG, "Check user data set length" + jumlahWajah + " - " + jumlahSignature);
+    }
+
     public void checkLogin(){
         if(!this.isLoggedIn()){
             Intent intent = new Intent(_context, LoginActivity.class);
@@ -70,6 +78,14 @@ public class SikemasSessionManager {
             user.put(KEY_USER_CODE, pref.getString(KEY_USER_CODE, null));
 
             return user;
+    }
+
+    public HashMap<String, Integer> getDataSetLength() {
+        HashMap<String, Integer> jumlahData = new HashMap<>();
+        jumlahData.put("jumlah_wajah", pref.getInt("jumlah_wajah", 0));
+        jumlahData.put("jumlah_signature", pref.getInt("jumlah_signature", 0));
+
+        return jumlahData;
     }
 
     public void logoutUser(){

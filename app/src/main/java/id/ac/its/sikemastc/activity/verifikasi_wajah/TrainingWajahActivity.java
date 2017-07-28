@@ -65,7 +65,7 @@ public class TrainingWajahActivity extends AppCompatActivity {
         progress.setMovementMethod(new ScrollingMovementMethod());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Training Data Set");
+        toolbar.setTitle("Training Data Wajah");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         // Compatibility
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -108,7 +108,9 @@ public class TrainingWajahActivity extends AppCompatActivity {
                                 OutputStream outputStream;
                                 // String[] splitBy = assetFiles[i].split(Pattern.quote("."));
                                 inputStream = assetManager.open("DataSetWajah/" + assetFiles[i]);
-                                File outputFile = new File(FileHelper.TRAINING_PATH + "/" + "processedDataSet.png");
+                                String wholeFolderPath = FileHelper.TRAINING_PATH + "/TidakCocok/";
+                                new File(wholeFolderPath).mkdirs();
+                                File outputFile = new File(wholeFolderPath + "DataPembandingSet.png");
                                 outputStream = new FileOutputStream(outputFile);
                                 int read = 0;
                                 byte[] bytes = new byte[1024];
@@ -117,6 +119,7 @@ public class TrainingWajahActivity extends AppCompatActivity {
                                 }
                                 outputStream.close();
                                 if (FileHelper.isFileAnImage(outputFile)) {
+                                    Log.d(TAG, "check isFileAndImage");
                                     Mat imgRgb = imread(outputFile.getAbsolutePath());
                                     Imgproc.cvtColor(imgRgb, imgRgb, Imgproc.COLOR_BGRA2RGBA);
                                     Mat processedDataSetImage = new Mat();
@@ -125,18 +128,24 @@ public class TrainingWajahActivity extends AppCompatActivity {
                                             PreProcessorFactory.PreprocessingMode.RECOGNITION);
                                     if (images == null || images.size() > 1) {
                                         // More than 1 face detected --> cannot use this file for training
+                                        Log.d(TAG, "wajah lebih dari 1 atau tidak ada");
                                         continue;
                                     } else {
+                                        Log.d(TAG, "Simpan wajah");
                                         processedDataSetImage = images.get(0);
                                     }
                                     if (processedDataSetImage.empty()) {
+                                        Log.d(TAG, "wajah tidak terdeteksi");
                                         continue;
                                     }
+                                    // The last token is the name --> Folder name = Person name
+                                    String[] tokens = outputFile.getParent().split("/");
+                                    final String name = tokens[tokens.length - 1];
 
-                                    MatName m = new MatName("processedImage", processedDataSetImage);
+                                    MatName m = new MatName("processedDataSetImage", processedDataSetImage);
                                     fileHelper.saveMatToImage(m, FileHelper.DATA_PATH);
 
-                                    rec.addImage(processedDataSetImage, outputFile.getParent(), false);
+                                    rec.addImage(processedDataSetImage, name, false);
 
                                     // Update screen to show the progress
                                     final int counterPost = counter;
@@ -148,6 +157,8 @@ public class TrainingWajahActivity extends AppCompatActivity {
                                         }
                                     });
                                     counter++;
+                                } else {
+                                    Log.d(TAG, "file is not an image");
                                 }
                             }
                             for (File person : persons) {

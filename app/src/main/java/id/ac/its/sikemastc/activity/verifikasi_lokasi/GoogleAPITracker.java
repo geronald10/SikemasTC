@@ -12,6 +12,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.StrictMode;
@@ -107,7 +108,7 @@ public class GoogleAPITracker extends Service implements LocationListener {
     private int iteration = 0;
 
     // Connection to SERVER
-    private String link = "http://10.151.31.201/sikemas/public/get_ruang";
+    private String link = "http://absensi.if.its.ac.id/sikemas/public/get_ruang";
     private String[][] dataPlaces;
     private InputStream inputStream = null;
     private String line;
@@ -243,40 +244,6 @@ public class GoogleAPITracker extends Service implements LocationListener {
         }
     }
 
-    public String[] getFinalResult() { return this.finalResult; }
-
-    private void sendFinalResult() {
-        if (this.finalResult[0] != "0") {
-            try {
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, NetworkUtils.KIRIM_LOKASI,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Log.d("Response Send Location", response);
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError volleyError) {
-
-                            }
-                        }) {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<>();
-                        params.put("user_id", NRP);
-                        params.put("id_lokasi", finalResult[0]);
-                        return params;
-                    }
-                };
-                VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(stringRequest);
-            }
-            catch (Exception ex) {
-                Log.d("Error Validation Data", ex.toString());
-            }
-        }
-    }
-
     private void getPlaces() {
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
         line = null;
@@ -284,7 +251,6 @@ public class GoogleAPITracker extends Service implements LocationListener {
             URLConnection url = new URL(link).openConnection();
 
             HttpURLConnection con = (HttpURLConnection)url;
-            //con.setRequestMethod("GET");
 
             inputStream = new BufferedInputStream(con.getInputStream());
 
@@ -338,18 +304,17 @@ public class GoogleAPITracker extends Service implements LocationListener {
             loc1 = new Location("");
             loc1.setLongitude(Double.parseDouble(this.dataIteration.get(i)[1]));
             loc1.setLatitude(Double.parseDouble(this.dataIteration.get(i)[2]));
-            tempAltitude = Double.parseDouble(this.dataIteration.get(i)[3]);
             for (int j = 0; j < this.dataLength; j++) {
                 loc2 = new Location("");
                 loc2.setLatitude(Double.parseDouble(this.dataPlaces[j][2]));
                 loc2.setLongitude(Double.parseDouble(this.dataPlaces[j][3]));
                 tempDistance = loc1.distanceTo(loc2);
-                if (tempData[0] == null && tempAltitude != 0) {
+                if (tempData[0] == null) {
                     tempData[0] = Double.toString(tempDistance);
                     tempData[1] = this.dataPlaces[j][0];
                     tempData[2] = this.dataPlaces[j][1];
                 }
-                else if (tempData[0] != null && tempAltitude != 0) {
+                else if (tempData[0] != null) {
                     if (tempDistance < Double.parseDouble(tempData[0])) {
                         tempData[0] = Double.toString(tempDistance);
                         tempData[1] = this.dataPlaces[j][0];
@@ -427,17 +392,14 @@ public class GoogleAPITracker extends Service implements LocationListener {
         loc1 = new Location("");
         loc1.setLatitude(meanLatitude);
         loc1.setLongitude(meanLongitude);
-        loc1.setAltitude(meanAltitude);
         for (int i = 0; i < this.dataLength; i++) {
             loc2 = new Location("");
             loc2.setLatitude(Double.parseDouble(this.dataPlaces[i][2]));
             loc2.setLongitude(Double.parseDouble(this.dataPlaces[i][3]));
-            loc2.setAltitude((Double.parseDouble(this.dataPlaces[i][4])));
-
             Log.d("Check " + i, "ID: " + this.dataPlaces[i][0] + "\nPlace: " + this.dataPlaces[i][1] + "\nDistance: " +
                     loc1.distanceTo(loc2));
 
-            this.resultMean.add(new String[]{this.dataPlaces[i][0], this.dataPlaces[i][1], Double.toString(tempDistance)});
+            this.resultMean.add(new String[]{this.dataPlaces[i][0], this.dataPlaces[i][1], Double.toString(loc1.distanceTo(loc2))});
 
             if (tempDistance == 0 || tempDistance > loc1.distanceTo(loc2)) {
                 tempDistance = loc1.distanceTo(loc2);
@@ -447,7 +409,6 @@ public class GoogleAPITracker extends Service implements LocationListener {
             }
         }
         this.resultMean.add(new String[]{result[0][0], result[0][1],result[0][2]});
-
         Log.d("ID: " + result[0][0], result[0][1]);
     }
 
@@ -497,11 +458,10 @@ public class GoogleAPITracker extends Service implements LocationListener {
             loc2 = new Location("");
             loc2.setLatitude(Double.parseDouble(this.dataPlaces[i][2]));
             loc2.setLongitude(Double.parseDouble(this.dataPlaces[i][3]));
-            loc2.setAltitude((Double.parseDouble(this.dataPlaces[i][4])));
             Log.d("Check " + i, "ID: " + this.dataPlaces[i][0] + "\nPlace: " + this.dataPlaces[i][1] + "\nDistance: " +
                     loc1.distanceTo(loc2));
 
-            this.resultRegression.add(new String[]{this.dataPlaces[i][0], this.dataPlaces[i][1], Double.toString(tempDistance)});
+            this.resultRegression.add(new String[]{this.dataPlaces[i][0], this.dataPlaces[i][1], Double.toString(loc1.distanceTo(loc2))});
 
             if (tempDistance == 0 || tempDistance > loc1.distanceTo(loc2)) {
                 tempDistance = loc1.distanceTo(loc2);
@@ -515,11 +475,15 @@ public class GoogleAPITracker extends Service implements LocationListener {
     }
 
     private void createCSVFile() {
-        String baseDir = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
+        String baseDir = android.os.Environment.getExternalStorageDirectory().getAbsolutePath() + "/Sikemas/lokasi/";
         Long ts = System.currentTimeMillis()/1000;
         String fileName = NRP + "-" + ts.toString() + ".csv";
-        String filePath = baseDir + File.separator + fileName;
-        File f = new File(filePath);
+        String filePath = baseDir + fileName;
+        File f = new File(baseDir);
+        if(!f.exists())
+        {
+            f.mkdirs();
+        }
         CSVWriter writer;
         try {
             if (this.iteration == 10) {
@@ -575,7 +539,7 @@ public class GoogleAPITracker extends Service implements LocationListener {
             }
 
             String id = "0", place = "0";
-            double distance = 1000;
+            double distance = 100000000;
 
             if (distance > Double.parseDouble(this.resultKNN.get(this.resultKNN.size()-1)[2])) {
                 if (Double.parseDouble(this.resultKNN.get(this.resultKNN.size()-1)[2]) > 0) {
@@ -603,6 +567,7 @@ public class GoogleAPITracker extends Service implements LocationListener {
             finalResult[1] = place;
             finalResult[2] = Double.toString(distance);
             MainPerkuliahanFragment.location.setText(finalResult[1]);
+            MainPerkuliahanFragment.showLocationFounded();
             //sendFinalResult();
 
         } catch (IOException e) {
@@ -622,7 +587,7 @@ public class GoogleAPITracker extends Service implements LocationListener {
         this.latitude = location.getLatitude();
         this.longitude = location.getLongitude();
         this.altitude = location.getAltitude();
-        if(this.accuracy <= 15) {
+        if(this.accuracy <= 20) {
             if (this.iteration < 10) {
                 Log.d("Data", "Longitude: " + getLongitude() + "\nLatitude: " +
                         getLatitude() + "\nAccuracy: " + getAccuracy() + "\nAltitude: " + getAltitude());
@@ -634,10 +599,15 @@ public class GoogleAPITracker extends Service implements LocationListener {
                 stopUsingAPI();
             }
             if (this.iteration > 0) {
-                KNN();
-                xyMethod();
-                linearRegression();
-                createCSVFile();
+                try {
+                    KNN();
+                    xyMethod();
+                    linearRegression();
+                    createCSVFile();
+                }
+                catch (Exception ex) {
+
+                }
             }
         }
     }

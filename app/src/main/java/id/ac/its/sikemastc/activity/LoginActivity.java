@@ -153,7 +153,10 @@ public class LoginActivity extends AppCompatActivity {
                             session.createLoginSession(userId, name, email, role, userCode);
                         } else if (role.equals("4")) {
                             String userCode = "MHS";
+                            int jumlahWajah = jsonObject.getInt("jumlahwajah");
+                            int jumlahSignature = jsonObject.getInt("jumlahsignature");
                             session.createLoginSession(userId, name, email, role, userCode);
+                            session.checkUserDataSet(jumlahWajah, jumlahSignature);
                         }
                         startImmediateDeleteToken(mContext);
                         checkUserRole(role);
@@ -245,6 +248,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private static void startImmediateDeleteToken(Context context) {
+        Log.d(TAG, "start immediate delete token");
         Intent intentToDeleteToken = new Intent(context, DeleteTokenIntentService.class);
         context.startService(intentToDeleteToken);
     }

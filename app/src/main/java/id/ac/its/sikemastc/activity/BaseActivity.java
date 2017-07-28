@@ -64,7 +64,7 @@ public class BaseActivity extends AppCompatActivity implements
                 case "4":
                     checkedDrawerItemId = R.id.item_home_mahasiswa;
                     break;
-                default:
+                case "3":
                     checkedDrawerItemId = R.id.item_home_orangtua;
                     break;
             }

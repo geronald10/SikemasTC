@@ -142,9 +142,9 @@ public class PertemuanKelasFragment extends Fragment implements
             case "1":
                 showAlertDialog(itemId, idPertemuan, pertemuanKe, bundleInfoKelas);
                 break;
-            case "2":
-                showAlertDialog(itemId, idKelas, pertemuanKe, bundleInfoKelas);
-                break;
+//            case "2":
+//                showAlertDialog(itemId, idKelas, pertemuanKe, bundleInfoKelas);
+//                break;
             default:
                 Intent intentToDetailPertemuanKelas = new Intent(getActivity(), DetailPertemuanKelas.class);
                 intentToDetailPertemuanKelas.putExtra("id_pertemuan", idPertemuan);
@@ -161,11 +161,11 @@ public class PertemuanKelasFragment extends Fragment implements
         startActivity(intentToJadwalSementara);
     }
 
-    private void intentToJadwalPermanenActivity(String idKelas) {
-        Intent intentToJadwalPermanen = new Intent(getActivity(), PenjadwalanUlangPermanen.class);
-        intentToJadwalPermanen.putExtra("id_kelas", idKelas);
-        startActivity(intentToJadwalPermanen);
-    }
+//    private void intentToJadwalPermanenActivity(String idKelas) {
+//        Intent intentToJadwalPermanen = new Intent(getActivity(), PenjadwalanUlangPermanen.class);
+//        intentToJadwalPermanen.putExtra("id_kelas", idKelas);
+//        startActivity(intentToJadwalPermanen);
+//    }
 
     private void showAlertDialog(String btnClicked, final String idToPenjadwalan, String pertemuanKe, String infoKelas) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -180,17 +180,17 @@ public class PertemuanKelasFragment extends Fragment implements
                             }
                         });
                 break;
-            case "2":
-            builder.setTitle("Peringatan")
-                        .setMessage("Apakah Anda yakin mengubah jadwal permanen " +
-                                "untuk mata kuliah " + infoKelas + "?")
-                        .setNegativeButton("Tidak", null)
-                        .setPositiveButton("Iya", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                intentToJadwalPermanenActivity(idToPenjadwalan);
-                            }
-                        });
-            break;
+//            case "2":
+//            builder.setTitle("Peringatan")
+//                        .setMessage("Apakah Anda yakin mengubah jadwal permanen " +
+//                                "untuk mata kuliah " + infoKelas + "?")
+//                        .setNegativeButton("Tidak", null)
+//                        .setPositiveButton("Iya", new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int id) {
+//                                intentToJadwalPermanenActivity(idToPenjadwalan);
+//                            }
+//                        });
+//            break;
         }
         AlertDialog dialog = builder.create();
         dialog.show();

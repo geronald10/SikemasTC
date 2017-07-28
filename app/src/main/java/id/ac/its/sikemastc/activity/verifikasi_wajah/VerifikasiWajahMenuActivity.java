@@ -96,8 +96,8 @@ public class VerifikasiWajahMenuActivity extends AppCompatActivity {
                     break;
                 case R.id.btn_verification_view:
                     if (!flagStatus.getBoolean("training_flag", false)) {
-                        Toast.makeText(getApplication(), "Fitur Training Data Set tidak dapat " +
-                                        "digunakan\nFitur ini aktif ketika data set telah ditraining sebelumnya",
+                        Toast.makeText(getApplication(), "Fitur Verifikasi Kehadiran tidak dapat " +
+                                        "digunakan\nFitur ini aktif ketika data wajah telah ditraining sebelumnya",
                                 Toast.LENGTH_LONG).show();
                     } else {
                         Intent intentToRecognition = new Intent(v.getContext(), VerifikasiWajahActivity.class);

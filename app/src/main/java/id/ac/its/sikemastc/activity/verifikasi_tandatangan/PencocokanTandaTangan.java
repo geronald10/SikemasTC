@@ -535,8 +535,8 @@ public class PencocokanTandaTangan extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 // Adding parameters
                 params.put("id_perkuliahan",idPerkuliahan);
-                params.put("nrp", idUserTerlogin);
-                params.put("status", "M");
+                params.put("id_mahasiswa", idUserTerlogin);
+                params.put("ket_kehadiran", "M");
 
                 return params;
             }
