@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btn_add_person"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <TextView
+        android:id="@+id/tv_user_detail_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="@string/menu_verifikasi_wajah_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <ImageView
+        android:id="@+id/iv_user_profi_ttd"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="23dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_detail_info"
+        app:srcCompat="@drawable/ic_studying" />
+
+    <TextView
+        android:id="@+id/tv_user_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/mahasiswa_terlogin_empty"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_user_profi_ttd" />
+
+    <Button
+        android:id="@+id/btn_kelola_data_set_tandatangan"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="64dp"
+        android:drawableStart="@drawable/ic_management"
+        android:gravity="center"
+        android:text="@string/kelola_data_set_tanda_tangan"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:theme="@style/WhiteButtonTheme"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_user_detail"
+        app:layout_constraintRight_toRightOf="@+id/tv_user_detail"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_detail" />
+
+    <Button
+        android:id="@+id/btn_verifikasi_tandatangan"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="20dp"
+        android:drawableStart="@drawable/ic_checked"
+        android:gravity="center"
+        android:text="@string/verification_view_btn_label"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:theme="@style/WhiteButtonTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/btn_kelola_data_set_tandatangan"
+        app:layout_constraintRight_toRightOf="@+id/btn_kelola_data_set_tandatangan"
+        app:layout_constraintTop_toBottomOf="@+id/btn_kelola_data_set_tandatangan"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppMaterialTheme" parent="SuperMaterialTheme">
+        <!-- Customize for only Lollipop and Above Versions features. -->
+    </style>
+
+    <style name="AppNavDrawerMaterialTheme" parent="SuperMaterialTheme">
+        <!-- Customize for only Lollipop and Above Versions features. -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="MyToolbarTheme" parent="SuperMaterialTheme">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+
+    <style name="AppLoginMaterialTheme" parent="SuperMaterialTheme">
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/white</item>
+    </style>
+
+    <style name="SettingsTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>
+        <item name="colorButtonNormal">@color/colorButtonNormal</item>
+        <item name="colorControlActivated">@color/colorControlActivated</item>
+    </style>
+
+    <style name="ListKelasButtonPermanenTheme" parent="SuperMaterialTheme">
+        <item name="colorControlHighlight">@color/colorPrimaryLight</item>
+        <item name="colorButtonNormal">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
+    <style name="PerkuliahanButtonEndKuliahTheme" parent="SuperMaterialTheme">
+        <item name="colorControlHighlight">@color/colorDangerControlHight</item>
+        <item name="colorButtonNormal">@color/colorDangerButtonNormal</item>
+        <item name="colorControlActivated">@color/colorDangerControlActivated</item>
+    </style>
+
+    <style name="PerkuliahanButtonActivateKuliahTheme" parent="SuperMaterialTheme">
+        <item name="colorControlHighlight">@color/colorSuccessControlHight</item>
+        <item name="colorButtonNormal">@color/colorSuccessButtonNormal</item>
+        <item name="colorControlActivated">@color/colorSuccessControlActivated</item>
+    </style>
+
+    <style name="WhiteButtonTheme" parent="SuperMaterialTheme">
+        <item name="colorControlHighlight">@android:color/white</item>
+        <item name="colorButtonNormal">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/darker_gray</item>
+    </style>
+
+</resources>

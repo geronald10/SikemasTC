@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        tools:context="id.ac.its.sikemastc.activity.dosen.DetailPerkuliahan">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/primary_info"
+                layout="@layout/primary_perkuliahan_info"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <include
+                android:id="@+id/detail_peserta"
+                layout="@layout/detail_perkuliahan_info"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_lihat_peserta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:text="@string/btn_lihat_peserta"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_lihat_kehadiran"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:text="@string/btn_lihat_kehadiran"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</layout>

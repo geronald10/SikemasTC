@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorIcons">
+
+        <TextView
+            android:id="@+id/tv_tanggal_pertemuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:text="Kamis, 27 April 2017"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/iv_calendar"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_pertemuan_ke_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:fontFamily="sans-serif"
+            android:text="Pertemuan ke-"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_bias="0.365"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_tanggal_pertemuan"
+            app:layout_constraintRight_toRightOf="@+id/tv_tanggal_pertemuan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tanggal_pertemuan" />
+
+        <TextView
+            android:id="@+id/tv_pertemuan_ke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:fontFamily="sans-serif"
+            android:text="12"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_pertemuan_ke_label"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/tv_pertemuan_ke_label"
+            app:layout_constraintRight_toRightOf="@+id/tv_tanggal_pertemuan"
+            app:layout_constraintTop_toTopOf="@+id/tv_pertemuan_ke_label"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/iv_calendar"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="24dp"
+            app:srcCompat="@drawable/ic_lecture_3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_ke_label"
+            app:layout_constraintHorizontal_bias="0.457" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.41" />
+
+        <TextView
+            android:id="@+id/tv_semester_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="Semester"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tv_mata_kuliah" />
+
+        <TextView
+            android:id="@+id/tv_semester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:text="6"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_semester_label"
+            app:layout_constraintLeft_toRightOf="@+id/tv_semester_label"
+            app:layout_constraintTop_toTopOf="@+id/tv_semester_label"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_kode_mata_kuliah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:text="KI1414201"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_semester_label"
+            app:layout_constraintTop_toTopOf="@+id/iv_calendar" />
+
+        <TextView
+            android:id="@+id/tv_mata_kuliah"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
+            android:gravity="start"
+            android:text="Pemrograman Perangkat Bergerak"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp"
+            app:layout_constraintHorizontal_bias="0.888"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_kode_mata_kuliah"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_kode_mata_kuliah" />
+
+
+        <TextView
+            android:id="@+id/tv_kelas_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Kelas"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_calendar"
+            app:layout_constraintTop_toBottomOf="@+id/iv_calendar" />
+
+        <TextView
+            android:id="@+id/tv_kelas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:text="A"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_kelas_label"
+            app:layout_constraintLeft_toRightOf="@+id/tv_kelas_label"
+            app:layout_constraintRight_toRightOf="@+id/iv_calendar"
+            app:layout_constraintTop_toTopOf="@+id/tv_kelas_label"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

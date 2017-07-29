@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_peserta"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    android:elevation="5dp"
+    card_view:cardCornerRadius="5dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_status_kehadiran"
+            android:layout_width="5dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@color/colorStatusHadir" />
+
+        <TextView
+            android:id="@+id/tv_pertemuan_kuliah_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Pertemuan ke-"
+            android:textColor="@color/colorSecondaryText"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/iv_status_kehadiran"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_pertemuan_kuliah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:text="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_pertemuan_kuliah_label"
+            app:layout_constraintLeft_toRightOf="@+id/tv_pertemuan_kuliah_label"
+            app:layout_constraintTop_toTopOf="@+id/tv_pertemuan_kuliah_label" />
+
+        <ImageView
+            android:id="@+id/iv_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:srcCompat="@drawable/ic_today_black"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_pertemuan_kuliah_label"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_kuliah_label"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tv_tanggal_pertemuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="25 Agustus 2017"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_calendar"
+            app:layout_constraintLeft_toRightOf="@+id/iv_calendar"
+            app:layout_constraintTop_toTopOf="@+id/iv_calendar"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <TextView
+            android:id="@+id/tv_waktu_kehadiran_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Waktu Hadir"
+            android:textColor="@color/colorSecondaryText"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="@+id/iv_calendar"
+            android:layout_marginTop="0dp"
+            app:layout_constraintRight_toLeftOf="@+id/tv_waktu_kehadiran"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_calendar"
+            android:layout_marginBottom="0dp" />
+
+        <TextView
+            android:id="@+id/tv_waktu_kehadiran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12.55"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="24sp"
+            android:layout_marginRight="0dp"
+            android:layout_marginEnd="0dp"
+            app:layout_constraintRight_toRightOf="@+id/iv_status_label"
+            app:layout_constraintTop_toTopOf="@+id/tv_waktu_kehadiran_label"
+            android:layout_marginTop="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_kehadiran_label"
+            android:layout_marginBottom="0dp"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <ImageView
+            android:id="@+id/iv_status_label"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_pertemuan_kuliah_label"
+            card_view:srcCompat="@color/colorStatusHadir"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_pertemuan_kuliah_label"
+            android:layout_marginBottom="0dp"
+            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_waktu_kehadiran" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/cardview_light_background"
+            android:text="@string/status_hadir"
+            android:textSize="16sp"
+            app:layout_constraintRight_toRightOf="@+id/iv_status_label"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_status_label"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_status_label"
+            app:layout_constraintTop_toTopOf="@+id/iv_status_label"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

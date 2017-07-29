@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="brightness">
+        <item>@string/gammaCorrection</item>
+    </string-array>
+    <string-array name="brightness_default">
+        <item>@string/gammaCorrection</item>
+    </string-array>
+    <string-array name="classification_method">
+        <item>@string/eigenfaces</item>
+        <item>@string/imageReshaping</item>
+        <item>@string/tensorflow</item>
+        <item>@string/caffe</item>
+    </string-array>
+    <string-array name="contours">
+        <item>@string/doG</item>
+        <item>@string/masking</item>
+        <item>@string/lbp</item>
+    </string-array>
+    <string-array name="contrast">
+        <item>@string/histogrammEqualization</item>
+    </string-array>
+    <string-array name="contrast_default">
+        <item>@string/histogrammEqualization</item>
+    </string-array>
+    <string-array name="detection_standard_pre">
+        <item>@string/grayscale</item>
+    </string-array>
+    <string-array name="detection_standard_pre_default">
+        <item>@string/grayscale</item>
+    </string-array>
+    <string-array name="empty_array"/>
+    <string-array name="face_cascade_file">
+        <item>@string/haarcascade_default</item>
+        <item>@string/haarcascade_alt</item>
+        <item>@string/haarcascade_alt2</item>
+        <item>@string/lbpcascade</item>
+        <item>@string/classifier_350kids</item>
+        <item>@string/classifier_200adults_350kids</item>
+    </string-array>
+    <string-array name="lefteye_cascade_file">
+        <item>@string/haarcascade_lefteye</item>
+        <item>@string/haarcascade_eye</item>
+        <item>@string/haarcascade_righteye</item>
+    </string-array>
+    <string-array name="righteye_cascade_file">
+        <item>@string/haarcascade_righteye</item>
+        <item>@string/haarcascade_eye</item>
+        <item>@string/haarcascade_lefteye</item>
+    </string-array>
+    <string-array name="standard_post">
+        <item>@string/resize</item>
+    </string-array>
+    <string-array name="standard_post_default">
+        <item>@string/resize</item>
+    </string-array>
+    <string-array name="standard_pre">
+        <item>@string/grayscale</item>
+        <item>@string/eyeAlignment</item>
+    </string-array>
+    <string-array name="standard_pre_default">
+        <item>@string/grayscale</item>
+        <item>@string/eyeAlignment</item>
+    </string-array>
+    <string name="app_name">Face Recognition Library</string>
+    <string name="caffe">Caffe with SVM or KNN</string>
+    <string name="classifier_200adults_350kids">01_Classifier_200adults_350kids</string>
+    <string name="classifier_350kids">02_Classifier_350kids</string>
+    <string name="crop">Crop</string>
+    <string name="doG">1. Difference of Gaussian</string>
+    <string name="eigenfaces">Eigenfaces with NN</string>
+    <string name="eyeAlignment">2. Eye Alignment</string>
+    <string name="gamma">0.2</string>
+    <string name="gammaCorrection">1. Gamma Correction</string>
+    <string name="grayscale">1. Grayscale</string>
+    <string name="haarcascade_alt">haarcascade_frontalface_alt</string>
+    <string name="haarcascade_alt2">haarcascade_frontalface_alt2</string>
+    <string name="haarcascade_default">haarcascade_frontalface_default</string>
+    <string name="haarcascade_eye">haarcascade_eye</string>
+    <string name="haarcascade_lefteye">haarcascade_lefteye_2splits</string>
+    <string name="haarcascade_righteye">haarcascade_righteye_2splits</string>
+    <string name="histogrammEqualization">1. Histogramm Equalization</string>
+    <string name="imageReshaping">Image Reshaping with SVM</string>
+    <string name="knn">K Nearest Neighbor</string>
+    <string name="lbp">3. Local Binary Pattern</string>
+    <string name="lbpcascade">lbpcascade_frontalface</string>
+    <string name="masking">2. Masking</string>
+    <string name="meanValuesCaffe">104, 117, 123</string>
+    <string name="modelFileCaffe">VGG_FACE_deploy.prototxt</string>
+    <string name="outputLayerCaffe">fc7</string>
+    <string name="resize">1. Resize</string>
+    <string name="sigmas">0.25, 4</string>
+    <string name="svm">Support Vector Machine</string>
+    <string name="tensorflow">TensorFlow with SVM or KNN</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="weightsFileCaffe">VGG_FACE.caffemodel</string>
+</resources>

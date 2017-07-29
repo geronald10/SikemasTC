@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="id.ac.its.sikemastc">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front.autofocus"
+        android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppMaterialTheme">
+
+        <!-- General Activity Manifest -->
+        <activity
+            android:name=".activity.LoginActivity"
+            android:theme="@style/AppLoginMaterialTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.BaseActivity" />
+        <activity android:name=".activity.SettingsActivity" />
+
+        <!-- Dosen Activity Manifest -->
+        <activity
+            android:name=".activity.dosen.HalamanUtamaDosen"
+            android:theme="@style/AppNavDrawerMaterialTheme" />
+        <activity android:name=".activity.dosen.LihatKehadiran" />
+        <activity
+            android:name=".activity.dosen.ListKelasActivity"
+            android:theme="@style/AppNavDrawerMaterialTheme" />
+        <activity android:name=".activity.dosen.DetailPerkuliahan" />
+        <activity android:name=".activity.dosen.DetailListKelas" />
+        <activity android:name=".activity.dosen.PenjadwalanUlangSementara" />
+        <activity android:name=".activity.dosen.PenjadwalanUlangPermanen" />
+        <activity android:name=".activity.dosen.DetailPertemuanKelas" />
+        <activity android:name=".activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan" />
+        <activity android:name=".activity.verifikasi_tandatangan.KelolaDataSetTandaTangan" />
+        <activity android:name=".activity.verifikasi_tandatangan.VerifikasiTandaTangan" />
+        <activity android:name=".activity.verifikasi_tandatangan.PencocokanTandaTangan" />
+
+        <!-- Mahasiswa Activity Manifest -->
+        <activity
+            android:name=".activity.mahasiswa.HalamanUtamaMahasiswa"
+            android:theme="@style/AppNavDrawerMaterialTheme" />
+        <activity
+            android:name=".activity.mahasiswa.ListKelasMahasiswa"
+            android:theme="@style/AppNavDrawerMaterialTheme" />
+
+        <!-- Orangtua Activity Manifest -->
+        <activity
+            android:name=".activity.orangtua.HalamanUtamaOrangtua"
+            android:theme="@style/AppNavDrawerMaterialTheme" />
+        <activity android:name=".activity.orangtua.LihatJadwalMahasiswa" />
+
+        <!-- Verifikasi Wajah Activity Manifest -->
+        <activity
+            android:name=".activity.verifikasi_wajah.VerifikasiWajahMenuActivity"
+            android:theme="@style/AppMaterialTheme">
+        </activity>
+        <activity android:name=".activity.verifikasi_wajah.KelolaDataSetWajahActivity" />
+        <activity android:name=".activity.verifikasi_wajah.TrainingWajahActivity" />
+        <activity android:name=".activity.verifikasi_wajah.HasilVerifikasiActivity" />
+        <activity
+            android:name=".activity.verifikasi_wajah.VerifikasiWajahActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.verifikasi_wajah.TambahDataSetWajahActivity"
+            android:screenOrientation="landscape" />
+
+        <!-- Provider Manifest -->
+        <provider
+            android:name=".data.SikemasProvider"
+            android:authorities="id.ac.its.sikemastc"
+            android:exported="false" />
+
+        <!-- Services Manifest -->
+        <service
+            android:name=".sync.SikemasReminderIntentService"
+            android:exported="false" />
+        <service
+            android:name=".sync.SikemasSyncPerkuliahanIntentService"
+            android:exported="false" />
+        <service
+            android:name=".sync.SikemasSyncKelasIntentService"
+            android:exported="false" />
+        <service
+            android:name=".sync.PerkuliahanFirebaseJobService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".sync.DeleteTokenIntentService"
+            android:exported="false" />
+        <service
+            android:name=".sync.SikemasSyncSikemasMahasiswaIntentService"
+            android:exported="false" />
+        <service android:name=".sync.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".sync.MyFirebaseInstanceIDService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".activity.verifikasi_wajah.InstruksiTambahDataSetActivity" />
+        <activity android:name=".activity.mahasiswa.DetailPerkuliahanMahasiswa" />
+        <activity android:name=".activity.mahasiswa.DetailJadwalKelasMahasiswa" />
+
+        <!-- Verifikasi Lokasi -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <service android:name=".activity.verifikasi_lokasi.LocationService" />
+
+        <!-- Verifikasi QR Code -->
+        <activity
+            android:name=".activity.verifikasi_qr_code.BarcodeCaptureActivity" />
+
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/if_logo_white" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimaryDark" />
+
+
+    </application>
+
+</manifest>

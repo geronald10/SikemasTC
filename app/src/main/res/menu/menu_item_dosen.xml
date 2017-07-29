@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group_1"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/item_home_dosen"
+            android:checkable="true"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/item_list_kelas_diampu"
+            android:checkable="true"
+            android:icon="@drawable/ic_view_list"
+            android:title="List Kelas Diampu"
+            />
+    </group>
+
+    <group
+        android:id="@+id/group_2"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/item_settings"
+            android:checkable="true"
+            android:icon="@drawable/ic_settings"
+            android:title="Settings" />
+        <item
+            android:id="@+id/item_logout"
+            android:checkable="true"
+            android:icon="@drawable/ic_exit_to_app"
+            android:title="Sign out" />
+
+    </group>
+</menu>

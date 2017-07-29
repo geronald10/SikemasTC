@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:opencv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    tools:context=".activity.verifikasi_wajah.TambahDataSetWajahActivity">
+
+    <ch.zhaw.facerecognitionlibrary.Helpers.CustomCameraView
+        android:id="@+id/AddSetWajahPreview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginStart="0dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/iv_captured_image"
+        app:layout_constraintTop_toTopOf="parent"
+        opencv:camera_id="any"
+        opencv:show_fps="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_tambah_data_set" />
+
+    <ImageView
+        android:id="@+id/iv_captured_image"
+        android:layout_width="104dp"
+        android:layout_height="104dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_user" />
+
+    <TextView
+        android:id="@+id/tv_counter_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/wajah_terambil_label"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="18sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_captured_image"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_captured_image" />
+
+    <TextView
+        android:id="@+id/tv_counter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/tv_empty_value"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display2"
+        android:textColor="@color/colorPrimaryText"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_counter_label"
+        app:layout_constraintRight_toRightOf="@+id/tv_counter_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_counter_label" />
+
+    <TextView
+        android:id="@+id/tv_tambah_data_set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginStart="0dp"
+        android:text="@string/menambah_data_set_wajah_dari_message"
+        android:textColor="@color/colorSecondaryText"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_user_detail"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_user_status" />
+
+    <ImageView
+        android:id="@+id/iv_user_status"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:srcCompat="@drawable/circle_green" />
+
+    <TextView
+        android:id="@+id/tv_user_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="0dp"
+        android:text="5113100112 - Ronald Gunawan R"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_user_status"
+        app:layout_constraintLeft_toRightOf="@+id/iv_user_status"
+        app:layout_constraintTop_toTopOf="@+id/iv_user_status"
+        app:layout_constraintVertical_bias="0.333" />
+
+</android.support.constraint.ConstraintLayout>

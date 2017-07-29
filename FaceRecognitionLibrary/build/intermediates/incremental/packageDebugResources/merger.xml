@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main$Generated" generated="true"><source path="D:\Document\Informatics Engineering - S1\Chapter 8\TA\dev-face-signature-ortu\FaceRecognitionLibrary\src\main\res"/><source path="D:\Document\Informatics Engineering - S1\Chapter 8\TA\dev-face-signature-ortu\FaceRecognitionLibrary\build\generated\res\rs\debug"/><source path="D:\Document\Informatics Engineering - S1\Chapter 8\TA\dev-face-signature-ortu\FaceRecognitionLibrary\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug$Generated" generated="true"><source path="D:\Document\Informatics Engineering - S1\Chapter 8\TA\dev-face-signature-ortu\FaceRecognitionLibrary\src\debug\res"/></dataSet><dataSet config="main" generated-set="main$Generated"><source path="D:\Document\Informatics Engineering - S1\Chapter 8\TA\dev-face-signature-ortu\FaceRecognitionLibrary\src\main\res"><file path="D:\Document\Informatics Engineering - S1\Chapter 8\TA\dev-face-signature-ortu\FaceRecognitionLibrary\src\main\res\values\preferences_lists.xml" qualifiers=""><string-array name="detection_standard_pre">
+        <item>@string/grayscale</item>
+    </string-array><string-array name="classification_method">
+        <item>@string/eigenfaces</item>
+        <item>@string/imageReshaping</item>
+        <item>@string/tensorflow</item>
+        <item>@string/caffe</item>
+    </string-array><string-array name="face_cascade_file">
+        <item>@string/haarcascade_default</item>
+        <item>@string/haarcascade_alt</item>
+        <item>@string/haarcascade_alt2</item>
+        <item>@string/lbpcascade</item>
+        <item>@string/classifier_350kids</item>
+        <item>@string/classifier_200adults_350kids</item>
+    </string-array><string-array name="standard_pre">
+        <item>@string/grayscale</item>
+        <item>@string/eyeAlignment</item>
+    </string-array><string-array name="contours">
+        <item>@string/doG</item>
+        <item>@string/masking</item>
+        <item>@string/lbp</item>
+    </string-array><string-array name="righteye_cascade_file">
+        <item>@string/haarcascade_righteye</item>
+        <item>@string/haarcascade_eye</item>
+        <item>@string/haarcascade_lefteye</item>
+    </string-array><string-array name="contrast_default">
+        <item>@string/histogrammEqualization</item>
+    </string-array><string-array name="standard_post_default">
+        <item>@string/resize</item>
+    </string-array><string-array name="standard_pre_default">
+        <item>@string/grayscale</item>
+        <item>@string/eyeAlignment</item>
+    </string-array><string-array name="contrast">
+        <item>@string/histogrammEqualization</item>
+    </string-array><string-array name="standard_post">
+        <item>@string/resize</item>
+    </string-array><string-array name="lefteye_cascade_file">
+        <item>@string/haarcascade_lefteye</item>
+        <item>@string/haarcascade_eye</item>
+        <item>@string/haarcascade_righteye</item>
+    </string-array><string-array name="detection_standard_pre_default">
+        <item>@string/grayscale</item>
+    </string-array><string-array name="brightness">
+        <item>@string/gammaCorrection</item>
+    </string-array><string-array name="empty_array"/><string-array name="brightness_default">
+        <item>@string/gammaCorrection</item>
+    </string-array></file><file path="D:\Document\Informatics Engineering - S1\Chapter 8\TA\dev-face-signature-ortu\FaceRecognitionLibrary\src\main\res\values\strings.xml" qualifiers=""><string name="crop">Crop</string><string name="svm">Support Vector Machine</string><string name="knn">K Nearest Neighbor</string><string name="title_activity_settings">Settings</string><string name="gamma">0.2</string><string name="haarcascade_default">haarcascade_frontalface_default</string><string name="outputLayerCaffe">fc7</string><string name="haarcascade_righteye">haarcascade_righteye_2splits</string><string name="masking">2. Masking</string><string name="weightsFileCaffe">VGG_FACE.caffemodel</string><string name="classifier_200adults_350kids">01_Classifier_200adults_350kids</string><string name="lbp">3. Local Binary Pattern</string><string name="resize">1. Resize</string><string name="grayscale">1. Grayscale</string><string name="eyeAlignment">2. Eye Alignment</string><string name="gammaCorrection">1. Gamma Correction</string><string name="eigenfaces">Eigenfaces with NN</string><string name="imageReshaping">Image Reshaping with SVM</string><string name="sigmas">0.25, 4</string><string name="caffe">Caffe with SVM or KNN</string><string name="lbpcascade">lbpcascade_frontalface</string><string name="histogrammEqualization">1. Histogramm Equalization</string><string name="app_name">Face Recognition Library</string><string name="classifier_350kids">02_Classifier_350kids</string><string name="tensorflow">TensorFlow with SVM or KNN</string><string name="haarcascade_lefteye">haarcascade_lefteye_2splits</string><string name="haarcascade_alt2">haarcascade_frontalface_alt2</string><string name="meanValuesCaffe">104, 117, 123</string><string name="haarcascade_alt">haarcascade_frontalface_alt</string><string name="doG">1. Difference of Gaussian</string><string name="haarcascade_eye">haarcascade_eye</string><string name="modelFileCaffe">VGG_FACE_deploy.prototxt</string></file><file name="preferences" path="D:\Document\Informatics Engineering - S1\Chapter 8\TA\dev-face-signature-ortu\FaceRecognitionLibrary\src\main\res\xml\preferences.xml" qualifiers="" type="xml"/></source><source path="D:\Document\Informatics Engineering - S1\Chapter 8\TA\dev-face-signature-ortu\FaceRecognitionLibrary\build\generated\res\rs\debug"/><source path="D:\Document\Informatics Engineering - S1\Chapter 8\TA\dev-face-signature-ortu\FaceRecognitionLibrary\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug" generated-set="debug$Generated"><source path="D:\Document\Informatics Engineering - S1\Chapter 8\TA\dev-face-signature-ortu\FaceRecognitionLibrary\src\debug\res"/></dataSet><mergedItems/></merger>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:elevation="5dp"
+    app:cardCornerRadius="5dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/inner_constraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/tv_pertemuan_ke_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/pertemuan_ke_label"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_pertemuan_ke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:fontFamily="sans-serif"
+            android:hint="@string/pertemuan_ke_hint"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_pertemuan_ke_label"
+            app:layout_constraintLeft_toRightOf="@+id/tv_pertemuan_ke_label"
+            app:layout_constraintTop_toTopOf="@+id/tv_pertemuan_ke_label" />
+
+        <ImageView
+            android:id="@+id/iv_calendar"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/pertemuan_ke_description"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_ke_label"
+            app:srcCompat="@drawable/ic_lecture_3" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.37" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_50"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/tv_kode_mata_kuliah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/kode_matakuliah_hint"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pertemuan_ke_label" />
+
+        <TextView
+            android:id="@+id/tv_mata_kuliah"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="0dp"
+            android:gravity="start"
+            android:hint="@string/nama_matakuliah_hint"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_kode_mata_kuliah"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_kode_mata_kuliah" />
+
+
+        <TextView
+            android:id="@+id/tv_kelas_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/kelas_label"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_calendar"
+            app:layout_constraintTop_toBottomOf="@+id/iv_calendar" />
+
+        <TextView
+            android:id="@+id/tv_kelas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:hint="@string/kelas_hint"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_kelas_label"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toRightOf="@+id/tv_kelas_label"
+            app:layout_constraintRight_toRightOf="@+id/iv_calendar"
+            app:layout_constraintTop_toTopOf="@+id/tv_kelas_label"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/iv_room"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/place_icon"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_mata_kuliah"
+            app:layout_constraintTop_toBottomOf="@+id/tv_mata_kuliah"
+            app:srcCompat="@drawable/ic_room" />
+
+        <TextView
+            android:id="@+id/tv_ruang"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/tv_empty_value"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_room"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toRightOf="@+id/iv_room"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_room" />
+
+        <ImageView
+            android:id="@+id/iv_waktu"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:contentDescription="@string/clock_icon"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_room"
+            app:layout_constraintTop_toTopOf="@+id/tv_from"
+            app:srcCompat="@drawable/ic_access_time" />
+
+        <TextView
+            android:id="@+id/tv_waktu_mulai"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/tv_empty_value"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_from"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_from" />
+
+        <TextView
+            android:id="@+id/tv_waktu_selesai"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/tv_empty_value"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_to"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_to" />
+
+
+        <TextView
+            android:id="@+id/tv_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/to_label"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_from"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waktu_mulai" />
+
+        <TextView
+            android:id="@+id/tv_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/from_label"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@+id/iv_waktu"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ruang" />
+
+        <Button
+            android:id="@+id/btn_verifikasi_tandatangan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/verifikasi_tanda_tangan_button_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="@android:color/white"
+            android:theme="@style/ListKelasButtonPermanenTheme"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/guideline_50"
+            app:layout_constraintTop_toBottomOf="@+id/tv_verifikasi_kehadiran_label" />
+
+        <Button
+            android:id="@+id/btn_verifikasi_wajah"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/verifikasi_wajah_button_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="@android:color/white"
+            android:theme="@style/ListKelasButtonPermanenTheme"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline_50"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_verifikasi_tandatangan" />
+
+        <TextView
+            android:id="@+id/tv_verifikasi_kehadiran_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/verifikasi_kehadiran_label"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waktu_selesai" />
+
+        <ImageView
+            android:id="@+id/iv_status_kehadiran"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_status_kehadiran"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_status_kehadiran"
+            app:layout_constraintRight_toRightOf="@+id/tv_status_kehadiran"
+            app:layout_constraintTop_toTopOf="@+id/tv_status_kehadiran"
+            app:srcCompat="@color/colorStatusHadir" />
+
+        <TextView
+            android:id="@+id/tv_status_kehadiran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|end"
+            android:paddingBottom="4dp"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="4dp"
+            android:text="Hadir"
+            android:textColor="@color/colorIcons"
+            android:textSize="20sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>
