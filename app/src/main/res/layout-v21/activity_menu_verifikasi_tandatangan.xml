@@ -64,7 +64,7 @@
         android:layout_marginTop="64dp"
         android:drawableStart="@drawable/ic_management"
         android:gravity="center"
-        android:text="@string/kelola_data_set_tanda_tangan"
+        android:text="@string/unduh_dataset_tanda_tangan"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"

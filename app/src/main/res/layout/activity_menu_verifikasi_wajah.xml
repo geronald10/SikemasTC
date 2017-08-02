@@ -64,7 +64,7 @@
         android:drawablePadding="8dp"
         android:drawableStart="@drawable/ic_kelola_data_set_wajah"
         android:gravity="center"
-        android:text="@string/kelola_data_set_wajah_btn_label"
+        android:text="@string/sinkronisasi_data_set_wajah"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
