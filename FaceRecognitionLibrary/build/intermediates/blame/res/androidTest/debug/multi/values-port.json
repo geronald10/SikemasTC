@@ -1,29 +1,5 @@
 [
     {
-        "outputFile": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-port\\values-port.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 55,
-                    "endOffset": 106
-                },
-                "from": {
-                    "file": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\values-port\\values-port.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 55,
-                        "endColumn": 55,
-                        "endOffset": 106
-                    }
-                }
-            }
-        ]
-    },
-    {
         "outputFile": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-port\\values-port.xml",
         "map": [
             {
