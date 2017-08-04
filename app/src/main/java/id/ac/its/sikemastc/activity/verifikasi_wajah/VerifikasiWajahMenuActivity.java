@@ -29,6 +29,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,7 +54,7 @@ public class VerifikasiWajahMenuActivity extends AppCompatActivity {
     private String idPerkuliahan;
     private String userTerlogin;
     private SikemasSessionManager session;
-    private ArrayList<String> imageUrlList;
+    private ArrayList<String> imageUrlList, fileUrlList;
     private ProgressDialog progressDialog;
     private FileHelper fh;
 
@@ -71,6 +72,9 @@ public class VerifikasiWajahMenuActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Verifikasi Wajah");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
 
         // Compatibility
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -112,16 +116,17 @@ public class VerifikasiWajahMenuActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_kelola_data_set_wajah:
-                    if (getJumlahDataSetClient() < 20) {
-                        sinkronisasiDataSet(nrpMahasiswa);
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Data Wajah Ditemukan Sama Dengan Data Wajah di Server",
-                                Toast.LENGTH_SHORT).show();
-                    }
+                    downloadFileFromUrl();
+//                    if (getJumlahDataSetClient() < 20) {
+////                        sinkronisasiDataSet(nrpMahasiswa);
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "Data Wajah Ditemukan Sama Dengan Data Wajah di Server",
+//                                Toast.LENGTH_SHORT).show();
+//                    }
                     break;
 
                 case R.id.btn_verification_view:
-                    if (!flagStatus.getBoolean("training_flag", false)) {
+                    if (flagStatus.getBoolean("training_flag", false)) {
                         Toast.makeText(getApplication(), "Fitur Verifikasi Kehadiran tidak dapat " +
                                         "digunakan\nFitur ini aktif ketika data wajah telah ditraining sebelumnya",
                                 Toast.LENGTH_LONG).show();
@@ -271,6 +276,74 @@ public class VerifikasiWajahMenuActivity extends AppCompatActivity {
             btnVerifikasiWajah.setCompoundDrawablesWithIntrinsicBounds(
                     ContextCompat.getDrawable(mContext, R.drawable.ic_verified_user), null, null, null);
             btnVerifikasiWajah.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimaryText));
+        }
+    }
+
+    // Download file from fileUrl
+    private void downloadFileFromUrl() {
+        //Showing the progress dialog
+        progressDialog.setMessage("Mengunduh Data Wajah... ");
+        progressDialog.show();
+
+        fileUrlList = new ArrayList<>();
+        fileUrlList.add("http://absensi.if.its.ac.id/uploads/data/labelMap_train");
+        fileUrlList.add("http://absensi.if.its.ac.id/uploads/data/svm_train");
+        fileUrlList.add("http://absensi.if.its.ac.id/uploads/data/svm_train_model");
+
+        for (int i = 0; i < fileUrlList.size(); i++) {
+            final int index = i;
+            Log.d("image URL" + index, fileUrlList.get(i));
+            InputStreamVolleyRequest inputStreamRequest = new InputStreamVolleyRequest(Request.Method.GET, fileUrlList.get(i),
+                    new Response.Listener<byte[]>() {
+                        @Override
+                        public void onResponse(byte[] response) {
+                            try {
+                                Log.d("Sinkronisasi Volley", "response");
+                                if (response != null) {
+                                    String wholeFolderPath = fh.SVM_PATH;
+                                    new File(wholeFolderPath).mkdirs();
+
+                                    String url = fileUrlList.get(index);
+                                    String[] urlArray = url.split("/");
+                                    String name = urlArray[urlArray.length-1];
+                                    Log.d("name file", name);
+                                    String fullpath = wholeFolderPath + "/" + name;
+                                    File outputFile = new File(fullpath);
+
+                                    FileOutputStream outputStream = new FileOutputStream(outputFile);
+                                    outputStream.write(response);
+                                    outputStream.close();
+
+                                    if (index + 1 == fileUrlList.size()) {
+                                        flagStatus.edit().putBoolean("training_flag", false).apply();
+                                        checkDataSetStatus();
+                                        progressDialog.dismiss();
+                                        Toast.makeText(getApplicationContext(), "Berhasil mengunduh data training",
+                                                Toast.LENGTH_SHORT).show();
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                            }
+                                        });
+                                    }
+                                }
+                            } catch (Exception e) {
+                                Log.d("KEY_ERROR", "UNABLE TO DOWNLOAD FILE");
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError volleyError) {
+                            // Dismissing the progress dialog
+                            progressDialog.dismiss();
+                            Log.d("VolleyErroyResponse", "Error");
+                            //Showing toast
+                            Toast.makeText(VerifikasiWajahMenuActivity.this, volleyError.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }, null);
+            VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(inputStreamRequest);
         }
     }
 

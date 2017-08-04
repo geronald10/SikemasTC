@@ -1,5 +1,61 @@
 [
     {
+        "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_out_bottom.xml",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\anim\\abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_popup_enter.xml",
+        "source": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\anim\\abc_popup_enter.xml"
+    },
+    {
+        "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\anim\\abc_fade_out.xml"
+    },
+    {
+        "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\anim\\abc_slide_out_top.xml"
+    },
+    {
+        "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_popup_exit.xml",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\anim\\abc_popup_exit.xml"
+    },
+    {
+        "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_fade_out.xml",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\anim\\abc_fade_out.xml"
+    },
+    {
+        "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_fade_in.xml",
+        "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\anim\\abc_fade_in.xml"
+    },
+    {
+        "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
+        "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_in_bottom.xml",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\anim\\abc_slide_in_bottom.xml"
+    },
+    {
         "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_fade_in.xml",
         "source": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\anim\\abc_fade_in.xml"
     },
@@ -8,16 +64,16 @@
         "source": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\anim\\abc_fade_out.xml"
     },
     {
-        "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_out_top.xml",
-        "source": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\anim\\abc_slide_out_top.xml"
-    },
-    {
         "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
         "source": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
     },
     {
-        "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
-        "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+        "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_popup_enter.xml",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\anim\\abc_popup_enter.xml"
+    },
+    {
+        "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\anim\\abc_slide_in_top.xml"
     },
     {
         "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
@@ -32,24 +88,16 @@
         "source": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\anim\\abc_slide_in_bottom.xml"
     },
     {
-        "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_popup_enter.xml",
-        "source": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\anim\\abc_popup_enter.xml"
-    },
-    {
-        "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_fade_out.xml",
-        "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\anim\\abc_fade_out.xml"
+        "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_in_top.xml",
+        "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\anim\\abc_slide_in_top.xml"
     },
     {
         "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_in_bottom.xml",
         "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\anim\\abc_slide_in_bottom.xml"
     },
     {
-        "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_in_top.xml",
-        "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\anim\\abc_slide_in_top.xml"
-    },
-    {
-        "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_out_top.xml",
-        "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\anim\\abc_slide_out_top.xml"
+        "merged": "E:\\TA\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
+        "source": "C:\\Users\\Goronald\\.android\\build-cache\\4059b40534eff736637a3def0f155bafe69001c5\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
     },
     {
         "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_popup_exit.xml",
@@ -70,13 +118,5 @@
     {
         "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_slide_out_bottom.xml",
         "source": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\anim\\abc_slide_out_bottom.xml"
-    },
-    {
-        "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_fade_in.xml",
-        "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\anim\\abc_fade_in.xml"
-    },
-    {
-        "merged": "D:\\BISMILLAH\\project\\SikemasTC\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
-        "source": "C:\\Users\\novitarpl\\.android\\build-cache\\2224202443f4c887e34b3d28d1c38a9d6db80811\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
     }
 ]
