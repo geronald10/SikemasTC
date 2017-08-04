@@ -84,6 +84,11 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
         Log.d("storepath->", StoredPath);
         dir = new File(StoredPath);
 
+
+        // Progress Dialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+
         TextView tvUserTerlogin = (TextView) findViewById(R.id.tv_user_detail);
         tvUserTerlogin.setText(userTerlogin);
 
