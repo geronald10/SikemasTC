@@ -67,6 +67,10 @@ public class VerifikasiWajahMenuActivity extends AppCompatActivity {
         session = new SikemasSessionManager(this);
         flagStatus = getSharedPreferences("flag_status", 0);
 
+        // Progress Dialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Verifikasi Wajah");
