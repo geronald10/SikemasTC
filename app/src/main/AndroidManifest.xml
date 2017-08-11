@@ -23,6 +23,7 @@
         android:name="android.hardware.camera.front.autofocus"
         android:required="false" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -30,7 +31,8 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppMaterialTheme">
+        android:theme="@style/AppMaterialTheme"
+        android:name="android.support.multidex.MultiDexApplication">
 
         <!-- General Activity Manifest -->
         <activity

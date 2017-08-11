@@ -53,6 +53,7 @@ import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.verifikasi_lokasi.GoogleAPITracker;
 import id.ac.its.sikemastc.activity.verifikasi_lokasi.LocationService;
 import id.ac.its.sikemastc.activity.verifikasi_qr_code.BarcodeCaptureActivity;
+import id.ac.its.sikemastc.activity.verifikasi_qr_code.QRCodeScanner;
 import id.ac.its.sikemastc.activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan;
 import id.ac.its.sikemastc.activity.verifikasi_wajah.VerifikasiWajahMenuActivity;
 import id.ac.its.sikemastc.adapter.PerkuliahanAktifAdapter;
@@ -346,87 +347,8 @@ public class MainPerkuliahanFragment extends Fragment implements
                     Point[] p = barcode.cornerPoints;
                     String md5 = null;
 
-                    if (barcode.displayValue.replace(" ","").length() % 4 == 0) {
-                        try {
-                            byte[] digest = Base64.decode(barcode.displayValue, Base64.DEFAULT);
-                            String text = new String(digest, "UTF-8");
-
-                            if (text.length() > 8) {
-                                String decrypt = "Error QR Code";
-                                if (text.contains("IF-101 Informatika Sikemas")) {
-                                    decrypt = "IF-101";
-                                }
-                                else if (text.contains("IF-102 Informatika Sikemas")) {
-                                    decrypt = "IF-102";
-                                }
-                                else if (text.contains("IF-103 Informatika Sikemas")) {
-                                    decrypt = "IF-103";
-                                }
-                                else if (text.contains("IF-104 Informatika Sikemas")) {
-                                    decrypt = "IF-104";
-                                }
-                                else if (text.contains("IF-105a Informatika Sikemas")) {
-                                    decrypt = "IF-105a";
-                                }
-                                else if (text.contains("IF-105b Informatika Sikemas")) {
-                                    decrypt = "IF-105b";
-                                }
-                                else if (text.contains("IF-106 Informatika Sikemas")) {
-                                    decrypt = "IF-106";
-                                }
-                                else if (text.contains("IF-108 Informatika Sikemas")) {
-                                    decrypt = "IF-108";
-                                }
-                                location.setText(decrypt);
-                                this.resultQR = decrypt;
-                            }
-                            else {
-                                location.setText("Error QR Code");
-                                this.resultQR = "Error QR Code";
-                            }
-
-                        }
-                        catch (Exception ex) {
-
-                        }
-                    }
-                    if (barcode.displayValue.matches("[a-fA-F0-9]{32}")) {
-                        try {
-                            String decrypt = "Error QR Code";
-                            Log.d("MD5 Hash", barcode.displayValue);
-                            if (barcode.displayValue.equals(md5Encode("IF-101 Informatika Sikemas"))) {
-                                decrypt = "IF-101";
-                            }
-                            else if (barcode.displayValue.equals(md5Encode("IF-102 Informatika Sikemas"))) {
-                                decrypt = "IF-102";
-                            }
-                            else if (barcode.displayValue.equals(md5Encode("IF-103 Informatika Sikemas"))) {
-                                decrypt = "IF-103";
-                            }
-                            else if (barcode.displayValue.equals(md5Encode("IF-104 Informatika Sikemas"))) {
-                                decrypt = "IF-104";
-                            }
-                            else if (barcode.displayValue.equals(md5Encode("IF-105a Informatika Sikemas"))) {
-                                decrypt = "IF-105a";
-                            }
-                            else if (barcode.displayValue.equals(md5Encode("IF-105b Informatika Sikemas"))) {
-                                decrypt = "IF-105b";
-                            }
-                            else if (barcode.displayValue.equals(md5Encode("IF-106 Informatika Sikemas"))) {
-                                decrypt = "IF-106";
-                            }
-                            else if (barcode.displayValue.equals(md5Encode("IF-108 Informatika Sikemas"))) {
-                                decrypt = "IF-108";
-                            }
-                            location.setText(decrypt);
-                            this.resultQR = decrypt;
-                        }
-                        catch (Exception ex) {
-
-                        }
-                    }
-
-
+                    this.resultQR = QRCodeScanner.decryptQRCode(barcode.displayValue);
+                    location.setText(this.resultQR);
                 }
                 else {
                     location.setText(R.string.no_barcode_captured);

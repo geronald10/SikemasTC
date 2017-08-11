@@ -1,18 +1,18 @@
 [
     {
-        "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_btn_colored_material.xml",
+        "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_btn_colored_material.xml",
         "source": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\drawable-v21\\abc_btn_colored_material.xml"
     },
     {
-        "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_action_bar_item_background_material.xml",
+        "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\drawable-v21\\notification_action_background.xml",
+        "source": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_action_bar_item_background_material.xml",
         "source": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
     },
     {
-        "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_edit_text_material.xml",
+        "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_edit_text_material.xml",
         "source": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\drawable-v21\\abc_edit_text_material.xml"
-    },
-    {
-        "merged": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\res\\merged\\release\\drawable-v21\\notification_action_background.xml",
-        "source": "C:\\Users\\nurro\\.android\\build-cache\\ec48cd8bcbfe340305b69d7c1083f6e63cc4cdbc\\output\\res\\drawable-v21\\notification_action_background.xml"
     }
 ]

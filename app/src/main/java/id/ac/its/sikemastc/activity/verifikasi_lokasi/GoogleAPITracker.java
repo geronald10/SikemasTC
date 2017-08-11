@@ -34,6 +34,7 @@ import com.google.android.gms.location.LocationServices;
 import com.opencsv.CSVWriter;
 import org.json.JSONArray;
 import id.ac.its.sikemastc.activity.mahasiswa.MainPerkuliahanFragment;
+import id.ac.its.sikemastc.utilities.NetworkUtils;
 
 import static java.lang.Math.abs;
 
@@ -73,7 +74,7 @@ public class GoogleAPITracker extends Service implements LocationListener {
     private int iteration = 0;
 
     // Connection to SERVER
-    private String link = "http://absensi.if.its.ac.id/get_ruang";
+    private String link;
     private String[][] dataPlaces;
     private InputStream inputStream = null;
     private String line;
@@ -87,6 +88,7 @@ public class GoogleAPITracker extends Service implements LocationListener {
     }
 
     public GoogleAPITracker(final Context context2, String NRP) {
+        this.link = NetworkUtils.LIST_RUANG;
         setContext(context2);
         this.NRP = NRP;
     }

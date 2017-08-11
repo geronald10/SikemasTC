@@ -24,78 +24,81 @@ public final class NetworkUtils {
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
     public static final String KIRIM_LOKASI =
-            "http://absensi.if.its.ac.id/mhs/kirim_lokasi";
+            "http://192.168.43.109/sikemas/public/mhs/kirim_lokasi";
 
     // Token FCM
     public static final String KIRIM_TOKEN =
-            "http://absensi.if.its.ac.id/kirim_token";
+            "http://192.168.43.109/sikemas/public/kirim_token";
 
     // Login API
     public static final String LOGIN_SIKEMAS =
-            "http://absensi.if.its.ac.id/loginmobile";
+            "http://192.168.43.109/sikemas/public/loginmobile";
 
     // Upload Dataset TTD API
     public static final String UPLOAD_DATASET_TANDATANGAN_SIKEMAS =
-            "http://absensi.if.its.ac.id/mhs/uploadsignature";
+            "http://192.168.43.109/sikemas/public/mhs/uploadsignature";
 
     // Upload Dataset Wajah API
     public static final String UPLOAD_DATASET_WAJAH_SIKEMAS =
-            "http://absensi.if.its.ac.id/mhs/uploadfoto";
+            "http://192.168.43.109/sikemas/public/mhs/uploadfoto";
     // Kirim status kehadiran ke server
     public static final String KIRIM_STATUS_KEHADIRAN_MAHASISWA =
-            "http://absensi.if.its.ac.id/mhs/ubahstatuskehadiran";
+            "http://192.168.43.109/sikemas/public/mhs/ubahstatuskehadiran";
 
 
     // Sinkronisasi Dataset Tanda Tangan
     public static final String SINKRONISASI_DATASET_TANDATANGAN_SIKEMAS=
-            "http://absensi.if.its.ac.id/mhs/retrievesignature";
+            "http://192.168.43.109/sikemas/public/mhs/retrievesignature";
 
     // List Kelas Diampu oleh Dosen API
     public static final String LIST_KELAS_DOSEN_SIKEMAS =
-            "http://absensi.if.its.ac.id/kelasdiampu";
+            "http://192.168.43.109/sikemas/public/kelasdiampu";
     // List Jadwal Kelas Hari ini
     public static final String LIST_JADWAL_KELAS_DOSEN_HARI_INI =
-            "http://absensi.if.its.ac.id/kelashariini";
+            "http://192.168.43.109/sikemas/public/kelashariini";
     // Change Status kelas
     public static final String CHANGE_STATUS_KELAS =
-            "http://absensi.if.its.ac.id/ubahstatuskelas";
+            "http://192.168.43.109/sikemas/public/ubahstatuskelas";
     // Detail peserta kelas yang dipilih
     public static final String GET_PESERTA_PERKULIAHAN =
-            "http://absensi.if.its.ac.id/peserta_perkuliahan_ini";
+            "http://192.168.43.109/sikemas/public/peserta_perkuliahan_ini";
     // Penjadwalan ulang kirim tanggal
     public static final String REQUEST_PENJADWALAN_BY_TANGGAL =
-            "http://absensi.if.its.ac.id/jadwal_ulang_tanggal";
+            "http://192.168.43.109/sikemas/public/jadwal_ulang_tanggal";
     // Penjadwalan ulang kirim tanggal, kirim waktu
     public static final String REQUEST_PENJADWALAN_BY_TANGGAL_WAKTU =
-            "http://absensi.if.its.ac.id/jadwal_ulang_waktu";
+            "http://192.168.43.109/sikemas/public/jadwal_ulang_waktu";
     // Penjadwalan ulang kirim tanggal, kirim waktu
     public static final String CONFIRM_PENJADWALAN_SEMENTARA =
-            "http://absensi.if.its.ac.id/konfirm_ganti_jadwal";
+            "http://192.168.43.109/sikemas/public/konfirm_ganti_jadwal";
     // Penjadwalan sementara request perkuliahan terpilih
     public static final String REQUEST_JADWAL_PERKULIAHAN =
-            "http://absensi.if.its.ac.id/req_perkuliahan";
+            "http://192.168.43.109/sikemas/public/req_perkuliahan";
     // Refresh Kehadiran
     public static final String REFRESH_KEHADIRAN =
-            "http://absensi.if.its.ac.id/refresh_kehadiran";
+            "http://192.168.43.109/sikemas/public/refresh_kehadiran";
 
     // List perkuliahan Mahasiswa saat ini
     public static final String LIST_PERKULIAHAN_MAHASISWA_SAAT_INI =
-            "http://absensi.if.its.ac.id/mhs/kelashariini";
+            "http://192.168.43.109/sikemas/public/mhs/kelashariini";
     // List kelas Mahasiswa
     public static final String LIST_KELAS_MAHASISWA =
-            "http://absensi.if.its.ac.id/mhs/listkelas";
+            "http://192.168.43.109/sikemas/public/mhs/listkelas";
     // List kelas aktif Mahasiswa
     public static final String LIST_KELAS_MAHASISWA_AKTIF =
-            "http://absensi.if.its.ac.id/mhs/kelasaktif";
+            "http://192.168.43.109/sikemas/public/mhs/kelasaktif";
     // List rekap kehadiran mahasiswa kelas
     public static final String LIST_REKAP_KEHADIRAN_MAHASISWA_KELAS =
-            "http://absensi.if.its.ac.id/mhs/rekapdarikelas";
+            "http://192.168.43.109/sikemas/public/mhs/rekapdarikelas";
     // List rekap kehadiran mahasiswa perkuliahan
     public static final String LIST_REKAP_KEHADIRAN_MAHASISWA_PERKULIAHAN =
-            "http://absensi.if.its.ac.id/mhs/rekapdariperkuliahan";
+            "http://192.168.43.109/sikemas/public/mhs/rekapdariperkuliahan";
     // List url for downloading image
     public static final String LIST_FOTO_MAHASISWA_IMAGE_URL =
-            "http://absensi.if.its.ac.id/mhs/retrievewajah";
+            "http://192.168.43.109/sikemas/public/mhs/retrievewajah";
+
+    public static final String LIST_RUANG =
+            "http://192.168.43.109/sikemas/public/get_ruang";
 
     private static final String KODE_DOSEN_PARAM = "kode_dosen";
     private static final String NRP_MAHASISWA_PARAM = "nrp";

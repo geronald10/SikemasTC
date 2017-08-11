@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+        "outputFile": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -12,7 +12,7 @@
                     "endOffset": 152
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -33,7 +33,7 @@
                     "endOffset": 262
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -54,7 +54,7 @@
                     "endOffset": 489
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -75,7 +75,7 @@
                     "endOffset": 647
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
@@ -96,7 +96,7 @@
                     "endOffset": 754
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
@@ -117,7 +117,7 @@
                     "endOffset": 869
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 22,
                         "startColumn": 4,
@@ -138,7 +138,7 @@
                     "endOffset": 977
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 25,
                         "startColumn": 4,
@@ -159,7 +159,7 @@
                     "endOffset": 1093
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 28,
                         "startColumn": 4,
@@ -179,7 +179,7 @@
                     "endOffset": 1132
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 31,
                         "startColumn": 4,
@@ -199,7 +199,7 @@
                     "endOffset": 1482
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 32,
                         "startColumn": 4,
@@ -220,7 +220,7 @@
                     "endOffset": 1693
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 40,
                         "startColumn": 4,
@@ -241,7 +241,7 @@
                     "endOffset": 1905
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 45,
                         "startColumn": 4,
@@ -262,7 +262,7 @@
                     "endOffset": 2001
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 50,
                         "startColumn": 4,
@@ -283,7 +283,7 @@
                     "endOffset": 2105
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 53,
                         "startColumn": 4,
@@ -304,7 +304,7 @@
                     "endOffset": 2245
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 56,
                         "startColumn": 4,
@@ -325,7 +325,7 @@
                     "endOffset": 2393
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 60,
                         "startColumn": 4,
@@ -4373,7 +4373,7 @@
                     "endOffset": 37135
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 64,
                         "startColumn": 4,
@@ -4392,7 +4392,7 @@
                     "endOffset": 37191
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 65,
                         "startColumn": 4,
@@ -4411,7 +4411,7 @@
                     "endOffset": 37280
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 66,
                         "startColumn": 4,
@@ -4430,7 +4430,7 @@
                     "endOffset": 37349
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 67,
                         "startColumn": 4,
@@ -4449,7 +4449,7 @@
                     "endOffset": 37387
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 68,
                         "startColumn": 4,
@@ -4468,7 +4468,7 @@
                     "endOffset": 37445
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 69,
                         "startColumn": 4,
@@ -4487,7 +4487,7 @@
                     "endOffset": 37503
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 70,
                         "startColumn": 4,
@@ -4506,7 +4506,7 @@
                     "endOffset": 37561
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 71,
                         "startColumn": 4,
@@ -4525,7 +4525,7 @@
                     "endOffset": 37599
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 72,
                         "startColumn": 4,
@@ -4544,7 +4544,7 @@
                     "endOffset": 37663
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 73,
                         "startColumn": 4,
@@ -4563,7 +4563,7 @@
                     "endOffset": 37714
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 74,
                         "startColumn": 4,
@@ -4582,7 +4582,7 @@
                     "endOffset": 37786
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 75,
                         "startColumn": 4,
@@ -4601,7 +4601,7 @@
                     "endOffset": 37860
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 76,
                         "startColumn": 4,
@@ -4620,7 +4620,7 @@
                     "endOffset": 37940
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 77,
                         "startColumn": 4,
@@ -4639,7 +4639,7 @@
                     "endOffset": 38000
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 78,
                         "startColumn": 4,
@@ -4658,7 +4658,7 @@
                     "endOffset": 38076
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 79,
                         "startColumn": 4,
@@ -4677,7 +4677,7 @@
                     "endOffset": 38154
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 80,
                         "startColumn": 4,
@@ -4696,7 +4696,7 @@
                     "endOffset": 38232
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 81,
                         "startColumn": 4,
@@ -4715,7 +4715,7 @@
                     "endOffset": 38300
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 82,
                         "startColumn": 4,
@@ -4734,7 +4734,7 @@
                     "endOffset": 38351
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 83,
                         "startColumn": 4,
@@ -4753,7 +4753,7 @@
                     "endOffset": 38407
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 84,
                         "startColumn": 4,
@@ -4772,7 +4772,7 @@
                     "endOffset": 38469
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 85,
                         "startColumn": 4,
@@ -4791,7 +4791,7 @@
                     "endOffset": 38516
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 86,
                         "startColumn": 4,
@@ -4810,7 +4810,7 @@
                     "endOffset": 38574
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 87,
                         "startColumn": 4,
@@ -4829,7 +4829,7 @@
                     "endOffset": 38642
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 88,
                         "startColumn": 4,
@@ -4848,7 +4848,7 @@
                     "endOffset": 38691
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 89,
                         "startColumn": 4,
@@ -4867,7 +4867,7 @@
                     "endOffset": 38736
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 90,
                         "startColumn": 4,
@@ -4905,7 +4905,7 @@
                     "endOffset": 38832
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 91,
                         "startColumn": 4,
@@ -4943,7 +4943,7 @@
                     "endOffset": 38958
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 92,
                         "startColumn": 4,
@@ -4962,7 +4962,7 @@
                     "endOffset": 39024
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 93,
                         "startColumn": 4,
@@ -4981,7 +4981,7 @@
                     "endOffset": 39085
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 94,
                         "startColumn": 4,
@@ -5000,7 +5000,7 @@
                     "endOffset": 39150
                 },
                 "from": {
-                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\dev-face-signature-ortu\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "D:\\Document\\Informatics Engineering - S1\\Chapter 8\\TA\\fix\\FaceRecognitionLibrary\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 95,
                         "startColumn": 4,
