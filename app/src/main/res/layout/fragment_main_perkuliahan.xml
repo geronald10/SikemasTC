@@ -6,72 +6,187 @@
     android:layout_height="match_parent"
     tools:context="id.ac.its.sikemastc.activity.mahasiswa.MainPerkuliahanFragment">
 
-    <TextView
-        android:id="@+id/tv_perkuliahan_aktif_headline"
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_info_perkuliahan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_margin="5dp"
         android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="@string/perkuliahan_aktif_saat_ini_label"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        app:cardCornerRadius="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tv_tanggal_hari_ini"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/now_date_label"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        android:textSize="20sp"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_perkuliahan_aktif_headline"
-        app:layout_constraintRight_toRightOf="@+id/tv_perkuliahan_aktif_headline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_perkuliahan_aktif_headline" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
 
-    <ImageView
-        android:id="@+id/iv_divider"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:contentDescription="@string/green_line_divider_description"
-        android:src="@color/colorStatusHadir"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_tanggal_hari_ini"
-        app:layout_constraintRight_toRightOf="@+id/tv_tanggal_hari_ini"
-        app:layout_constraintTop_toBottomOf="@+id/tv_tanggal_hari_ini" />
+            <TextView
+                android:id="@+id/tv_perkuliahan_aktif_headline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:gravity="start"
+                android:text="Selamat datang,"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttonQR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Scan QR"
-        tools:layout_editor_absoluteX="241dp"
-        tools:layout_editor_absoluteY="45dp"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintLeft_toLeftOf="@+id/iv_divider"
-        app:layout_constraintRight_toRightOf="@+id/iv_divider"
-        app:layout_constraintTop_toBottomOf="@+id/iv_divider" />
+            <TextView
+                android:id="@+id/tv_perkuliahan_aktif_headline_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:gravity="start"
+                android:text="Ronald Gunawan Radityatama"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="24sp"
+                app:layout_constraintLeft_toLeftOf="@id/tv_perkuliahan_aktif_headline"
+                app:layout_constraintRight_toRightOf="@+id/tv_perkuliahan_aktif_headline"
+                app:layout_constraintTop_toBottomOf="@id/tv_perkuliahan_aktif_headline" />
+
+            <ImageView
+                android:id="@+id/iv_calendar_header"
+                android:layout_width="88dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_perkuliahan_aktif_headline_2"
+                app:srcCompat="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/tv_calendar_bulan"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="Des"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_calendar_header"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_calendar_header"
+                app:layout_constraintRight_toRightOf="@+id/iv_calendar_header"
+                app:layout_constraintTop_toTopOf="@+id/iv_calendar_header" />
+
+            <ImageView
+                android:id="@+id/iv_calendar_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_calendar_hari"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_calendar_header"
+                app:layout_constraintRight_toRightOf="@+id/iv_calendar_header"
+                app:layout_constraintTop_toBottomOf="@id/iv_calendar_header"
+                app:srcCompat="@drawable/calendar_content" />
+
+            <TextView
+                android:id="@+id/tv_calendar_tanggal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_calendar_content"
+                app:layout_constraintRight_toRightOf="@+id/iv_calendar_content"
+                app:layout_constraintTop_toTopOf="@+id/iv_calendar_content" />
+
+            <TextView
+                android:id="@+id/tv_calendar_hari"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Minggu"
+                android:textAllCaps="true"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="16sp"
+                android:paddingBottom="8dp"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_calendar_content"
+                app:layout_constraintRight_toRightOf="@+id/iv_calendar_content"
+                app:layout_constraintTop_toBottomOf="@+id/tv_calendar_tanggal" />
+
+            <TextView
+                android:id="@+id/tv_perkuliahan_caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="0dp"
+                android:gravity="start"
+                android:text="status perkuliahan hari ini"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toRightOf="@+id/tv_calendar_bulan"
+                app:layout_constraintRight_toRightOf="@+id/tv_perkuliahan_aktif_headline_2"
+                app:layout_constraintTop_toTopOf="@+id/tv_calendar_bulan" />
+
+            <TextView
+                android:id="@+id/tv_perkuliahan_jumlah_caption"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Jumlah"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_perkuliahan_caption"
+                app:layout_constraintTop_toBottomOf="@+id/tv_perkuliahan_caption" />
+
+            <TextView
+                android:id="@+id/tv_jumlah_perkuliahan_hari_ini"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="0"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_perkuliahan_jumlah_caption"
+                app:layout_constraintRight_toRightOf="@+id/tv_perkuliahan_jumlah_caption"
+                app:layout_constraintTop_toBottomOf="@+id/tv_perkuliahan_jumlah_caption" />
+
+            <TextView
+                android:id="@+id/tv_perkuliah_aktif_caption"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:gravity="center"
+                android:text="Aktif"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintLeft_toRightOf="@+id/tv_perkuliahan_jumlah_caption"
+                app:layout_constraintTop_toTopOf="@+id/tv_perkuliahan_jumlah_caption" />
+
+            <TextView
+                android:id="@+id/tv_jumlah_perkuliahan_aktif_hari_ini"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="0"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_perkuliah_aktif_caption"
+                app:layout_constraintRight_toRightOf="@+id/tv_perkuliah_aktif_caption"
+                app:layout_constraintTop_toBottomOf="@+id/tv_perkuliah_aktif_caption" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_current_position_info"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintHorizontal_bias="0.511"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonQR">
+        app:layout_constraintTop_toBottomOf="@+id/cv_info_perkuliahan"
+        android:layout_marginTop="5dp">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/inner_contraint"
@@ -82,101 +197,69 @@
                 android:id="@+id/tv_current_position_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/posisi_saat_ini_label"
+                android:text="cari ruang perkuliahan"
+                android:textColor="@color/colorSecondaryText"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/iv_classroom_position"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+            <Button
+                android:id="@+id/buttonQR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:drawablePadding="8dp"
+                android:drawableTop="@drawable/ic_qr_code"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:text="Pindai"
+                android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                android:theme="@style/WhiteButtonTheme"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_current_position_title"
-                app:srcCompat="@drawable/ic_classroom" />
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_classroom_position"
+                app:layout_constraintRight_toRightOf="@+id/tv_classroom_position"
+                app:layout_constraintTop_toBottomOf="@id/tv_classroom_position"
+                app:srcCompat="@color/colorAccent" />
 
             <TextView
                 android:id="@+id/tv_classroom_position"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
                 android:text="Tidak Ditemukan"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_classroom_position"
-                app:layout_constraintHorizontal_bias="0.479"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_current_position_title"
-                app:layout_constraintVertical_bias="0.526" />
-
-            <ProgressBar
-                android:id="@+id/pb_searching_location"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginBottom="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="0dp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_mencari_lokasi"
-                app:layout_constraintLeft_toRightOf="@+id/iv_classroom_position"
-                app:layout_constraintTop_toTopOf="@+id/tv_mencari_lokasi"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/tv_mencari_lokasi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:text="Mencari lokasi ..."
-                android:visibility="gone"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/ib_refresh_location"
-                app:layout_constraintLeft_toRightOf="@+id/pb_searching_location"
-                app:layout_constraintTop_toTopOf="@+id/ib_refresh_location" />
+                app:layout_constraintLeft_toLeftOf="@+id/tv_current_position_title"
+                app:layout_constraintRight_toLeftOf="@+id/buttonQR"
+                app:layout_constraintTop_toBottomOf="@+id/tv_current_position_title" />
 
             <ImageView
                 android:id="@+id/iv_underline"
                 android:layout_width="0dp"
-                android:layout_height="2dp"
+                android:layout_height="0dp"
                 app:layout_constraintLeft_toLeftOf="@+id/tv_classroom_position"
                 app:layout_constraintRight_toRightOf="@+id/tv_classroom_position"
                 app:layout_constraintTop_toBottomOf="@+id/tv_classroom_position"
                 app:srcCompat="@color/colorAccent" />
-
-            <ImageButton
-                android:id="@+id/ib_refresh_location"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="8dp"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_classroom_position"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/iv_classroom_position"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/ic_refresh_yellow" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -190,8 +273,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/cv_current_position_info"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toTopOf="@+id/cv_current_position_info" />
 
     <!--<Button-->
     <!--android:id="@+id/btn_cocokan_wajah"-->
@@ -219,7 +301,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_current_position_info">
+        app:layout_constraintTop_toBottomOf="@+id/cv_current_position_info">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_kelas_aktif"
@@ -245,17 +327,31 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_current_position_info"
+        app:layout_constraintTop_toBottomOf="@+id/cv_current_position_info"
         app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/tv_tanggal_hari_ini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/now_date_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="90dp"
+            tools:layout_editor_absoluteY="108dp" />
 
         <ImageView
             android:id="@+id/iv_jadwal_empty"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -268,8 +364,10 @@
             android:id="@+id/tv_judul_jadwal_empty"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="64dp"
             android:layout_marginLeft="64dp"
             android:layout_marginRight="64dp"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
@@ -286,9 +384,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="0dp"
             android:fontFamily="sans-serif"
             android:gravity="center"
             android:paddingTop="8dp"

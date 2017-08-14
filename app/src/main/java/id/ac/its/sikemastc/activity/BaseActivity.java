@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -35,6 +39,7 @@ public class BaseActivity extends AppCompatActivity implements
     private DrawerLayout mDrawerLayout;
     private FrameLayout mActivityContent;
     public SikemasSessionManager session;
+    private SwitchCompat switcher;
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -109,11 +114,27 @@ public class BaseActivity extends AppCompatActivity implements
                 break;
             case "4":
                 navigationView.inflateMenu(R.menu.menu_item_mahasiswa);
+                Menu menu = navigationView.getMenu();
+                MenuItem menuItem = menu.findItem(R.id.nav_switch);
+                View actionView = MenuItemCompat.getActionView(menuItem);
+
+                switcher = (SwitchCompat) actionView.findViewById(R.id.switcher);
+                switcher.setChecked(true);
+                switcher.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Snackbar.make(v, (switcher.isChecked()) ? "is checked!!!" : "not checked!!!", Snackbar.LENGTH_SHORT)
+                                .setAction("Action", null).show();
+                    }
+                });
                 break;
         }
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         if (checkedDrawerItemId == 0)
             navigationView.getMenu().getItem(0).setChecked(false);
+        else if(checkedDrawerItemId == 2)
+            navigationView.getMenu().getItem(2).setChecked(false);
         else
             navigationView.setCheckedItem(checkedDrawerItemId);
 
@@ -133,8 +154,6 @@ public class BaseActivity extends AppCompatActivity implements
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         String itemName = (String) menuItem.getTitle();
         Toast.makeText(BaseActivity.this, itemName + " Clicked", Toast.LENGTH_SHORT).show();
-
-        closeDrawer();
 
         switch (menuItem.getItemId()) {
             case R.id.item_home_dosen:
@@ -183,12 +202,18 @@ public class BaseActivity extends AppCompatActivity implements
                 Intent intentToSettings = new Intent(this, SettingsActivity.class);
                 startActivity(intentToSettings);
                 break;
+            case R.id.nav_switch:
+                switcher.setChecked(!switcher.isChecked());
+                Snackbar.make(menuItem.getActionView(), (switcher.isChecked()) ? "is checked" : "not checked",
+                        Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                return true;
             case R.id.item_logout:
                 Toast.makeText(getApplicationContext(), "Logout user!", Toast.LENGTH_LONG).show();
                 session.logoutUser();
                 finish();
                 return true;
         }
+        closeDrawer();
         return true;
     }
 

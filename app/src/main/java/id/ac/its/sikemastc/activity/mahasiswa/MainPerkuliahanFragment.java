@@ -104,11 +104,8 @@ public class MainPerkuliahanFragment extends Fragment implements
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_kelas_aktif);
         mLoadingIndicator = (ProgressBar) view.findViewById(R.id.pb_loading_indicator);
-        mSearchingIndicator = (ProgressBar) view.findViewById(R.id.pb_searching_location);
         emptyView = (ConstraintLayout) view.findViewById(R.id.empty_view);
         currentDate = (TextView) view.findViewById(R.id.tv_tanggal_hari_ini);
-        searchLocationButton = (ImageButton) view.findViewById(R.id.ib_refresh_location);
-        searchLoading = (TextView) view.findViewById(R.id.tv_mencari_lokasi);
         location = (TextView) view.findViewById(R.id.tv_classroom_position);
         buttonQR = (Button) view.findViewById(R.id.buttonQR);
 
