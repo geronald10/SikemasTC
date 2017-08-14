@@ -1,7 +1,6 @@
 package id.ac.its.sikemastc.activity.dosen;
 
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -9,11 +8,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AlertDialog.Builder;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,11 +19,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.activity.TambahBeritaAcaraActivity;
 import id.ac.its.sikemastc.adapter.PertemuanAdapter;
-import id.ac.its.sikemastc.adapter.PertemuanAdapter.PertemuanAdapterOnClickHandler;
 import id.ac.its.sikemastc.data.SikemasContract;
-import id.ac.its.sikemastc.data.SikemasContract.PertemuanEntry;
 
 public class PertemuanKelasFragment extends Fragment implements
         LoaderManager.LoaderCallbacks<Cursor>,
@@ -162,7 +156,7 @@ public class PertemuanKelasFragment extends Fragment implements
     }
 
     private void intentToJadwalSementaraActivity(String idPerkuliahan) {
-        Intent intentToJadwalSementara = new Intent(getActivity(), PenjadwalanUlangSementara.class);
+        Intent intentToJadwalSementara = new Intent(getActivity(), PenjadwalanUlang.class);
         intentToJadwalSementara.putExtra("id_perkuliahan", idPerkuliahan);
         startActivity(intentToJadwalSementara);
     }

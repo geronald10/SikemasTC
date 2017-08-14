@@ -50,8 +50,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.activity.verifikasi_lokasi.GoogleAPITracker;
-import id.ac.its.sikemastc.activity.verifikasi_lokasi.LocationService;
 import id.ac.its.sikemastc.activity.verifikasi_qr_code.BarcodeCaptureActivity;
 import id.ac.its.sikemastc.activity.verifikasi_qr_code.QRCodeScanner;
 import id.ac.its.sikemastc.activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan;
@@ -141,34 +139,16 @@ public class MainPerkuliahanFragment extends Fragment implements
         if (!mSwipeRefreshLayout.isRefreshing()) {
             showLoading();
         }
-
-        if (GoogleAPITracker.finalResult[0] != "0") {
-            showLocationFounded();
-        }
-
         perkuliahanAktifMahasiswaList = new ArrayList<>();
         getPerkuliahanAktifList(bundleIdUser);
         mPerkuliahanAktifAdapter = new PerkuliahanAktifAdapter(getActivity(), perkuliahanAktifMahasiswaList, this);
         mRecyclerView.setAdapter(mPerkuliahanAktifAdapter);
-
-        // Verifikasi Lokasi
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
-        final Intent intent = new Intent(view.getContext(), LocationService.class);
-        intent.putExtra("NRP", this.bundleIdUser);
 
         if (perkuliahanAktifMahasiswaList != null) {
             showPerkuliahanAktifDataView();
         } else {
             showEmptyView();
         }
-
-        searchLocationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-            getContext().startService(intent);
-            showSearchingLocation();
-            }
-        });
 
         buttonQR.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".activity.verifikasi_tandatangan.KelolaDataSetTandaTangan">
+    tools:context=".activity.verifikasi_tandatangan.PencocokanTandaTangan">
 
     <ProgressBar
         android:id="@+id/pb_loading_indicator"
@@ -27,10 +27,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
@@ -58,7 +58,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="72dp"
             android:layout_marginRight="72dp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_user_detail_ttd"
+            app:layout_constraintBottom_toTopOf="@+id/iv_icon_mahasiswa"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -71,8 +71,8 @@
             android:layout_marginBottom="32dp"
             android:layout_marginLeft="72dp"
             android:layout_marginRight="72dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_coba_lagi_ttd"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginTop="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_finish_verifikasi_ttd"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:srcCompat="@color/colorPrimary" />
@@ -93,9 +93,9 @@
             android:layout_marginBottom="24dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:background="@android:color/holo_blue_dark"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:background="@android:color/holo_blue_dark"
             android:text="Coba Lagi"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
@@ -111,9 +111,9 @@
             android:layout_marginBottom="24dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:background="@android:color/holo_blue_dark"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:background="@android:color/holo_blue_dark"
             android:text="Menu Utama"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
@@ -143,12 +143,10 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_user_verifikasi_ttd"
             app:layout_constraintLeft_toLeftOf="@+id/iv_divider_2"
-            app:layout_constraintTop_toTopOf="@+id/tv_user_detail_ttd"
+            app:layout_constraintBottom_toTopOf="@id/iv_divider_2"
             app:srcCompat="@drawable/ic_id_card" />
 
         <TextView

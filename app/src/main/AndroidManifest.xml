@@ -7,8 +7,6 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -57,14 +55,12 @@
             android:theme="@style/AppNavDrawerMaterialTheme" />
         <activity android:name=".activity.dosen.DetailPerkuliahan" />
         <activity android:name=".activity.dosen.DetailListKelas" />
-        <activity android:name=".activity.dosen.PenjadwalanUlangSementara" />
-        <activity android:name=".activity.dosen.PenjadwalanUlangPermanen" />
+        <activity android:name=".activity.dosen.PenjadwalanUlang" />
         <activity android:name=".activity.dosen.DetailPertemuanKelas" />
         <activity android:name=".activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan" />
-        <activity android:name=".activity.verifikasi_tandatangan.KelolaDataSetTandaTangan" />
         <activity android:name=".activity.verifikasi_tandatangan.VerifikasiTandaTangan" />
         <activity android:name=".activity.verifikasi_tandatangan.PencocokanTandaTangan" />
-        <activity android:name=".activity.TambahBeritaAcaraActivity" />
+        <activity android:name=".activity.dosen.TambahBeritaAcaraActivity" />
 
         <!-- Mahasiswa Activity Manifest -->
         <activity
@@ -85,15 +81,11 @@
             android:name=".activity.verifikasi_wajah.VerifikasiWajahMenuActivity"
             android:theme="@style/AppMaterialTheme">
         </activity>
-        <activity android:name=".activity.verifikasi_wajah.KelolaDataSetWajahActivity" />
-        <activity android:name=".activity.verifikasi_wajah.TrainingWajahActivity" />
         <activity android:name=".activity.verifikasi_wajah.HasilVerifikasiActivity" />
         <activity
             android:name=".activity.verifikasi_wajah.VerifikasiWajahActivity"
             android:screenOrientation="landscape" />
-        <activity
-            android:name=".activity.verifikasi_wajah.TambahDataSetWajahActivity"
-            android:screenOrientation="landscape" />
+
 
         <!-- Provider Manifest -->
         <provider
@@ -137,7 +129,6 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".activity.verifikasi_wajah.InstruksiTambahDataSetActivity" />
         <activity android:name=".activity.mahasiswa.DetailPerkuliahanMahasiswa" />
         <activity android:name=".activity.mahasiswa.DetailJadwalKelasMahasiswa" />
 
@@ -145,7 +136,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <service android:name=".activity.verifikasi_lokasi.LocationService" />
 
         <!-- Verifikasi QR Code -->
         <activity

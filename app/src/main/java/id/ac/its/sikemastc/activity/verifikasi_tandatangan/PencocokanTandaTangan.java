@@ -54,6 +54,7 @@ import static org.opencv.imgproc.Imgproc.THRESH_BINARY;
  */
 
 public class PencocokanTandaTangan extends AppCompatActivity {
+
     private int x1, x2, x3, x4;
     private int xa,ya, xb, yb, xc, yc, xd, yd, i, j;
     private int baris, kolom;
@@ -70,6 +71,60 @@ public class PencocokanTandaTangan extends AppCompatActivity {
     private String ImageSourcePath;
     private String ImageSignaturePath;
     private int flagStatusPencocokan;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tandatangan_berhasil);
+
+        Intent intent = getIntent();
+        userTerlogin = intent.getStringExtra("user_terlogin"); //nrp-nama
+        idUserTerlogin = intent.getStringExtra("id_user_terlogin");
+        namaUserTerlogin= intent.getStringExtra("nama_user_terlogin");
+        idPerkuliahan = intent.getStringExtra("id_perkuliahan");
+
+        Log.v("log_tag", "identitas mahasiswa di pencocokantandatangan -> " + userTerlogin);
+        Log.v("log_tag", "id perkuliahan di pencocokantandatangan -> " + idPerkuliahan);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Pengecekan Tanda Tangan... ");
+
+//        Bitmap bitmap1;
+
+        ImageSourcePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signatureverification/"+ userTerlogin;
+        ImageSignaturePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signature/"+ userTerlogin+".png";
+
+        Log.v("log_tag", "image source -> " + ImageSourcePath);
+        Log.v("log_tag", "image signature -> " + ImageSignaturePath);
+
+        new SignatureVerification().execute(null, null, null);
+    }
+
+    View.OnClickListener operate = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.btn_finish_verifikasi_ttd:
+                    Intent intentToStart = new Intent(getBaseContext(), MenuVerifikasiTandaTangan.class);
+                    intentToStart.putExtra("nrp_mahasiswa", idUserTerlogin);
+                    intentToStart.putExtra("nama_mahasiswa", namaUserTerlogin);
+                    intentToStart.putExtra("id_perkuliahan", idPerkuliahan);
+                    startActivityForResult(intentToStart, 1);
+                    finish();
+                    break;
+                case R.id.btn_coba_lagi_ttd:
+                    Intent intentTryAgain = new Intent(getBaseContext(), VerifikasiTandaTangan.class);
+                    intentTryAgain.putExtra("identitas_mahasiswa", idUserTerlogin + " - " + namaUserTerlogin);
+                    intentTryAgain.putExtra("id_mahasiswa", idUserTerlogin);
+                    intentTryAgain.putExtra("nama_mahasiswa", namaUserTerlogin);
+                    intentTryAgain.putExtra("id_perkuliahan", idPerkuliahan);
+                    startActivityForResult(intentTryAgain, 1);
+                    finish();
+                    break;
+            }
+        }
+    };
 
     private void preprocessing(Bitmap bitmap) {
 
@@ -287,60 +342,6 @@ public class PencocokanTandaTangan extends AppCompatActivity {
 
         return resultAngle;
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tandatangan_berhasil);
-
-        Intent intent = getIntent();
-        userTerlogin = intent.getStringExtra("user_terlogin"); //nrp-nama
-        idUserTerlogin = intent.getStringExtra("id_user_terlogin");
-        namaUserTerlogin= intent.getStringExtra("nama_user_terlogin");
-        idPerkuliahan = intent.getStringExtra("id_perkuliahan");
-
-        Log.v("log_tag", "identitas mahasiswa di pencocokantandatangan -> " + userTerlogin);
-        Log.v("log_tag", "id perkuliahan di pencocokantandatangan -> " + idPerkuliahan);
-
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Pengecekan Tanda Tangan... ");
-
-//        Bitmap bitmap1;
-
-        ImageSourcePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signatureverification/"+ userTerlogin;
-        ImageSignaturePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/signature/"+ userTerlogin+".png";
-
-        Log.v("log_tag", "image source -> " + ImageSourcePath);
-        Log.v("log_tag", "image signature -> " + ImageSignaturePath);
-
-        new SignatureVerification().execute(null, null, null);
-    }
-
-    View.OnClickListener operate = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.btn_finish_verifikasi_ttd:
-                    Intent intentToStart = new Intent(getBaseContext(), MenuVerifikasiTandaTangan.class);
-                    intentToStart.putExtra("nrp_mahasiswa", idUserTerlogin);
-                    intentToStart.putExtra("nama_mahasiswa", namaUserTerlogin);
-                    intentToStart.putExtra("id_perkuliahan", idPerkuliahan);
-                    startActivityForResult(intentToStart, 1);
-                    finish();
-                    break;
-                case R.id.btn_coba_lagi_ttd:
-                    Intent intentTryAgain = new Intent(getBaseContext(), VerifikasiTandaTangan.class);
-                    intentTryAgain.putExtra("identitas_mahasiswa", idUserTerlogin + " - " + namaUserTerlogin);
-                    intentTryAgain.putExtra("id_mahasiswa", idUserTerlogin);
-                    intentTryAgain.putExtra("nama_mahasiswa", namaUserTerlogin);
-                    intentTryAgain.putExtra("id_perkuliahan", idPerkuliahan);
-                    startActivityForResult(intentTryAgain, 1);
-                    finish();
-                    break;
-            }
-        }
-    };
 
     private class SignatureVerification extends AsyncTask<Void, Void, Void> {
 

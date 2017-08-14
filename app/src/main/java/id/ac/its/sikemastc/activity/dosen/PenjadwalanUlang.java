@@ -1,17 +1,11 @@
 package id.ac.its.sikemastc.activity.dosen;
 
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.IdRes;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,12 +29,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
-import com.wdullaer.materialdatetimepicker.date.TextViewWithCircularIndicator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,7 +41,6 @@ import java.util.List;
 import java.util.Map;
 
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.data.SikemasContract;
 import id.ac.its.sikemastc.model.Perkuliahan;
 import id.ac.its.sikemastc.model.RuangKelas;
 import id.ac.its.sikemastc.model.WaktuKelas;
@@ -57,11 +48,11 @@ import id.ac.its.sikemastc.utilities.NetworkUtils;
 import id.ac.its.sikemastc.utilities.SikemasDateUtils;
 import id.ac.its.sikemastc.utilities.VolleySingleton;
 
-public class PenjadwalanUlangSementara extends AppCompatActivity implements
+public class PenjadwalanUlang extends AppCompatActivity implements
         DatePickerDialog.OnDateSetListener {
 
     private String[] progressState = {"Tanggal", "Waktu", "Ruangan", "Konfirmasi"};
-    private final String TAG = PenjadwalanUlangSementara.class.getSimpleName();
+    private final String TAG = PenjadwalanUlang.class.getSimpleName();
 
     private Perkuliahan perkuliahanTerpilih;
     private List<WaktuKelas> waktuKelasList;
@@ -158,7 +149,7 @@ public class PenjadwalanUlangSementara extends AppCompatActivity implements
                 case R.id.btn_pilih_tanggal:
                     Calendar now = Calendar.getInstance();
                     DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(
-                            PenjadwalanUlangSementara.this,
+                            PenjadwalanUlang.this,
                             now.get(Calendar.YEAR),
                             now.get(Calendar.MONTH),
                             now.get(Calendar.DAY_OF_MONTH)

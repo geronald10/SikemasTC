@@ -1,4 +1,4 @@
-package id.ac.its.sikemastc.activity;
+package id.ac.its.sikemastc.activity.dosen;
 
 import android.app.ProgressDialog;
 import android.os.Build.VERSION;
