@@ -76,7 +76,7 @@ public class BaseActivity extends AppCompatActivity implements
     private void setupToolbarMenu(String title) {
         mToolbar = (Toolbar) findViewById(R.id.toolbar_navigation);
         if (title == null)
-            mToolbar.setTitle("Home");
+            mToolbar.setTitle("Beranda");
         else
             mToolbar.setTitle(title);
     }

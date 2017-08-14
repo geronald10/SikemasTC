@@ -8,7 +8,7 @@
             android:id="@+id/item_home_dosen"
             android:checkable="true"
             android:icon="@drawable/ic_home"
-            android:title="Home" />
+            android:title="Beranda" />
         <item
             android:id="@+id/item_list_kelas_diampu"
             android:checkable="true"

@@ -8,7 +8,7 @@
             android:id="@+id/item_home_orangtua"
             android:checkable="true"
             android:icon="@drawable/ic_home"
-            android:title="Home" />
+            android:title="Beranda" />
         <item
             android:id="@+id/item_lihat_jadwal_mahasiswa"
             android:checkable="true"

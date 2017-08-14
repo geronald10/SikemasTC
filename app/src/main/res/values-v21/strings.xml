@@ -11,9 +11,9 @@
     <string name="drawer_close">Close</string>
     <string name="email_prompt_label">Email</string>
     <string name="password_prompt_label">Password</string>
-    <string name="sign_in_button">Sign In</string>
-    <string name="login_title">LOGIN</string>
-    <string name="welcome_message_2">Sistem Kehadiran Mahasiswa</string>
+    <string name="sign_in_button">Masuk</string>
+    <string name="login_title">Akun Masuk</string>
+    <string name="welcome_message_2">Sistem Kehadiran Mahasiswa\nTeknik Informatika ITS</string>
     <string name="welcome_message_1">Selamat Datang</string>
 
     <string name="status_hadir">Hadir</string>
@@ -103,7 +103,7 @@
     <string name="btn_upload_file_label">Unggah Data Wajah</string>
     <string name="judul_jawal_aktif_kosong">Jadwal Perkuliahan Aktif Tidak Ditemukan</string>
     <string name="subjudul_jadwal_aktif_kosong">Jadwal aktif kosong, kemungkinan jadwal perkuliahan belum diaktifkan atau tidak ada perkuliahan</string>
-    <string name="email_nrp_nip_prompt_label">Email / NRP / NIP</string>
+    <string name="email_nrp_prompt_label">Email / NRP</string>
     <string name="perkuliahan_belum_aktif">Perkuliahan Belum Aktif</string>
     <string name="perkuliahan_aktif">Perkuliahan Sedang Aktif</string>
     <string name="perkuliahan_ditunda">Perkuliahan Ditunda</string>

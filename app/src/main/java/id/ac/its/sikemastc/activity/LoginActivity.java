@@ -3,6 +3,7 @@ package id.ac.its.sikemastc.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.dosen.HalamanUtamaDosen;
 import id.ac.its.sikemastc.activity.mahasiswa.HalamanUtamaMahasiswa;
@@ -33,8 +35,8 @@ import id.ac.its.sikemastc.activity.orangtua.HalamanUtamaOrangtua;
 import id.ac.its.sikemastc.data.SikemasContract;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
 import id.ac.its.sikemastc.sync.DeleteTokenIntentService;
-import id.ac.its.sikemastc.sync.MyFirebaseInstanceIDService;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
+import id.ac.its.sikemastc.utilities.VolleySingleton;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -45,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtEmail;
     private EditText edtPassword;
     private Button btnSignIn;
-    private ProgressDialog pDialog;
+    private SweetAlertDialog pDialog;
     private SikemasSessionManager session;
 
     @Override
@@ -58,10 +60,6 @@ public class LoginActivity extends AppCompatActivity {
         edtEmail = (EditText) findViewById(R.id.edt_email_login);
         edtPassword = (EditText) findViewById(R.id.edt_password_login);
         btnSignIn = (Button) findViewById(R.id.btn_sign_in);
-
-        // Progress Dialog
-        pDialog = new ProgressDialog(this);
-        pDialog.setCancelable(false);
 
         // Session manager
         session = new SikemasSessionManager(mContext);
@@ -114,25 +112,16 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
     }
 
     private void checkLogin(final String email, final String password) {
-        // Tag used to cancel the request
-        String tag_string_req = "req_login";
-        StringRequest strReq;
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-        pDialog.setMessage("Sign in ...");
-        showDialog();
-
-        strReq = new StringRequest(Request.Method.POST,
+        showLoading();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 NetworkUtils.LOGIN_SIKEMAS, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, "Login Response: " + response);
-                hideDialog();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String code = jsonObject.getString("code");
@@ -157,19 +146,19 @@ public class LoginActivity extends AppCompatActivity {
                             int jumlahSignature = jsonObject.getInt("jumlahsignature");
                             session.createLoginSession(userId, name, email, role, userCode);
                             session.checkUserDataSet(jumlahWajah, jumlahSignature);
+                            startImmediateDeleteToken(mContext);
                         }
-                        startImmediateDeleteToken(mContext);
                         checkUserRole(role);
+                        showSuccessResult();
                         finish();
                     } else {
-                        // Error in login. Get the error message
-                        Toast.makeText(getApplicationContext(),
-                                message, Toast.LENGTH_LONG).show();
+                        // Tidak ditemukan pengguna
+                        showErrorNotFound();
                     }
                 } catch (JSONException e) {
                     // JSON error
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    showErrorResult();
                 }
 
             }
@@ -178,9 +167,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Login Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
-                hideDialog();
+                showErrorResult();
             }
         }) {
 
@@ -194,19 +181,41 @@ public class LoginActivity extends AppCompatActivity {
                 return params;
             }
         };
-        // Adding request to request queue
-        strReq.setTag(tag_string_req);
-        requestQueue.add(strReq);
+        VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(stringRequest);
     }
 
-    private void showDialog() {
-        if (!pDialog.isShowing())
-            pDialog.show();
+    private void showLoading() {
+        pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.setTitleText("Memproses..");
+        pDialog.setCancelable(false);
+        pDialog.show();
     }
 
-    private void hideDialog() {
-        if (pDialog.isShowing())
+    private void showSuccessResult() {
+        if (pDialog.isShowing()) {
             pDialog.dismiss();
+        }
+    }
+
+    private void showErrorResult() {
+        if (pDialog.isShowing()) {
+            pDialog.dismiss();
+            new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("Gagal!")
+                    .setContentText("Terjadi kesalahan server")
+                    .show();
+        }
+    }
+
+    private void showErrorNotFound() {
+        if (pDialog.isShowing()) {
+            pDialog.dismiss();
+            new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("Tidak ditemukan!")
+                    .setContentText("Data pengguna tidak ditemukan")
+                    .show();
+        }
     }
 
     private void checkUserRole(String userRole) {

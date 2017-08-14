@@ -1,146 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorPrimaryDark"
     tools:context="id.ac.its.sikemastc.activity.LoginActivity">
 
-    <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_welcome_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/welcome_message_1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_welcome_message_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="6dp"
-        android:text="@string/welcome_message_2"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_welcome_message" />
-
-    <ImageView
-        android:id="@+id/iv_logo_if"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_welcome_message_2"
-        app:srcCompat="@drawable/if_logo" />
-
-    <ImageView
-        android:id="@+id/iv_line_1"
-        android:layout_width="0dp"
-        android:layout_height="4dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/iv_logo_if"
-        app:layout_constraintRight_toRightOf="@+id/iv_logo_if"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo_if"
-        app:srcCompat="@color/colorAccent" />
-
-    <TextView
-        android:id="@+id/tv_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/login_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textSize="36sp"
-        app:layout_constraintLeft_toLeftOf="@+id/iv_line_1"
-        app:layout_constraintRight_toRightOf="@+id/iv_line_1"
-        app:layout_constraintTop_toBottomOf="@+id/iv_line_1" />
-
-    <ImageView
-        android:id="@+id/iv_line_2"
-        android:layout_width="0dp"
-        android:layout_height="4dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/iv_logo_if"
-        app:layout_constraintRight_toRightOf="@+id/iv_logo_if"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login"
-        app:srcCompat="@color/colorAccent" />
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/layout_email_login"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_welcome_message_2"
-        app:layout_constraintRight_toRightOf="@+id/tv_welcome_message_2"
-        app:layout_constraintTop_toBottomOf="@+id/iv_line_2">
-
-        <AutoCompleteTextView
-            android:id="@+id/edt_email_login"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_welcome_message"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/email_nrp_nip_prompt_label"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:textColor="@color/colorAccent" />
+            android:layout_marginTop="40dp"
+            android:text="@string/welcome_message_1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/layout_password_login"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@id/tv_welcome_message_2"
-        app:layout_constraintRight_toRightOf="@id/tv_welcome_message_2"
-        app:layout_constraintTop_toBottomOf="@id/layout_email_login">
-
-        <EditText
-            android:id="@+id/edt_password_login"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_welcome_message_2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/password_prompt_label"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:textColor="@color/colorAccent" />
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="@string/welcome_message_2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_welcome_message" />
 
-    </android.support.design.widget.TextInputLayout>
+        <ImageView
+            android:id="@+id/iv_logo_sikemas"
+            android:layout_width="164dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_welcome_message_2"
+            app:srcCompat="@drawable/logo_sikemas" />
 
-    <Button
-        android:id="@+id/btn_sign_in"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/sign_in_button"
-        android:textAppearance="@style/TextAppearance.AppCompat.Button"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="@id/tv_welcome_message_2"
-        app:layout_constraintRight_toRightOf="@id/tv_welcome_message_2"
-        app:layout_constraintTop_toBottomOf="@id/layout_password_login" />
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:text="@string/login_title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="36sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_logo_sikemas" />
 
-</android.support.constraint.ConstraintLayout>
+        <ImageView
+            android:id="@+id/iv_line_2"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_login"
+            app:layout_constraintRight_toRightOf="@+id/tv_login"
+            app:layout_constraintTop_toBottomOf="@+id/tv_login"
+            app:srcCompat="@color/colorAccent" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_email_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_welcome_message_2"
+            app:layout_constraintRight_toRightOf="@+id/tv_welcome_message_2"
+            app:layout_constraintTop_toBottomOf="@+id/iv_line_2">
+
+            <AutoCompleteTextView
+                android:id="@+id/edt_email_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email_nrp_prompt_label"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:textColor="@android:color/white" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/layout_password_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/tv_welcome_message_2"
+            app:layout_constraintRight_toRightOf="@id/tv_welcome_message_2"
+            app:layout_constraintTop_toBottomOf="@id/layout_email_login">
+
+            <EditText
+                android:id="@+id/edt_password_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_prompt_label"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:textColor="@android:color/white" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_sign_in"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/sign_in_button"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@id/tv_welcome_message_2"
+            app:layout_constraintRight_toRightOf="@id/tv_welcome_message_2"
+            app:layout_constraintTop_toBottomOf="@id/layout_password_login" />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

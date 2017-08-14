@@ -29,8 +29,6 @@ public class HalamanUtamaMahasiswa extends BaseActivity {
 
     private final String TAG = HalamanUtamaMahasiswa.class.getSimpleName();
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
     private String userId;
     private String userNama;
 
@@ -43,10 +41,10 @@ public class HalamanUtamaMahasiswa extends BaseActivity {
         userId = userDetail.get(SikemasSessionManager.KEY_USER_ID);
         userNama = userDetail.get(SikemasSessionManager.KEY_USER_NAME);
 
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tl_halaman_utama_mahasiswa);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tl_halaman_utama_mahasiswa);
         tabLayout.setupWithViewPager(viewPager);
 
         SikemasSyncUtils.startImmediatePerkuliahanMahasiswaSync(this);
@@ -59,11 +57,11 @@ public class HalamanUtamaMahasiswa extends BaseActivity {
         viewPager.setAdapter(adapter);
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager) {
+        private ViewPagerAdapter(FragmentManager manager) {
             super(manager);
         }
 
@@ -81,7 +79,7 @@ public class HalamanUtamaMahasiswa extends BaseActivity {
             return mFragmentList.size();
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        private void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
