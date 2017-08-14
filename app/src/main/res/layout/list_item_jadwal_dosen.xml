@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="2.5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    android:layout_marginTop="5dp"
-    android:elevation="5dp"
+    android:layout_marginTop="2.5dp"
     app:cardCornerRadius="5dp">
 
     <android.support.constraint.ConstraintLayout
+        android:paddingBottom="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white">
+        android:layout_height="match_parent">
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline_vertical"
@@ -34,167 +33,122 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="0dp"
             android:text="@string/tv_empty_value"
             android:textSize="16sp"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toRightOf="@+id/iv_school_subject"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/iv_school_subject" />
+            app:layout_constraintTop_toTopOf="@+id/tv_kelas_label" />
 
         <TextView
             android:id="@+id/tv_nama_mata_kuliah"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="0dp"
             android:text="@string/tv_empty_value"
-            android:textColor="@android:color/black"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_school_subject"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp"
             app:layout_constraintLeft_toLeftOf="@+id/tv_kode_mata_kuliah"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_kode_mata_kuliah"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_kode_mata_kuliah" />
 
         <TextView
             android:id="@+id/tv_kelas_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
             android:text="@string/kelas_label"
-            android:textSize="20sp"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_nama_mata_kuliah"
-            app:layout_constraintTop_toBottomOf="@+id/tv_nama_mata_kuliah" />
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_school_subject"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_colon_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:layout_marginTop="0dp"
             android:text="@string/tv_colon"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_kelas_label"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toRightOf="@+id/tv_kelas_label"
             app:layout_constraintRight_toLeftOf="@+id/tv_kelas"
-            app:layout_constraintTop_toTopOf="@+id/tv_kelas_label"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/tv_kelas_label" />
 
-        <TextView
+        <ImageView
             android:id="@+id/tv_hari_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/hari_label"
-            android:textSize="20sp"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_kelas_label"
-            app:layout_constraintTop_toBottomOf="@+id/tv_ruang" />
-
-        <TextView
-            android:id="@+id/tv_colon_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
             android:layout_marginTop="0dp"
-            android:text="@string/tv_colon"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_hari_label"
-            app:layout_constraintHorizontal_bias="0.75"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_colon_1"
-            app:layout_constraintRight_toRightOf="@+id/tv_colon_1"
-            app:layout_constraintTop_toTopOf="@+id/tv_hari_label"
-            app:layout_constraintVertical_bias="1.0" />
+            android:text="@string/hari_label"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_ruang"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline_vertical"
+            app:layout_constraintTop_toTopOf="@+id/tv_ruang"
+            app:srcCompat="@drawable/ic_today_black" />
 
         <TextView
             android:id="@+id/tv_kelas"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="0dp"
+            android:gravity="end"
             android:text="@string/tv_empty_value"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_kelas_label"
             app:layout_constraintLeft_toLeftOf="@+id/tv_colon_1"
-            app:layout_constraintRight_toLeftOf="@+id/iv_room"
+            app:layout_constraintRight_toRightOf="@+id/iv_school_subject"
             app:layout_constraintTop_toTopOf="@+id/tv_kelas_label" />
 
         <TextView
             android:id="@+id/tv_hari"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginStart="8dp"
             android:text="@string/tv_empty_value"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_hari_label"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_kelas"
+            app:layout_constraintLeft_toRightOf="@+id/tv_hari_label"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_hari_label" />
 
         <ImageView
             android:id="@+id/iv_room"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="0dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
             android:contentDescription="@string/place_icon"
             app:layout_constraintBottom_toTopOf="@+id/iv_waktu"
-            app:layout_constraintLeft_toLeftOf="@+id/guideline_vertical"
-            app:layout_constraintTop_toTopOf="@+id/tv_kelas_label"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_nama_mata_kuliah"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nama_mata_kuliah"
             app:srcCompat="@drawable/ic_room" />
 
         <TextView
             android:id="@+id/tv_ruang"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="0dp"
             android:text="@string/tv_empty_value"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_room"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toRightOf="@+id/iv_room"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/guideline_vertical"
             app:layout_constraintTop_toTopOf="@+id/iv_room" />
 
         <ImageView
             android:id="@+id/iv_waktu"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:contentDescription="@string/clock_icon"
             app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_mulai"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_school_subject"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_room"
             app:layout_constraintTop_toTopOf="@+id/tv_from"
             app:srcCompat="@drawable/ic_access_time" />
 
@@ -202,49 +156,39 @@
             android:id="@+id/tv_waktu_mulai"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="0dp"
             android:layout_marginTop="0dp"
             android:text="@string/tv_empty_value"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toRightOf="@+id/iv_waktu"
-            app:layout_constraintRight_toLeftOf="@+id/guideline_button_vertical"
-            app:layout_constraintTop_toBottomOf="@+id/tv_from"
-            app:layout_constraintVertical_bias="0.0" />
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_from"
+            app:layout_constraintRight_toLeftOf="@+id/tv_waktu_selesai"
+            app:layout_constraintTop_toBottomOf="@+id/tv_from" />
 
         <TextView
             android:id="@+id/tv_waktu_selesai"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:text="@string/tv_empty_value"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_to"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_mulai"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline_vertical"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_waktu_mulai"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="8dp" />
+            app:layout_constraintTop_toTopOf="@+id/tv_waktu_mulai" />
 
         <ImageView
             android:id="@+id/iv_school_subject"
-            android:layout_width="92dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="16dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             android:contentDescription="@string/schedule_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_hari"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_kelas_label"
             app:srcCompat="@drawable/ic_schedule" />
 
         <TextView
@@ -255,21 +199,17 @@
             android:text="@string/to_label"
             android:textColor="@color/colorSecondaryText"
             android:textSize="12sp"
-            app:layout_constraintLeft_toLeftOf="@+id/guideline_button_vertical"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline_vertical"
             app:layout_constraintTop_toTopOf="@+id/tv_from" />
 
         <TextView
             android:id="@+id/tv_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:text="@string/from_label"
+            android:textColor="@color/colorSecondaryText"
             android:textSize="12sp"
-            app:layout_constraintLeft_toRightOf="@+id/iv_waktu"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hari" />
-
+            app:layout_constraintLeft_toLeftOf="@+id/tv_ruang"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ruang" />
     </android.support.constraint.ConstraintLayout>
-
 </android.support.v7.widget.CardView>

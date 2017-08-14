@@ -64,6 +64,7 @@
         <activity android:name=".activity.verifikasi_tandatangan.KelolaDataSetTandaTangan" />
         <activity android:name=".activity.verifikasi_tandatangan.VerifikasiTandaTangan" />
         <activity android:name=".activity.verifikasi_tandatangan.PencocokanTandaTangan" />
+        <activity android:name=".activity.TambahBeritaAcaraActivity" />
 
         <!-- Mahasiswa Activity Manifest -->
         <activity

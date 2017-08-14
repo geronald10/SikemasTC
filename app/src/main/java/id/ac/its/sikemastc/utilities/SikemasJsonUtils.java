@@ -221,6 +221,7 @@ public class SikemasJsonUtils {
                 String statusPerkuliahan = detailPerkuliahan.getString("status_perkuliahan");
                 String statusDosen = detailPerkuliahan.getString("status_dosen");
                 String idKelas = detailPerkuliahan.getString("id_kelas");
+                String beritaAcara = detailPerkuliahan.getString("berita_acara");
                 String tanggal = detailPerkuliahan.getString("tanggal");
                 String hari = detailPerkuliahan.getString("hari");
                 String mulai = detailPerkuliahan.getString("mulai");
@@ -232,6 +233,7 @@ public class SikemasJsonUtils {
                 kelasDosenPertemuanValues.put(SikemasContract.PertemuanEntry.KEY_PERTEMUAN_KE, pertemuanKe);
                 kelasDosenPertemuanValues.put(SikemasContract.PertemuanEntry.KEY_STATUS_PERKULIAHAN, statusPerkuliahan);
                 kelasDosenPertemuanValues.put(SikemasContract.PertemuanEntry.KEY_STATUS_DOSEN, statusDosen);
+                kelasDosenPertemuanValues.put(SikemasContract.PertemuanEntry.KEY_BERITA_ACARA, beritaAcara);
                 kelasDosenPertemuanValues.put(SikemasContract.PertemuanEntry.KEY_TANGGAL, tanggal);
                 kelasDosenPertemuanValues.put(SikemasContract.PertemuanEntry.KEY_HARI, hari);
                 kelasDosenPertemuanValues.put(SikemasContract.PertemuanEntry.KEY_MULAI, mulai);

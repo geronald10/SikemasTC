@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SikemasTC</string>
+    <string name="app_name">Sikemas IF</string>
     <string name="greetings_pagi">Selamat Pagi,</string>
     <string name="greetings_siang">Selamat Siang,</string>
     <string name="greetings_sore">Selamat Sore,</string>
@@ -132,4 +132,10 @@
     <string name="alasan_ijin_kehadiran_label">Alasan ijin kehadiran</string>
     <string name="status_kehadiran_label">Pilih Status kehadiran</string>
     <string name="ubah_kehadiran_message">Apakah Anda yakin ingin mengubah status kehadiran dari:</string>
+    <string name="berita_acara_title">Berita Acara</string>
+    <string name="tambah_berita_caption">Tambah berita</string>
+    <string name="deskripsi_hint">Deskripsi</string>
+    <string name="tambahkan_btn">Tambahkan</string>
+    <string name="pertemuan_ke_caption">Pertemuan ke-</string>
+    <string name="tambah_berita_acara_string">Tambah Berita Acara</string>
 </resources>

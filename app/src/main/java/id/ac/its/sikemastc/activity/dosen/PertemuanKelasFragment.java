@@ -1,6 +1,7 @@
 package id.ac.its.sikemastc.activity.dosen;
 
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -8,9 +9,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AlertDialog.Builder;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,8 +22,11 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import id.ac.its.sikemastc.R;
+import id.ac.its.sikemastc.activity.TambahBeritaAcaraActivity;
 import id.ac.its.sikemastc.adapter.PertemuanAdapter;
+import id.ac.its.sikemastc.adapter.PertemuanAdapter.PertemuanAdapterOnClickHandler;
 import id.ac.its.sikemastc.data.SikemasContract;
+import id.ac.its.sikemastc.data.SikemasContract.PertemuanEntry;
 
 public class PertemuanKelasFragment extends Fragment implements
         LoaderManager.LoaderCallbacks<Cursor>,
@@ -142,9 +148,9 @@ public class PertemuanKelasFragment extends Fragment implements
             case "1":
                 showAlertDialog(itemId, idPertemuan, pertemuanKe, bundleInfoKelas);
                 break;
-//            case "2":
-//                showAlertDialog(itemId, idKelas, pertemuanKe, bundleInfoKelas);
-//                break;
+            case "3":
+                showAlertDialog(itemId, idPertemuan, pertemuanKe, bundleInfoKelas);
+                break;
             default:
                 Intent intentToDetailPertemuanKelas = new Intent(getActivity(), DetailPertemuanKelas.class);
                 intentToDetailPertemuanKelas.putExtra("id_pertemuan", idPertemuan);
@@ -161,11 +167,11 @@ public class PertemuanKelasFragment extends Fragment implements
         startActivity(intentToJadwalSementara);
     }
 
-//    private void intentToJadwalPermanenActivity(String idKelas) {
-//        Intent intentToJadwalPermanen = new Intent(getActivity(), PenjadwalanUlangPermanen.class);
-//        intentToJadwalPermanen.putExtra("id_kelas", idKelas);
-//        startActivity(intentToJadwalPermanen);
-//    }
+    private void intentToBeritaAcaraActivity(String idPerkuliahan) {
+        Intent intentToTambahBerita = new Intent(getActivity(), TambahBeritaAcaraActivity.class);
+        intentToTambahBerita.putExtra("id_perkuliahan", idPerkuliahan);
+        startActivity(intentToTambahBerita);
+    }
 
     private void showAlertDialog(String btnClicked, final String idToPenjadwalan, String pertemuanKe, String infoKelas) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -180,17 +186,16 @@ public class PertemuanKelasFragment extends Fragment implements
                             }
                         });
                 break;
-//            case "2":
-//            builder.setTitle("Peringatan")
-//                        .setMessage("Apakah Anda yakin mengubah jadwal permanen " +
-//                                "untuk mata kuliah " + infoKelas + "?")
-//                        .setNegativeButton("Tidak", null)
-//                        .setPositiveButton("Iya", new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int id) {
-//                                intentToJadwalPermanenActivity(idToPenjadwalan);
-//                            }
-//                        });
-//            break;
+            case "3":
+                builder.setTitle("Tambah Berita Acara")
+                        .setMessage("Tambahkan berita acara untuk jadwal pertemuan ke -" + pertemuanKe + " pada mata kuliah " + infoKelas + "?")
+                        .setNegativeButton("Batal", null)
+                        .setPositiveButton("Lanjutkan", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                intentToBeritaAcaraActivity(idToPenjadwalan);
+                            }
+                        });
+                break;
         }
         AlertDialog dialog = builder.create();
         dialog.show();

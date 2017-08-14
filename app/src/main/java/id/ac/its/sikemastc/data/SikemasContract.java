@@ -148,6 +148,7 @@ public class SikemasContract {
         public static final String KEY_PERTEMUAN_KE = "pertemuan";
         public static final String KEY_STATUS_PERKULIAHAN = "status_perkuliahan";
         public static final String KEY_STATUS_DOSEN = "status_dosen";
+        public static final String KEY_BERITA_ACARA = "berita_acara";
         public static final String KEY_TANGGAL = "tanggal";
         public static final String KEY_HARI = "hari";
         public static final String KEY_MULAI = "mulai";

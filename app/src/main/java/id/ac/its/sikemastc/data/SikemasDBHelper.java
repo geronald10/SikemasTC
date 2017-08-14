@@ -133,6 +133,7 @@ public class SikemasDBHelper extends SQLiteOpenHelper {
                         PertemuanEntry.KEY_PERTEMUAN_KE + " TEXT NOT NULL, " +
                         PertemuanEntry.KEY_STATUS_PERKULIAHAN + " TEXT NOT NULL, " +
                         PertemuanEntry.KEY_STATUS_DOSEN + " TEXT NOT NULL, " +
+                        PertemuanEntry.KEY_BERITA_ACARA + " TEXT, " +
                         PertemuanEntry.KEY_TANGGAL + " TEXT, " +
                         PertemuanEntry.KEY_HARI + " TEXT NOT NULL, " +
                         PertemuanEntry.KEY_MULAI + " TEXT NOT NULL, " +

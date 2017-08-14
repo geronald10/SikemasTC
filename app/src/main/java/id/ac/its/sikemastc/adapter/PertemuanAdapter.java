@@ -52,7 +52,6 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
         String statusDosen = mCursor.getString(PertemuanKelasFragment.INDEX_STATUS_DOSEN);
         String pertemuanKe = mCursor.getString(PertemuanKelasFragment.INDEX_PERTEMUAN_KE);
         String tanggal = SikemasDateUtils.formatDate(mCursor.getString(PertemuanKelasFragment.INDEX_TANGGAL));
-        String hari = mCursor.getString(PertemuanKelasFragment.INDEX_HARI);
         String mulai = SikemasDateUtils.formatTime(mCursor.getString(PertemuanKelasFragment.INDEX_MULAI));
         String selesai = SikemasDateUtils.formatTime(mCursor.getString(PertemuanKelasFragment.INDEX_SELESAI));
         String waktuPertemuan = "mulai: " + mulai + "\n" + "selesai: " + selesai;
@@ -63,18 +62,21 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
                 pertemuanAdapterViewHolder.ivStatusKehadiran1.setImageResource(R.color.colorStatusHadir);
                 pertemuanAdapterViewHolder.tvStatusPertemuan.setText(R.string.status_aktif);
                 pertemuanAdapterViewHolder.clPenjadwalanUlang.setVisibility(View.GONE);
+                pertemuanAdapterViewHolder.clBeritaAcara.setVisibility(View.GONE);
                 break;
             case "2":
                 pertemuanAdapterViewHolder.ivStatusLabel.setImageResource(R.color.colorStatusAbsen);
                 pertemuanAdapterViewHolder.ivStatusKehadiran1.setImageResource(R.color.colorStatusAbsen);
                 pertemuanAdapterViewHolder.tvStatusPertemuan.setText(R.string.status_selesai);
                 pertemuanAdapterViewHolder.clPenjadwalanUlang.setVisibility(View.GONE);
+                pertemuanAdapterViewHolder.clBeritaAcara.setVisibility(View.VISIBLE);
                 break;
             default:
                 pertemuanAdapterViewHolder.ivStatusLabel.setImageResource(R.color.colorStatusIdle);
                 pertemuanAdapterViewHolder.ivStatusKehadiran1.setImageResource(R.color.colorStatusIdle);
                 pertemuanAdapterViewHolder.tvStatusPertemuan.setText(R.string.status_belum_aktif);
                 pertemuanAdapterViewHolder.clPenjadwalanUlang.setVisibility(View.VISIBLE);
+                pertemuanAdapterViewHolder.clBeritaAcara.setVisibility(View.GONE);
                 break;
         }
         pertemuanAdapterViewHolder.tvPertemuanKe.setText(pertemuanKe);
@@ -97,14 +99,15 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
     class PertemuanAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ConstraintLayout clPenjadwalanUlang;
+        private ConstraintLayout clBeritaAcara;
         private TextView tvPertemuanKe;
         private TextView tvTanggalPertemuan;
         private TextView tvWaktuPertemuan;
         private TextView tvStatusPertemuan;
         private ImageView ivStatusKehadiran1;
         private ImageView ivStatusLabel;
-        private Button btnPermanen;
         private Button btnSementara;
+        private Button btnTambahBerita;
 
         public PertemuanAdapterViewHolder(View itemView) {
             super(itemView);
@@ -114,12 +117,13 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
             tvStatusPertemuan = (TextView) itemView.findViewById(R.id.tv_status_pertemuan);
             ivStatusKehadiran1 = (ImageView) itemView.findViewById(R.id.iv_status_kehadiran);
             ivStatusLabel = (ImageView) itemView.findViewById(R.id.iv_label);
-            btnPermanen = (Button) itemView.findViewById(R.id.btn_ganti_jadwal_permanen);
             btnSementara = (Button) itemView.findViewById(R.id.btn_ganti_jadwal_sementara);
+            btnTambahBerita = (Button) itemView.findViewById(R.id.btn_tambah_berita_acara);
             clPenjadwalanUlang = (ConstraintLayout) itemView.findViewById(R.id.cl_penjadwalan_ulang);
+            clBeritaAcara = (ConstraintLayout) itemView.findViewById(R.id.cl_tambah_berita_acara);
 
-            btnPermanen.setOnClickListener(this);
             btnSementara.setOnClickListener(this);
+            btnTambahBerita.setOnClickListener(this);
             itemView.setOnClickListener(this);
         }
 
@@ -134,8 +138,8 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
                 case R.id.btn_ganti_jadwal_sementara:
                     mClickHandler.onClick("1", idPertemuan, null, pertemuanKe);
                     break;
-                case R.id.btn_ganti_jadwal_permanen:
-                    mClickHandler.onClick("2", idPertemuan, idKelas, null);
+                case R.id.btn_tambah_berita_acara:
+                    mClickHandler.onClick("3", idPertemuan, null, pertemuanKe);
                     break;
                 default:
                     mClickHandler.onClick("0", idPertemuan, idKelas, pertemuanKe);

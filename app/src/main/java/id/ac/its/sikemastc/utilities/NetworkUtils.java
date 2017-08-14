@@ -77,6 +77,9 @@ public final class NetworkUtils {
     // Refresh Kehadiran
     public static final String REFRESH_KEHADIRAN =
             "http://absensi.if.its.ac.id/refresh_kehadiran";
+    // Kirim berita acara
+    public static final String KIRIM_BERITA_ACARA =
+            "http://absensi.if.its.ac.id/insertberitaacara";
 
     // List perkuliahan Mahasiswa saat ini
     public static final String LIST_PERKULIAHAN_MAHASISWA_SAAT_INI =

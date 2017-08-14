@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_peserta"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     android:layout_marginTop="5dp"
-    android:elevation="5dp"
-    card_view:cardCornerRadius="5dp">
+    app:cardCornerRadius="5dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,12 +15,11 @@
 
         <ImageView
             android:id="@+id/iv_status_kehadiran"
-            android:layout_width="8dp"
+            android:layout_width="5dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@color/colorStatusHadir" />
 
         <TextView
@@ -32,11 +28,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Pertemuan ke-"
+            android:text="@string/pertemuan_ke_caption"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/colorSecondaryText"
             android:textSize="20sp"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toRightOf="@+id/iv_status_kehadiran"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,18 +40,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="1"
+            android:text="@string/tv_empty_value"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_pertemuan_kuliah_label"
             app:layout_constraintLeft_toRightOf="@+id/tv_pertemuan_kuliah_label"
-            app:layout_constraintTop_toTopOf="@+id/tv_pertemuan_kuliah_label"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintTop_toTopOf="@+id/tv_pertemuan_kuliah_label" />
 
         <ImageView
             android:id="@+id/iv_calendar"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="@+id/tv_pertemuan_kuliah_label"
@@ -71,12 +65,13 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
             android:text="Senin, 8 Mei 2017"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="16sp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toRightOf="@+id/iv_calendar"
-            app:layout_constraintRight_toLeftOf="@+id/iv_label"
+            app:layout_constraintRight_toLeftOf="@+id/iv_school"
             app:layout_constraintTop_toTopOf="@+id/iv_calendar" />
 
         <TextView
@@ -85,19 +80,17 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:paddingBottom="8dp"
-            android:text="mulai 12:30 AM \nselesai 03:00 AM"
+            android:text="mulai 12:30 AM\nselesai 03:00 AM"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="16sp"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/tv_tanggal_pertemuan"
-            app:layout_constraintRight_toLeftOf="@+id/tv_status_pertemuan"
+            app:layout_constraintRight_toLeftOf="@+id/iv_school"
             app:layout_constraintTop_toTopOf="@+id/iv_clock" />
 
         <ImageView
             android:id="@+id/iv_clock"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="0dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="@+id/iv_calendar"
             app:layout_constraintTop_toBottomOf="@+id/tv_tanggal_pertemuan"
@@ -105,66 +98,51 @@
 
         <ImageView
             android:id="@+id/iv_school"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_label"
-            app:layout_constraintRight_toRightOf="@id/iv_label"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_pertemuan_kuliah_label"
-            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_school_2" />
 
         <ImageView
             android:id="@+id/iv_label"
-            android:layout_width="96dp"
-            android:layout_height="24dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_school"
-            app:layout_constraintVertical_bias="0.0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_status_pertemuan"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_status_pertemuan"
+            app:layout_constraintRight_toRightOf="@+id/tv_status_pertemuan"
+            app:layout_constraintTop_toTopOf="@+id/tv_status_pertemuan"
             app:srcCompat="@color/colorStatusHadir" />
 
         <TextView
             android:id="@+id/tv_status_pertemuan"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="0dp"
-            android:gravity="center"
-            android:text="Selesai"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="4dp"
+            android:text="@string/tv_empty_value"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@color/colorIcons"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_label"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_label"
-            app:layout_constraintRight_toRightOf="@+id/iv_label"
-            app:layout_constraintTop_toTopOf="@+id/iv_label"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintLeft_toLeftOf="@+id/iv_school"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_school"
+            android:layout_marginRight="8dp" />
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/cl_penjadwalan_ulang"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_margin="8dp"
             android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/iv_status_kehadiran"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_waktu_pertemuan">
+            app:layout_constraintTop_toBottomOf="@+id/tv_waktu_pertemuan">
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline_50"
@@ -194,31 +172,9 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:background="@color/colorDivider"
-                app:layout_constraintBottom_toBottomOf="@id/tv_penjadwalan_ulang_label"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_penjadwalan_ulang_label"
                 app:layout_constraintLeft_toRightOf="@+id/tv_penjadwalan_ulang_label"
                 app:layout_constraintRight_toRightOf="parent" />
-
-            <Button
-                android:id="@+id/btn_ganti_jadwal_permanen"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:padding="0dp"
-                android:text="@string/permanen_button_label"
-                android:textAppearance="@style/TextAppearance.AppCompat.Button"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:theme="@style/ListKelasButtonPermanenTheme"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/guideline_50"
-                app:layout_constraintTop_toBottomOf="@+id/tv_penjadwalan_ulang_label" />
 
             <Button
                 android:id="@+id/btn_ganti_jadwal_sementara"
@@ -226,15 +182,41 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="0dp"
-                android:text="Ganti Jadwal"
+                android:text="Ubah Jadwal"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:theme="@style/ListKelasButtonPermanenTheme"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toRightOf="@+id/btn_ganti_jadwal_permanen"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_tambah_berita_acara"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:layout_constraintLeft_toRightOf="@+id/iv_status_kehadiran"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waktu_pertemuan">
+
+            <Button
+                android:id="@+id/btn_tambah_berita_acara"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/tambah_berita_acara_string"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:theme="@style/PerkuliahanButtonActivateKuliahTheme"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.constraint.ConstraintLayout>
