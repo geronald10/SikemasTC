@@ -6,6 +6,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/background_app"
         tools:context="id.ac.its.sikemastc.activity.mahasiswa.DetailJadwalKelasMahasiswa">
 
         <include
@@ -16,6 +17,7 @@
             android:id="@+id/rv_riwayat_pertemuan"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:paddingBottom="5dp"
             android:layout_marginBottom="0dp"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"

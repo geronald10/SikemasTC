@@ -39,24 +39,6 @@ public class DetailJadwalKelasMahasiswa extends AppCompatActivity {
     private final String TAG = DetailJadwalKelasMahasiswa.class.getSimpleName();
 
     private List<RekapKehadiran> rekapKehadiranMahasiswaList;
-//    public static final String[] MAIN_LIST_RIWAYAT_KEHADIRAN_MAHASISWA_PROJECTION = {
-//            SikemasContract.KehadiranEntry.KEY_PERTEMUAN_KE,
-//            SikemasContract.KehadiranEntry.KEY_TANGGAL_PERTEMUAN,
-//            SikemasContract.KehadiranEntry.KEY_WAKTU_CHEKIN,
-//            SikemasContract.KehadiranEntry.KEY_TEMPAT_CHECKIN,
-//            SikemasContract.KehadiranEntry.KEY_STATUS_KEHADIRAN,
-//            SikemasContract.KehadiranEntry.KEY_KET_KEHADIRAN
-//    };
-//
-//    public static final int INDEX_PERTEMUAN_KE = 0;
-//    public static final int INDEX_TANGGAL_PERTEMUAN = 1;
-//    public static final int INDEX_WAKTU_CHECKIN = 2;
-//    public static final int INDEX_TEMPAT_CHECKIN = 3;
-//    public static final int INDEX_STATUS_KEHADIRAN = 4;
-//    public static final int INDEX_KET_KEHADIRAN = 5;
-//
-//    private static final int ID_LIST_RIWAYAT_KEHADIRAN_MAHASISWA_LOADER = 47;
-
     private RecyclerView mRecyclerView;
     private KehadiranMahasiswaAdapter mKehadiranMahasiswaAdapter;
 
@@ -102,37 +84,6 @@ public class DetailJadwalKelasMahasiswa extends AppCompatActivity {
         mRecyclerView.setAdapter(mKehadiranMahasiswaAdapter);
     }
 
-//    @Override
-//    public Loader onCreateLoader(int loaderId, Bundle args) {
-//        switch (loaderId) {
-//            case ID_LIST_RIWAYAT_KEHADIRAN_MAHASISWA_LOADER:
-//                Log.d("TAG", "masuk on create loader");
-//                return new CursorLoader(this,
-//                        mUri,
-//                        MAIN_LIST_RIWAYAT_KEHADIRAN_MAHASISWA_PROJECTION,
-//                        null,
-//                        null,
-//                        null);
-//            default:
-//                throw new RuntimeException("Loader Not Implemented: " + loaderId);
-//        }
-//    }
-//
-//    @Override
-//    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-//        mKehadiranMahasiswaAdapter.swapCursor(data);
-//        if (mPosition == RecyclerView.NO_POSITION)
-//            mPosition = 0;
-//        mRecyclerView.smoothScrollToPosition(mPosition);
-//        if (data.getCount() > 0)
-//            showRiwayatKehadiranDataView();
-//    }
-//
-//    @Override
-//    public void onLoaderReset(Loader loader) {
-//        mKehadiranMahasiswaAdapter.swapCursor(null);
-//    }
-
     private void showRiwayatKehadiranDataView() {
         mLoadingIndicator.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
@@ -168,9 +119,12 @@ public class DetailJadwalKelasMahasiswa extends AppCompatActivity {
                                 String pesanKehadiran = absenMahasiswa.getString("pesan");
                                 JSONObject perkuliahanMahasiswa = absenMahasiswa.getJSONObject("perkuliahanmahasiswa");
                                 String pertemuanKe = perkuliahanMahasiswa.getString("pertemuan");
+                                JSONObject ruangan = perkuliahanMahasiswa.getJSONObject("ruangan");
+                                String ruangPerkuliahan = ruangan.getString("nama");
 
+                                Log.d(TAG, tanggal + " " + waktu + " " + statusHadir + " " + pesanKehadiran + " " + ruangPerkuliahan);
                                 RekapKehadiran rekapKehadiran = new RekapKehadiran(tanggal, waktu,
-                                        null, statusHadir, pertemuanKe, pesanKehadiran);
+                                        ruangPerkuliahan, statusHadir, pertemuanKe, pesanKehadiran);
                                 rekapKehadiranMahasiswaList.add(rekapKehadiran);
                             }
                             mKehadiranMahasiswaAdapter.notifyDataSetChanged();

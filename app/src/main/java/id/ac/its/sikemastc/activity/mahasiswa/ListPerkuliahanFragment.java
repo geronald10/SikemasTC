@@ -12,6 +12,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class ListPerkuliahanFragment extends Fragment implements
         PerkuliahanMahasiswaAdapter.PerkuliahanMahasiswaAdapterOnClickHandler{
 
     private final String TAG = ListPerkuliahanFragment.class.getSimpleName();
+    public static int jmlPerkuliahan;
 
     public static final String[] MAIN_LIST_PERKULIAHAN_PROJECTION = {
             SikemasContract.PerkuliahanEntry.KEY_ID_PERKULIAHAN,
@@ -63,7 +65,7 @@ public class ListPerkuliahanFragment extends Fragment implements
     private static final int ID_LIST_PERKULIAHAN_MAHASISWA_LOADER = 55;
 
     private ProgressBar mLoadingIndicator;
-    private ConstraintLayout clEmptyView;
+    private CardView cvEmptyView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
     private PerkuliahanMahasiswaAdapter mPerkuliahanMahasiswaAdapter;
@@ -81,7 +83,7 @@ public class ListPerkuliahanFragment extends Fragment implements
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list_perkuliahan_mahasiswa);
         mLoadingIndicator = (ProgressBar) view.findViewById(R.id.pb_loading_indicator);
-        clEmptyView = (ConstraintLayout) view.findViewById(R.id.empty_view);
+        cvEmptyView = (CardView) view.findViewById(R.id.empty_view);
 
         mSwipeRefreshLayout.setColorSchemeColors(
                 ContextCompat.getColor(getContext(), R.color.swipe_color_1),
@@ -144,10 +146,16 @@ public class ListPerkuliahanFragment extends Fragment implements
         if (mPosition == RecyclerView.NO_POSITION)
             mPosition = 0;
         mRecyclerView.smoothScrollToPosition(mPosition);
-        if (data.getCount() > 0)
+        if (data.getCount() > 0) {
+            mPerkuliahanMahasiswaAdapter.notifyDataSetChanged();
+            jmlPerkuliahan = data.getCount();
             showPerkuliahanDataView();
-        else
+        }
+        else {
+            mPerkuliahanMahasiswaAdapter.notifyDataSetChanged();
+            jmlPerkuliahan = data.getCount();
             showEmptyView();
+        }
     }
 
     @Override
@@ -168,19 +176,19 @@ public class ListPerkuliahanFragment extends Fragment implements
     private void showPerkuliahanDataView() {
         mRecyclerView.setVisibility(View.VISIBLE);
         mLoadingIndicator.setVisibility(View.GONE);
-        clEmptyView.setVisibility(View.GONE);
+        cvEmptyView.setVisibility(View.GONE);
     }
 
     private void showLoading() {
         mLoadingIndicator.setVisibility(View.VISIBLE);
         mRecyclerView.setVisibility(View.GONE);
-        clEmptyView.setVisibility(View.GONE);
+        cvEmptyView.setVisibility(View.GONE);
     }
 
     private void showEmptyView() {
         mRecyclerView.setVisibility(View.GONE);
         mLoadingIndicator.setVisibility(View.GONE);
-        clEmptyView.setVisibility(View.VISIBLE);
+        cvEmptyView.setVisibility(View.VISIBLE);
     }
 
     private void initiateRefresh() {

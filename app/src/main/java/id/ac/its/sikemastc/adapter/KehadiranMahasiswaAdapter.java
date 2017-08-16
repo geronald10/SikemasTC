@@ -2,6 +2,7 @@ package id.ac.its.sikemastc.adapter;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,93 +42,107 @@ public class KehadiranMahasiswaAdapter extends RecyclerView.Adapter<KehadiranMah
     public void onBindViewHolder(KehadiranMahasiswaViewHolder kehadiranMahasiswaViewHolder, int position) {
         RekapKehadiran currentPertemuan = mRekapKehadiranList.get(position);
 
-//        mCursor.moveToFirst();
-//
-//        String pertemuanKe = mCursor.getString(DetailJadwalKelasMahasiswa.INDEX_PERTEMUAN_KE);
-//        String tanggalPertemuan = SikemasDateUtils
-//                .formatDate(mCursor.getString(DetailJadwalKelasMahasiswa.INDEX_TANGGAL_PERTEMUAN));
-//        String checkinTime = SikemasDateUtils
-//                .formatTime(mCursor.getString(DetailJadwalKelasMahasiswa.INDEX_WAKTU_CHECKIN));
-//        String checkinPlace = mCursor.getString(DetailJadwalKelasMahasiswa.INDEX_TEMPAT_CHECKIN);
-//        String statusKehadiran = mCursor.getString(DetailJadwalKelasMahasiswa.INDEX_STATUS_KEHADIRAN);
-//        String ketKehadiran = mCursor.getString(DetailJadwalKelasMahasiswa.INDEX_KET_KEHADIRAN);
         String tanggalKehadiran = currentPertemuan.getTanggalKehadiran();
         String waktuKehadiran = currentPertemuan.getWaktuKehadiran();
         String tempatKehadiran = currentPertemuan.getTempatKehadiran();
+        String keteranganKehadiran = currentPertemuan.getPesanKehadiran();
+
         kehadiranMahasiswaViewHolder.tvPertemuan.setText(currentPertemuan.getPertemuanKe());
-        kehadiranMahasiswaViewHolder.tvTanggalPertemuan.setText(currentPertemuan.getTanggalKehadiran());
+        kehadiranMahasiswaViewHolder.tvTanggalPertemuan.setText(tanggalKehadiran);
+        String statusKehadiran = currentPertemuan.getStatusKehadiran();
 
-        if (tanggalKehadiran == null) {
-            kehadiranMahasiswaViewHolder.tvTanggalPertemuan.setTextColor(ContextCompat
-                    .getColor(mContext, R.color.colorStatusIdle));
-            kehadiranMahasiswaViewHolder.ivTanggalPertemuan.setColorFilter(ContextCompat
-                    .getColor(mContext, R.color.colorStatusIdle));
-        } else {
-
-            kehadiranMahasiswaViewHolder.tvTanggalPertemuan.setTextColor(ContextCompat
-                    .getColor(mContext, R.color.colorPrimaryText));
-            kehadiranMahasiswaViewHolder.ivTanggalPertemuan.setColorFilter(ContextCompat
-                    .getColor(mContext, R.color.colorPrimaryText));
-        }
-
-        if (waktuKehadiran == null) {
-            kehadiranMahasiswaViewHolder.tvCheckinTime.setText(R.string.tv_empty_value);
-            kehadiranMahasiswaViewHolder.ivCheckinTime.setColorFilter(ContextCompat
-                    .getColor(mContext, R.color.colorStatusIdle));
-            kehadiranMahasiswaViewHolder.tvCheckinTime.setTextColor(ContextCompat
-                    .getColor(mContext, R.color.colorStatusIdle));
-        } else {
-            kehadiranMahasiswaViewHolder.tvCheckinTime.setText(currentPertemuan.getWaktuKehadiran());
-            kehadiranMahasiswaViewHolder.ivCheckinTime.setColorFilter(ContextCompat
-                    .getColor(mContext, R.color.colorStatusHadir));
-            kehadiranMahasiswaViewHolder.tvCheckinTime.setTextColor(ContextCompat
-                    .getColor(mContext, R.color.colorStatusHadir));
-        }
-        if (tempatKehadiran == null) {
-            kehadiranMahasiswaViewHolder.tvCheckinPlace.setText(R.string.tv_empty_value);
-            kehadiranMahasiswaViewHolder.ivCheckinPlace.setColorFilter(ContextCompat
-                    .getColor(mContext, R.color.colorStatusIdle));
-            kehadiranMahasiswaViewHolder.tvCheckinPlace.setTextColor(ContextCompat
-                    .getColor(mContext, R.color.colorStatusIdle));
-        } else {
-            kehadiranMahasiswaViewHolder.tvCheckinPlace.setText(currentPertemuan.getWaktuKehadiran());
-            kehadiranMahasiswaViewHolder.ivCheckinPlace.setColorFilter(ContextCompat
-                    .getColor(mContext, R.color.colorStatusHadir));
-            kehadiranMahasiswaViewHolder.tvCheckinPlace.setTextColor(ContextCompat
-                    .getColor(mContext, R.color.colorStatusHadir));
-        }
-
-        if (currentPertemuan.getPesanKehadiran().equals("null")) {
-            kehadiranMahasiswaViewHolder.tvKeteranganKehadiran.setText(R.string.tv_empty_value);
-            kehadiranMahasiswaViewHolder.tvKeteranganKehadiran.setTextColor(ContextCompat
-                    .getColor(mContext, R.color.colorStatusIdle));
-            kehadiranMahasiswaViewHolder.ivKeteranganKehadiran.setColorFilter(ContextCompat
-                    .getColor(mContext, R.color.colorStatusIdle));
-        }
-        else {
-            kehadiranMahasiswaViewHolder.tvKeteranganKehadiran.setText(currentPertemuan.getPesanKehadiran());
-            kehadiranMahasiswaViewHolder.tvKeteranganKehadiran.setTextColor(ContextCompat
-                    .getColor(mContext, R.color.colorPrimaryText));
-            kehadiranMahasiswaViewHolder.ivKeteranganKehadiran.setColorFilter(ContextCompat
-                    .getColor(mContext, R.color.colorPrimaryText));
-        }
-
-        switch (currentPertemuan.getStatusKehadiran()) {
+        switch (statusKehadiran) {
             case "M":
                 kehadiranMahasiswaViewHolder.ivStatusKehadiran.setImageResource(R.color.colorStatusHadir);
                 kehadiranMahasiswaViewHolder.tvStatusKehadiran.setText(R.string.tv_status_hadir_label);
+                kehadiranMahasiswaViewHolder.clKeteranganKehadiran.setVisibility(View.GONE);
+
+                kehadiranMahasiswaViewHolder.tvTanggalPertemuan.setTextColor(ContextCompat
+                        .getColor(mContext, R.color.colorPrimaryText));
+                kehadiranMahasiswaViewHolder.ivTanggalPertemuan.setColorFilter(ContextCompat
+                        .getColor(mContext, R.color.colorPrimaryText));
+                kehadiranMahasiswaViewHolder.tvCheckinTime.setText(waktuKehadiran);
+                kehadiranMahasiswaViewHolder.ivCheckinTime.setColorFilter(ContextCompat
+                        .getColor(mContext, R.color.colorStatusHadir));
+                kehadiranMahasiswaViewHolder.tvCheckinTime.setTextColor(ContextCompat
+                        .getColor(mContext, R.color.colorStatusHadir));
+                kehadiranMahasiswaViewHolder.tvCheckinPlace.setText(tempatKehadiran);
+                kehadiranMahasiswaViewHolder.ivCheckinPlace.setColorFilter(ContextCompat
+                        .getColor(mContext, R.color.colorStatusHadir));
+                kehadiranMahasiswaViewHolder.tvCheckinPlace.setTextColor(ContextCompat
+                        .getColor(mContext, R.color.colorStatusHadir));
                 break;
+
             case "I":
                 kehadiranMahasiswaViewHolder.ivStatusKehadiran.setImageResource(R.color.colorStatusIjin);
                 kehadiranMahasiswaViewHolder.tvStatusKehadiran.setText(R.string.tv_status_ijin_label);
+                kehadiranMahasiswaViewHolder.clKeteranganKehadiran.setVisibility(View.VISIBLE);
+
+                kehadiranMahasiswaViewHolder.tvTanggalPertemuan.setTextColor(ContextCompat
+                        .getColor(mContext, R.color.colorPrimaryText));
+                kehadiranMahasiswaViewHolder.ivTanggalPertemuan.setColorFilter(ContextCompat
+                        .getColor(mContext, R.color.colorPrimaryText));
+                kehadiranMahasiswaViewHolder.tvCheckinTime.setText(R.string.tv_empty_value);
+                kehadiranMahasiswaViewHolder.ivCheckinTime.setColorFilter(ContextCompat
+                        .getColor(mContext, R.color.colorStatusIdle));
+                kehadiranMahasiswaViewHolder.tvCheckinTime.setTextColor(ContextCompat
+                        .getColor(mContext, R.color.colorStatusIdle));
+                kehadiranMahasiswaViewHolder.tvCheckinPlace.setText(R.string.tv_empty_value);
+                kehadiranMahasiswaViewHolder.ivCheckinPlace.setColorFilter(ContextCompat
+                        .getColor(mContext, R.color.colorStatusIdle));
+                kehadiranMahasiswaViewHolder.tvCheckinPlace.setTextColor(ContextCompat
+                        .getColor(mContext, R.color.colorStatusIdle));
+                if (keteranganKehadiran.equals("null"))
+                    kehadiranMahasiswaViewHolder.tvKeteranganKehadiran.setText(R.string.tv_empty_value);
+                else
+                    kehadiranMahasiswaViewHolder.tvKeteranganKehadiran.setText(keteranganKehadiran);
+                kehadiranMahasiswaViewHolder.tvKeteranganKehadiran.setTextColor(ContextCompat
+                        .getColor(mContext, R.color.colorPrimaryText));
+                kehadiranMahasiswaViewHolder.ivKeteranganKehadiran.setColorFilter(ContextCompat
+                        .getColor(mContext, R.color.colorPrimaryText));
                 break;
+
             case "A":
                 kehadiranMahasiswaViewHolder.ivStatusKehadiran.setImageResource(R.color.colorStatusAbsen);
                 kehadiranMahasiswaViewHolder.tvStatusKehadiran.setText(R.string.tv_status_absen_label);
+                kehadiranMahasiswaViewHolder.clKeteranganKehadiran.setVisibility(View.VISIBLE);
+
+                kehadiranMahasiswaViewHolder.tvTanggalPertemuan.setTextColor(ContextCompat
+                        .getColor(mContext, R.color.colorPrimaryText));
+                kehadiranMahasiswaViewHolder.ivTanggalPertemuan.setColorFilter(ContextCompat
+                        .getColor(mContext, R.color.colorPrimaryText));
+                kehadiranMahasiswaViewHolder.tvCheckinTime.setText(R.string.tv_empty_value);
+                kehadiranMahasiswaViewHolder.ivCheckinTime.setColorFilter(ContextCompat
+                        .getColor(mContext, R.color.colorStatusIdle));
+                kehadiranMahasiswaViewHolder.tvCheckinTime.setTextColor(ContextCompat
+                        .getColor(mContext, R.color.colorStatusIdle));
+                kehadiranMahasiswaViewHolder.tvCheckinPlace.setText(R.string.tv_empty_value);
+                kehadiranMahasiswaViewHolder.ivCheckinPlace.setColorFilter(ContextCompat
+                        .getColor(mContext, R.color.colorStatusIdle));
+                kehadiranMahasiswaViewHolder.tvCheckinPlace.setTextColor(ContextCompat
+                        .getColor(mContext, R.color.colorStatusIdle));
+                kehadiranMahasiswaViewHolder.tvKeteranganKehadiran.setText("Tidak ada keterangan");
                 break;
+
             default:
                 kehadiranMahasiswaViewHolder.ivStatusKehadiran.setImageResource(R.color.colorStatusIdle);
                 kehadiranMahasiswaViewHolder.tvStatusKehadiran.setText(R.string.tv_empty_value);
+                kehadiranMahasiswaViewHolder.clKeteranganKehadiran.setVisibility(View.GONE);
+
+                kehadiranMahasiswaViewHolder.tvTanggalPertemuan.setTextColor(ContextCompat
+                        .getColor(mContext, R.color.colorStatusIdle));
+                kehadiranMahasiswaViewHolder.ivTanggalPertemuan.setColorFilter(ContextCompat
+                        .getColor(mContext, R.color.colorStatusIdle));
+                kehadiranMahasiswaViewHolder.tvCheckinTime.setText(R.string.tv_empty_value);
+                kehadiranMahasiswaViewHolder.ivCheckinTime.setColorFilter(ContextCompat
+                        .getColor(mContext, R.color.colorStatusIdle));
+                kehadiranMahasiswaViewHolder.tvCheckinTime.setTextColor(ContextCompat
+                        .getColor(mContext, R.color.colorStatusIdle));
+                kehadiranMahasiswaViewHolder.tvCheckinPlace.setText(R.string.tv_empty_value);
+                kehadiranMahasiswaViewHolder.ivCheckinPlace.setColorFilter(ContextCompat
+                        .getColor(mContext, R.color.colorStatusIdle));
+                kehadiranMahasiswaViewHolder.tvCheckinPlace.setTextColor(ContextCompat
+                        .getColor(mContext, R.color.colorStatusIdle));
                 break;
         }
     }
@@ -139,6 +154,7 @@ public class KehadiranMahasiswaAdapter extends RecyclerView.Adapter<KehadiranMah
 
     public class KehadiranMahasiswaViewHolder extends RecyclerView.ViewHolder {
 
+        private ConstraintLayout clKeteranganKehadiran;
         private TextView tvPertemuan;
         private TextView tvTanggalPertemuan;
         private TextView tvCheckinTime;
@@ -154,6 +170,7 @@ public class KehadiranMahasiswaAdapter extends RecyclerView.Adapter<KehadiranMah
         public KehadiranMahasiswaViewHolder(View itemView) {
             super(itemView);
 
+            clKeteranganKehadiran = (ConstraintLayout) itemView.findViewById(R.id.cl_keterangan_kehadiran);
             tvPertemuan = (TextView) itemView.findViewById(R.id.tv_pertemuan_kuliah);
             tvTanggalPertemuan = (TextView) itemView.findViewById(R.id.tv_tanggal_pertemuan);
             tvCheckinTime = (TextView) itemView.findViewById(R.id.tv_check_in);

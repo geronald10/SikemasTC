@@ -15,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
@@ -57,6 +58,7 @@ import id.ac.its.sikemastc.activity.verifikasi_wajah.VerifikasiWajahMenuActivity
 import id.ac.its.sikemastc.adapter.PerkuliahanAktifAdapter;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
 import id.ac.its.sikemastc.model.Perkuliahan;
+import id.ac.its.sikemastc.sync.SikemasSyncTask;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
 import id.ac.its.sikemastc.utilities.SikemasDateUtils;
 import id.ac.its.sikemastc.utilities.VolleySingleton;
@@ -66,13 +68,11 @@ public class MainPerkuliahanFragment extends Fragment implements
 
     private final String TAG = MainPerkuliahanFragment.class.getSimpleName();
 
-    private TextView currentDate;
-    private TextView tvStatusKehadiran;
+    private TextView tvStatusKehadiran, tvJmlPerkuliahanAktif, tvJmlPerkuliahan;
     private ImageView ivStatusKehadiran;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private ProgressBar mLoadingIndicator;
     private RecyclerView mRecyclerView;
-    private ConstraintLayout emptyView;
+    private CardView emptyView;
     private PerkuliahanAktifAdapter mPerkuliahanAktifAdapter;
     private String bundleIdUser;
     private String bundleNamaUser;
@@ -81,8 +81,6 @@ public class MainPerkuliahanFragment extends Fragment implements
     //Verifikasi Lokasi
     private ImageButton searchLocationButton;
     public static TextView location;
-    public static ProgressBar mSearchingIndicator;
-    public static TextView searchLoading;
 
     //Verifikasi QR Code
     private Button buttonQR;
@@ -103,14 +101,23 @@ public class MainPerkuliahanFragment extends Fragment implements
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_kelas_aktif);
-        mLoadingIndicator = (ProgressBar) view.findViewById(R.id.pb_loading_indicator);
-        emptyView = (ConstraintLayout) view.findViewById(R.id.empty_view);
-        currentDate = (TextView) view.findViewById(R.id.tv_tanggal_hari_ini);
+        emptyView = (CardView) view.findViewById(R.id.empty_view);
         location = (TextView) view.findViewById(R.id.tv_classroom_position);
         buttonQR = (Button) view.findViewById(R.id.buttonQR);
 
-        currentDate = (TextView) view.findViewById(R.id.tv_tanggal_hari_ini);
-        currentDate.setText(SikemasDateUtils.getCurrentDate(getActivity()));
+        TextView tvNamaPengguna = (TextView) view.findViewById(R.id.tv_perkuliahan_aktif_headline_2);
+        TextView tvCurrentTgl = (TextView) view.findViewById(R.id.tv_calendar_tanggal);
+        TextView tvCurrentBulan = (TextView) view.findViewById(R.id.tv_calendar_bulan);
+        TextView tvCurrentHari = (TextView) view.findViewById(R.id.tv_calendar_hari);
+        tvJmlPerkuliahanAktif = (TextView) view.findViewById(R.id.tv_jumlah_perkuliahan_aktif_hari_ini);
+        tvJmlPerkuliahan = (TextView) view.findViewById(R.id.tv_jumlah_perkuliahan_hari_ini);
+
+        String currentDate = SikemasDateUtils.getCurrentDate(getActivity());
+        String[] splitCalendar = currentDate.split(" ");
+        tvNamaPengguna.setText(bundleNamaUser);
+        tvCurrentHari.setText(splitCalendar[0].substring(0, splitCalendar[0].length()-1));
+        tvCurrentTgl.setText(splitCalendar[1]);
+        tvCurrentBulan.setText(splitCalendar[2]);
 
         tvStatusKehadiran = (TextView) view.findViewById(R.id.tv_status_kehadiran);
         ivStatusKehadiran = (ImageView) view.findViewById(R.id.iv_status_kehadiran);
@@ -122,7 +129,7 @@ public class MainPerkuliahanFragment extends Fragment implements
                 ContextCompat.getColor(getContext(), R.color.swipe_color_4));
 
         LinearLayoutManager layoutManager =
-                new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
@@ -136,6 +143,7 @@ public class MainPerkuliahanFragment extends Fragment implements
         if (!mSwipeRefreshLayout.isRefreshing()) {
             showLoading();
         }
+        tvJmlPerkuliahan.setText(String.valueOf(ListPerkuliahanFragment.jmlPerkuliahan));
         perkuliahanAktifMahasiswaList = new ArrayList<>();
         getPerkuliahanAktifList(bundleIdUser);
         mPerkuliahanAktifAdapter = new PerkuliahanAktifAdapter(getActivity(), perkuliahanAktifMahasiswaList, this);
@@ -196,20 +204,7 @@ public class MainPerkuliahanFragment extends Fragment implements
         }
     }
 
-    private void showSearchingLocation() {
-        location.setVisibility(View.GONE);
-        mSearchingIndicator.setVisibility(View.VISIBLE);
-        searchLoading.setVisibility(View.VISIBLE);
-    }
-
-    public static void showLocationFounded() {
-        mSearchingIndicator.setVisibility(View.GONE);
-        searchLoading.setVisibility(View.GONE);
-        location.setVisibility(View.VISIBLE);
-    }
-
     private void showPerkuliahanAktifDataView() {
-        mLoadingIndicator.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
     }
@@ -217,12 +212,10 @@ public class MainPerkuliahanFragment extends Fragment implements
     private void showLoading() {
         mRecyclerView.setVisibility(View.GONE);
         emptyView.setVisibility(View.GONE);
-        mLoadingIndicator.setVisibility(View.VISIBLE);
     }
 
     private void showEmptyView() {
         mRecyclerView.setVisibility(View.GONE);
-        mLoadingIndicator.setVisibility(View.GONE);
         emptyView.setVisibility(View.VISIBLE);
     }
 
@@ -235,7 +228,7 @@ public class MainPerkuliahanFragment extends Fragment implements
         Log.d("idMahasiswa", idMahasiswa);
         if (!mSwipeRefreshLayout.isRefreshing())
             showLoading();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 NetworkUtils.LIST_KELAS_MAHASISWA_AKTIF,
                 new Response.Listener<String>() {
                     @Override
@@ -277,6 +270,9 @@ public class MainPerkuliahanFragment extends Fragment implements
                                         waktuSelesai, statusDosen, statusPerkuliahan, statusKehadiran);
                                 perkuliahanAktifMahasiswaList.add(perkuliahanAktifMahasiswa);
                             }
+
+                            tvJmlPerkuliahanAktif.setText(String.valueOf(perkuliahanAktifMahasiswaList.size()));
+                            tvJmlPerkuliahan.setText(String.valueOf(ListPerkuliahanFragment.jmlPerkuliahan));
 
                             if (mSwipeRefreshLayout.isRefreshing()) {
                                 mSwipeRefreshLayout.setRefreshing(false);
