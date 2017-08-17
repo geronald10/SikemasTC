@@ -31,14 +31,18 @@ public class PesertaKelasFragment extends Fragment implements
             SikemasContract.PesertaEntry.KEY_ID_MAHASISWA,
             SikemasContract.PesertaEntry.KEY_NRP_MAHASISWA,
             SikemasContract.PesertaEntry.KEY_NAMA_MAHASISWA,
-            SikemasContract.PesertaEntry.KEY_EMAIL_MAHASISWA,
+            SikemasContract.PesertaEntry.KEY_COUNT_HADIR,
+            SikemasContract.PesertaEntry.KEY_COUNT_IJIN,
+            SikemasContract.PesertaEntry.KEY_COUNT_ABSEN
     };
 
     public static final int INDEX_ID_KELAS = 0;
     public static final int INDEX_ID_PESERTA = 1;
     public static final int INDEX_NRP_PESERTA = 2;
     public static final int INDEX_NAMA_PESERTA = 3;
-    public static final int INDEX_EMAIL_PESERTA = 4;
+    public static final int INDEX_HADIR_PESERTA = 4;
+    public static final int INDEX_IJIN_PESERTA = 5;
+    public static final int INDEX_ABSEN_PESERTA = 6;
 
     private static final int ID_LIST_PESERTA_LOADER = 80;
     private ProgressBar mLoadingIndicator;

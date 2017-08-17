@@ -198,10 +198,6 @@ public class BaseActivity extends AppCompatActivity implements
                 startActivity(intentToJadwalMhs);
                 finish();
                 break;
-            case R.id.item_settings:
-                Intent intentToSettings = new Intent(this, SettingsActivity.class);
-                startActivity(intentToSettings);
-                break;
             case R.id.nav_switch:
                 switcher.setChecked(!switcher.isChecked());
                 Snackbar.make(menuItem.getActionView(), (switcher.isChecked()) ? "is checked" : "not checked",

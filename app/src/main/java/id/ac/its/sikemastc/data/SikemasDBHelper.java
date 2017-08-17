@@ -120,7 +120,10 @@ public class SikemasDBHelper extends SQLiteOpenHelper {
                         PesertaEntry.KEY_ID_MAHASISWA + " TEXT NOT NULL, " +
                         PesertaEntry.KEY_NRP_MAHASISWA + " TEXT NOT NULL, " +
                         PesertaEntry.KEY_NAMA_MAHASISWA + " TEXT NOT NULL, " +
-                        PesertaEntry.KEY_EMAIL_MAHASISWA + " TEXT NOT NULL ON CONFLICT REPLACE);";
+                        PesertaEntry.KEY_EMAIL_MAHASISWA + " TEXT, " +
+                        PesertaEntry.KEY_COUNT_HADIR + " TEXT, " +
+                        PesertaEntry.KEY_COUNT_IJIN + " TEXT, " +
+                        PesertaEntry.KEY_COUNT_ABSEN + " TEXT);";
         sqLiteDatabase.execSQL(SQL_CREATE_PESERTA_TABLE);
     }
 

@@ -274,6 +274,9 @@ public class SikemasJsonUtils {
                 JSONObject pivot = detailPeserta.getJSONObject("pivot");
                 String idKelas = pivot.getString("id_kelas");
                 String idPeserta = pivot.getString("id_mahasiswa");
+                String countHadir = pivot.getString("masuk");
+                String countIjin = pivot.getString("ijin");
+                String countAbsen = pivot.getString("absen");
 
                 ContentValues kelasDosenPesertaValues = new ContentValues();
                 kelasDosenPesertaValues.put(SikemasContract.PesertaEntry.KEY_ID_KELAS, idKelas);
@@ -281,6 +284,9 @@ public class SikemasJsonUtils {
                 kelasDosenPesertaValues.put(SikemasContract.PesertaEntry.KEY_NRP_MAHASISWA, nrpPeserta);
                 kelasDosenPesertaValues.put(SikemasContract.PesertaEntry.KEY_NAMA_MAHASISWA, namaPeserta);
                 kelasDosenPesertaValues.put(SikemasContract.PesertaEntry.KEY_EMAIL_MAHASISWA, emailPeserta);
+                kelasDosenPesertaValues.put(SikemasContract.PesertaEntry.KEY_COUNT_HADIR, countHadir);
+                kelasDosenPesertaValues.put(SikemasContract.PesertaEntry.KEY_COUNT_IJIN, countIjin);
+                kelasDosenPesertaValues.put(SikemasContract.PesertaEntry.KEY_COUNT_ABSEN, countAbsen);
 
                 kelasDosenPesertaContentValues[index] = kelasDosenPesertaValues;
                 index++;
@@ -405,7 +411,9 @@ public class SikemasJsonUtils {
             String kodeMk = kelas.getString("kode_matakuliah");
             String kelasMk = kelas.getString("kode_kelas");
             String namaMk = kelas.getString("nama_kelas");
-            String ruangMK = kelas.getString("nama_ruangan");
+
+            JSONObject ruangan = detailKelas.getJSONObject("ruangan");
+            String namaRuangan = ruangan.getString("nama");
 
             ContentValues perkuliahanMahasiswaValue = new ContentValues();
             perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_ID_PERKULIAHAN, idListJadwal);
@@ -419,7 +427,7 @@ public class SikemasJsonUtils {
             perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_SELESAI, waktuSelesai);
             perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_NAMA_MK, namaMk);
             perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_KODE_KELAS, kelasMk);
-            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_NAMA_RUANGAN, ruangMK);
+            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_NAMA_RUANGAN, namaRuangan);
             perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_KODE_SEMESTER, kodeSemester);
             perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_KODE_MK, kodeMk);
 

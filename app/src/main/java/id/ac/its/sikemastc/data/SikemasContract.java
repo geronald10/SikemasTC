@@ -134,6 +134,9 @@ public class SikemasContract {
         public static final String KEY_NRP_MAHASISWA = "nrp";
         public static final String KEY_NAMA_MAHASISWA = "nama";
         public static final String KEY_EMAIL_MAHASISWA = "email";
+        public static final String KEY_COUNT_HADIR = "masuk";
+        public static final String KEY_COUNT_IJIN = "ijin";
+        public static final String KEY_COUNT_ABSEN = "absen";
     }
 
     public static final class PertemuanEntry implements BaseColumns {

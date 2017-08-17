@@ -100,7 +100,7 @@ public class SikemasSessionManager {
 
         // Staring Login Activity
         _context.startActivity(intent);
-        deleteFaceRecognitionLocalData();
+        //deleteFaceRecognitionLocalData();
 
         // Destroy the database
         SikemasSyncTask.syncLogoutSession(_context);

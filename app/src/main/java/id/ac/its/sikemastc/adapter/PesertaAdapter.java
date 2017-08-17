@@ -3,6 +3,7 @@ package id.ac.its.sikemastc.adapter;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,12 +45,19 @@ public class PesertaAdapter extends RecyclerView.Adapter<PesertaAdapter.PesertaA
         String idPeserta = mCursor.getString(PesertaKelasFragment.INDEX_ID_PESERTA);
         String nrpPeserta = mCursor.getString(PesertaKelasFragment.INDEX_NRP_PESERTA);
         String namaPeserta = mCursor.getString(PesertaKelasFragment.INDEX_NAMA_PESERTA);
-        String emailPeserta = mCursor.getString(PesertaKelasFragment.INDEX_EMAIL_PESERTA);
+        String countHadirPeserta = mCursor.getString(PesertaKelasFragment.INDEX_HADIR_PESERTA);
+        String countIjinPeserta = mCursor.getString(PesertaKelasFragment.INDEX_IJIN_PESERTA);
+        String countAbsenPeserta = mCursor.getString(PesertaKelasFragment.INDEX_ABSEN_PESERTA);
+
+        Log.d("peserta", namaPeserta + " " + countHadirPeserta + " " + countIjinPeserta + " " +
+        countAbsenPeserta);
 
         pesertaAdapterViewHolder.tvNumber.setText("#" + (position+1));
         pesertaAdapterViewHolder.tvNrpPeserta.setText(nrpPeserta);
         pesertaAdapterViewHolder.tvNamaPeserta.setText(namaPeserta);
-        pesertaAdapterViewHolder.tvEmailPeserta.setText(emailPeserta);
+        pesertaAdapterViewHolder.tvHadirCount.setText(countHadirPeserta);
+        pesertaAdapterViewHolder.tvIjinCount.setText(countIjinPeserta);
+        pesertaAdapterViewHolder.tvAbsenCount.setText(countAbsenPeserta);
     }
 
     @Override
@@ -69,7 +77,6 @@ public class PesertaAdapter extends RecyclerView.Adapter<PesertaAdapter.PesertaA
         private TextView tvNumber;
         private TextView tvNrpPeserta;
         private TextView tvNamaPeserta;
-        private TextView tvEmailPeserta;
         private TextView tvHadirCount;
         private TextView tvIjinCount;
         private TextView tvAbsenCount;
@@ -80,7 +87,6 @@ public class PesertaAdapter extends RecyclerView.Adapter<PesertaAdapter.PesertaA
             tvNumber = (TextView) itemView.findViewById(R.id.tv_number);
             tvNrpPeserta = (TextView) itemView.findViewById(R.id.tv_nrp_peserta);
             tvNamaPeserta = (TextView) itemView.findViewById(R.id.tv_nama_peserta);
-            tvEmailPeserta = (TextView) itemView.findViewById(R.id.tv_email_peserta);
             tvHadirCount = (TextView) itemView.findViewById(R.id.tv_hadir_count);
             tvIjinCount = (TextView) itemView.findViewById(R.id.tv_ijin_count);
             tvAbsenCount = (TextView) itemView.findViewById(R.id.tv_absen_count);

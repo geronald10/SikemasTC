@@ -6,34 +6,23 @@
     android:id="@+id/cv_peserta"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="5dp"
     android:elevation="5dp"
     card_view:cardCornerRadius="5dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:elevation="1dp"
-        android:padding="4dp"
-        android:paddingBottom="4dp"
-        android:paddingEnd="4dp"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"
-        android:paddingStart="4dp"
-        android:paddingTop="4dp">
+        android:layout_height="match_parent"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
 
         <ImageView
             android:id="@+id/iv_indikator_status_kehadiran"
             android:layout_width="5dp"
             android:layout_height="0dp"
-            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/tv_number"
             app:layout_constraintTop_toTopOf="parent"
@@ -45,16 +34,12 @@
             android:layout_height="0dp"
             android:layout_marginBottom="0dp"
             android:layout_marginEnd="0dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="0dp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_hadir"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toRightOf="@+id/iv_indikator_status_kehadiran"
             app:layout_constraintRight_toLeftOf="@+id/tv_nama_peserta"
             app:layout_constraintTop_toTopOf="@+id/iv_indikator_status_kehadiran"
-            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_id_card" />
 
         <TextView
@@ -62,13 +47,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="0dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="0dp"
             android:text="5113100112"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/colorPrimaryText"
+            android:textColor="@color/colorSecondaryText"
             android:textSize="16sp"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toRightOf="@+id/iv_id_card"
@@ -79,8 +62,6 @@
             android:id="@+id/tv_nama_peserta"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:text="Ronald Gunawan R"
@@ -91,21 +72,6 @@
             app:layout_constraintRight_toRightOf="@+id/tv_nrp_peserta"
             app:layout_constraintTop_toBottomOf="@+id/tv_nrp_peserta" />
 
-        <TextView
-            android:id="@+id/tv_email_peserta"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:text="geronald10@gmail.com"
-            android:textSize="14sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_nrp_peserta"
-            app:layout_constraintRight_toRightOf="@+id/tv_nama_peserta"
-            app:layout_constraintTop_toBottomOf="@+id/tv_nama_peserta" />
-
         <ImageView
             android:id="@+id/iv_hadir"
             android:layout_width="18dp"
@@ -115,16 +81,15 @@
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_email_peserta"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_nama_peserta"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_email_peserta"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nama_peserta"
             app:srcCompat="@color/colorStatusHadir" />
 
         <ImageView
             android:id="@+id/iv_ijin"
             android:layout_width="18dp"
             android:layout_height="18dp"
-            android:layout_marginLeft="0dp"
             android:layout_marginTop="0dp"
             app:layout_constraintHorizontal_bias="0.15"
             app:layout_constraintLeft_toRightOf="@+id/tv_hadir_count"
@@ -136,7 +101,6 @@
             android:id="@+id/iv_absen"
             android:layout_width="18dp"
             android:layout_height="18dp"
-            android:layout_marginLeft="0dp"
             android:layout_marginTop="0dp"
             app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintLeft_toRightOf="@+id/tv_ijin_count"
@@ -149,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="0dp"
             android:text="0"
             android:textColor="@color/colorPrimaryText"
@@ -163,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="0dp"
             android:text="0"
             android:textColor="@color/colorPrimaryText"
@@ -177,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="0dp"
             android:text="0"
             android:textColor="@color/colorPrimaryText"
@@ -195,8 +159,7 @@
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_indikator_status_kehadiran"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/iv_indikator_status_kehadiran"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/iv_indikator_status_kehadiran" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
