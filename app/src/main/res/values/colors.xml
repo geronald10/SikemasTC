@@ -12,6 +12,7 @@
     <color name="colorStatusIdle">#BDBDBD</color>
     <color name="colorStatusHadir">#4bae4f</color>
     <color name="colorStatusIjin">#ffc107</color>
+    <color name="colorStatusSakit">#FF9800</color>
     <color name="colorStatusAbsen">#f34235</color>
 
     <color name="colorControlHighlight">#ffe28c</color>

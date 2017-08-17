@@ -45,11 +45,18 @@ public class PesertaAdapter extends RecyclerView.Adapter<PesertaAdapter.PesertaA
         String nrpPeserta = mCursor.getString(PesertaKelasFragment.INDEX_NRP_PESERTA);
         String namaPeserta = mCursor.getString(PesertaKelasFragment.INDEX_NAMA_PESERTA);
         String emailPeserta = mCursor.getString(PesertaKelasFragment.INDEX_EMAIL_PESERTA);
+        String countHadir = mCursor.getString(PesertaKelasFragment.INDEX_COUNT_HADIR);
+        String countIjin = mCursor.getString(PesertaKelasFragment.INDEX_COUNT_IJIN);
+        String countSakit = mCursor.getString(PesertaKelasFragment.INDEX_COUNT_SAKIT);
+        String countAbsen = mCursor.getString(PesertaKelasFragment.INDEX_COUNT_ABSEN);
 
         pesertaAdapterViewHolder.tvNumber.setText("#" + (position+1));
         pesertaAdapterViewHolder.tvNrpPeserta.setText(nrpPeserta);
         pesertaAdapterViewHolder.tvNamaPeserta.setText(namaPeserta);
-        pesertaAdapterViewHolder.tvEmailPeserta.setText(emailPeserta);
+        pesertaAdapterViewHolder.tvHadirCount.setText(countHadir);
+        pesertaAdapterViewHolder.tvIjinCount.setText(countIjin);
+        pesertaAdapterViewHolder.tvSakitCount.setText(countSakit);
+        pesertaAdapterViewHolder.tvAbsenCount.setText(countAbsen);
     }
 
     @Override
@@ -69,9 +76,9 @@ public class PesertaAdapter extends RecyclerView.Adapter<PesertaAdapter.PesertaA
         private TextView tvNumber;
         private TextView tvNrpPeserta;
         private TextView tvNamaPeserta;
-        private TextView tvEmailPeserta;
         private TextView tvHadirCount;
         private TextView tvIjinCount;
+        private TextView tvSakitCount;
         private TextView tvAbsenCount;
 
         public PesertaAdapterViewHolder(View itemView) {
@@ -80,9 +87,9 @@ public class PesertaAdapter extends RecyclerView.Adapter<PesertaAdapter.PesertaA
             tvNumber = (TextView) itemView.findViewById(R.id.tv_number);
             tvNrpPeserta = (TextView) itemView.findViewById(R.id.tv_nrp_peserta);
             tvNamaPeserta = (TextView) itemView.findViewById(R.id.tv_nama_peserta);
-            tvEmailPeserta = (TextView) itemView.findViewById(R.id.tv_email_peserta);
             tvHadirCount = (TextView) itemView.findViewById(R.id.tv_hadir_count);
             tvIjinCount = (TextView) itemView.findViewById(R.id.tv_ijin_count);
+            tvSakitCount = (TextView) itemView.findViewById(R.id.tv_sakit_count);
             tvAbsenCount = (TextView) itemView.findViewById(R.id.tv_absen_count);
 
             itemView.setOnClickListener(this);

@@ -17,6 +17,7 @@ import android.widget.Button;
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.data.SikemasContract;
 import id.ac.its.sikemastc.databinding.ActivityDetailPerkuliahanBinding;
+import id.ac.its.sikemastc.utilities.SikemasDateUtils;
 
 public class DetailPerkuliahan extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
@@ -35,7 +36,8 @@ public class DetailPerkuliahan extends AppCompatActivity implements
             SikemasContract.PerkuliahanEntry.KEY_KODE_KELAS,
             SikemasContract.PerkuliahanEntry.KEY_HARI,
             SikemasContract.PerkuliahanEntry.KEY_MULAI,
-            SikemasContract.PerkuliahanEntry.KEY_SELESAI
+            SikemasContract.PerkuliahanEntry.KEY_SELESAI,
+            SikemasContract.PerkuliahanEntry.KEY_JUMLAH_PESERTA
     };
 
     public static final int INDEX_ID_PERKULIAHAN = 0;
@@ -50,6 +52,7 @@ public class DetailPerkuliahan extends AppCompatActivity implements
     public static final int INDEX_HARI = 9;
     public static final int INDEX_MULAI = 10;
     public static final int INDEX_SELESAI = 11;
+    public static final int INDEX_JUMLAH_PESERTA = 12;
 
     private static final int ID_DETAIL_PERKULIAHAN_DOSEN_LOADER = 350;
 
@@ -112,13 +115,12 @@ public class DetailPerkuliahan extends AppCompatActivity implements
 
         Button btnLihatKehadiran = (Button)findViewById(R.id.btn_lihat_kehadiran);
 
-        String tanggalPertemuan = data.getString(INDEX_HARI) + ", " +
-                data.getString(INDEX_TANGGAL_PERKULIAHAN);
-        String waktu = data.getString(INDEX_MULAI) + "-" +
-                data.getString(INDEX_SELESAI);
+        String tanggalPertemuan = SikemasDateUtils.formatDate(data.getString(INDEX_TANGGAL_PERKULIAHAN));
+        String waktu = SikemasDateUtils.formatTime(data.getString(INDEX_MULAI)) + "\n-\n" +
+                SikemasDateUtils.formatTime(data.getString(INDEX_SELESAI));
         final String idPerkuliahan = data.getString(INDEX_ID_PERKULIAHAN);
         String statusDosen = data.getString(INDEX_STATUS_DOSEN);
-//        String jumlahPeserta =
+        String jumlahPeserta = data.getString(INDEX_JUMLAH_PESERTA);
 
         mDetailBinding.primaryInfo.tvTanggalPertemuan.setText(tanggalPertemuan);
         mDetailBinding.primaryInfo.tvPertemuanKe.setText(data.getString(INDEX_PERTEMUAN_KE));
@@ -128,7 +130,7 @@ public class DetailPerkuliahan extends AppCompatActivity implements
         mDetailBinding.primaryInfo.tvSemester.setText(data.getString(INDEX_KODE_SEMESTER));
         mDetailBinding.detailPeserta.tvRuangKuliah.setText(data.getString(INDEX_NAMA_RUANGAN));
         mDetailBinding.detailPeserta.tvWaktuKuliah.setText(waktu);
-//        mDetailBinding.detailPeserta.tvKapasitas.setText(jumlahPeserta);
+        mDetailBinding.detailPeserta.tvKapasitas.setText(jumlahPeserta);
 
         btnLihatKehadiran.setOnClickListener(new View.OnClickListener() {
             @Override

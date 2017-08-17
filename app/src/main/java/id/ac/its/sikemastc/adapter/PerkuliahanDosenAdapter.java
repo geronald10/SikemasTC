@@ -64,8 +64,9 @@ public class PerkuliahanDosenAdapter extends RecyclerView.Adapter<RecyclerView.V
         String mataKuliah = mCursor.getString(HalamanUtamaDosen.INDEX_NAMA_MK);
         String ruangKuliah = mCursor.getString(HalamanUtamaDosen.INDEX_NAMA_RUANGAN);
         String kodeKkelas = mCursor.getString(HalamanUtamaDosen.INDEX_KODE_KELAS);
-        String waktuKuliah = SikemasDateUtils.formatTime(mCursor.getString(HalamanUtamaDosen.INDEX_MULAI) + " - " +
-                SikemasDateUtils.formatTime(mCursor.getString(HalamanUtamaDosen.INDEX_SELESAI)));
+        String waktuMulai = SikemasDateUtils.formatTime(mCursor.getString(HalamanUtamaDosen.INDEX_MULAI));
+        String waktuSelesai = SikemasDateUtils.formatTime(mCursor.getString(HalamanUtamaDosen.INDEX_SELESAI));
+        String waktuKuliah = waktuMulai + "-" + waktuSelesai;
 
         int viewType = getItemViewType(position);
         switch (viewType) {
