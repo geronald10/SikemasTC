@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_peserta"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -120,8 +121,8 @@
             android:id="@+id/tv_status_pertemuan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
             android:gravity="center_vertical|center_horizontal"
             android:padding="4dp"
             android:text="@string/tv_empty_value"
@@ -211,11 +212,92 @@
                 android:text="@string/tambah_berita_acara_string"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
-                android:theme="@style/PerkuliahanButtonActivateKuliahTheme"
+                android:theme="@style/ListKelasButtonPermanenTheme"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_berita_acara"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:paddingBottom="8dp"
+            android:visibility="gone"
+            app:layout_constraintLeft_toRightOf="@+id/iv_status_kehadiran"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_waktu_pertemuan">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
+            <ImageView
+                android:id="@+id/iv_berita_acara_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_141_open_book_2" />
+
+            <TextView
+                android:id="@+id/tv_berita_acara_caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Berita acara"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_marginStart="8dp"
+                android:textSize="20sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                app:layout_constraintBottom_toBottomOf="@id/iv_berita_acara_icon"
+                app:layout_constraintLeft_toRightOf="@id/iv_berita_acara_icon" />
+
+            <View
+                android:id="@+id/berita_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/colorPrimaryDark"
+                app:layout_constraintBottom_toBottomOf="@id/iv_berita_acara_icon"
+                app:layout_constraintLeft_toRightOf="@id/iv_berita_acara_icon"
+                app:layout_constraintRight_toLeftOf="@id/guideline_vertical" />
+
+            <TextView
+                android:id="@+id/tv_berita_acara_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="1. dfadsafsafafasfadsfas"
+                android:textColor="@color/colorPrimaryText"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/guideline_vertical"
+                app:layout_constraintTop_toBottomOf="@id/iv_berita_acara_icon"
+                app:layout_constraintHorizontal_bias="1.0" />
+
+            <Button
+                android:id="@+id/btn_ubah_berita_acara"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Ubah"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                android:theme="@style/WhiteButtonTheme"
+                app:layout_constraintLeft_toRightOf="@id/guideline_vertical"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="-8dp"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintTop_toBottomOf="@+id/tv_berita_acara_caption" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.constraint.ConstraintLayout>
