@@ -69,10 +69,6 @@ import id.ac.its.sikemastc.R;
 
 import static org.opencv.imgproc.Imgproc.THRESH_BINARY;
 
-/**
- * Created by novitarpl on 5/16/2017.
- */
-
 public class VerifikasiTandaTangan extends AppCompatActivity {
     Toolbar toolbar;
     Button btn_tambah_tandatangan_cancel, btn_tambah_tandatangan_clear, btn_tambah_tandatangan_simpan;
@@ -133,6 +129,59 @@ public class VerifikasiTandaTangan extends AppCompatActivity {
         if (!file.exists()) {
             file.mkdir();
         }
+        // Dialog Function
+        dialog = new Dialog(VerifikasiTandaTangan.this);
+        dialog.setCancelable(false);
+        // Removing the features of Normal Dialogs
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.tambah_data_set_tandatangan);
+        //dialog.setCancelable(true); // agar tidak muncul dialognya
+        dialog_action();
+    }
+
+    // Function for Appear Digital Signature Layout
+    public void dialog_action() {
+        mContent = (LinearLayout) dialog.findViewById(R.id.linearLayout_tambah_tandatangan);
+        mSignature = new signature(getApplicationContext(), null);
+        mSignature.setBackgroundColor(Color.WHITE);
+
+        mContent.addView(mSignature, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        TextView header = (TextView) dialog.findViewById(R.id.tv_tambah_data_set_tandatangan);
+        header.setText("TANDA TANGAN DISINI");
+        btn_tambah_tandatangan_cancel = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_cancel);
+        btn_tambah_tandatangan_clear = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_clear);
+        btn_tambah_tandatangan_simpan = (Button) dialog.findViewById(R.id.btn_tambah_tandatangan_simpan);
+        btn_tambah_tandatangan_simpan.setEnabled(false);
+
+        view = mContent;
+        btn_tambah_tandatangan_clear.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.v("log_tag", "Panel Cleared");
+                mSignature.clear();
+                btn_tambah_tandatangan_simpan.setEnabled(false);
+            }
+        });
+
+        btn_tambah_tandatangan_cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.v("log_tag", "Panel Canceled");
+                dialog.dismiss();
+                finish();
+            }
+        });
+
+        btn_tambah_tandatangan_simpan.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Log.v("log_tag", "Panel Saved");
+                view.setDrawingCacheEnabled(true);
+                mSignature.save(view, StoredPath);
+                dialog.dismiss();
+                finish();
+            }
+        });
+        dialog.show();
     }
 
     public class signature extends View {

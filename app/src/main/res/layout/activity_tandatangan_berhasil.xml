@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@android:color/white"
     tools:context=".activity.verifikasi_tandatangan.PencocokanTandaTangan">
 
     <ProgressBar
@@ -37,32 +37,17 @@
             android:id="@+id/tv_status_verifikasi_ttd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="64dp"
             android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:text="@string/tv_empty_value"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display4"
             android:textColor="@color/colorAccent"
-            app:layout_constraintBottom_toTopOf="@+id/iv_divider_1"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <ImageView
-            android:id="@+id/iv_divider_1"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="72dp"
-            android:layout_marginRight="72dp"
-            app:layout_constraintBottom_toTopOf="@+id/iv_icon_mahasiswa"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:srcCompat="@color/colorPrimary" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_divider_2"
@@ -93,7 +78,7 @@
             android:layout_marginBottom="24dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:background="@android:color/holo_blue_dark"
+            android:background="@android:color/transparent"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:text="Coba Lagi"
@@ -111,11 +96,11 @@
             android:layout_marginBottom="24dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:background="@android:color/holo_blue_dark"
+            android:background="@android:color/transparent"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:text="Menu Utama"
-            android:textColor="@color/colorPrimaryText"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.506"
@@ -128,34 +113,29 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="0dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="0dp"
+            android:text="@string/tv_empty_value"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="31dp"
             app:layout_constraintBottom_toTopOf="@+id/iv_divider_2"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toRightOf="@+id/iv_icon_mahasiswa"
-            app:layout_constraintRight_toRightOf="@+id/iv_divider_2"
-            app:layout_constraintTop_toTopOf="@+id/iv_icon_mahasiswa" />
+            app:layout_constraintRight_toRightOf="@+id/iv_divider_2" />
 
         <ImageView
             android:id="@+id/iv_icon_mahasiswa"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="0dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="@+id/iv_divider_2"
-            app:layout_constraintBottom_toTopOf="@id/iv_divider_2"
-            app:srcCompat="@drawable/ic_id_card" />
+            app:srcCompat="@drawable/ic_id_card"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_user_verifikasi_ttd" />
 
         <TextView
             android:id="@+id/tv_user_detail_ttd"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="0dp"
+            android:text="@string/tv_empty_value"
             android:layout_marginStart="8dp"
             android:textColor="@color/colorPrimaryText"
             app:layout_constraintBottom_toTopOf="@+id/tv_user_verifikasi_ttd"

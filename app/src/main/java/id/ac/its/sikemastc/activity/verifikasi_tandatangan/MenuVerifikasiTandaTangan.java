@@ -135,7 +135,7 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
                         Toast.makeText(MenuVerifikasiTandaTangan.this, "Data tandatangan tidak ditemukan, silahkan sinkronisasi terlebih dahulu", Toast.LENGTH_LONG).show();
                     }
                     else {
-                        Intent intentToSignatureRecognition = new Intent(v.getContext(), VerifikasiTandaTangan.class);
+                        Intent intentToSignatureRecognition = new Intent(mContext, VerifikasiTandaTangan.class);
                         intentToSignatureRecognition.putExtra("identitas_mahasiswa", userTerlogin);
                         intentToSignatureRecognition.putExtra("id_mahasiswa", nrpMahasiswa);
                         intentToSignatureRecognition.putExtra("nama_mahasiswa", namaMahasiswa);
