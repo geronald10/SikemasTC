@@ -49,10 +49,6 @@ import id.ac.its.sikemastc.utilities.VolleySingleton;
 
 import static org.opencv.imgproc.Imgproc.THRESH_BINARY;
 
-/**
- * Created by novitarpl on 5/18/2017.
- */
-
 public class PencocokanTandaTangan extends AppCompatActivity {
 
     private int x1, x2, x3, x4;

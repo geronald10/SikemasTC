@@ -25,8 +25,8 @@
         <item
             android:id="@+id/nav_switch"
             android:icon="@drawable/ic_notifications"
-            android:title="Notifikasi"
-            app:actionLayout="@layout/action_view_switch" />
+            app:actionLayout="@layout/action_view_switch"
+            android:title="Notifikasi" />
         <item
             android:id="@+id/item_logout"
             android:checkable="true"

@@ -90,7 +90,8 @@ public class SikemasDBHelper extends SQLiteOpenHelper {
                         PerkuliahanEntry.KEY_KODE_KELAS + " TEXT NOT NULL, " +
                         PerkuliahanEntry.KEY_HARI + " TEXT NOT NULL, " +
                         PerkuliahanEntry.KEY_MULAI + " TEXT NOT NULL, " +
-                        PerkuliahanEntry.KEY_SELESAI + " TEXT NOT NULL ON CONFLICT REPLACE);";
+                        PerkuliahanEntry.KEY_SELESAI + " TEXT, " +
+                        PerkuliahanEntry.KEY_JUMLAH_PESERTA + " TEXT NOT NULL ON CONFLICT REPLACE);";
         sqLiteDatabase.execSQL(SQL_CREATE_PERKULIAHAN_TABLE);
     }
 
@@ -121,9 +122,10 @@ public class SikemasDBHelper extends SQLiteOpenHelper {
                         PesertaEntry.KEY_NRP_MAHASISWA + " TEXT NOT NULL, " +
                         PesertaEntry.KEY_NAMA_MAHASISWA + " TEXT NOT NULL, " +
                         PesertaEntry.KEY_EMAIL_MAHASISWA + " TEXT, " +
-                        PesertaEntry.KEY_COUNT_HADIR + " TEXT, " +
-                        PesertaEntry.KEY_COUNT_IJIN + " TEXT, " +
-                        PesertaEntry.KEY_COUNT_ABSEN + " TEXT);";
+                        PesertaEntry.KEY_COUNT_HADIR + " TEXT NOT NULL, " +
+                        PesertaEntry.KEY_COUNT_IJIN + " TEXT NOT NULL, " +
+                        PesertaEntry.KEY_COUNT_SAKIT + " TEXT NOT NULL, " +
+                        PesertaEntry.KEY_COUNT_ABSEN + " TEXT NOT NULL ON CONFLICT REPLACE);";
         sqLiteDatabase.execSQL(SQL_CREATE_PESERTA_TABLE);
     }
 

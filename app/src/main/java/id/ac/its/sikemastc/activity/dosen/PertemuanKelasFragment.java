@@ -37,7 +37,8 @@ public class PertemuanKelasFragment extends Fragment implements
             SikemasContract.PertemuanEntry.KEY_HARI,
             SikemasContract.PertemuanEntry.KEY_TANGGAL,
             SikemasContract.PertemuanEntry.KEY_MULAI,
-            SikemasContract.PertemuanEntry.KEY_SELESAI
+            SikemasContract.PertemuanEntry.KEY_SELESAI,
+            SikemasContract.PertemuanEntry.KEY_BERITA_ACARA
     };
 
     public static final int INDEX_ID_PERTEMUAN = 0;
@@ -49,6 +50,7 @@ public class PertemuanKelasFragment extends Fragment implements
     public static final int INDEX_TANGGAL = 6;
     public static final int INDEX_MULAI = 7;
     public static final int INDEX_SELESAI = 8;
+    public static final int INDEX_BERITA_ACARA = 9;
 
     private static final int ID_LIST_PERTEMUAN_LOADER = 70;
     private ProgressBar mLoadingIndicator;
@@ -145,6 +147,9 @@ public class PertemuanKelasFragment extends Fragment implements
             case "3":
                 showAlertDialog(itemId, idPertemuan, pertemuanKe, bundleInfoKelas);
                 break;
+            case "4":
+                showAlertDialog(itemId, idPertemuan, pertemuanKe, bundleInfoKelas);
+                break;
             default:
                 Intent intentToDetailPertemuanKelas = new Intent(getActivity(), DetailPertemuanKelas.class);
                 intentToDetailPertemuanKelas.putExtra("id_pertemuan", idPertemuan);
@@ -183,6 +188,16 @@ public class PertemuanKelasFragment extends Fragment implements
             case "3":
                 builder.setTitle("Tambah Berita Acara")
                         .setMessage("Tambahkan berita acara untuk jadwal pertemuan ke -" + pertemuanKe + " pada mata kuliah " + infoKelas + "?")
+                        .setNegativeButton("Batal", null)
+                        .setPositiveButton("Lanjutkan", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                intentToBeritaAcaraActivity(idToPenjadwalan);
+                            }
+                        });
+                break;
+            case "4":
+                builder.setTitle("Ubah Berita Acara")
+                        .setMessage("Ubah berita acara untuk jadwal pertemuan ke -" + pertemuanKe + " pada mata kuliah " + infoKelas + "?")
                         .setNegativeButton("Batal", null)
                         .setPositiveButton("Lanjutkan", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {

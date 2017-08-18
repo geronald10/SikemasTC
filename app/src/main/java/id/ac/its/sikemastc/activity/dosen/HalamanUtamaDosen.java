@@ -290,6 +290,7 @@ public class HalamanUtamaDosen extends BaseActivity implements
                                         break;
                                 }
                             }
+                            getContentResolver().notifyChange(SikemasContract.PerkuliahanEntry.CONTENT_URI, null);
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(),

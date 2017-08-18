@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.dosen.PertemuanKelasFragment;
 import id.ac.its.sikemastc.utilities.SikemasDateUtils;
@@ -55,6 +57,7 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
         String mulai = SikemasDateUtils.formatTime(mCursor.getString(PertemuanKelasFragment.INDEX_MULAI));
         String selesai = SikemasDateUtils.formatTime(mCursor.getString(PertemuanKelasFragment.INDEX_SELESAI));
         String waktuPertemuan = "mulai: " + mulai + "\n" + "selesai: " + selesai;
+        String beritaAcara = mCursor.getString(PertemuanKelasFragment.INDEX_BERITA_ACARA);
 
         switch (statusDosen) {
             case "1":
@@ -69,7 +72,15 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
                 pertemuanAdapterViewHolder.ivStatusKehadiran1.setImageResource(R.color.colorStatusAbsen);
                 pertemuanAdapterViewHolder.tvStatusPertemuan.setText(R.string.status_selesai);
                 pertemuanAdapterViewHolder.clPenjadwalanUlang.setVisibility(View.GONE);
-                pertemuanAdapterViewHolder.clBeritaAcara.setVisibility(View.VISIBLE);
+                if (beritaAcara.equals("null")) {
+                    pertemuanAdapterViewHolder.clBeritaAcara.setVisibility(View.VISIBLE);
+                    pertemuanAdapterViewHolder.clBeritaAcaraContent.setVisibility(View.GONE);
+                }
+                else {
+                    pertemuanAdapterViewHolder.clBeritaAcaraContent.setVisibility(View.VISIBLE);
+                    pertemuanAdapterViewHolder.tvBeritaAcara.setText(beritaAcara);
+                    pertemuanAdapterViewHolder.clBeritaAcara.setVisibility(View.GONE);
+                }
                 break;
             default:
                 pertemuanAdapterViewHolder.ivStatusLabel.setImageResource(R.color.colorStatusIdle);
@@ -100,14 +111,17 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
 
         private ConstraintLayout clPenjadwalanUlang;
         private ConstraintLayout clBeritaAcara;
+        private ConstraintLayout clBeritaAcaraContent;
         private TextView tvPertemuanKe;
         private TextView tvTanggalPertemuan;
         private TextView tvWaktuPertemuan;
         private TextView tvStatusPertemuan;
+        private TextView tvBeritaAcara;
         private ImageView ivStatusKehadiran1;
         private ImageView ivStatusLabel;
         private Button btnSementara;
         private Button btnTambahBerita;
+        private Button btnUbahBerita;
 
         public PertemuanAdapterViewHolder(View itemView) {
             super(itemView);
@@ -121,9 +135,13 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
             btnTambahBerita = (Button) itemView.findViewById(R.id.btn_tambah_berita_acara);
             clPenjadwalanUlang = (ConstraintLayout) itemView.findViewById(R.id.cl_penjadwalan_ulang);
             clBeritaAcara = (ConstraintLayout) itemView.findViewById(R.id.cl_tambah_berita_acara);
+            clBeritaAcaraContent = (ConstraintLayout) itemView.findViewById(R.id.cl_berita_acara);
+            tvBeritaAcara = (TextView) itemView.findViewById(R.id.tv_berita_acara_content);
+            btnUbahBerita = (Button) itemView.findViewById(R.id.btn_ubah_berita_acara);
 
             btnSementara.setOnClickListener(this);
             btnTambahBerita.setOnClickListener(this);
+            btnUbahBerita.setOnClickListener(this);
             itemView.setOnClickListener(this);
         }
 
@@ -140,6 +158,9 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
                     break;
                 case R.id.btn_tambah_berita_acara:
                     mClickHandler.onClick("3", idPertemuan, null, pertemuanKe);
+                    break;
+                case R.id.btn_ubah_berita_acara:
+                    mClickHandler.onClick("4", idPertemuan, null, pertemuanKe);
                     break;
                 default:
                     mClickHandler.onClick("0", idPertemuan, idKelas, pertemuanKe);

@@ -48,10 +48,11 @@ public class SikemasContract {
         public static final String KEY_KODE_MK = "kode_matakuliah";
         public static final String KEY_NAMA_MK = "nama_kelas";
         public static final String KEY_KODE_KELAS = "kode_kelas";
-        public static final String KEY_NAMA_RUANGAN = "nama_ruangan";
         public static final String KEY_HARI = "hari";
         public static final String KEY_MULAI = "mulai";
         public static final String KEY_SELESAI = "selesai";
+        public static final String KEY_NAMA_RUANGAN = "nama";
+        public static final String KEY_JUMLAH_PESERTA = "jumlah_peserta";
 
         public static Uri buildPerkuliahanUriPerkuliahanId(String perkuliahanId) {
             return CONTENT_URI.buildUpon()
@@ -136,6 +137,7 @@ public class SikemasContract {
         public static final String KEY_EMAIL_MAHASISWA = "email";
         public static final String KEY_COUNT_HADIR = "masuk";
         public static final String KEY_COUNT_IJIN = "ijin";
+        public static final String KEY_COUNT_SAKIT = "sakit";
         public static final String KEY_COUNT_ABSEN = "absen";
     }
 

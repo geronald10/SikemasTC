@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
@@ -68,14 +69,21 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        app:srcCompat="@drawable/ic_schedule"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_kelas_label" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_kelas_label"
+        app:srcCompat="@drawable/ic_schedule" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/half_guideline"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -85,19 +93,12 @@
         android:id="@+id/iv_clock"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginBottom="0dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="0dp"
-        app:srcCompat="@drawable/ic_time"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_kuliah"
-        app:layout_constraintHorizontal_bias="0.888"
+        android:layout_marginTop="8dp"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
-        app:layout_constraintRight_toLeftOf="@+id/tv_ruang_kuliah"
-        app:layout_constraintTop_toTopOf="@+id/tv_waktu_kuliah" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_ruang_kuliah"
+        app:srcCompat="@drawable/ic_time" />
 
     <TextView
         android:id="@+id/tv_mata_kuliah"
@@ -107,7 +108,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Pemrograman Perangkat Bergerak"
         android:textColor="@android:color/white"
@@ -133,16 +134,17 @@
 
     <TextView
         android:id="@+id/tv_ruang_kuliah"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-light"
-        android:text="IF-105a"
+        android:gravity="center"
+        android:text="Lab Pemrogragraman"
         android:textColor="@android:color/white"
-        android:textSize="36sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
         app:layout_constraintRight_toRightOf="parent"
@@ -152,21 +154,23 @@
         android:id="@+id/tv_waktu_kuliah"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="0dp"
         android:fontFamily="sans-serif-light"
-        android:gravity="center"
-        android:text="07.30-10.00"
+        android:gravity="start"
+        android:text="07.30 AM - 10.00 AM"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_ruang_kuliah"
-        app:layout_constraintRight_toRightOf="@+id/tv_ruang_kuliah"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ruang_kuliah" />
+        app:layout_constraintLeft_toRightOf="@+id/iv_clock"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_clock"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <TextView
         android:id="@+id/tv_kelas_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="Kelas"
@@ -180,7 +184,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="0dp"
         android:text="A"
@@ -226,7 +229,7 @@
         android:visibility="gone"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/guideline"
+        app:layout_constraintRight_toLeftOf="@+id/half_guideline"
         app:layout_constraintTop_toBottomOf="@+id/tv_mata_kuliah" />
 
     <Button
@@ -244,7 +247,7 @@
         android:theme="@style/PerkuliahanButtonEndKuliahTheme"
         android:visibility="gone"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline"
+        app:layout_constraintLeft_toLeftOf="@+id/half_guideline"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_mata_kuliah" />
 

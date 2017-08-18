@@ -31,6 +31,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -130,6 +132,15 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
                                     pesertaPerkuliahanList.add(pesertaPerkuliahan);
                                 }
                             }
+
+                            // Sorting
+                            Collections.sort(pesertaPerkuliahanList, new Comparator<PesertaPerkuliahan>() {
+                                @Override
+                                public int compare(PesertaPerkuliahan peserta1, PesertaPerkuliahan peserta2) {
+                                    return peserta1.getNrpMahasiswa().compareTo(peserta2.getNrpMahasiswa());
+                                }
+                            });
+
                             mKehadiranPerkuliahanAdapter.notifyDataSetChanged();
                             showPesertaPerkuliahanDataView();
                             Toast.makeText(mContext, "Berhasil Memuat Peserta Perkuliahan", Toast.LENGTH_LONG).show();

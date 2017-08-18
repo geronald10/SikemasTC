@@ -1,16 +1,21 @@
 package id.ac.its.sikemastc.activity.verifikasi_tandatangan;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,17 +36,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import id.ac.its.sikemastc.R;
+import id.ac.its.sikemastc.data.SikemasSessionManager;
 import id.ac.its.sikemastc.utilities.InputStreamVolleyRequest;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
 import id.ac.its.sikemastc.utilities.VolleySingleton;
 
-/**
- * Created by novitarpl on 5/16/2017.
- */
-
 public class MenuVerifikasiTandaTangan extends AppCompatActivity{
+
     private final String TAG = MenuVerifikasiTandaTangan.class.getSimpleName();
 
+    private SharedPreferences flagStatus;
+    private Context mContext;
     private Toolbar toolbar;
     private String userTerlogin;
     private String nrpMahasiswa;
@@ -51,12 +56,22 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
     private String StoredPath;
     private ProgressDialog progressDialog;
     private ArrayList<String> imageUrlList;
+    private SikemasSessionManager session;
+    private Button btnKelolaDataSetTandaTangan;
+    private Button btnVerifikasiTandaTangan;
+    private ImageView ivStatusData;
+    private TextView tvStatusData;
     File dir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         setContentView(R.layout.activity_menu_verifikasi_tandatangan);
+
+        mContext = this;
+        session = new SikemasSessionManager(this);
+        flagStatus = getSharedPreferences("status_file_ttd_flag", 0);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Verifikasi Tanda Tangan");
@@ -73,17 +88,16 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
         });
 
         Intent intent = getIntent();
-        nrpMahasiswa = intent.getStringExtra("nrp_mahasiswa");
-        namaMahasiswa = intent.getStringExtra("nama_mahasiswa");
-        idPerkuliahan =intent.getStringExtra("id_perkuliahan");
-     //   Log.v("log_tag", "id perkuliahan di menu verifikasi -> " + idPerkuliahan);
+        HashMap<String, String> userDetail = session.getUserDetails();
+        nrpMahasiswa = userDetail.get(SikemasSessionManager.KEY_USER_ID);
+        namaMahasiswa = userDetail.get(SikemasSessionManager.KEY_USER_NAME);
+        idPerkuliahan = intent.getStringExtra("id_perkuliahan");
         userTerlogin= nrpMahasiswa + " - " + namaMahasiswa;
 
         DIRECTORY = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/signatureverification/";
         StoredPath = DIRECTORY + userTerlogin;
         Log.d("storepath->", StoredPath);
         dir = new File(StoredPath);
-
 
         // Progress Dialog
         progressDialog = new ProgressDialog(this);
@@ -92,36 +106,37 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
         TextView tvUserTerlogin = (TextView) findViewById(R.id.tv_user_detail);
         tvUserTerlogin.setText(userTerlogin);
 
-        Button btnKelolaDataSetTandaTangan = (Button) findViewById(R.id.btn_kelola_data_set_tandatangan);
-        Button btnVerifikasiTandaTangan = (Button) findViewById(R.id.btn_verifikasi_tandatangan);
+        ivStatusData = (ImageView) findViewById(R.id.iv_status_data_ttd);
+        tvStatusData = (TextView) findViewById(R.id.tv_status_data_ttd);
+        btnKelolaDataSetTandaTangan = (Button) findViewById(R.id.btn_kelola_data_set_tandatangan);
+        btnVerifikasiTandaTangan = (Button) findViewById(R.id.btn_verifikasi_tandatangan);
 
         btnKelolaDataSetTandaTangan.setOnClickListener(operate);
         btnVerifikasiTandaTangan.setOnClickListener(operate);
-//        callDetectionView.setOnClickListener(operate);
-//        callTraining.setOnClickListener(operate);
+
+        sinkronisasiDatasetTandaTangan(nrpMahasiswa);
     }
 
     View.OnClickListener operate = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
             switch (v.getId()) {
                 case R.id.btn_kelola_data_set_tandatangan:
                     if(dir.exists()){
-                        Toast.makeText(MenuVerifikasiTandaTangan.this, "Dataset Tanda Tangan Sudah Ada", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MenuVerifikasiTandaTangan.this, "Data Tanda Tangan Sudah Ada", Toast.LENGTH_LONG).show();
                     }
                     else {
-                        SinkronisasiDatasetTandaTangan(nrpMahasiswa);
+                        sinkronisasiDatasetTandaTangan(nrpMahasiswa);
                     }
                     break;
 
                 case R.id.btn_verifikasi_tandatangan:
                     if(!dir.exists()) {
-                        Toast.makeText(MenuVerifikasiTandaTangan.this, "Dataset Kosong, Silahkan Tambah Dataset", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MenuVerifikasiTandaTangan.this, "Data tandatangan tidak ditemukan, silahkan sinkronisasi terlebih dahulu", Toast.LENGTH_LONG).show();
                     }
                     else {
-                        Intent intentToSignatureRecognition = new Intent(v.getContext(), VerifikasiTandaTangan.class);
-                        intentToSignatureRecognition.putExtra("identitas_mahasiswa", nrpMahasiswa + " - " + namaMahasiswa);
+                        Intent intentToSignatureRecognition = new Intent(mContext, VerifikasiTandaTangan.class);
+                        intentToSignatureRecognition.putExtra("identitas_mahasiswa", userTerlogin);
                         intentToSignatureRecognition.putExtra("id_mahasiswa", nrpMahasiswa);
                         intentToSignatureRecognition.putExtra("nama_mahasiswa", namaMahasiswa);
                         intentToSignatureRecognition.putExtra("id_perkuliahan", idPerkuliahan);
@@ -133,10 +148,10 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
     };
 
     //unduh dataset
-    private void SinkronisasiDatasetTandaTangan(final String userId) {
+    private void sinkronisasiDatasetTandaTangan(final String userId) {
         //Showing the progress dialog
         imageUrlList = new ArrayList<>();
-        progressDialog.setMessage("Pengecekan Dataset Server... ");
+        progressDialog.setMessage("Pengecekan Data Server... ");
         progressDialog.show();
         Log.d(TAG, "masuk fungsi sinkronisasi");
 
@@ -157,12 +172,10 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
                                 }
                                 progressDialog.dismiss();
                                 downloadImageFromUrl();
-                                Toast.makeText(MenuVerifikasiTandaTangan.this, "Dataset ditemukan",
-                                        Toast.LENGTH_SHORT).show();
                             } else {
                                 progressDialog.dismiss();
                                 Toast.makeText(MenuVerifikasiTandaTangan.this, "Dataset tidak ditemukan, " +
-                                        "Anda belum mendaftarkan Tanda Tangan Anda", Toast.LENGTH_SHORT).show();
+                                        "Anda belum mendaftarkan Tandatangan Anda", Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (JSONException e) {
@@ -195,7 +208,7 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
     // Download image from url
     private void downloadImageFromUrl() {
         //Showing the progress dialog
-        progressDialog.setMessage("Unduh Dataset... ");
+        progressDialog.setMessage("Unduh data wajah... ");
         progressDialog.show();
 
         for (int i = 0; i < imageUrlList.size(); i++) {
@@ -220,9 +233,16 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
                                     outputStream.write(response);
                                     outputStream.close();
                                     if ((index + 1) == imageUrlList.size()) {
+                                        flagStatus.edit().putBoolean("status_file_ttd_flag", true).apply();
+                                        checkDataSetStatus();
                                         progressDialog.dismiss();
                                         Toast.makeText(getApplicationContext(), "Berhasil melakukan unduh dataset",
                                                 Toast.LENGTH_SHORT).show();
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                            }
+                                        });
                                     }
                                 }
                             } catch (Exception e) {
@@ -245,5 +265,22 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
         }
     }
 
-
+    private void checkDataSetStatus() {
+        boolean flag = flagStatus.getBoolean("status_file_ttd_flag", false);
+        if (!flag) {
+            btnKelolaDataSetTandaTangan.setVisibility(View.VISIBLE);
+            ivStatusData.setImageResource(R.drawable.ic_error_outline);
+            tvStatusData.setText("data tandatangan tidak ditemukan");
+            btnVerifikasiTandaTangan.setCompoundDrawablesWithIntrinsicBounds(
+                    ContextCompat.getDrawable(mContext, R.drawable.ic_error_outline), null, null, null);
+            btnVerifikasiTandaTangan.setTextColor(ContextCompat.getColor(mContext, R.color.colorSecondaryText));
+        } else {
+            btnKelolaDataSetTandaTangan.setVisibility(View.GONE);
+            ivStatusData.setImageResource(R.drawable.ic_verified_user);
+            tvStatusData.setText("data tandatangan ditemukan");
+            btnVerifikasiTandaTangan.setCompoundDrawablesWithIntrinsicBounds(
+                    ContextCompat.getDrawable(mContext, R.drawable.ic_verified_user), null, null, null);
+            btnVerifikasiTandaTangan.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimaryText));
+        }
+    }
 }

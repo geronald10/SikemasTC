@@ -110,7 +110,10 @@ public class SikemasJsonUtils {
             String kodeMk = kelas.getString("kode_matakuliah");
             String kelasMk = kelas.getString("kode_kelas");
             String namaMk = kelas.getString("nama_kelas");
-            String ruangMK = kelas.getString("nama_ruangan");
+            String jumlahPeserta = kelas.getString("jumlah_peserta");
+
+            JSONObject ruangan = detailKelas.getJSONObject("ruangan");
+            String ruangMK = ruangan.getString("nama");
 
             ContentValues perkuliahanDosenValue = new ContentValues();
             perkuliahanDosenValue.put(SikemasContract.PerkuliahanEntry.KEY_ID_PERKULIAHAN, idListJadwal);
@@ -127,19 +130,7 @@ public class SikemasJsonUtils {
             perkuliahanDosenValue.put(SikemasContract.PerkuliahanEntry.KEY_NAMA_RUANGAN, ruangMK);
             perkuliahanDosenValue.put(SikemasContract.PerkuliahanEntry.KEY_KODE_SEMESTER, kodeSemester);
             perkuliahanDosenValue.put(SikemasContract.PerkuliahanEntry.KEY_KODE_MK, kodeMk);
-
-            Log.d("idListJadwal", idListJadwal);
-            Log.d("hariperkuliahan", hariPerkuliahan);
-            Log.d("tanggalperkuliahan", tanggalPerkuliahan);
-            Log.d("perkuliahanke", perkuliahanKe);
-            Log.d("statusperkuliahan", statusDosen);
-            Log.d("mulai", waktuMulai);
-            Log.d("selesai", waktuSelesai);
-            Log.d("nama", namaMk);
-            Log.d("kelas", kelasMk);
-            Log.d("ruang", ruangMK);
-            Log.d("semester", kodeSemester);
-            Log.d("kodeMK", kodeMk);
+            perkuliahanDosenValue.put(SikemasContract.PerkuliahanEntry.KEY_JUMLAH_PESERTA, jumlahPeserta);
 
             perkuliahanDosenContentValues[i] = perkuliahanDosenValue;
         }
@@ -276,6 +267,7 @@ public class SikemasJsonUtils {
                 String idPeserta = pivot.getString("id_mahasiswa");
                 String countHadir = pivot.getString("masuk");
                 String countIjin = pivot.getString("ijin");
+                String countSakit = pivot.getString("sakit");
                 String countAbsen = pivot.getString("absen");
 
                 ContentValues kelasDosenPesertaValues = new ContentValues();
@@ -286,6 +278,7 @@ public class SikemasJsonUtils {
                 kelasDosenPesertaValues.put(SikemasContract.PesertaEntry.KEY_EMAIL_MAHASISWA, emailPeserta);
                 kelasDosenPesertaValues.put(SikemasContract.PesertaEntry.KEY_COUNT_HADIR, countHadir);
                 kelasDosenPesertaValues.put(SikemasContract.PesertaEntry.KEY_COUNT_IJIN, countIjin);
+                kelasDosenPesertaValues.put(SikemasContract.PesertaEntry.KEY_COUNT_SAKIT, countSakit);
                 kelasDosenPesertaValues.put(SikemasContract.PesertaEntry.KEY_COUNT_ABSEN, countAbsen);
 
                 kelasDosenPesertaContentValues[index] = kelasDosenPesertaValues;
@@ -411,9 +404,7 @@ public class SikemasJsonUtils {
             String kodeMk = kelas.getString("kode_matakuliah");
             String kelasMk = kelas.getString("kode_kelas");
             String namaMk = kelas.getString("nama_kelas");
-
-            JSONObject ruangan = detailKelas.getJSONObject("ruangan");
-            String namaRuangan = ruangan.getString("nama");
+            String ruangMK = kelas.getString("nama_ruangan");
 
             ContentValues perkuliahanMahasiswaValue = new ContentValues();
             perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_ID_PERKULIAHAN, idListJadwal);
@@ -427,7 +418,7 @@ public class SikemasJsonUtils {
             perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_SELESAI, waktuSelesai);
             perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_NAMA_MK, namaMk);
             perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_KODE_KELAS, kelasMk);
-            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_NAMA_RUANGAN, namaRuangan);
+            perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_NAMA_RUANGAN, ruangMK);
             perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_KODE_SEMESTER, kodeSemester);
             perkuliahanMahasiswaValue.put(SikemasContract.PerkuliahanEntry.KEY_KODE_MK, kodeMk);
 

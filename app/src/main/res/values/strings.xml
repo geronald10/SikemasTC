@@ -74,7 +74,7 @@
     <string name="recognition_training_btn_label">Recognition Training</string>
     <string name="detection_view_btn_label">Detection View</string>
     <string name="settings_btn_label">Settings</string>
-    <string name="verification_view_btn_label">VERIFIKASI KEHADIRAN</string>
+    <string name="verification_view_btn_label">Verifikasi Wajah</string>
     <string name="menu_verifikasi_wajah_title">Mahasiswa Terlogin</string>
     <string name="mahasiswa_terlogin_empty">NRP - Nama</string>
     <string name="now_date_label">now date</string>
@@ -83,7 +83,7 @@
     <string name="kelola_data_set_wajah_btn_label">Kelola Data Wajah</string>
     <string name="training_data_set_btn_label">Latih Data Wajah</string>
     <string name="tambah_data_set_wajah">Daftarkan Data Wajah</string>
-    <string name="sinkronisasi_data_set_wajah">Unduh Data Wajah</string>
+    <string name="sinkronisasi_data_set_wajah">Sinkronisasi</string>
     <string name="wajah_terambil_label">Wajah Terambil</string>
     <string name="menambah_data_set_wajah_dari_message">Menambah data wajah dari:</string>
     <string name="training_data_set_wajah_btn_label">Latih Data Wajah</string>
@@ -162,4 +162,5 @@
     <string name="tambahkan_btn">Tambahkan</string>
     <string name="pertemuan_ke_caption">Pertemuan ke-</string>
     <string name="tambah_berita_acara_string">Tambah Berita Acara</string>
+    <string name="verifikasi_tanda_tangan_label">Verifikasi Tandatangan</string>
 </resources>
