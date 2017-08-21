@@ -112,6 +112,7 @@ public class ListKelasMahasiswa extends BaseActivity implements
 
     @Override
     public Loader<Cursor> onCreateLoader(int loaderId, Bundle args) {
+        Log.d(TAG, "masuk loader jadwal kelas");
         switch (loaderId) {
             case ID_LIST_KELAS_MAHASISWA_LOADER:
                 Log.d("TAG", "masuk on create loader");
@@ -131,17 +132,22 @@ public class ListKelasMahasiswa extends BaseActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        Log.d(TAG, "masuk on load finished");
         mKelasMahasiswaAdapter.swapCursor(data);
 
         if (mPosition == RecyclerView.NO_POSITION)
             mPosition = 0;
         mRecyclerView.smoothScrollToPosition(mPosition);
 
-        if (data.getCount() != 0)
+        Log.d(TAG, String.valueOf(data.getCount()));
+        if (data.getCount() != 0) {
+            mKelasMahasiswaAdapter.notifyDataSetChanged();
             showKelasDataView();
-        else
+        }
+        else {
             mKelasMahasiswaAdapter.notifyDataSetChanged();
             showEmptyDataView();
+        }
     }
 
     @Override

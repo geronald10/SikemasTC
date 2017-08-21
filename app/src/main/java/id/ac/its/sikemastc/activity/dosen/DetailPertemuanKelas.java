@@ -242,7 +242,7 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
                         selectedItem[0] = Arrays.asList(statusKehadiran).get(i);
                         switch (selectedItem[0]) {
                             case "Hadir":
-                                kodeKehadiran[0] = "M";
+                                kodeKehadiran[0] = "H";
                                 break;
                             case "Ijin":
                                 kodeKehadiran[0] = "I";

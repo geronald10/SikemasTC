@@ -31,7 +31,7 @@ import id.ac.its.sikemastc.sync.SikemasSyncUtils;
 
 public class ListPerkuliahanFragment extends Fragment implements
         LoaderManager.LoaderCallbacks<Cursor>,
-        PerkuliahanMahasiswaAdapter.PerkuliahanMahasiswaAdapterOnClickHandler{
+        PerkuliahanMahasiswaAdapter.PerkuliahanMahasiswaAdapterOnClickHandler {
 
     private final String TAG = ListPerkuliahanFragment.class.getSimpleName();
     public static int jmlPerkuliahan;
@@ -111,7 +111,7 @@ public class ListPerkuliahanFragment extends Fragment implements
 
         showLoading();
 
-        getLoaderManager().initLoader(ID_LIST_PERKULIAHAN_MAHASISWA_LOADER, null, this);
+        getActivity().getSupportLoaderManager().initLoader(ID_LIST_PERKULIAHAN_MAHASISWA_LOADER, null, this);
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -150,8 +150,7 @@ public class ListPerkuliahanFragment extends Fragment implements
             mPerkuliahanMahasiswaAdapter.notifyDataSetChanged();
             jmlPerkuliahan = data.getCount();
             showPerkuliahanDataView();
-        }
-        else {
+        } else {
             mPerkuliahanMahasiswaAdapter.notifyDataSetChanged();
             jmlPerkuliahan = data.getCount();
             showEmptyView();
@@ -196,6 +195,6 @@ public class ListPerkuliahanFragment extends Fragment implements
         if (!mSwipeRefreshLayout.isRefreshing())
             showLoading();
         SikemasSyncUtils.startImmediatePerkuliahanMahasiswaSync(getContext());
-        getLoaderManager().initLoader(ID_LIST_PERKULIAHAN_MAHASISWA_LOADER, null, this);
+        getActivity().getSupportLoaderManager().initLoader(ID_LIST_PERKULIAHAN_MAHASISWA_LOADER, null, this);
     }
 }

@@ -25,7 +25,7 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
 
     // interface that receives onClick message
     public interface PerkuliahanAktifOnClickHandler {
-        void onClick(int buttonId, String idPerkuliahan, String kodeRuangan, String statusKehadiran);
+        void onClick(int buttonId, String idPerkuliahan, String decryptedQR, String statusKehadiran);
     }
 
     public PerkuliahanAktifAdapter(Context context, List<Perkuliahan> perkuliahanList,
@@ -122,13 +122,13 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
                 case R.id.btn_verifikasi_tandatangan:
                     mClickHandler.onClick(R.id.btn_verifikasi_tandatangan,
                             perkuliahanAktifList.get(adapterPosition).getIdPerkuliahan(),
-                            perkuliahanAktifList.get(adapterPosition).getKodeRuangan(),
+                            perkuliahanAktifList.get(adapterPosition).getDecryptedQR(),
                             perkuliahanAktifList.get(adapterPosition).getStatusKehadiran());
                     break;
                 case R.id.btn_verifikasi_wajah:
                     mClickHandler.onClick(R.id.btn_verifikasi_wajah,
                             perkuliahanAktifList.get(adapterPosition).getIdPerkuliahan(),
-                            perkuliahanAktifList.get(adapterPosition).getKodeRuangan(),
+                            perkuliahanAktifList.get(adapterPosition).getDecryptedQR(),
                             perkuliahanAktifList.get(adapterPosition).getStatusKehadiran());
                     break;
                 default:

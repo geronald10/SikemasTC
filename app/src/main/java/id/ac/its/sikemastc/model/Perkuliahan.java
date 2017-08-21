@@ -17,6 +17,7 @@ public class Perkuliahan {
     private String statusDosen;
     private String statusPerkuliahan;
     private String statusKehadiran;
+    private String decryptedQR;
 
     public Perkuliahan(String idPerkuliahan, String kodeRuangan, String kodeMk, String kodeSemester, String namaMK,
                        String kelasMK, String ruangMK, String pertemuanKe, String hari,
@@ -40,7 +41,7 @@ public class Perkuliahan {
     public Perkuliahan(String idPerkuliahan, String kodeRuangan, String kodeMk, String kodeSemester, String namaMK,
                        String kelasMK, String ruangMK, String pertemuanKe, String hari,
                        String waktuMulai, String waktuSelesai, String statusDosen,
-                       String statusPerkuliahan, String statusKehadiran) {
+                       String statusPerkuliahan, String statusKehadiran, String decryptedQR) {
         this.idPerkuliahan = idPerkuliahan;
         this.kodeRuangan = kodeRuangan;
         this.kodeMk = kodeMk;
@@ -55,6 +56,7 @@ public class Perkuliahan {
         this.statusDosen = statusDosen;
         this.statusPerkuliahan = statusPerkuliahan;
         this.statusKehadiran = statusKehadiran;
+        this.decryptedQR = decryptedQR;
     }
 
     public Perkuliahan(String idPerkuliahan, String kodeMk, String namaMk, String kelasMk,
@@ -69,6 +71,18 @@ public class Perkuliahan {
         this.tanggal = tanggal;
         this.waktuMulai = waktuMulai;
         this.waktuSelesai = waktuSelesai;
+    }
+
+    public void setStatusKehadiran(String statusKehadiran) {
+        this.statusKehadiran = statusKehadiran;
+    }
+
+    public String getDecryptedQR() {
+        return decryptedQR;
+    }
+
+    public void setDecryptedQR(String decryptedQR) {
+        this.decryptedQR = decryptedQR;
     }
 
     public String getStatusKehadiran() {

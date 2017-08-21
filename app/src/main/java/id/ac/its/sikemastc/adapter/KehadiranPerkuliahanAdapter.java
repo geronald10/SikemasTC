@@ -54,7 +54,7 @@ public class KehadiranPerkuliahanAdapter extends RecyclerView.Adapter<KehadiranP
         statusKehadiranAdapterViewHolder.tvNamaPeserta.setText(namaPeserta);
 
         switch (statusKehadiran) {
-            case "M":
+            case "H":
                 statusKehadiranAdapterViewHolder.ivStatusKehadiran.setImageResource(R.drawable.circle_green);
                 break;
             case "I":
