@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,6 +55,7 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
     private RecyclerView mRecyclerView;
     private List<PesertaPerkuliahan> pesertaPerkuliahanList;
     private KehadiranPerkuliahanAdapter mKehadiranPerkuliahanAdapter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     private String idPertemuan;
     private String idKelas;
@@ -71,6 +74,7 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
         idKelas = intentExtra.getStringExtra("id_kelas");
         pertemuanKe = intentExtra.getStringExtra("pertemuan_ke");
 
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_detail_pertemuan);
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
@@ -83,6 +87,10 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
             toolbar.setElevation(10f);
         }
 
+        if (!mSwipeRefreshLayout.isRefreshing()) {
+            showLoading();
+        }
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +101,12 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
+        mSwipeRefreshLayout.setColorSchemeColors(
+                ContextCompat.getColor(this, R.color.swipe_color_1),
+                ContextCompat.getColor(this, R.color.swipe_color_2),
+                ContextCompat.getColor(this, R.color.swipe_color_3),
+                ContextCompat.getColor(this, R.color.swipe_color_4));
+
         pesertaPerkuliahanList = new ArrayList<>();
         getPesertaKehadiranList(idPertemuan);
 
@@ -100,6 +114,13 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
         mRecyclerView.setHasFixedSize(true);
         mKehadiranPerkuliahanAdapter = new KehadiranPerkuliahanAdapter(this, pesertaPerkuliahanList);
         mRecyclerView.setAdapter(mKehadiranPerkuliahanAdapter);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initiateRefresh();
+            }
+        });
     }
 
     public void getPesertaKehadiranList(final String kodePerkuliahan) {
@@ -182,8 +203,7 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
                             JSONObject jsonObject = new JSONObject(response);
                             String code = jsonObject.getString("code");
                             String status = jsonObject.getString("status");
-                            mKehadiranPerkuliahanAdapter.notifyDataSetChanged();
-                            Toast.makeText(mContext, "Berhasil Memuat Peserta Perkuliahan", Toast.LENGTH_LONG).show();
+                            initiateRefresh();
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -216,6 +236,9 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
     }
 
     private void showPesertaPerkuliahanDataView() {
+        if (mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
         mLoadingIndicator.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
     }
@@ -283,5 +306,12 @@ public class DetailPertemuanKelas extends AppCompatActivity implements
             default:
                 break;
         }
+    }
+
+    private void initiateRefresh() {
+        Log.d(TAG, "initiate Refresh");
+        if (!mSwipeRefreshLayout.isRefreshing())
+            showLoading();
+        getPesertaKehadiranList(idPertemuan);
     }
 }

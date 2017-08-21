@@ -200,16 +200,16 @@ public class MainPerkuliahanFragment extends Fragment implements
 
             case R.id.btn_verifikasi_wajah:
                 if (!statusKehadiran.equals("H")) {
-//                    if (decryptedQR.equals(this.resultQR)) {
+                    if (decryptedQR.equals(this.resultQR)) {
                         Intent intentToVerifikasiWajah = new Intent(getActivity(), VerifikasiWajahMenuActivity.class);
                         intentToVerifikasiWajah.putExtra("id_perkuliahan", idPerkuliahan);
                         intentToVerifikasiWajah.putExtra("nrp_mahasiswa", bundleIdUser);
                         intentToVerifikasiWajah.putExtra("nama_mahasiswa", bundleNamaUser);
                         startActivity(intentToVerifikasiWajah);
-//                    } else {
-//                        Toast.makeText(getContext(), "Pastikan Anda berada pada ruangan yang benar atau " +
-//                                "lakukan pemindaian ulang QR Code", Toast.LENGTH_SHORT).show();
-//                    }
+                    } else {
+                        Toast.makeText(getContext(), "Pastikan Anda berada pada ruangan yang benar atau " +
+                                "lakukan pemindaian ulang QR Code", Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 } else
                     Toast.makeText(getContext(), "Anda sudah melakukan presensi pada perkuliahan ini",
