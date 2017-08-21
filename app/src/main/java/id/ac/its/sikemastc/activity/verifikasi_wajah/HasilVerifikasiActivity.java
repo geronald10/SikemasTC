@@ -37,6 +37,8 @@ public class HasilVerifikasiActivity extends AppCompatActivity {
     private String idPerkuliahan;
     private ProgressBar mLoadingIndicator;
     private ConstraintLayout clLayoutHasilVerifikasi;
+    private TextView tvStatusVerifikasi;
+    private TextView tvKeteranganVerifikasi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,8 @@ public class HasilVerifikasiActivity extends AppCompatActivity {
         clLayoutHasilVerifikasi = (ConstraintLayout) findViewById(R.id.cl_hasil_verifikasi);
 
         TextView tvUserDetil = (TextView) findViewById(R.id.tv_user_detil);
+        tvStatusVerifikasi = (TextView) findViewById(R.id.tv_status_verifikasi);
+        tvKeteranganVerifikasi = (TextView) findViewById(R.id.tv_keterangan_verifikasi);
         tvUserDetil.setText(identitasMahasiswa);
 
         Button btnMenuUtama = (Button) findViewById(R.id.btn_menu_utama);
@@ -70,9 +74,6 @@ public class HasilVerifikasiActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_coba_lagi:
-//                    Intent intentToMenuVerifikasi = new Intent(HasilVerifikasiActivity.this, VerifikasiWajahMenuActivity.class);
-//                    intentToMenuVerifikasi.putExtra("id_perkuliahan", idPerkuliahan);
-//                    startActivity(intentToMenuVerifikasi);
                     finish();
                     break;
                 case R.id.btn_menu_utama:
@@ -108,6 +109,7 @@ public class HasilVerifikasiActivity extends AppCompatActivity {
                 Log.e(TAG, "Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
+                showHasilVerifikasiError();
             }
         }) {
             @Override
@@ -127,12 +129,21 @@ public class HasilVerifikasiActivity extends AppCompatActivity {
     }
 
     private void showHasilVerifikasiDataView() {
-        mLoadingIndicator.setVisibility(View.INVISIBLE);
+        mLoadingIndicator.setVisibility(View.GONE);
+        tvStatusVerifikasi.setText("OK");
+        tvKeteranganVerifikasi.setText("Berhasil melakukan presensi wajah");
+        clLayoutHasilVerifikasi.setVisibility(View.VISIBLE);
+    }
+
+    private void showHasilVerifikasiError() {
+        mLoadingIndicator.setVisibility(View.GONE);
+        tvStatusVerifikasi.setText("GAGAL");
+        tvKeteranganVerifikasi.setText("Gagal melakukan presensi wajah, kemungkinan terjadi eror pada server");
         clLayoutHasilVerifikasi.setVisibility(View.VISIBLE);
     }
 
     private void showLoading() {
-        clLayoutHasilVerifikasi.setVisibility(View.VISIBLE);
+        clLayoutHasilVerifikasi.setVisibility(View.GONE);
         mLoadingIndicator.setVisibility(View.VISIBLE);
     }
 }
