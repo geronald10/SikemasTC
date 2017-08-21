@@ -16,7 +16,7 @@ public class Perkuliahan {
     private String waktuSelesai;
     private String statusDosen;
     private String statusPerkuliahan;
-    private String statusKehdiran;
+    private String statusKehadiran;
 
     public Perkuliahan(String idPerkuliahan, String kodeRuangan, String kodeMk, String kodeSemester, String namaMK,
                        String kelasMK, String ruangMK, String pertemuanKe, String hari,
@@ -54,7 +54,7 @@ public class Perkuliahan {
         this.waktuSelesai = waktuSelesai;
         this.statusDosen = statusDosen;
         this.statusPerkuliahan = statusPerkuliahan;
-        this.statusKehdiran = statusKehadiran;
+        this.statusKehadiran = statusKehadiran;
     }
 
     public Perkuliahan(String idPerkuliahan, String kodeMk, String namaMk, String kelasMk,
@@ -71,12 +71,12 @@ public class Perkuliahan {
         this.waktuSelesai = waktuSelesai;
     }
 
-    public String getStatusKehdiran() {
-        return statusKehdiran;
+    public String getStatusKehadiran() {
+        return statusKehadiran;
     }
 
     public void setStatusKehdiran(String statusKehdiran) {
-        this.statusKehdiran = statusKehdiran;
+        this.statusKehadiran = statusKehdiran;
     }
 
     public String getIdPerkuliahan() {

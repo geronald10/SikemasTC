@@ -25,7 +25,7 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
 
     // interface that receives onClick message
     public interface PerkuliahanAktifOnClickHandler {
-        void onClick(int buttonId, String idPerkuliahan, String kodeRuangan);
+        void onClick(int buttonId, String idPerkuliahan, String kodeRuangan, String statusKehadiran);
     }
 
     public PerkuliahanAktifAdapter(Context context, List<Perkuliahan> perkuliahanList,
@@ -56,8 +56,8 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
         holder.tvMataKuliah.setText(currentPerkuliahan.getNamaMk());
         holder.tvKodeMataKuliah.setText(currentPerkuliahan.getKodeMk());
 
-        switch (currentPerkuliahan.getStatusKehdiran()) {
-            case "M":
+        switch (currentPerkuliahan.getStatusKehadiran()) {
+            case "H":
                 holder.ivStatusKehadiran.setImageResource(R.color.colorStatusHadir);
                 holder.tvStatusKehadiran.setText(R.string.tv_status_kehadiran_hadir_label);
                 break;
@@ -122,12 +122,14 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
                 case R.id.btn_verifikasi_tandatangan:
                     mClickHandler.onClick(R.id.btn_verifikasi_tandatangan,
                             perkuliahanAktifList.get(adapterPosition).getIdPerkuliahan(),
-                            perkuliahanAktifList.get(adapterPosition).getKodeRuangan());
+                            perkuliahanAktifList.get(adapterPosition).getKodeRuangan(),
+                            perkuliahanAktifList.get(adapterPosition).getStatusKehadiran());
                     break;
                 case R.id.btn_verifikasi_wajah:
                     mClickHandler.onClick(R.id.btn_verifikasi_wajah,
                             perkuliahanAktifList.get(adapterPosition).getIdPerkuliahan(),
-                            perkuliahanAktifList.get(adapterPosition).getKodeRuangan());
+                            perkuliahanAktifList.get(adapterPosition).getKodeRuangan(),
+                            perkuliahanAktifList.get(adapterPosition).getStatusKehadiran());
                     break;
                 default:
                     break;

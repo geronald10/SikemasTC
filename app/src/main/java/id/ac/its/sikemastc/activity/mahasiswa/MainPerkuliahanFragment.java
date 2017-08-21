@@ -172,35 +172,43 @@ public class MainPerkuliahanFragment extends Fragment implements
     }
 
     @Override
-    public void onClick(int buttonId, String idPerkuliahan, String kodeRuangan) {
+    public void onClick(int buttonId, String idPerkuliahan, String kodeRuangan, String statusKehadiran) {
         switch (buttonId) {
             case R.id.btn_verifikasi_tandatangan:
-                //if (kodeRuangan.equals(this.resultQR)) {
-                ////    Toast.makeText(getContext(), "ini nrp ->" +bundleIdUser, Toast.LENGTH_SHORT).show();
-                    Intent intentToVerifikasiTandaTangan = new Intent(getActivity(), MenuVerifikasiTandaTangan.class);
-                    intentToVerifikasiTandaTangan.putExtra("id_perkuliahan", idPerkuliahan);
-                    intentToVerifikasiTandaTangan.putExtra("nrp_mahasiswa", bundleIdUser);
-                    intentToVerifikasiTandaTangan.putExtra("nama_mahasiswa", bundleNamaUser);
-                    startActivity(intentToVerifikasiTandaTangan);
-//             //   } else {
-//                    Toast.makeText(getContext(), "Pastikan Anda berada pada ruangan yang benar atau " +
-//                            "lakukan pemindaian ulang QR Code", Toast.LENGTH_SHORT).show();
-//                    Log.d("Cek", this.resultQR + " " + kodeRuangan);
-//                }
-                break;
+                if (!statusKehadiran.equals("H")) {
+                    if (kodeRuangan.equals(this.resultQR)) {
+                        ////    Toast.makeText(getContext(), "ini nrp ->" +bundleIdUser, Toast.LENGTH_SHORT).show();
+                        Intent intentToVerifikasiTandaTangan = new Intent(getActivity(), MenuVerifikasiTandaTangan.class);
+                        intentToVerifikasiTandaTangan.putExtra("id_perkuliahan", idPerkuliahan);
+                        intentToVerifikasiTandaTangan.putExtra("nrp_mahasiswa", bundleIdUser);
+                        intentToVerifikasiTandaTangan.putExtra("nama_mahasiswa", bundleNamaUser);
+                        startActivity(intentToVerifikasiTandaTangan);
+                    } else {
+                        Toast.makeText(getContext(), "Pastikan Anda berada pada ruangan yang benar atau " +
+                                "lakukan pemindaian ulang QR Code", Toast.LENGTH_SHORT).show();
+                        Log.d("Cek", this.resultQR + " " + kodeRuangan);
+                    }
+                    break;
+                } else
+                    Toast.makeText(getContext(), "Anda sudah melakukan presensi pada perkuliahan ini",
+                            Toast.LENGTH_SHORT).show();
 
             case R.id.btn_verifikasi_wajah:
-            //    if (kodeRuangan.equals(this.resultQR)) {
-                    Intent intentToVerifikasiWajah = new Intent(getActivity(), VerifikasiWajahMenuActivity.class);
-                    intentToVerifikasiWajah.putExtra("id_perkuliahan", idPerkuliahan);
-                    intentToVerifikasiWajah.putExtra("nrp_mahasiswa", bundleIdUser);
-                    intentToVerifikasiWajah.putExtra("nama_mahasiswa", bundleNamaUser);
-                    startActivity(intentToVerifikasiWajah);
-//                } else {
-//                    Toast.makeText(getContext(), "Pastikan Anda berada pada ruangan yang benar atau " +
-//                            "lakukan pemindaian ulang QR Code", Toast.LENGTH_SHORT).show();
-//                }
-                break;
+                if (!statusKehadiran.equals("H")) {
+                    if (kodeRuangan.equals(this.resultQR)) {
+                        Intent intentToVerifikasiWajah = new Intent(getActivity(), VerifikasiWajahMenuActivity.class);
+                        intentToVerifikasiWajah.putExtra("id_perkuliahan", idPerkuliahan);
+                        intentToVerifikasiWajah.putExtra("nrp_mahasiswa", bundleIdUser);
+                        intentToVerifikasiWajah.putExtra("nama_mahasiswa", bundleNamaUser);
+                        startActivity(intentToVerifikasiWajah);
+                    } else {
+                        Toast.makeText(getContext(), "Pastikan Anda berada pada ruangan yang benar atau " +
+                                "lakukan pemindaian ulang QR Code", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                } else
+                    Toast.makeText(getContext(), "Anda sudah melakukan presensi pada perkuliahan ini",
+                            Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -1,12 +1,17 @@
 package id.ac.its.sikemastc.activity.mahasiswa;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,10 +25,11 @@ import id.ac.its.sikemastc.activity.BaseActivity;
 import id.ac.its.sikemastc.adapter.KelasMahasiswaAdapter;
 import id.ac.its.sikemastc.data.SikemasContract;
 import id.ac.its.sikemastc.data.SikemasSessionManager;
+import id.ac.its.sikemastc.sync.SikemasSyncUtils;
 
 public class ListKelasMahasiswa extends BaseActivity implements
         LoaderManager.LoaderCallbacks<Cursor>,
-        KelasMahasiswaAdapter.KelasMahasiswaAdapterOnClickHandler{
+        KelasMahasiswaAdapter.KelasMahasiswaAdapterOnClickHandler {
 
     private final String TAG = ListKelasMahasiswa.class.getSimpleName();
 
@@ -51,8 +57,10 @@ public class ListKelasMahasiswa extends BaseActivity implements
 
     private static final int ID_LIST_KELAS_MAHASISWA_LOADER = 46;
 
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private String idMahasiswa;
     private RecyclerView mRecyclerView;
+    private CardView cvEmptyView;
     private KelasMahasiswaAdapter mKelasMahasiswaAdapter;
     private int mPosition = RecyclerView.NO_POSITION;
 
@@ -67,8 +75,20 @@ public class ListKelasMahasiswa extends BaseActivity implements
         HashMap<String, String> userDetail = session.getUserDetails();
         idMahasiswa = userDetail.get(SikemasSessionManager.KEY_USER_ID);
 
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_list_kelas);
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
+        cvEmptyView = (CardView) findViewById(R.id.empty_view);
+
+        mSwipeRefreshLayout.setColorSchemeColors(
+                ContextCompat.getColor(this, R.color.swipe_color_1),
+                ContextCompat.getColor(this, R.color.swipe_color_2),
+                ContextCompat.getColor(this, R.color.swipe_color_3),
+                ContextCompat.getColor(this, R.color.swipe_color_4));
+
+        if (!mSwipeRefreshLayout.isRefreshing()) {
+            showLoading();
+        }
 
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -81,6 +101,13 @@ public class ListKelasMahasiswa extends BaseActivity implements
         showLoading();
 
         getSupportLoaderManager().initLoader(ID_LIST_KELAS_MAHASISWA_LOADER, null, this);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initiateRefresh();
+            }
+        });
     }
 
     @Override
@@ -105,11 +132,16 @@ public class ListKelasMahasiswa extends BaseActivity implements
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         mKelasMahasiswaAdapter.swapCursor(data);
+
         if (mPosition == RecyclerView.NO_POSITION)
             mPosition = 0;
         mRecyclerView.smoothScrollToPosition(mPosition);
+
         if (data.getCount() != 0)
             showKelasDataView();
+        else
+            mKelasMahasiswaAdapter.notifyDataSetChanged();
+            showEmptyDataView();
     }
 
     @Override
@@ -118,13 +150,27 @@ public class ListKelasMahasiswa extends BaseActivity implements
     }
 
     private void showKelasDataView() {
+        if (mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
         mLoadingIndicator.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
+        cvEmptyView.setVisibility(View.GONE);
     }
 
     private void showLoading() {
         mRecyclerView.setVisibility(View.GONE);
         mLoadingIndicator.setVisibility(View.VISIBLE);
+        cvEmptyView.setVisibility(View.GONE);
+    }
+
+    private void showEmptyDataView() {
+        if (mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+        mRecyclerView.setVisibility(View.GONE);
+        mLoadingIndicator.setVisibility(View.GONE);
+        cvEmptyView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -134,5 +180,13 @@ public class ListKelasMahasiswa extends BaseActivity implements
         intentToDetailKelas.putExtra("id_mahasiswa", idMahasiswa);
         intentToDetailKelas.putExtra("info_kelas", infoKelas);
         startActivity(intentToDetailKelas);
+    }
+
+    private void initiateRefresh() {
+        Log.d(TAG, "initiate Refresh");
+        if (!mSwipeRefreshLayout.isRefreshing())
+            showLoading();
+        SikemasSyncUtils.startImmediatePerkuliahanMahasiswaSync(this);
+        getSupportLoaderManager().initLoader(ID_LIST_KELAS_MAHASISWA_LOADER, null, this);
     }
 }
