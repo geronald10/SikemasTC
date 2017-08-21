@@ -533,7 +533,7 @@ public class PencocokanTandaTangan extends AppCompatActivity {
                 // Adding parameters
                 params.put("id_perkuliahan",idPerkuliahan);
                 params.put("id_mahasiswa", idUserTerlogin);
-                params.put("ket_kehadiran", "M");
+                params.put("ket_kehadiran", "H");
 
                 return params;
             }

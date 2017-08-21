@@ -264,13 +264,13 @@ public class MainPerkuliahanFragment extends Fragment implements
 
                                 JSONObject ruangan = perkuliahan.getJSONObject("ruangan");
                                 String kodeRuangan = ruangan.getString("kode_ruangan");
+                                String ruangMK = ruangan.getString("nama");
 
                                 JSONObject kelas = perkuliahan.getJSONObject("kelas");
                                 String kodeSemester = kelas.getString("kode_semester");
                                 String kodeMk = kelas.getString("kode_matakuliah");
                                 String kelasMk = kelas.getString("kode_kelas");
                                 String namaMk = kelas.getString("nama_kelas");
-                                String ruangMK = kelas.getString("nama_ruangan");
 
                                 Perkuliahan perkuliahanAktifMahasiswa = new Perkuliahan(
                                         idPerkuliahan, kodeRuangan, kodeMk, kodeSemester, namaMk,

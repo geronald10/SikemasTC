@@ -52,7 +52,7 @@ public class KehadiranMahasiswaAdapter extends RecyclerView.Adapter<KehadiranMah
         String statusKehadiran = currentPertemuan.getStatusKehadiran();
 
         switch (statusKehadiran) {
-            case "M":
+            case "H":
                 kehadiranMahasiswaViewHolder.ivStatusKehadiran.setImageResource(R.color.colorStatusHadir);
                 kehadiranMahasiswaViewHolder.tvStatusKehadiran.setText(R.string.tv_status_hadir_label);
                 kehadiranMahasiswaViewHolder.clKeteranganKehadiran.setVisibility(View.GONE);

@@ -235,7 +235,7 @@ public class VerifikasiWajahActivity extends AppCompatActivity implements Camera
                         Intent intentToSuccess = new Intent(VerifikasiWajahActivity.this, HasilVerifikasiActivity.class);
                         intentToSuccess.putExtra("id_perkuliahan", idPerkuliahan);
                         intentToSuccess.putExtra("identitas_mahasiswa", identitasMahasiswa);
-                        intentToSuccess.putExtra("ket_kehadiran", "M");
+                        intentToSuccess.putExtra("ket_kehadiran", "H");
                         startActivity(intentToSuccess);
                         finish();
                     }
