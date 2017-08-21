@@ -90,12 +90,9 @@ public class BaseActivity extends AppCompatActivity implements
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
         View navHeader = navigationView.getHeaderView(0);
         TextView tvName = (TextView) navHeader.findViewById(R.id.tv_nama_user);
-        TextView tvEmail = (TextView) navHeader.findViewById(R.id.tv_email_user);
         TextView tvUserId = (TextView) navHeader.findViewById(R.id.tv_id_user);
         MaterialLetterIcon icon = (MaterialLetterIcon) navHeader.findViewById(R.id.img_profile);
         tvName.setText(userNama);
-        tvEmail.setText(userEmail);
-        tvUserId.setText(userId);
         icon.setShapeColor(getResources().getColor(R.color.colorAccent));
         icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
         icon.setLetter(kodeDosen);
@@ -108,15 +105,18 @@ public class BaseActivity extends AppCompatActivity implements
         switch (userRole) {
             case "1":
                 navigationView.inflateMenu(R.menu.menu_item_dosen);
+                tvUserId.setText(userEmail);
                 break;
             case "3":
                 navigationView.inflateMenu(R.menu.menu_item_orangtua);
+                tvUserId.setText(userId);
                 break;
             case "4":
                 navigationView.inflateMenu(R.menu.menu_item_mahasiswa);
                 Menu menu = navigationView.getMenu();
                 MenuItem menuItem = menu.findItem(R.id.nav_switch);
                 View actionView = MenuItemCompat.getActionView(menuItem);
+                tvUserId.setText(userId);
 
                 switcher = (SwitchCompat) actionView.findViewById(R.id.switcher);
                 switcher.setChecked(true);

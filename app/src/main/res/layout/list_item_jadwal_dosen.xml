@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="2.5dp"
@@ -122,9 +123,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="8dp"
             android:contentDescription="@string/place_icon"
-            app:layout_constraintBottom_toTopOf="@+id/iv_waktu"
             app:layout_constraintLeft_toLeftOf="@+id/tv_nama_mata_kuliah"
             app:layout_constraintTop_toBottomOf="@+id/tv_nama_mata_kuliah"
             app:srcCompat="@drawable/ic_room" />
@@ -147,10 +147,9 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/clock_icon"
+            app:srcCompat="@drawable/ic_access_time"
             app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_mulai"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_room"
-            app:layout_constraintTop_toTopOf="@+id/tv_from"
-            app:srcCompat="@drawable/ic_access_time" />
+            app:layout_constraintLeft_toLeftOf="@+id/iv_room" />
 
         <TextView
             android:id="@+id/tv_waktu_mulai"
@@ -160,7 +159,6 @@
             android:text="@string/tv_empty_value"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@+id/tv_from"
             app:layout_constraintRight_toLeftOf="@+id/tv_waktu_selesai"
             app:layout_constraintTop_toBottomOf="@+id/tv_from" />
@@ -169,14 +167,12 @@
             android:id="@+id/tv_waktu_selesai"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:text="@string/tv_empty_value"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_waktu_mulai"
             app:layout_constraintLeft_toLeftOf="@+id/guideline_vertical"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_waktu_mulai" />

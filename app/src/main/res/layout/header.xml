@@ -14,34 +14,20 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="64dp"
+        android:gravity="bottom"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
         android:paddingBottom="16dp"
         android:paddingEnd="0dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="0dp"
         android:paddingStart="16dp">
 
         <TextView
             android:id="@+id/tv_nama_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:fontFamily="sans-serif-medium"
-            android:gravity="bottom"
             android:text="@string/tv_nama_pengguna_empty_view"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tv_email_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif"
-            android:gravity="bottom"
-            android:text="@string/tv_email_empty_view"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
@@ -49,9 +35,7 @@
             android:id="@+id/tv_id_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:fontFamily="sans-serif"
-            android:gravity="bottom"
             android:text="@string/tv_id_pengguna_empty_view"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
