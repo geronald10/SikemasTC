@@ -238,14 +238,12 @@ public class PenjadwalanUlang extends AppCompatActivity implements
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 selectedTime = String.valueOf(checkedId);
-                pilihanWaktu = (RadioButton) findViewById(checkedId);
+                pilihanWaktu = (RadioButton) group.findViewById(checkedId);
                 tvSelectedTime.setText(pilihanWaktu.getText());
                 String selectedTimeFull = (String) pilihanWaktu.getText();
                 String[] splittedTime = selectedTimeFull.split(" - ");
                 selectedTimeStart = splittedTime[0];
                 selectedTimeEnd = splittedTime[1];
-
-
             }
         });
     }
@@ -258,9 +256,9 @@ public class PenjadwalanUlang extends AppCompatActivity implements
         stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE);
         ruangRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                pilihanRuang = (RadioButton) findViewById(checkedId);
-                selectedRoom = String.valueOf(checkedId);
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedRuangId) {
+                pilihanRuang = (RadioButton) group.findViewById(checkedRuangId);
+                selectedRoom = String.valueOf(checkedRuangId);
                 selectedRoomName = (String) pilihanRuang.getText();
                 tvSelectedRoom.setText(pilihanRuang.getText());
             }
