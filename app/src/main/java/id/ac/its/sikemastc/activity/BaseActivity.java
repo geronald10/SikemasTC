@@ -105,7 +105,20 @@ public class BaseActivity extends AppCompatActivity implements
         switch (userRole) {
             case "1":
                 navigationView.inflateMenu(R.menu.menu_item_dosen);
+                Menu menuDosen = navigationView.getMenu();
+                MenuItem menuItemDosen = menuDosen.findItem(R.id.nav_switch);
+                View actionView = MenuItemCompat.getActionView(menuItemDosen);
                 tvUserId.setText(userEmail);
+
+                switcher = (SwitchCompat) actionView.findViewById(R.id.switcher);
+                switcher.setChecked(true);
+                switcher.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Snackbar.make(v, (switcher.isChecked()) ? "is checked!!!" : "not checked!!!", Snackbar.LENGTH_SHORT)
+                                .setAction("Action", null).show();
+                    }
+                });
                 break;
             case "3":
                 navigationView.inflateMenu(R.menu.menu_item_orangtua);
@@ -113,12 +126,12 @@ public class BaseActivity extends AppCompatActivity implements
                 break;
             case "4":
                 navigationView.inflateMenu(R.menu.menu_item_mahasiswa);
-                Menu menu = navigationView.getMenu();
-                MenuItem menuItem = menu.findItem(R.id.nav_switch);
-                View actionView = MenuItemCompat.getActionView(menuItem);
+                Menu menuMhs = navigationView.getMenu();
+                MenuItem menuItemMhs = menuMhs.findItem(R.id.nav_switch);
+                View actionViewMhs = MenuItemCompat.getActionView(menuItemMhs);
                 tvUserId.setText(userId);
 
-                switcher = (SwitchCompat) actionView.findViewById(R.id.switcher);
+                switcher = (SwitchCompat) actionViewMhs.findViewById(R.id.switcher);
                 switcher.setChecked(true);
                 switcher.setOnClickListener(new View.OnClickListener() {
                     @Override

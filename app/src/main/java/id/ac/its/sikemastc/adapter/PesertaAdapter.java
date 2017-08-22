@@ -17,15 +17,8 @@ public class PesertaAdapter extends RecyclerView.Adapter<PesertaAdapter.PesertaA
     private final Context mContext;
     private Cursor mCursor;
 
-    final private PesertaAdapterOnClickHandler mClickHandler;
-
-    public PesertaAdapter(Context context, PesertaAdapterOnClickHandler clickHandler) {
+    public PesertaAdapter(Context context) {
         mContext = context;
-        mClickHandler = clickHandler;
-    }
-
-    public interface PesertaAdapterOnClickHandler {
-        void onClick(String idKelas);
     }
 
     @Override
@@ -71,7 +64,7 @@ public class PesertaAdapter extends RecyclerView.Adapter<PesertaAdapter.PesertaA
         notifyDataSetChanged();
     }
 
-    class PesertaAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class PesertaAdapterViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvNumber;
         private TextView tvNrpPeserta;
@@ -91,16 +84,6 @@ public class PesertaAdapter extends RecyclerView.Adapter<PesertaAdapter.PesertaA
             tvIjinCount = (TextView) itemView.findViewById(R.id.tv_ijin_count);
             tvSakitCount = (TextView) itemView.findViewById(R.id.tv_sakit_count);
             tvAbsenCount = (TextView) itemView.findViewById(R.id.tv_absen_count);
-
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            int adapterPosition = getAdapterPosition();
-            mCursor.moveToPosition(adapterPosition);
-            String IdPeserta = mCursor.getString(PesertaKelasFragment.INDEX_ID_PESERTA);
-            mClickHandler.onClick(IdPeserta);
         }
     }
 }

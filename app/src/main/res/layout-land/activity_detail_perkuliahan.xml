@@ -17,6 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center_vertical|center_horizontal"
             android:orientation="horizontal">
 
             <include
@@ -36,27 +38,15 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_lihat_peserta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:text="@string/btn_lihat_peserta"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/btn_lihat_kehadiran"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:text="@string/btn_lihat_kehadiran"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
-            android:textSize="16sp"
-            android:visibility="gone" />
+        android:id="@+id/btn_lihat_kehadiran"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:text="@string/btn_lihat_kehadiran"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
+        android:textSize="16sp" />
 
     </LinearLayout>
 </layout>

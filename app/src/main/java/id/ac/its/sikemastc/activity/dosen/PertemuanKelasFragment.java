@@ -115,6 +115,8 @@ public class PertemuanKelasFragment extends Fragment implements
                 initiateRefresh();
             }
         });
+
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
