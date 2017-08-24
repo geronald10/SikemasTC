@@ -91,7 +91,7 @@ public class SikemasDBHelper extends SQLiteOpenHelper {
                         PerkuliahanEntry.KEY_HARI + " TEXT NOT NULL, " +
                         PerkuliahanEntry.KEY_MULAI + " TEXT NOT NULL, " +
                         PerkuliahanEntry.KEY_SELESAI + " TEXT, " +
-                        PerkuliahanEntry.KEY_JUMLAH_PESERTA + " TEXT NOT NULL ON CONFLICT REPLACE);";
+                        PerkuliahanEntry.KEY_JUMLAH_PESERTA + " TEXT);";
         sqLiteDatabase.execSQL(SQL_CREATE_PERKULIAHAN_TABLE);
     }
 

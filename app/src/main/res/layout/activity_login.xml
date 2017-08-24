@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/email_nrp_prompt_label"
                 android:imeOptions="actionNext"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:textColor="@android:color/white" />
 
         </android.support.design.widget.TextInputLayout>

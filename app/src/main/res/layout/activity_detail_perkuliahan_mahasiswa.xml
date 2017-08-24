@@ -6,7 +6,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/background_app">
 
         <include
@@ -15,10 +15,10 @@
 
         <ScrollView
             android:id="@+id/detailView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="48dp"
-            android:paddingTop="5dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -32,18 +32,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:padding="16dp"
                     app:cardCornerRadius="5dp"
-                    app:layout_constraintBottom_toTopOf="@+id/cv_detail_jadwal"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <android.support.constraint.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="8dp">
+                        android:layout_height="match_parent"
+                        android:paddingBottom="16dp">
 
                         <TextView
                             android:id="@+id/tv_semester_label"
@@ -166,8 +163,6 @@
                             android:text="Ekonomi Rekayasa Perangkat Lunak"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                             android:textSize="20sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintLeft_toLeftOf="@+id/tv_kode_matakuliah"
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_kode_matakuliah" />
@@ -179,18 +174,17 @@
                 <android.support.v7.widget.CardView
                     android:id="@+id/cv_detail_jadwal"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     app:cardCornerRadius="5dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent">
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cv_mata_kuliah">
 
                     <android.support.constraint.ConstraintLayout
                         android:id="@+id/cl_detail_jadwal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:paddingBottom="16dp">
 
                         <TextView
@@ -207,12 +201,16 @@
                         <ImageView
                             android:id="@+id/iv_icon_dosen"
                             android:layout_width="56dp"
-                            android:layout_height="56dp"
+                            android:layout_height="0dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_caption_dosen"
-                            app:srcCompat="@drawable/ic_lecture_2" />
+                            app:srcCompat="@drawable/ic_lecture_2"
+                            android:layout_marginLeft="16dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_nama_dosen"
+                            android:layout_marginBottom="0dp"
+                            app:layout_constraintVertical_bias="0.0" />
 
                         <TextView
                             android:id="@+id/tv_nama_dosen_label"
@@ -273,11 +271,12 @@
                             android:id="@+id/v_divider"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="8dp"
                             android:background="@color/colorDivider"
+                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/iv_icon_dosen" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_nama_dosen" />
 
                         <TextView
                             android:id="@+id/tv_caption_lokasi"
@@ -487,8 +486,6 @@
                             android:layout_marginRight="8dp"
                             android:layout_marginTop="8dp"
                             android:background="@color/colorPrimaryDark"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_caption_status_perkuliahan" />
@@ -504,8 +501,7 @@
                             app:layout_constraintBottom_toBottomOf="@id/iv_status_dosen"
                             app:layout_constraintLeft_toLeftOf="@id/iv_status_dosen"
                             app:layout_constraintRight_toRightOf="@id/iv_status_dosen"
-                            app:layout_constraintTop_toTopOf="@id/iv_status_dosen"
-                            tools:layout_editor_absoluteY="498dp" />
+                            app:layout_constraintTop_toTopOf="@id/iv_status_dosen" />
 
                     </android.support.constraint.ConstraintLayout>
                 </android.support.v7.widget.CardView>

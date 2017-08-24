@@ -2,6 +2,8 @@ package id.ac.its.sikemastc.activity.mahasiswa;
 
 import android.content.Intent;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -42,19 +44,23 @@ public class DetailJadwalKelasMahasiswa extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private KehadiranMahasiswaAdapter mKehadiranMahasiswaAdapter;
 
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private ProgressBar mLoadingIndicator;
+    private String idKelas;
+    private String idMahasiswa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_jadwal_kelas_mahasiswa);
 
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_riwayat_pertemuan);
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
         Intent intent = getIntent();
-        String idKelas = intent.getStringExtra("id_kelas");
-        String idMahasiswa = intent.getStringExtra("id_mahasiswa");
+        idKelas = intent.getStringExtra("id_kelas");
+        idMahasiswa = intent.getStringExtra("id_mahasiswa");
         String infoKelas = intent.getStringExtra("info_kelas");
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -62,6 +68,15 @@ public class DetailJadwalKelasMahasiswa extends AppCompatActivity {
         mToolbar.setSubtitle(infoKelas);
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
 
+        mSwipeRefreshLayout.setColorSchemeColors(
+                ContextCompat.getColor(this, R.color.swipe_color_1),
+                ContextCompat.getColor(this, R.color.swipe_color_2),
+                ContextCompat.getColor(this, R.color.swipe_color_3),
+                ContextCompat.getColor(this, R.color.swipe_color_4));
+
+        if (!mSwipeRefreshLayout.isRefreshing()) {
+            showLoading();
+        }
         // Compatibility
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mToolbar.setElevation(10f);
@@ -77,14 +92,25 @@ public class DetailJadwalKelasMahasiswa extends AppCompatActivity {
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         rekapKehadiranMahasiswaList = new ArrayList<>();
+        showLoading();
         getRekapKehadiranMahasiswa(idKelas, idMahasiswa);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
         mKehadiranMahasiswaAdapter = new KehadiranMahasiswaAdapter(this, rekapKehadiranMahasiswaList);
         mRecyclerView.setAdapter(mKehadiranMahasiswaAdapter);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initiateRefresh();
+            }
+        });
     }
 
     private void showRiwayatKehadiranDataView() {
+        if (mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
         mLoadingIndicator.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
     }
@@ -92,6 +118,14 @@ public class DetailJadwalKelasMahasiswa extends AppCompatActivity {
     private void showLoading() {
         mRecyclerView.setVisibility(View.GONE);
         mLoadingIndicator.setVisibility(View.VISIBLE);
+    }
+
+    private void initiateRefresh() {
+        if (mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+        Log.d(TAG, "initiate Refresh");
+        getRekapKehadiranMahasiswa(idKelas, idMahasiswa);
     }
 
     private void getRekapKehadiranMahasiswa(final String idKelas, final String idMahasiswa) {
@@ -114,7 +148,9 @@ public class DetailJadwalKelasMahasiswa extends AppCompatActivity {
                                 String waktuTimeStamp = absenMahasiswa.getString("updated_at");
                                 Log.d(i + " waktutimestamp", waktuTimeStamp);
                                 String tanggal = SikemasDateUtils.formatDateFromTimestamp(waktuTimeStamp);
-                                String waktu = SikemasDateUtils.formatTimeFromTimestamp(waktuTimeStamp);
+                                String waktu = "-";
+                                if (!waktuTimeStamp.equals("null"))
+                                    waktu = SikemasDateUtils.formatTimeFromTimestamp(waktuTimeStamp);
                                 String statusHadir = absenMahasiswa.getString("ket_kehadiran");
                                 String pesanKehadiran = absenMahasiswa.getString("pesan");
                                 JSONObject perkuliahanMahasiswa = absenMahasiswa.getJSONObject("perkuliahanmahasiswa");

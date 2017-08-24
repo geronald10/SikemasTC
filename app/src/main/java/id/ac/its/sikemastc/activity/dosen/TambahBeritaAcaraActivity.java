@@ -65,6 +65,7 @@ public class TambahBeritaAcaraActivity extends AppCompatActivity {
 
     private void kirimBeritaAcara(final String berita, final String idPerkuliahan) {
         Log.d(TAG, "call kirimBeritaAcara Method");
+        Log.d(TAG, "idPerkuliahan " + idPerkuliahan);
         mProgressDialog.setMessage("Mengirimkan Berita Acara ...");
         mProgressDialog.show();
 

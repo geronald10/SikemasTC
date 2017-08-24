@@ -80,7 +80,7 @@ public class DetailPerkuliahanMahasiswa extends AppCompatActivity implements
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
 
         // Compatibility
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mToolbar.setElevation(10f);
         }
 
@@ -92,7 +92,8 @@ public class DetailPerkuliahanMahasiswa extends AppCompatActivity implements
         });
 
         mUri = getIntent().getData();
-        if (mUri == null) throw new NullPointerException("URI for DetailPerkuliahanActivity cannot be null");
+        if (mUri == null)
+            throw new NullPointerException("URI for DetailPerkuliahanActivity cannot be null");
 
         getSupportLoaderManager().initLoader(ID_LIST_PERKULIAHAN_MAHASISWA_LOADER, null, this);
         getSupportLoaderManager().initLoader(ID_LIST_DOSEN_PERKULIAHAN_MAHASISWA_LOADER, null, this);
@@ -174,9 +175,21 @@ public class DetailPerkuliahanMahasiswa extends AppCompatActivity implements
                 mDetailBinding.tvWaktuSelesai.setText(SikemasDateUtils.formatTime(data.getString(INDEX_SELESAI)));
                 break;
             case ID_LIST_DOSEN_PERKULIAHAN_MAHASISWA_LOADER:
+                String name = "";
+                String email = "";
                 data.moveToFirst();
-                mDetailBinding.tvNamaDosen.setText(data.getString(INDEX_NAMA_DOSEN));
-                mDetailBinding.tvEmailDosen.setText(data.getString(INDEX_EMAIL_DOSEN));
+                while (!data.isAfterLast()) {
+                    name += data.getString(INDEX_NAMA_DOSEN);
+                    email += data.getString(INDEX_EMAIL_DOSEN);
+                    if (data.moveToNext()) {
+                        name += " \n\n";
+                        email += " \n\n";
+                    }
+                }
+                Log.d(TAG, name);
+                Log.d(TAG, email);
+                mDetailBinding.tvNamaDosen.setText(name);
+                mDetailBinding.tvEmailDosen.setText(email);
                 break;
         }
     }

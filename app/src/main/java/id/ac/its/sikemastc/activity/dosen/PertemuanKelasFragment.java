@@ -8,11 +8,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +25,7 @@ import android.widget.ProgressBar;
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.adapter.PertemuanAdapter;
 import id.ac.its.sikemastc.data.SikemasContract;
+import id.ac.its.sikemastc.sync.SikemasSyncUtils;
 
 public class PertemuanKelasFragment extends Fragment implements
         LoaderManager.LoaderCallbacks<Cursor>,
@@ -55,11 +60,13 @@ public class PertemuanKelasFragment extends Fragment implements
     private static final int ID_LIST_PERTEMUAN_LOADER = 70;
     private ProgressBar mLoadingIndicator;
 
+    private CardView emptyView;
     private RecyclerView mRecyclerView;
     private PertemuanAdapter mPertemuanAdapter;
     private int mPosition = RecyclerView.NO_POSITION;
     private String bundleIdKelas;
     private String bundleInfoKelas;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,8 +77,16 @@ public class PertemuanKelasFragment extends Fragment implements
             bundleIdKelas = bundle.getString("id_kelas");
             bundleInfoKelas = bundle.getString("info_kelas");
         }
+        emptyView = (CardView) view.findViewById(R.id.empty_view);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list_pertemuan);
         mLoadingIndicator = (ProgressBar) view.findViewById(R.id.pb_loading_indicator);
+
+        mSwipeRefreshLayout.setColorSchemeColors(
+                ContextCompat.getColor(getContext(), R.color.swipe_color_1),
+                ContextCompat.getColor(getContext(), R.color.swipe_color_2),
+                ContextCompat.getColor(getContext(), R.color.swipe_color_3),
+                ContextCompat.getColor(getContext(), R.color.swipe_color_4));
 
         return view;
     }
@@ -80,6 +95,10 @@ public class PertemuanKelasFragment extends Fragment implements
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+
+        if (!mSwipeRefreshLayout.isRefreshing()) {
+            showLoading();
+        }
 
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
@@ -90,6 +109,13 @@ public class PertemuanKelasFragment extends Fragment implements
 
         getLoaderManager().initLoader(ID_LIST_PERTEMUAN_LOADER, null, this);
 
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initiateRefresh();
+            }
+        });
+
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -98,7 +124,7 @@ public class PertemuanKelasFragment extends Fragment implements
         switch (loaderId) {
             case ID_LIST_PERTEMUAN_LOADER:
                 Uri pertemuanQueryUri = SikemasContract.PertemuanEntry.CONTENT_URI;
-                String sortOrder = "CAST (" + SikemasContract.PertemuanEntry.KEY_PERTEMUAN_KE + " AS REAL) ASC";
+                // String sortOrder = "CAST (" + SikemasContract.PertemuanEntry.KEY_PERTEMUAN_KE + " AS REAL) ASC";
                 String selection = SikemasContract.PertemuanEntry.KEY_ID_KELAS + " = ? ";
                 String selectionArgs = bundleIdKelas;
 
@@ -107,7 +133,7 @@ public class PertemuanKelasFragment extends Fragment implements
                         MAIN_LIST_PERTEMUAN_PROJECTION,
                         selection,
                         new String[]{selectionArgs},
-                        sortOrder);
+                        null);
             default:
                 throw new RuntimeException("Loader Not Implemented: " + loaderId);
         }
@@ -115,12 +141,19 @@ public class PertemuanKelasFragment extends Fragment implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
         mPertemuanAdapter.swapCursor(data);
         if (mPosition == RecyclerView.NO_POSITION)
             mPosition = 0;
         mRecyclerView.smoothScrollToPosition(mPosition);
-        if (data.getCount() > 0)
+        if (data.getCount() > 0) {
+            mPertemuanAdapter.notifyDataSetChanged();
             showPertemuanDataView();
+        } else {
+            showEmptyDataView();
+        }
     }
 
     @Override
@@ -129,13 +162,21 @@ public class PertemuanKelasFragment extends Fragment implements
     }
 
     private void showPertemuanDataView() {
-        mLoadingIndicator.setVisibility(View.INVISIBLE);
+        emptyView.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
+        mLoadingIndicator.setVisibility(View.GONE);
     }
 
     private void showLoading() {
-        mRecyclerView.setVisibility(View.INVISIBLE);
+        emptyView.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.GONE);
         mLoadingIndicator.setVisibility(View.VISIBLE);
+    }
+
+    private void showEmptyDataView() {
+        emptyView.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
+        mLoadingIndicator.setVisibility(View.GONE);
     }
 
     @Override
@@ -173,6 +214,7 @@ public class PertemuanKelasFragment extends Fragment implements
     }
 
     private void showAlertDialog(String btnClicked, final String idToPenjadwalan, String pertemuanKe, String infoKelas) {
+        Log.d(TAG, idToPenjadwalan);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         switch (btnClicked) {
             case "1":
@@ -208,5 +250,18 @@ public class PertemuanKelasFragment extends Fragment implements
         }
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void initiateRefresh() {
+        Log.d(TAG, "initiate Refresh");
+        if (!mSwipeRefreshLayout.isRefreshing())
+            showLoading();
+        SikemasSyncUtils.startImmediateKelasSync(getContext());
+    }
+
+    @Override
+    public void onResume() {
+        SikemasSyncUtils.startImmediateKelasSync(getContext());
+        super.onResume();
     }
 }

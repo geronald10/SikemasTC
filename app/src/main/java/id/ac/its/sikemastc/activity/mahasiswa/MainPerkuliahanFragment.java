@@ -115,7 +115,7 @@ public class MainPerkuliahanFragment extends Fragment implements
         String currentDate = SikemasDateUtils.getCurrentDate(getActivity());
         String[] splitCalendar = currentDate.split(" ");
         tvNamaPengguna.setText(bundleNamaUser);
-        tvCurrentHari.setText(splitCalendar[0].substring(0, splitCalendar[0].length()-1));
+        tvCurrentHari.setText(splitCalendar[0].substring(0, splitCalendar[0].length() - 1));
         tvCurrentTgl.setText(splitCalendar[1]);
         tvCurrentBulan.setText(splitCalendar[2]);
 
@@ -129,7 +129,7 @@ public class MainPerkuliahanFragment extends Fragment implements
                 ContextCompat.getColor(getContext(), R.color.swipe_color_4));
 
         LinearLayoutManager layoutManager =
-                new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
@@ -158,8 +158,13 @@ public class MainPerkuliahanFragment extends Fragment implements
         buttonQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-            Intent intent = new Intent(getContext(), BarcodeCaptureActivity.class);
-            startActivityForResult(intent, 1);
+                if (perkuliahanAktifMahasiswaList.size() == 0)
+                    Toast.makeText(getActivity(), "QRScanner tidak dapat digunakan, tidak ada perkuliah yang aktif",
+                            Toast.LENGTH_SHORT).show();
+                else {
+                    Intent intent = new Intent(getContext(), BarcodeCaptureActivity.class);
+                    startActivityForResult(intent, 1);
+                }
             }
         });
 
@@ -172,11 +177,11 @@ public class MainPerkuliahanFragment extends Fragment implements
     }
 
     @Override
-    public void onClick(int buttonId, String idPerkuliahan, String kodeRuangan, String statusKehadiran) {
+    public void onClick(int buttonId, String idPerkuliahan, String decryptedQR, String statusKehadiran) {
         switch (buttonId) {
             case R.id.btn_verifikasi_tandatangan:
                 if (!statusKehadiran.equals("H")) {
-                    if (kodeRuangan.equals(this.resultQR)) {
+                    if (decryptedQR.equals(this.resultQR)) {
                         ////    Toast.makeText(getContext(), "ini nrp ->" +bundleIdUser, Toast.LENGTH_SHORT).show();
                         Intent intentToVerifikasiTandaTangan = new Intent(getActivity(), MenuVerifikasiTandaTangan.class);
                         intentToVerifikasiTandaTangan.putExtra("id_perkuliahan", idPerkuliahan);
@@ -186,7 +191,7 @@ public class MainPerkuliahanFragment extends Fragment implements
                     } else {
                         Toast.makeText(getContext(), "Pastikan Anda berada pada ruangan yang benar atau " +
                                 "lakukan pemindaian ulang QR Code", Toast.LENGTH_SHORT).show();
-                        Log.d("Cek", this.resultQR + " " + kodeRuangan);
+                        Log.d("Cek", this.resultQR + " " + decryptedQR);
                     }
                     break;
                 } else
@@ -195,7 +200,7 @@ public class MainPerkuliahanFragment extends Fragment implements
 
             case R.id.btn_verifikasi_wajah:
                 if (!statusKehadiran.equals("H")) {
-                    if (kodeRuangan.equals(this.resultQR)) {
+                    if (decryptedQR.equals(this.resultQR)) {
                         Intent intentToVerifikasiWajah = new Intent(getActivity(), VerifikasiWajahMenuActivity.class);
                         intentToVerifikasiWajah.putExtra("id_perkuliahan", idPerkuliahan);
                         intentToVerifikasiWajah.putExtra("nrp_mahasiswa", bundleIdUser);
@@ -236,7 +241,7 @@ public class MainPerkuliahanFragment extends Fragment implements
         Log.d("idMahasiswa", idMahasiswa);
         if (!mSwipeRefreshLayout.isRefreshing())
             showLoading();
-            StringRequest stringRequest = new StringRequest(Request.Method.POST,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 NetworkUtils.LIST_KELAS_MAHASISWA_AKTIF,
                 new Response.Listener<String>() {
                     @Override
@@ -261,6 +266,7 @@ public class MainPerkuliahanFragment extends Fragment implements
                                 String hari = perkuliahan.getString("hari");
                                 String waktuMulai = SikemasDateUtils.formatTime(perkuliahan.getString("mulai"));
                                 String waktuSelesai = SikemasDateUtils.formatTime(perkuliahan.getString("selesai"));
+                                String decryptedQR = perkuliahan.getString("md5");
 
                                 JSONObject ruangan = perkuliahan.getJSONObject("ruangan");
                                 String kodeRuangan = ruangan.getString("kode_ruangan");
@@ -275,7 +281,8 @@ public class MainPerkuliahanFragment extends Fragment implements
                                 Perkuliahan perkuliahanAktifMahasiswa = new Perkuliahan(
                                         idPerkuliahan, kodeRuangan, kodeMk, kodeSemester, namaMk,
                                         kelasMk, ruangMK, pertemuanKe, hari, waktuMulai,
-                                        waktuSelesai, statusDosen, statusPerkuliahan, statusKehadiran);
+                                        waktuSelesai, statusDosen, statusPerkuliahan, statusKehadiran,
+                                        decryptedQR);
                                 perkuliahanAktifMahasiswaList.add(perkuliahanAktifMahasiswa);
                             }
 
@@ -322,6 +329,7 @@ public class MainPerkuliahanFragment extends Fragment implements
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        int flag = 0;
         if (requestCode == 1) {
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (data != null) {
@@ -330,50 +338,18 @@ public class MainPerkuliahanFragment extends Fragment implements
                     String md5 = null;
 
                     this.resultQR = QRCodeScanner.decryptQRCode(barcode.displayValue);
-                    location.setText(this.resultQR);
+                    for (int i = 0; i < perkuliahanAktifMahasiswaList.size(); i++) {
+                        if (resultQR.equals(perkuliahanAktifMahasiswaList.get(i).getDecryptedQR())) {
+                            flag++;
+                        }
+                    }
+                    if (flag != 0)
+                        location.setText("QR terdeteksi");
+                    else
+                        location.setText("QR tidak cocok");
                 }
-                else {
-                    location.setText(R.string.no_barcode_captured);
-                    this.resultQR = null;
-                }
-            }
-            else Log.e("Pemindaian Error", String.format(getString(R.string.barcode_error_format),
+            } else Log.e("Pemindaian Error", String.format(getString(R.string.barcode_error_format),
                     CommonStatusCodes.getStatusCodeString(resultCode)));
-        }
-        else super.onActivityResult(requestCode, resultCode, data);
-    }
-
-    private Boolean isBase64Encoded(String value) {
-        try {
-            byte[] decodedString = Base64.decode(value, Base64.DEFAULT);
-            BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            return true;
-        }
-        catch (Exception e) {
-            return false;
-        }
-    }
-
-    private String md5Encode(String value) {
-        try {
-            // Create MD5 Hash
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(value.getBytes());
-            byte messageDigest[] = md.digest();
-
-            // Create Hex String
-            StringBuilder hexString = new StringBuilder();
-            for (byte aMessageDigest : messageDigest) {
-                String h = Integer.toHexString(0xFF & aMessageDigest);
-                while (h.length() < 2)
-                    h = "0" + h;
-                hexString.append(h);
-            }
-            return hexString.toString();
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return "";
+        } else super.onActivityResult(requestCode, resultCode, data);
     }
 }

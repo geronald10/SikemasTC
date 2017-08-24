@@ -7,8 +7,10 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -80,6 +82,7 @@ public class HalamanUtamaDosen extends BaseActivity implements
     private int mPosition = RecyclerView.NO_POSITION;
 
     private View emptyView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     private ProgressBar mLoadingIndicator;
 
@@ -88,6 +91,7 @@ public class HalamanUtamaDosen extends BaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_halaman_utama_dosen);
 
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_jadwal_utama_dosen);
         emptyView = findViewById(R.id.empty_view);
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
@@ -100,6 +104,12 @@ public class HalamanUtamaDosen extends BaseActivity implements
         mPerkuliahanDosenAdapter = new PerkuliahanDosenAdapter(this, this);
         mRecyclerView.setAdapter(mPerkuliahanDosenAdapter);
 
+        mSwipeRefreshLayout.setColorSchemeColors(
+                ContextCompat.getColor(this, R.color.swipe_color_1),
+                ContextCompat.getColor(this, R.color.swipe_color_2),
+                ContextCompat.getColor(this, R.color.swipe_color_3),
+                ContextCompat.getColor(this, R.color.swipe_color_4));
+
         btnAktifkanKelas = (Button) findViewById(R.id.btn_aktifkan_kelas);
         btnBatalkanKelas = (Button) findViewById(R.id.btn_nonaktifkan_kelas);
         btnAkhiriKelas = (Button) findViewById(R.id.btn_akhiri_kelas);
@@ -110,6 +120,17 @@ public class HalamanUtamaDosen extends BaseActivity implements
         getSupportLoaderManager().initLoader(ID_LIST_PERKULIAHAN_LOADER, null, this);
 
         SikemasSyncUtils.startImmediatePerkuliahanSync(this);
+
+        if (!mSwipeRefreshLayout.isRefreshing()) {
+            showLoading();
+        }
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initiateRefresh();
+            }
+        });
     }
 
     @Override
@@ -131,14 +152,21 @@ public class HalamanUtamaDosen extends BaseActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (mSwipeRefreshLayout.isRefreshing()) {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
         mPerkuliahanDosenAdapter.swapCursor(data);
         if (mPosition == RecyclerView.NO_POSITION)
             mPosition = 0;
         mRecyclerView.smoothScrollToPosition(mPosition);
-        if (data.getCount() > 0)
+        if (data.getCount() > 0) {
+            mPerkuliahanDosenAdapter.notifyDataSetChanged();
             showPerkuliahanDataView();
-        else
+        }
+        else {
+            mPerkuliahanDosenAdapter.notifyDataSetChanged();
             showEmptyView();
+        }
     }
 
     @Override
@@ -315,5 +343,13 @@ public class HalamanUtamaDosen extends BaseActivity implements
             }
         };
         VolleySingleton.getmInstance(getApplicationContext()).addToRequestQueue(stringRequest);
+    }
+
+    private void initiateRefresh() {
+        Log.d(TAG, "initiate Refresh");
+        if (!mSwipeRefreshLayout.isRefreshing())
+            showLoading();
+        SikemasSyncUtils.startImmediatePerkuliahanSync(this);
+        getSupportLoaderManager().initLoader(ID_LIST_PERKULIAHAN_LOADER, null, this);
     }
 }

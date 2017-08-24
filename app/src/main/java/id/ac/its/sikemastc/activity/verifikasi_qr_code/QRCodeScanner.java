@@ -71,18 +71,19 @@ public class QRCodeScanner {
 
     public static String decryptQRCode(String qrCode) {
         updateRuang();
-        String result = "Gagal";
+        String text = "";
+//        String result = "Gagal";
         if (qrCode.length() % 4 == 0) {
             try {
                 byte[] digest = Base64.decode(qrCode, Base64.DEFAULT);
-                String text = new String(digest, "UTF-8");
+                text = new String(digest, "UTF-8");
                 Log.d("QR Code", text);
                 Log.d("Cek Ruang", Integer.toString(ruang.size()));
-                for (int i = 0; i < ruang.size(); i++) {
-                    if (ruang.get(i)[2].equals(text)) {
-                        result = ruang.get(i)[1];
-                    }
-                }
+//                for (int i = 0; i < ruang.size(); i++) {
+//                    if (ruang.get(i)[2].equals(text)) {
+//                        result = ruang.get(i)[1];
+//                    }
+//                }
 
             }
             catch (Exception ex) {
@@ -90,6 +91,6 @@ public class QRCodeScanner {
             }
         }
 
-        return result;
+        return String.valueOf(text);
     }
 }

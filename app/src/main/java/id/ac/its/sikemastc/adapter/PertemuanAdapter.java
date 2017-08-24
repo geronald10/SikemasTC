@@ -6,6 +6,7 @@ import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
     public void onBindViewHolder(PertemuanAdapterViewHolder pertemuanAdapterViewHolder, int position) {
         mCursor.moveToPosition(position);
 
+        Log.d("id Pertemuan", mCursor.getString(PertemuanKelasFragment.INDEX_ID_PERTEMUAN));
         String statusDosen = mCursor.getString(PertemuanKelasFragment.INDEX_STATUS_DOSEN);
         String pertemuanKe = mCursor.getString(PertemuanKelasFragment.INDEX_PERTEMUAN_KE);
         String tanggal = SikemasDateUtils.formatDate(mCursor.getString(PertemuanKelasFragment.INDEX_TANGGAL));
@@ -66,6 +68,7 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
                 pertemuanAdapterViewHolder.tvStatusPertemuan.setText(R.string.status_aktif);
                 pertemuanAdapterViewHolder.clPenjadwalanUlang.setVisibility(View.GONE);
                 pertemuanAdapterViewHolder.clBeritaAcara.setVisibility(View.GONE);
+                pertemuanAdapterViewHolder.clBeritaAcaraContent.setVisibility(View.GONE);
                 break;
             case "2":
                 pertemuanAdapterViewHolder.ivStatusLabel.setImageResource(R.color.colorStatusAbsen);
@@ -88,6 +91,7 @@ public class PertemuanAdapter extends RecyclerView.Adapter<PertemuanAdapter.Pert
                 pertemuanAdapterViewHolder.tvStatusPertemuan.setText(R.string.status_belum_aktif);
                 pertemuanAdapterViewHolder.clPenjadwalanUlang.setVisibility(View.VISIBLE);
                 pertemuanAdapterViewHolder.clBeritaAcara.setVisibility(View.GONE);
+                pertemuanAdapterViewHolder.clBeritaAcaraContent.setVisibility(View.GONE);
                 break;
         }
         pertemuanAdapterViewHolder.tvPertemuanKe.setText(pertemuanKe);
