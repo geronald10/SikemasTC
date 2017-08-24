@@ -52,7 +52,7 @@ public class KehadiranAdapter extends RecyclerView.Adapter<KehadiranAdapter.Keha
                 kehadiranAdapterViewHolder.ivStatusKehadiran.setImageResource(R.color.colorStatusAbsen);
                 kehadiranAdapterViewHolder.tvStatus.setText(R.string.status_absen);
                 break;
-            case "M":
+            case "H":
                 kehadiranAdapterViewHolder.ivStatusLabel.setImageResource(R.color.colorStatusHadir);
                 kehadiranAdapterViewHolder.ivStatusKehadiran.setImageResource(R.color.colorStatusHadir);
                 kehadiranAdapterViewHolder.tvStatus.setText(R.string.status_hadir);

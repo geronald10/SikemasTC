@@ -228,7 +228,7 @@ public class LihatKehadiran extends AppCompatActivity implements
                     edtAlasanIjin.setVisibility(View.VISIBLE);
                     positiveAction.setEnabled(false);
                 } else if (selectedPilihan.equals("Hadir")) {
-                    selectedKey = "M";
+                    selectedKey = "H";
                     tvAlasanLabel.setVisibility(View.GONE);
                     edtAlasanIjin.setVisibility(View.GONE);
                     positiveAction.setEnabled(true);

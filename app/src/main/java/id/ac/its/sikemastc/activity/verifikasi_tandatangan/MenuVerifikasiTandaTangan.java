@@ -208,7 +208,7 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
     // Download image from url
     private void downloadImageFromUrl() {
         //Showing the progress dialog
-        progressDialog.setMessage("Unduh data wajah... ");
+        progressDialog.setMessage("Unduh data tandatangan... ");
         progressDialog.show();
 
         for (int i = 0; i < imageUrlList.size(); i++) {
