@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cv_peserta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +15,9 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp">
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline_vertical"
@@ -27,16 +28,12 @@
 
             <ImageView
                 android:id="@+id/iv_status_kehadiran"
-                android:layout_width="5dp"
+                android:layout_width="8dp"
                 android:layout_height="0dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@color/colorStatusIdle" />
 
             <TextView
@@ -73,13 +70,12 @@
                 android:id="@+id/iv_clock"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="8dp"
-                app:srcCompat="@drawable/ic_clock_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="@+id/tv_nama_peserta"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nama_peserta" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama_peserta"
+                app:srcCompat="@drawable/ic_clock_color" />
 
             <TextView
                 android:id="@+id/tv_waktu_kehadiran"
@@ -105,11 +101,11 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_nrp_peserta"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintLeft_toLeftOf="@+id/guideline_vertical"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_nrp_peserta"
                 app:layout_constraintVertical_bias="0.0"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:srcCompat="@color/colorStatusIdle" />
 
             <TextView

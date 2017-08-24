@@ -163,4 +163,6 @@
     <string name="pertemuan_ke_caption">Pertemuan ke-</string>
     <string name="tambah_berita_acara_string">Tambah Berita Acara</string>
     <string name="verifikasi_tanda_tangan_label">Verifikasi Tandatangan</string>
+    <string name="search_item">cari</string>
+    <string name="refresh_item">refresh</string>
 </resources>

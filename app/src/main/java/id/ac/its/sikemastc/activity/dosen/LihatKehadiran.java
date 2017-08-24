@@ -102,7 +102,6 @@ public class LihatKehadiran extends AppCompatActivity implements
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle("Lihat Kehadiran");
-        mToolbar.setSubtitle("Update terakhir pukul 12.25");
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
 
 //         Compatibility
@@ -125,8 +124,6 @@ public class LihatKehadiran extends AppCompatActivity implements
                 switch (item.getItemId()) {
                     case R.id.refresh:
                         refreshData(selectedPerkuliahan);
-                        break;
-                    case R.id.search:
                         break;
                 }
                 return true;
@@ -343,7 +340,7 @@ public class LihatKehadiran extends AppCompatActivity implements
                                 idPerkuliahanMahasiswa = kehadiran.getString("id_perkuliahanmahasiswa");
                                 ketKehadiran = kehadiran.getString("ket_kehadiran");
                                 waktuHadir = kehadiran.getString("updated_at");
-                                if (waktuHadir != "null")
+                                if (!waktuHadir.equals("null"))
                                     waktuHadir = SikemasDateUtils.formatTimeFromTimestamp(waktuHadir);
                                 else
                                     waktuHadir = "-";

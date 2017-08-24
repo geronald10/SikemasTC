@@ -166,8 +166,10 @@ public class SikemasJsonUtils {
                 idMahasiswa = pivot.getString("id_mahasiswa");
                 ketKehadiran = pivot.getString("ket_kehadiran");
                 waktuKehadiran = pivot.getString("updated_at");
-                if (waktuKehadiran != "null")
+                if (!waktuKehadiran.equals("null"))
                     waktuKehadiran = SikemasDateUtils.formatTimeFromTimestamp(waktuKehadiran);
+                else
+                    waktuKehadiran = "-";
 
                 ContentValues kehadiranPesertaValue = new ContentValues();
                 kehadiranPesertaValue.put(SikemasContract.KehadiranEntry.KEY_NRP_MAHASISWA, nrpMahasiswa);
