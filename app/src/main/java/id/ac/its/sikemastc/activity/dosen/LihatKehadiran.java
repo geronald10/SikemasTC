@@ -119,8 +119,6 @@ public class LihatKehadiran extends AppCompatActivity implements
         mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                String title = (String) item.getTitle();
-                Toast.makeText(LihatKehadiran.this, title + " Selected !", Toast.LENGTH_SHORT).show();
                 switch (item.getItemId()) {
                     case R.id.refresh:
                         refreshData(selectedPerkuliahan);
@@ -373,9 +371,6 @@ public class LihatKehadiran extends AppCompatActivity implements
                                         kehadiranPesertaContentValues
                                 );
                             }
-
-                            Toast.makeText(getApplicationContext(), "Berhasil Mengubah Status Peserta Perkuliahan",
-                                    Toast.LENGTH_SHORT).show();
                             getApplicationContext().getContentResolver().notifyChange(mUri, null);
                             showKehadiranDataView();
                         } catch (JSONException e) {
