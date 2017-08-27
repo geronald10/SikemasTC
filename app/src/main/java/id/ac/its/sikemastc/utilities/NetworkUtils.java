@@ -44,6 +44,9 @@ public final class NetworkUtils {
     // Kirim status kehadiran ke server
     public static final String KIRIM_STATUS_KEHADIRAN_MAHASISWA =
             "http://absensi.if.its.ac.id/mhs/ubahstatuskehadiran";
+    // Cek update data training
+    public static final String CEK_DATA_TRAINING =
+            "http://absensi.if.its.ac.id/cektanggalfile";
 
 
     // Sinkronisasi Dataset Tanda Tangan

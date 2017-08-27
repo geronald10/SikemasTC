@@ -233,7 +233,7 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
                                     outputStream.write(response);
                                     outputStream.close();
                                     if ((index + 1) == imageUrlList.size()) {
-                                        flagStatus.edit().putBoolean("status_file_ttd_flag", true).apply();
+                                        flagStatus.edit().putBoolean("status_file", true).apply();
                                         checkDataSetStatus();
                                         progressDialog.dismiss();
                                         Toast.makeText(getApplicationContext(), "Berhasil melakukan unduh dataset",
@@ -266,7 +266,7 @@ public class MenuVerifikasiTandaTangan extends AppCompatActivity{
     }
 
     private void checkDataSetStatus() {
-        boolean flag = flagStatus.getBoolean("status_file_ttd_flag", false);
+        boolean flag = flagStatus.getBoolean("status_file", false);
         if (!flag) {
             btnKelolaDataSetTandaTangan.setVisibility(View.VISIBLE);
             ivStatusData.setImageResource(R.drawable.ic_error_outline);

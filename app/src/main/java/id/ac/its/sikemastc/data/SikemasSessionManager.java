@@ -8,7 +8,9 @@ import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.Set;
 
 import id.ac.its.sikemastc.activity.LoginActivity;
 import id.ac.its.sikemastc.sync.SikemasSyncTask;
@@ -58,6 +60,13 @@ public class SikemasSessionManager {
         Log.d(TAG, "Check user data set length" + jumlahWajah + " - " + jumlahSignature);
     }
 
+    public void setFileProperty(Set<String> fileName, Set<String> timestamp) {
+        editor.putStringSet("file_name", fileName);
+        editor.putStringSet("file_timestamp", timestamp);
+
+        editor.commit();
+    }
+
     public void checkLogin(){
         if(!this.isLoggedIn()){
             Intent intent = new Intent(_context, LoginActivity.class);
@@ -78,6 +87,14 @@ public class SikemasSessionManager {
             user.put(KEY_USER_CODE, pref.getString(KEY_USER_CODE, null));
 
             return user;
+    }
+
+    public HashMap<String, Set<String>> getFileProperty() {
+        HashMap<String, Set<String>> file = new HashMap<>();
+        file.put("file_name", pref.getStringSet("file_name", null));
+        file.put("file_timestamp", pref.getStringSet("file_timestamp", null));
+
+        return file;
     }
 
     public HashMap<String, Integer> getDataSetLength() {
@@ -110,16 +127,16 @@ public class SikemasSessionManager {
         return pref.getBoolean(KEY_IS_LOGGED_IN, false);
     }
 
-    private void deleteFaceRecognitionLocalData() {
-        File fileOrDirectory = new File(Environment.getExternalStoragePublicDirectory
-                (Environment.DIRECTORY_PICTURES) + "/facerecognition/");
-        deleteRecursive(fileOrDirectory);
-    }
-
-    private void deleteRecursive(File fileOrDirectory) {
-        if (fileOrDirectory.isDirectory())
-            for (File child : fileOrDirectory.listFiles())
-                deleteRecursive(child);
-        fileOrDirectory.delete();
-    }
+//    private void deleteFaceRecognitionLocalData() {
+//        File fileOrDirectory = new File(Environment.getExternalStoragePublicDirectory
+//                (Environment.DIRECTORY_PICTURES) + "/facerecognition/");
+//        deleteRecursive(fileOrDirectory);
+//    }
+//
+//    private void deleteRecursive(File fileOrDirectory) {
+//        if (fileOrDirectory.isDirectory())
+//            for (File child : fileOrDirectory.listFiles())
+//                deleteRecursive(child);
+//        fileOrDirectory.delete();
+//    }
 }

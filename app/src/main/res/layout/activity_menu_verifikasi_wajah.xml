@@ -75,7 +75,7 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintLeft_toRightOf="@id/iv_verifikasi_logo"
                 app:layout_constraintTop_toTopOf="@id/iv_verifikasi_logo"
                 app:srcCompat="@drawable/ic_do_not_disturb" />
@@ -84,32 +84,28 @@
                 android:id="@+id/tv_status_data_wajah"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:text="@string/tv_empty_value"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/iv_status_data_wajah"
                 app:layout_constraintLeft_toRightOf="@id/iv_status_data_wajah"
-                app:layout_constraintRight_toRightOf="@id/tv_user_detail"
+                app:layout_constraintRight_toRightOf="@+id/tv_user_detail"
                 app:layout_constraintTop_toTopOf="@id/iv_status_data_wajah" />
 
             <Button
                 android:id="@+id/btn_kelola_data_set_wajah"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="8dp"
                 android:drawableStart="@drawable/ic_autorenew"
                 android:gravity="center"
                 android:text="@string/sinkronisasi_data_set_wajah"
                 android:textAppearance="@style/TextAppearance.AppCompat.Button"
                 android:textColor="@color/colorStatusHadir"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:theme="@style/WhiteButtonTheme"
-                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="@+id/iv_status_data_wajah"
                 app:layout_constraintRight_toRightOf="@+id/tv_status_data_wajah"
-                app:layout_constraintTop_toBottomOf="@+id/tv_status_data_wajah" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_update_terakhir" />
 
             <Button
                 android:id="@+id/btn_verification_view"
@@ -133,6 +129,29 @@
                 app:layout_constraintLeft_toLeftOf="@+id/iv_verifikasi_logo"
                 app:layout_constraintRight_toRightOf="@+id/tv_status_data_wajah"
                 app:layout_constraintTop_toBottomOf="@+id/iv_verifikasi_logo" />
+
+            <TextView
+                android:id="@+id/tv_update_terakhir_caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Cek pembaharuan terakhir"
+                android:textColor="@color/colorSecondaryText"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_status_data_wajah"
+                app:layout_constraintRight_toRightOf="@+id/tv_user_detail"
+                app:layout_constraintTop_toBottomOf="@+id/tv_status_data_wajah" />
+
+            <TextView
+                android:id="@+id/tv_update_terakhir"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/tv_empty_value"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_update_terakhir_caption"
+                app:layout_constraintRight_toRightOf="@+id/tv_update_terakhir_caption"
+                app:layout_constraintTop_toBottomOf="@+id/tv_update_terakhir_caption" />
 
         </android.support.constraint.ConstraintLayout>
 

@@ -86,4 +86,9 @@ public final class SikemasDateUtils {
         SimpleDateFormat localDateIndonesian = new SimpleDateFormat("EEEE, dd MMM yyyy", new Locale("id", "ID"));
         return localDateIndonesian.format(calendar.getTime());
     }
+
+    public static String getCurrentTimeStamp(Context context) {
+        SimpleDateFormat localTimeStampIndonesian = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", new Locale("id", "ID"));
+        return localTimeStampIndonesian.format(new Date());
+    }
 }
