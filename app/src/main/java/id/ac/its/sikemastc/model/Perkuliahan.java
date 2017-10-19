@@ -18,6 +18,7 @@ public class Perkuliahan {
     private String statusPerkuliahan;
     private String statusKehadiran;
     private String decryptedQR;
+    private String bluetoothAddr;
 
     public Perkuliahan(String idPerkuliahan, String kodeRuangan, String kodeMk, String kodeSemester, String namaMK,
                        String kelasMK, String ruangMK, String pertemuanKe, String hari,
@@ -39,7 +40,7 @@ public class Perkuliahan {
     }
 
     public Perkuliahan(String idPerkuliahan, String kodeRuangan, String kodeMk, String kodeSemester, String namaMK,
-                       String kelasMK, String ruangMK, String pertemuanKe, String hari,
+                       String kelasMK, String ruangMK, String bluetoothAddr, String pertemuanKe, String hari,
                        String waktuMulai, String waktuSelesai, String statusDosen,
                        String statusPerkuliahan, String statusKehadiran, String decryptedQR) {
         this.idPerkuliahan = idPerkuliahan;
@@ -49,6 +50,7 @@ public class Perkuliahan {
         this.namaMk = namaMK;
         this.kelasMk = kelasMK;
         this.ruangMk = ruangMK;
+        this.bluetoothAddr = bluetoothAddr;
         this.pertemuanKe = pertemuanKe;
         this.hari = hari;
         this.waktuMulai = waktuMulai;
@@ -204,4 +206,6 @@ public class Perkuliahan {
     public void setTanggal(String tanggal) {
         this.tanggal = tanggal;
     }
+
+    public String getBluetoothAddr(){ return this.bluetoothAddr; }
 }

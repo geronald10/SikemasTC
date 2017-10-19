@@ -122,13 +122,13 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
                 case R.id.btn_verifikasi_tandatangan:
                     mClickHandler.onClick(R.id.btn_verifikasi_tandatangan,
                             perkuliahanAktifList.get(adapterPosition).getIdPerkuliahan(),
-                            perkuliahanAktifList.get(adapterPosition).getDecryptedQR(),
+                            perkuliahanAktifList.get(adapterPosition).getBluetoothAddr(),
                             perkuliahanAktifList.get(adapterPosition).getStatusKehadiran());
                     break;
                 case R.id.btn_verifikasi_wajah:
                     mClickHandler.onClick(R.id.btn_verifikasi_wajah,
                             perkuliahanAktifList.get(adapterPosition).getIdPerkuliahan(),
-                            perkuliahanAktifList.get(adapterPosition).getDecryptedQR(),
+                            perkuliahanAktifList.get(adapterPosition).getBluetoothAddr(),
                             perkuliahanAktifList.get(adapterPosition).getStatusKehadiran());
                     break;
                 default:

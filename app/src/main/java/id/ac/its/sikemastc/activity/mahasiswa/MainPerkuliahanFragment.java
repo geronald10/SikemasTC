@@ -1,16 +1,7 @@
 package id.ac.its.sikemastc.activity.mahasiswa;
 
-import android.app.Activity;
-import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.graphics.Point;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.StrictMode;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -18,7 +9,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,30 +24,22 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.gms.vision.barcode.Barcode;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import id.ac.its.sikemastc.R;
-import id.ac.its.sikemastc.activity.verifikasi_qr_code.BarcodeCaptureActivity;
-import id.ac.its.sikemastc.activity.verifikasi_qr_code.QRCodeScanner;
+import id.ac.its.sikemastc.activity.verifikasi_bluetooth.BluetoothVerification;
 import id.ac.its.sikemastc.activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan;
 import id.ac.its.sikemastc.activity.verifikasi_wajah.VerifikasiWajahMenuActivity;
 import id.ac.its.sikemastc.adapter.PerkuliahanAktifAdapter;
-import id.ac.its.sikemastc.data.SikemasSessionManager;
 import id.ac.its.sikemastc.model.Perkuliahan;
-import id.ac.its.sikemastc.sync.SikemasSyncTask;
 import id.ac.its.sikemastc.utilities.NetworkUtils;
 import id.ac.its.sikemastc.utilities.SikemasDateUtils;
 import id.ac.its.sikemastc.utilities.VolleySingleton;
@@ -77,14 +58,15 @@ public class MainPerkuliahanFragment extends Fragment implements
     private String bundleIdUser;
     private String bundleNamaUser;
     private List<Perkuliahan> perkuliahanAktifMahasiswaList;
+    private BluetoothVerification bluetoothVerification;
 
     //Verifikasi Lokasi
     private ImageButton searchLocationButton;
     public static TextView location;
 
     //Verifikasi QR Code
-    private Button buttonQR;
-    private String resultQR;
+    private Button buttonBluetooth;
+    public static String resultBluetooth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -99,11 +81,13 @@ public class MainPerkuliahanFragment extends Fragment implements
             Log.d("bundleNamaUser", bundleNamaUser);
         }
 
+        this.resultBluetooth = null;
+
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_kelas_aktif);
         emptyView = (CardView) view.findViewById(R.id.empty_view);
         location = (TextView) view.findViewById(R.id.tv_classroom_position);
-        buttonQR = (Button) view.findViewById(R.id.buttonQR);
+        buttonBluetooth = (Button) view.findViewById(R.id.buttonBluetooth);
 
         TextView tvNamaPengguna = (TextView) view.findViewById(R.id.tv_perkuliahan_aktif_headline_2);
         TextView tvCurrentTgl = (TextView) view.findViewById(R.id.tv_calendar_tanggal);
@@ -133,6 +117,8 @@ public class MainPerkuliahanFragment extends Fragment implements
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
+        bluetoothVerification = new BluetoothVerification(getActivity(), location, resultBluetooth);
+
         return view;
     }
 
@@ -155,15 +141,14 @@ public class MainPerkuliahanFragment extends Fragment implements
             showEmptyView();
         }
 
-        buttonQR.setOnClickListener(new View.OnClickListener() {
+        buttonBluetooth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 if (perkuliahanAktifMahasiswaList.size() == 0)
-                    Toast.makeText(getActivity(), "QRScanner tidak dapat digunakan, tidak ada perkuliah yang aktif",
+                    Toast.makeText(getActivity(), "Tidak ada perkuliah yang aktif",
                             Toast.LENGTH_SHORT).show();
                 else {
-                    Intent intent = new Intent(getContext(), BarcodeCaptureActivity.class);
-                    startActivityForResult(intent, 1);
+                    bluetoothVerification.startBluetoothDiscovery(perkuliahanAktifMahasiswaList);
                 }
             }
         });
@@ -177,36 +162,40 @@ public class MainPerkuliahanFragment extends Fragment implements
     }
 
     @Override
-    public void onClick(int buttonId, String idPerkuliahan, String decryptedQR, String statusKehadiran) {
+    public void onClick(int buttonId, String idPerkuliahan, String bluetoothAddr, String statusKehadiran) {
         switch (buttonId) {
             case R.id.btn_verifikasi_tandatangan:
                 if (!statusKehadiran.equals("H")) {
-                    if (decryptedQR.equals(this.resultQR)) {
-                        ////    Toast.makeText(getContext(), "ini nrp ->" +bundleIdUser, Toast.LENGTH_SHORT).show();
+                    if(bluetoothVerification.mLocationResult != null)
+                        this.resultBluetooth = bluetoothVerification.mLocationResult;
+
+                    if (bluetoothAddr.equals(this.resultBluetooth)) {
                         Intent intentToVerifikasiTandaTangan = new Intent(getActivity(), MenuVerifikasiTandaTangan.class);
                         intentToVerifikasiTandaTangan.putExtra("id_perkuliahan", idPerkuliahan);
                         intentToVerifikasiTandaTangan.putExtra("nrp_mahasiswa", bundleIdUser);
                         intentToVerifikasiTandaTangan.putExtra("nama_mahasiswa", bundleNamaUser);
                         startActivity(intentToVerifikasiTandaTangan);
-                    } else {
+                    }
+                    else {
                         Toast.makeText(getContext(), "Pastikan Anda berada pada ruangan yang benar atau " +
-                                "lakukan pemindaian ulang QR Code", Toast.LENGTH_SHORT).show();
-                        Log.d("Cek", this.resultQR + " " + decryptedQR);
+                                "lakukan ulang pencarian lokasi", Toast.LENGTH_SHORT).show();
                     }
                     break;
-                } else
+                }
+                else
                     Toast.makeText(getContext(), "Anda sudah melakukan presensi pada perkuliahan ini",
                             Toast.LENGTH_SHORT).show();
 
             case R.id.btn_verifikasi_wajah:
                 if (!statusKehadiran.equals("H")) {
-                    if (decryptedQR.equals(this.resultQR)) {
+                    if (bluetoothAddr.equals(this.resultBluetooth)) {
                         Intent intentToVerifikasiWajah = new Intent(getActivity(), VerifikasiWajahMenuActivity.class);
                         intentToVerifikasiWajah.putExtra("id_perkuliahan", idPerkuliahan);
                         intentToVerifikasiWajah.putExtra("nrp_mahasiswa", bundleIdUser);
                         intentToVerifikasiWajah.putExtra("nama_mahasiswa", bundleNamaUser);
                         startActivity(intentToVerifikasiWajah);
-                    } else {
+                    }
+                    else {
                         Toast.makeText(getContext(), "Pastikan Anda berada pada ruangan yang benar atau " +
                                 "lakukan pemindaian ulang QR Code", Toast.LENGTH_SHORT).show();
                     }
@@ -271,6 +260,7 @@ public class MainPerkuliahanFragment extends Fragment implements
                                 JSONObject ruangan = perkuliahan.getJSONObject("ruangan");
                                 String kodeRuangan = ruangan.getString("kode_ruangan");
                                 String ruangMK = ruangan.getString("nama");
+                                String bluetoothAddr = ruangan.getString("bluetooth_address");
 
                                 JSONObject kelas = perkuliahan.getJSONObject("kelas");
                                 String kodeSemester = kelas.getString("kode_semester");
@@ -280,7 +270,7 @@ public class MainPerkuliahanFragment extends Fragment implements
 
                                 Perkuliahan perkuliahanAktifMahasiswa = new Perkuliahan(
                                         idPerkuliahan, kodeRuangan, kodeMk, kodeSemester, namaMk,
-                                        kelasMk, ruangMK, pertemuanKe, hari, waktuMulai,
+                                        kelasMk, ruangMK, bluetoothAddr, pertemuanKe, hari, waktuMulai,
                                         waktuSelesai, statusDosen, statusPerkuliahan, statusKehadiran,
                                         decryptedQR);
                                 perkuliahanAktifMahasiswaList.add(perkuliahanAktifMahasiswa);
@@ -318,38 +308,11 @@ public class MainPerkuliahanFragment extends Fragment implements
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("nrp", idMahasiswa);
                 return params;
             }
         };
         VolleySingleton.getmInstance(getActivity()).addToRequestQueue(stringRequest);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        int flag = 0;
-        if (requestCode == 1) {
-            if (resultCode == CommonStatusCodes.SUCCESS) {
-                if (data != null) {
-                    Barcode barcode = data.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
-                    Point[] p = barcode.cornerPoints;
-                    String md5 = null;
-
-                    this.resultQR = QRCodeScanner.decryptQRCode(barcode.displayValue);
-                    for (int i = 0; i < perkuliahanAktifMahasiswaList.size(); i++) {
-                        if (resultQR.equals(perkuliahanAktifMahasiswaList.get(i).getDecryptedQR())) {
-                            flag++;
-                        }
-                    }
-                    if (flag != 0)
-                        location.setText("QR terdeteksi");
-                    else
-                        location.setText("QR tidak cocok");
-                }
-            } else Log.e("Pemindaian Error", String.format(getString(R.string.barcode_error_format),
-                    CommonStatusCodes.getStatusCodeString(resultCode)));
-        } else super.onActivityResult(requestCode, resultCode, data);
     }
 }

@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -22,8 +24,8 @@
         android:name="android.hardware.camera.front.autofocus"
         android:required="false" />
 
-
     <application
+        android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo_sikemas"
         android:label="@string/app_name"
@@ -31,14 +33,13 @@
         android:roundIcon="@drawable/logo_sikemas"
         android:supportsRtl="true"
         android:theme="@style/AppMaterialTheme"
-        android:name="android.support.multidex.MultiDexApplication"
         tools:replace="android:icon">
 
         <!-- General Activity Manifest -->
         <activity
             android:name=".activity.LoginActivity"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppLoginMaterialTheme" />
+            android:theme="@style/AppLoginMaterialTheme"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".activity.BaseActivity" />
         <activity android:name=".activity.SettingsActivity" />
 
@@ -76,13 +77,11 @@
         <!-- Verifikasi Wajah Activity Manifest -->
         <activity
             android:name=".activity.verifikasi_wajah.VerifikasiWajahMenuActivity"
-            android:theme="@style/AppMaterialTheme">
-        </activity>
+            android:theme="@style/AppMaterialTheme"></activity>
         <activity android:name=".activity.verifikasi_wajah.HasilVerifikasiActivity" />
         <activity
             android:name=".activity.verifikasi_wajah.VerifikasiWajahActivity"
             android:screenOrientation="landscape" />
-
 
         <!-- Provider Manifest -->
         <provider
@@ -135,16 +134,21 @@
             android:value="@integer/google_play_services_version" />
 
         <!-- Verifikasi QR Code -->
-        <activity
-            android:name=".activity.verifikasi_qr_code.BarcodeCaptureActivity" />
+        <activity android:name=".activity.verifikasi_qr_code.BarcodeCaptureActivity" />
 
-        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
-     See README(https://goo.gl/l4GJaQ) for more. -->
+        <!--Verifikasi Lokasi Bluetooth-->
+
+        <!--
+     Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/if_logo_white" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimaryDark" />
@@ -154,10 +158,10 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
