@@ -92,6 +92,7 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
         private TextView tvKodeMataKuliah;
         private Button btnTandaTangan;
         private Button btnPencocokanWajah;
+        private Button btnEasyTap;
         private TextView tvStatusKehadiran;
         private ImageView ivStatusKehadiran;
 
@@ -107,11 +108,13 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
             tvMataKuliah = (TextView) itemView.findViewById(R.id.tv_mata_kuliah);
             btnTandaTangan = (Button) itemView.findViewById(R.id.btn_verifikasi_tandatangan);
             btnPencocokanWajah = (Button) itemView.findViewById(R.id.btn_verifikasi_wajah);
+            btnEasyTap = (Button) itemView.findViewById(R.id.btn_easy_tap);
             tvStatusKehadiran = (TextView) itemView.findViewById(R.id.tv_status_kehadiran);
             ivStatusKehadiran = (ImageView) itemView.findViewById(R.id.iv_status_kehadiran);
 
             btnTandaTangan.setOnClickListener(this);
             btnPencocokanWajah.setOnClickListener(this);
+            btnEasyTap.setOnClickListener(this);
             itemView.setOnClickListener(this);
         }
 
@@ -127,6 +130,12 @@ public class PerkuliahanAktifAdapter extends RecyclerView.Adapter<PerkuliahanAkt
                     break;
                 case R.id.btn_verifikasi_wajah:
                     mClickHandler.onClick(R.id.btn_verifikasi_wajah,
+                            perkuliahanAktifList.get(adapterPosition).getIdPerkuliahan(),
+                            perkuliahanAktifList.get(adapterPosition).getBluetoothAddr(),
+                            perkuliahanAktifList.get(adapterPosition).getStatusKehadiran());
+                    break;
+                case R.id.btn_easy_tap:
+                    mClickHandler.onClick(R.id.btn_easy_tap,
                             perkuliahanAktifList.get(adapterPosition).getIdPerkuliahan(),
                             perkuliahanAktifList.get(adapterPosition).getBluetoothAddr(),
                             perkuliahanAktifList.get(adapterPosition).getStatusKehadiran());

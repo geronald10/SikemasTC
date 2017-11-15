@@ -1,6 +1,7 @@
 package id.ac.its.sikemastc.activity.mahasiswa;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -21,9 +22,11 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import id.ac.its.sikemastc.R;
 import id.ac.its.sikemastc.activity.verifikasi_bluetooth.BluetoothVerification;
 import id.ac.its.sikemastc.activity.verifikasi_tandatangan.MenuVerifikasiTandaTangan;
@@ -59,6 +63,7 @@ public class MainPerkuliahanFragment extends Fragment implements
     private String bundleNamaUser;
     private List<Perkuliahan> perkuliahanAktifMahasiswaList;
     private BluetoothVerification bluetoothVerification;
+    private SweetAlertDialog mLoadDialog;
 
     //Verifikasi Lokasi
     private ImageButton searchLocationButton;
@@ -163,11 +168,11 @@ public class MainPerkuliahanFragment extends Fragment implements
 
     @Override
     public void onClick(int buttonId, String idPerkuliahan, String bluetoothAddr, String statusKehadiran) {
+        if(bluetoothVerification.mLocationResult != null)
+            this.resultBluetooth = bluetoothVerification.mLocationResult;
         switch (buttonId) {
             case R.id.btn_verifikasi_tandatangan:
                 if (!statusKehadiran.equals("H")) {
-                    if(bluetoothVerification.mLocationResult != null)
-                        this.resultBluetooth = bluetoothVerification.mLocationResult;
 
                     if (bluetoothAddr.equals(this.resultBluetooth)) {
                         Intent intentToVerifikasiTandaTangan = new Intent(getActivity(), MenuVerifikasiTandaTangan.class);
@@ -197,7 +202,23 @@ public class MainPerkuliahanFragment extends Fragment implements
                     }
                     else {
                         Toast.makeText(getContext(), "Pastikan Anda berada pada ruangan yang benar atau " +
-                                "lakukan pemindaian ulang QR Code", Toast.LENGTH_SHORT).show();
+                                "lakukan ulang pencarian lokasi", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                } else
+                    Toast.makeText(getContext(), "Anda sudah melakukan presensi pada perkuliahan ini",
+                            Toast.LENGTH_SHORT).show();
+
+            case R.id.btn_easy_tap:
+                if (!statusKehadiran.equals("H")) {
+                    if (bluetoothAddr.equals(this.resultBluetooth)) {
+                        // Kehadiran dengan easy tap
+                        showLoadingDialog();
+                        sendStatus(idPerkuliahan);
+                    }
+                    else {
+                        Toast.makeText(getContext(), "Pastikan Anda berada pada ruangan yang benar atau " +
+                                "lakukan ulang pencarian lokasi", Toast.LENGTH_SHORT).show();
                     }
                     break;
                 } else
@@ -314,5 +335,77 @@ public class MainPerkuliahanFragment extends Fragment implements
             }
         };
         VolleySingleton.getmInstance(getActivity()).addToRequestQueue(stringRequest);
+    }
+
+    private void sendStatus(final String idPerkuliahan) {
+
+        StringRequest stringRequest;
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+
+        stringRequest = new StringRequest(Request.Method.POST, NetworkUtils.KIRIM_STATUS_KEHADIRAN_MAHASISWA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //Showing toast message of the response
+                        showLoadingSuccessDialog();
+                        Log.d("VolleyResponse", "Dapat Response Volley Berhasil Kirim Status Absensi");
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Log.d("VolleyErroyResponse", "Error");
+                        //Showing toast
+                        showLoadingError(volleyError.getMessage());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                // Adding parameters
+                params.put("id_perkuliahan",idPerkuliahan);
+                params.put("id_mahasiswa", bundleIdUser);
+                params.put("ket_kehadiran", "H");
+
+                return params;
+            }
+        };
+        //Adding request to the queue
+        VolleySingleton.getmInstance(getActivity()).addToRequestQueue(stringRequest);
+    }
+
+    private void showLoadingDialog() {
+        mLoadDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        mLoadDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        mLoadDialog.setTitleText("Tunggu sebentar...");
+        mLoadDialog.setCancelable(false);
+        mLoadDialog.show();
+    }
+
+    private void showLoadingSuccessDialog(){
+        if(mLoadDialog.isShowing()){
+            mLoadDialog.dismiss();
+            new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText("Berhasil!")
+                    .setContentText("Anda sudah berhasil mengisi presensi.")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            initiateRefresh();
+                            sweetAlertDialog.dismiss();
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    private void showLoadingError(String error) {
+        if (mLoadDialog.isShowing()) {
+            mLoadDialog.dismiss();
+            new SweetAlertDialog(getActivity(), SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("Gagal Verifikasi!")
+                    .setContentText(error)
+                    .show();
+        }
     }
 }
